@@ -5,7 +5,7 @@ import { ROLE_COLORS } from "@/config/colors";
 import { metricsById, metricsConfig } from "@/config/metrics";
 import type { CombinationEntry, DataRow } from "@/types/dataset";
 import clsx from "clsx";
-import type { PlotData, PlotMouseEvent } from "plotly.js";
+import type { Layout, PlotData, PlotMouseEvent } from "plotly.js";
 import { useMemo } from "react";
 import { formatMetricValue } from "@/utils/data";
 
@@ -162,7 +162,6 @@ export function ScatterChartCard({
 
     return traces;
   }, [
-    filtered,
     roleGroups,
     highlightedCombinationId,
     xMetric,
@@ -171,7 +170,7 @@ export function ScatterChartCard({
     yMetricId
   ]);
 
-  const layout = useMemo(
+  const layout = useMemo<Partial<Layout>>(
     () => ({
       margin: { l: 60, r: 20, t: 40, b: 60 },
       height: 520,

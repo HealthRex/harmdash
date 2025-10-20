@@ -10,7 +10,7 @@ import {
   sortRowsForMetric
 } from "@/utils/data";
 import clsx from "clsx";
-import type { PlotData, PlotMouseEvent } from "plotly.js";
+import type { Layout, PlotData, PlotMouseEvent } from "plotly.js";
 import { useMemo } from "react";
 
 const conditionLegendOrder = [
@@ -116,38 +116,37 @@ const shortenLabel = (label: string, maxChars = 42) => {
     });
 
     const ciValues = barRows.map((row) => row.ci ?? 0);
-    const errorX =
-      ciValues.some((value) => value && value > 0)
-        ? { type: "data", array: ciValues, visible: true }
-        : undefined;
+    const hoverTexts = barRows.map((row) => {
+      const lines = [
+        `<b>${row.displayLabel || row.model}</b>`,
+        `${metric?.label ?? metricId}: ${formatMetricValue(row.mean, metric)}`
+      ];
+      if (row.ci !== null && row.ci !== undefined && row.ci !== 0) {
+        lines.push(`CI: ±${formatMetricValue(row.ci, metric)}`);
+      } else {
+        lines.push("CI: Not available");
+      }
+      lines.push(
+        `Harm: ${row.harm || "NA"}`,
+        `Condition: ${row.condition || "NA"}`,
+        `Role: ${row.role || "NA"}`,
+        `Trials: ${row.trials ?? "NA"}`
+      );
+      return lines.join("<br>");
+    });
+
+    const hasCi = ciValues.some((value) => value && value > 0);
+    const errorX: PlotData["error_x"] = {
+      type: "data",
+      array: hasCi ? ciValues : ciValues.map(() => 0),
+      visible: hasCi
+    };
 
     const maxValue = Math.max(...x, 0);
     const xPadding = maxValue * 0.1 || 1;
-    const insideThreshold = maxValue * 0.25;
-    const textPositions = barRows.map((row) =>
-      (row.mean ?? 0) >= insideThreshold ? "inside" : "outside"
-    );
-
     const inlineLabels = barRows.map((row) =>
       shortenLabel(row.displayLabel || row.model, 40)
     );
-
-    const formattedCi = barRows.map((row) =>
-      row.ci !== null && row.ci !== undefined && row.ci !== 0
-        ? `± ${formatMetricValue(row.ci, metric)}`
-        : "Not available"
-    );
-
-    const customdata = barRows.map((row, index) => ({
-      combinationId: row.combinationId,
-      displayLabel: row.displayLabel || row.model,
-      value: row.mean ?? 0,
-      formattedValue: formattedValues[index],
-      trials: row.trials ?? "NA",
-      condition: row.condition || "NA",
-      role: row.role || "NA",
-      ci: formattedCi[index]
-    }));
 
     const baseOpacities = barRows.map((row) =>
       highlightedCombinationId
@@ -159,24 +158,13 @@ const shortenLabel = (label: string, maxChars = 42) => {
 
     const xAxisMax = maxValue + xPadding;
 
-    const trace: PlotData = {
-      type: "bar",
-      orientation: "h",
+    const trace = {
+      type: "bar" as const,
+      orientation: "h" as const,
       x,
       y,
       text: inlineLabels,
       textposition: "auto",
-      insidetextanchor: "start",
-      insidetextfont: {
-        color: "#ffffff",
-        size: 14,
-        family: "Inter, sans-serif"
-      },
-      outsidetextfont: {
-        color: "#0f172a",
-        size: 14,
-        family: "Inter, sans-serif"
-      },
       cliponaxis: false,
       marker: {
         color: colors,
@@ -186,49 +174,26 @@ const shortenLabel = (label: string, maxChars = 42) => {
           width: 1
         }
       },
-      error_x: errorX,
-      hoverinfo: "skip",
-      hovertemplate:
-        "<b>%{customdata.displayLabel}</b><br>" +
-        `${metric?.label ?? metricId}: %{x:.2f}<br>` +
-        "Trials: %{customdata.trials}<br>" +
-        "Role: %{customdata.role}<br>" +
-        "Condition: %{customdata.condition}<br>" +
-        "CI: %{customdata.ci}<extra></extra>",
-      customdata,
-      selected: {
-        marker: {
-          opacity: 1,
-          line: {
-            color: "#111827",
-            width: 1
-          }
-        }
-      },
-      unselected: {
-        marker: {
-          opacity: 0.55
-        }
-      }
-    };
+      error_x: errorX ?? false,
+      hoverinfo: "text",
+      hovertext: hoverTexts
+    } as PlotData;
 
-    const annotations = barRows.map((row, index) => {
-      return {
-        xref: "paper",
-        x: 1.02,
-        y: y[index],
-        xanchor: "left",
-        yanchor: "middle",
-        text: formattedValues[index],
-        font: {
-          color: "#0f172a",
-          size: 14,
-          family: "Inter, sans-serif"
-        },
-        showarrow: false,
-        align: "left"
-      };
-    });
+    const annotations = barRows.map((row, index) => ({
+      xref: "paper" as const,
+      yref: "y" as const,
+      x: 1.02,
+      y: categoryLabels[index],
+      xanchor: "left" as const,
+      yanchor: "middle" as const,
+      text: formattedValues[index],
+      font: {
+        color: "#0f172a",
+        size: 14,
+        family: "Inter, sans-serif"
+      },
+      showarrow: false
+    }));
 
     const conditionSet = new Set(
       barRows
@@ -264,7 +229,7 @@ const shortenLabel = (label: string, maxChars = 42) => {
     };
   }, [barRows, categoryLabels, metric, metricId, highlightedCombinationId]);
 
-  const layout = useMemo(
+  const layout = useMemo<Partial<Layout>>(
     () => ({
       margin: { l: 72, r: 140, t: 48, b: 48 },
       height: Math.max(420, barRows.length * 34 + 140),
@@ -283,7 +248,6 @@ const shortenLabel = (label: string, maxChars = 42) => {
         showgrid: false,
         zeroline: false,
         showline: false,
-        ticks: "",
         automargin: true
       },
       yaxis: {
@@ -292,7 +256,6 @@ const shortenLabel = (label: string, maxChars = 42) => {
         categoryarray: categoryLabels,
         autorange: "reversed",
         showticklabels: false,
-        ticks: "",
         showgrid: false
       },
       bargap: 0.35,
