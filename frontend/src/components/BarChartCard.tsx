@@ -165,7 +165,7 @@ const shortenLabel = (label: string, maxChars = 42) => {
       x,
       y,
       text: inlineLabels,
-      textposition: textPositions,
+      textposition: "auto",
       insidetextanchor: "start",
       insidetextfont: {
         color: "#ffffff",
