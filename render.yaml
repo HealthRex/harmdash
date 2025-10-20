@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: harmdash-dashboard
+    name: harmdash
     env: node
     plan: free
     rootDir: frontend
