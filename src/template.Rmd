@@ -1,0 +1,72 @@
+---
+title: "Template"
+author: "David Wu"
+---
+## Purpose
+Template
+
+## Setup
+### Optionally convert this Rmd to R script 
+```{r eval=FALSE, message=FALSE}
+current_file <- rstudioapi::getActiveDocumentContext()$path
+output_file <- stringr::str_replace(current_file, '.Rmd', '.R')
+knitr::purl(current_file, output = output_file)
+file.edit(output_file)
+```
+
+### Use the here package for robust relative paths
+Alternatively, set "Evaluate chunks in directory" to "Project" in Global Options > R Markdown
+```{r}
+library(here)
+```
+
+### Directories
+```{r, message=FALSE}
+output_dir <- here('output/') # analysis file output directory
+plot_dir <- here('output/plots')
+dir.create(output_dir, showWarnings = FALSE)
+dir.create(plot_dir, showWarnings = FALSE)
+```
+
+### Google Drive connection
+```{r}
+library(googledrive)
+library(googlesheets4)
+library(gargle) # install.packages('gargle')
+options(gargle_oauth_email = TRUE)
+
+# ss <- drive_get('')
+# sheet <- read_sheet(ss, sheet = '')
+```
+
+### Libraries
+```{r echo=FALSE, message=FALSE}
+library(tidyverse)
+library(rcartocolor)
+library(ggforce)
+library(ggthemes)
+library(ggrepel)
+library(patchwork)
+library(tictoc)
+library(wutilities) # devtools::install_github('symbiologist/wutilities')
+theme_set(theme_dwu(base_size = 14)) # set default theme
+```
+
+### Import files
+```{r}
+
+```
+
+
+## Analysis
+### Explore
+```{r}
+
+```
+
+
+## Session info
+```{r}
+sessionInfo()
+```
+
