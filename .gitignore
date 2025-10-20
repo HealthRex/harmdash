@@ -181,3 +181,5 @@ template.Rproj
 
 # Large data files; UNCOMMENT below
 # data
+!frontend/src/lib/
+!frontend/src/lib/**
