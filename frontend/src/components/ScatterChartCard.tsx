@@ -108,26 +108,28 @@ export function ScatterChartCard({
           entry.metrics[yMetricId]?.trials ?? 0
         );
 
-        const formatAxisValue = (value: number | null, isPercent: boolean) => {
+        const formatAxisValue = (
+          value: number | null,
+          meta: MetricMetadata | undefined
+        ) => {
           if (value === null) return "NA";
-          return isPercent
-            ? `${formatMetricValue(value * 100, 1)}%`
-            : formatMetricValue(value, 2);
+          return formatMetricValue(value, { metadata: meta });
         };
 
-        const formatCi = (value: number | null, isPercent: boolean) => {
+        const formatCi = (
+          value: number | null,
+          meta: MetricMetadata | undefined
+        ) => {
           if (value === null || value === 0) return null;
-          return isPercent
-            ? `CI: ± ${formatMetricValue(value * 100, 1)}%`
-            : `CI: ± ${formatMetricValue(value, 2)}`;
+          return `CI: ± ${formatMetricValue(value, { metadata: meta })}`;
         };
 
         const lines = [
           `<b>${entry.displayLabel || entry.model}</b>`,
-          `${xMeta?.displayLabel ?? xMetricId}: ${formatAxisValue(xValue, xIsPercentMetric)}`,
-          formatCi(xCi, xIsPercentMetric),
-          `${yMeta?.displayLabel ?? yMetricId}: ${formatAxisValue(yValue, yIsPercentMetric)}`,
-          formatCi(yCi, yIsPercentMetric),
+          `${xMeta?.displayLabel ?? xMetricId}: ${formatAxisValue(xValue, xMeta)}`,
+          formatCi(xCi, xMeta),
+          `${yMeta?.displayLabel ?? yMetricId}: ${formatAxisValue(yValue, yMeta)}`,
+          formatCi(yCi, yMeta),
           `Harm: ${entry.harm || "NA"}`,
           `Condition: ${condition}`,
           `Role: ${roleLabel}`,

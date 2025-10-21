@@ -1,6 +1,6 @@
 'use client';
 
-import type { MetricConfig } from "@/types/dataset";
+import type { MetricMetadata } from "@/types/dataset";
 import clsx from "clsx";
 
 interface MetricSelectProps {
@@ -8,7 +8,7 @@ interface MetricSelectProps {
   label: string;
   value: string;
   onChange: (value: string) => void;
-  options: MetricConfig[];
+  options: MetricMetadata[];
   className?: string;
   helper?: string;
 }

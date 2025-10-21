@@ -1,16 +1,20 @@
 'use client';
 
-import { metricsConfig } from "@/config/metrics";
-import type { CombinationEntry } from "@/types/dataset";
+import type { CombinationEntry, MetricMetadata } from "@/types/dataset";
 import clsx from "clsx";
 import { formatMetricValue } from "@/utils/data";
 
 interface ModelInfoDrawerProps {
   selection: CombinationEntry | null;
   onClear: () => void;
+  metrics: MetricMetadata[];
 }
 
-export function ModelInfoDrawer({ selection, onClear }: ModelInfoDrawerProps) {
+export function ModelInfoDrawer({
+  selection,
+  onClear,
+  metrics
+}: ModelInfoDrawerProps) {
   return (
     <aside
       className={clsx(
@@ -72,7 +76,7 @@ export function ModelInfoDrawer({ selection, onClear }: ModelInfoDrawerProps) {
               Metric Breakdown
             </h4>
             <ul className="flex flex-col gap-2">
-              {metricsConfig.map((metric) => {
+              {metrics.map((metric) => {
                 const row = selection.metrics[metric.id];
                 return (
                   <li
@@ -81,7 +85,7 @@ export function ModelInfoDrawer({ selection, onClear }: ModelInfoDrawerProps) {
                   >
                     <span className="flex flex-col">
                       <span className="font-medium text-slate-800">
-                        {metric.label}
+                        {metric.displayLabel}
                       </span>
                       <span className="text-xs text-slate-500">
                         {metric.description}
@@ -89,13 +93,18 @@ export function ModelInfoDrawer({ selection, onClear }: ModelInfoDrawerProps) {
                     </span>
                     <span className="flex flex-col items-end">
                       <span className="text-base font-semibold text-brand-600">
-                        {formatMetricValue(row?.mean ?? null, metric)}
+                        {formatMetricValue(row?.mean ?? null, {
+                          metadata: metric
+                        })}
                       </span>
                       {row?.ci !== null &&
                       row?.ci !== undefined &&
                       row?.ci !== 0 ? (
                         <span className="text-xs font-medium text-slate-500">
-                          CI ± {formatMetricValue(row.ci, metric)}
+                          CI ±{" "}
+                          {formatMetricValue(row.ci, {
+                            metadata: metric
+                          })}
                         </span>
                       ) : null}
                     </span>

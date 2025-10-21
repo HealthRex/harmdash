@@ -5,14 +5,13 @@ import { FiltersPanel } from "@/components/FiltersPanel";
 import { MetricsSummary } from "@/components/MetricsSummary";
 import { ModelInfoDrawer } from "@/components/ModelInfoDrawer";
 import { ScatterChartCard } from "@/components/ScatterChartCard";
-import { metricsConfig } from "@/config/metrics";
 import type {
   CombinationEntry,
   DataRow,
   DatasetArtifact
 } from "@/types/dataset";
 import { groupRowsByCombination } from "@/utils/data";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 interface DashboardProps {
   dataset: DatasetArtifact;
@@ -55,9 +54,18 @@ function toggleWithMinimumSelected(
 }
 
 export function Dashboard({ dataset }: DashboardProps) {
-  const [barMetricId, setBarMetricId] = useState<string>("Accuracy");
-  const [xMetricId, setXMetricId] = useState<string>("normalized");
-  const [yMetricId, setYMetricId] = useState<string>("Safety");
+  const metrics = useMemo(() => dataset.metadata, [dataset.metadata]);
+  const metadataMap = useMemo(
+    () => new Map(metrics.map((meta) => [meta.id, meta])),
+    [metrics]
+  );
+  const metricIds = useMemo(() => metrics.map((meta) => meta.id), [metrics]);
+
+  const [barMetricId, setBarMetricId] = useState<string>(() => metricIds[0] ?? "");
+  const [xMetricId, setXMetricId] = useState<string>(() => metricIds[0] ?? "");
+  const [yMetricId, setYMetricId] = useState<string>(
+    () => metricIds[1] ?? metricIds[0] ?? ""
+  );
   const [selectedHarmLevels, setSelectedHarmLevels] = useState<string[]>(["Severe"]);
   const [selectedRoles, setSelectedRoles] = useState<string[]>(
     ROLE_OPTIONS.map((option) => option.value)
@@ -126,13 +134,30 @@ export function Dashboard({ dataset }: DashboardProps) {
     }
   }, [selection, combinations]);
 
-  const ensureMetricExists = (metricId: string) => {
-    const available = metricsConfig.map((metric) => metric.id);
-    if (available.includes(metricId)) {
-      return metricId;
+  useEffect(() => {
+    if (metricIds.length === 0) {
+      return;
     }
-    return available[0];
-  };
+
+    setBarMetricId((prev) => (metricIds.includes(prev) ? prev : metricIds[0]));
+    setXMetricId((prev) => (metricIds.includes(prev) ? prev : metricIds[0]));
+    setYMetricId((prev) => {
+      if (metricIds.includes(prev)) {
+        return prev;
+      }
+      return metricIds[1] ?? metricIds[0];
+    });
+  }, [metricIds]);
+
+  const ensureMetricExists = useCallback(
+    (metricId: string) => {
+      if (metricIds.includes(metricId)) {
+        return metricId;
+      }
+      return metricIds[0] ?? metricId;
+    },
+    [metricIds]
+  );
 
   const safeBarMetric = ensureMetricExists(barMetricId);
   const safeXMetric = ensureMetricExists(xMetricId);
@@ -186,6 +211,8 @@ export function Dashboard({ dataset }: DashboardProps) {
           onBarClick={handleBarClick}
           highlightedCombinationId={selection?.combinationId}
           maxItems={15}
+          metrics={metrics}
+          metadataMap={metadataMap}
         />
         <FiltersPanel
           harmOptions={HARM_OPTIONS}
@@ -211,8 +238,14 @@ export function Dashboard({ dataset }: DashboardProps) {
         onYMetricChange={setYMetricId}
         onPointClick={handlePointClick}
         highlightedCombinationId={selection?.combinationId}
+        metrics={metrics}
+        metadataMap={metadataMap}
       />
-      <ModelInfoDrawer selection={selection} onClear={handleClearSelection} />
+      <ModelInfoDrawer
+        selection={selection}
+        onClear={handleClearSelection}
+        metrics={metrics}
+      />
     </div>
   );
 }

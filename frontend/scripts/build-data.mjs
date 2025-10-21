@@ -47,16 +47,12 @@ const metricsSchema = z.object({
 });
 
 const metadataSchema = z.object({
-  Order: z.coerce.number(),
+  Order: z.union([z.string(), z.number()]).optional(),
   Metric: z.string().min(1),
-  Include: z.string().optional().transform((value) =>
-    typeof value === "string" ? value.trim().toLowerCase() === "true" : true
-  ),
-  Range: z.string().optional().transform((value) =>
-    value ? value.trim().toLowerCase() : "absolute"
-  ),
-  Display: z.string().min(1),
-  Description: z.string().optional().default("")
+  Include: z.union([z.string(), z.boolean()]).optional(),
+  Range: z.string().optional(),
+  Display: z.string().optional(),
+  Description: z.string().optional()
 });
 
 function parseNumber(value) {
@@ -88,6 +84,60 @@ function sanitizeLabel(raw) {
   return raw.replace(/<[^>]+>/g, "").trim() || null;
 }
 
+function parseBoolean(value, defaultValue = true) {
+  if (typeof value === "boolean") {
+    return value;
+  }
+  if (value === null || value === undefined) {
+    return defaultValue;
+  }
+  const normalized = String(value).trim().toLowerCase();
+  if (!normalized) {
+    return defaultValue;
+  }
+  if (["false", "f", "0", "no"].includes(normalized)) {
+    return false;
+  }
+  if (["true", "t", "1", "yes"].includes(normalized)) {
+    return true;
+  }
+  return defaultValue;
+}
+
+function parseOrder(value) {
+  if (value === null || value === undefined) {
+    return null;
+  }
+  const normalized = String(value).trim();
+  if (!normalized || normalized.toLowerCase() === "na") {
+    return null;
+  }
+  const parsed = Number(normalized);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function parseRange(value) {
+  if (value === null || value === undefined) {
+    return "absolute";
+  }
+  const normalized = String(value).trim().toLowerCase();
+  if (normalized === "percent" || normalized === "%") {
+    return "percent";
+  }
+  return "absolute";
+}
+
+function cleanMetadataString(value, fallback = "") {
+  if (value === null || value === undefined) {
+    return fallback;
+  }
+  const trimmed = String(value).trim();
+  if (!trimmed || trimmed.toLowerCase() === "na") {
+    return fallback;
+  }
+  return trimmed;
+}
+
 function getCombinationId(row) {
   return [
     row.Model,
@@ -113,16 +163,32 @@ async function main() {
 
   const metadata = rawMetadataRows
     .map((row) => metadataSchema.parse(row))
-    .map((entry) => ({
-      id: entry.Metric,
-      order: entry.Order,
-      range: entry.Range === "percent" ? "percent" : "absolute",
-      displayLabel: entry.Display,
-      description: entry.Description,
-      include: entry.Include
-    }))
+    .map((entry) => {
+      const include = parseBoolean(entry.Include, true);
+      const order = parseOrder(entry.Order);
+      return {
+        id: entry.Metric,
+        order: order ?? Number.MAX_SAFE_INTEGER,
+        range: parseRange(entry.Range),
+        displayLabel: cleanMetadataString(entry.Display, entry.Metric),
+        description: cleanMetadataString(entry.Description, ""),
+        include
+      };
+    })
     .filter((entry) => entry.include)
-    .sort((a, b) => a.order - b.order);
+    .map(({ include, ...rest }) => rest)
+    .sort((a, b) => {
+      if (a.order === b.order) {
+        return a.displayLabel.localeCompare(b.displayLabel);
+      }
+      return a.order - b.order;
+    })
+    .map((entry) => ({
+      ...entry,
+      order: Number.isFinite(entry.order)
+        ? entry.order
+        : Number.MAX_SAFE_INTEGER
+    }));
 
   const includedMetricIds = new Set(metadata.map((entry) => entry.id));
 

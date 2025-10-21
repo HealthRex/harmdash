@@ -1,8 +1,21 @@
 import type {
   CombinationEntry,
   DataRow,
-  DatasetArtifact
+  DatasetArtifact,
+  MetricMetadata
 } from "@/types/dataset";
+
+const DIGIT_OVERRIDES: Record<
+  string,
+  Partial<Record<"percent" | "absolute", number>>
+> = {
+  pct: { percent: 1 },
+  pct_cumulative: { percent: 1 },
+  normalized: { absolute: 3 },
+  normalized_cumulative: { absolute: 3 },
+  nnh: { absolute: 1 },
+  nnh_cumulative: { absolute: 1 }
+};
 
 export function groupRowsByCombination(
   rows: DataRow[]
@@ -121,9 +134,16 @@ export function sanitizeLabel(raw: string | null): string {
   return raw.replace(/<[^>]+>/g, "").trim();
 }
 
+interface FormatMetricOptions {
+  digits?: number;
+  metadata?: MetricMetadata | null;
+  style?: "auto" | "percent" | "absolute";
+  includeSymbol?: boolean;
+}
+
 export function formatMetricValue(
   value: number | null | undefined,
-  digits = 2
+  options: FormatMetricOptions = {}
 ): string {
   if (value === null || value === undefined) {
     return "NA";
@@ -131,8 +151,43 @@ export function formatMetricValue(
   if (!Number.isFinite(value)) {
     return "NA";
   }
+
+  const {
+    metadata = null,
+    digits,
+    style = "auto",
+    includeSymbol = true
+  } = options;
+
+  const rangeStyle =
+    style === "auto"
+      ? metadata?.range === "percent"
+        ? "percent"
+        : "absolute"
+      : style;
+
+  const overrideDigits =
+    metadata && DIGIT_OVERRIDES[metadata.id]?.[rangeStyle];
+  const resolvedDigits =
+    digits !== undefined
+      ? digits
+      : overrideDigits !== undefined
+      ? overrideDigits
+      : rangeStyle === "percent"
+      ? 1
+      : 2;
+
+  if (rangeStyle === "percent") {
+    const scaled = Number(value) * 100;
+    const formatted = scaled.toLocaleString(undefined, {
+      minimumFractionDigits: resolvedDigits,
+      maximumFractionDigits: resolvedDigits
+    });
+    return includeSymbol ? `${formatted}%` : formatted;
+  }
+
   return Number(value).toLocaleString(undefined, {
-    minimumFractionDigits: digits,
-    maximumFractionDigits: digits
+    minimumFractionDigits: resolvedDigits,
+    maximumFractionDigits: resolvedDigits
   });
 }

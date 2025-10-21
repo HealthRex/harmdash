@@ -5,6 +5,7 @@ import {
   groupRowsByCombination,
   sanitizeLabel
 } from "@/utils/data";
+import type { MetricMetadata } from "@/types/dataset";
 
 describe("sanitizeLabel", () => {
   it("removes HTML tags", () => {
@@ -17,18 +18,43 @@ describe("sanitizeLabel", () => {
 });
 
 describe("formatMetricValue", () => {
-  
+  const percentMeta: MetricMetadata = {
+    id: "percentMetric",
+    order: 1,
+    range: "percent",
+    displayLabel: "Percent Metric",
+    description: "A percent metric"
+  };
 
-  it("formats numbers with digits", () => {
-    expect(formatMetricValue(87.456, 1)).toBe("87.5");
+  const absoluteMeta: MetricMetadata = {
+    id: "absoluteMetric",
+    order: 2,
+    range: "absolute",
+    displayLabel: "Absolute Metric",
+    description: "An absolute metric"
+  };
+
+  it("formats percent metrics with a percent sign", () => {
+    expect(
+      formatMetricValue(0.87456, { metadata: percentMeta, digits: 1 })
+    ).toBe("87.5%");
+  });
+
+  it("formats absolute metrics with default digits", () => {
+    expect(formatMetricValue(3.14159, { metadata: absoluteMeta })).toBe("3.14");
   });
 
   it("returns NA for null values", () => {
     expect(formatMetricValue(null)).toBe("NA");
   });
 
-  it("formats with default digits", () => {
-    expect(formatMetricValue(3.14159)).toBe("3.14");
+  it("omits the percent symbol when requested", () => {
+    expect(
+      formatMetricValue(0.5, {
+        metadata: percentMeta,
+        includeSymbol: false
+      })
+    ).toBe("50.0");
   });
 });
 

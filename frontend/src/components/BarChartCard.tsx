@@ -188,18 +188,13 @@ export function BarChartCard({
           const barColor = getBarColor(row);
           const isSelected = highlightedCombinationId === row.combinationId;
           const displayLabel = shortenLabel(row.displayLabel || row.model);
-          const formattedValue =
-            row.mean == null
-              ? "NA"
-              : isPercentMetric
-              ? `${(value * 100).toFixed(1)}%`
-              : formatMetricValue(row.mean, 1);
-          const ciLabel =
-            row.ci !== null && row.ci !== undefined && row.ci !== 0
-              ? isPercentMetric
-                ? `CI: ± ${(row.ci * 100).toFixed(1)}%`
-                : `CI: ± ${formatMetricValue(row.ci, 1)}`
-              : "CI: NA";
+          const formattedValue = formatMetricValue(row.mean, {
+            metadata: metricMeta
+          });
+          const hasCi = row.ci !== null && row.ci !== undefined && row.ci !== 0;
+          const ciLabel = hasCi
+            ? `CI: ± ${formatMetricValue(row.ci, { metadata: metricMeta })}`
+            : "CI: NA";
           const textColor = getTextColor(barColor);
 
           return (
