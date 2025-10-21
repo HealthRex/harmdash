@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import type { DataRow, MetricConfig } from "@/types/dataset";
+import type { DataRow } from "@/types/dataset";
 import {
   formatMetricValue,
   groupRowsByCombination,
@@ -17,24 +17,18 @@ describe("sanitizeLabel", () => {
 });
 
 describe("formatMetricValue", () => {
-  const metric: MetricConfig = {
-    id: "Accuracy",
-    label: "Accuracy",
-    description: "Test metric",
-    higherIsBetter: true,
-    format: (value: number) => `${value.toFixed(1)}%`
-  };
+  
 
-  it("formats using metric config", () => {
-    expect(formatMetricValue(87.456, metric)).toBe("87.5%");
+  it("formats numbers with digits", () => {
+    expect(formatMetricValue(87.456, 1)).toBe("87.5");
   });
 
   it("returns NA for null values", () => {
-    expect(formatMetricValue(null, metric)).toBe("NA");
+    expect(formatMetricValue(null)).toBe("NA");
   });
 
-  it("falls back to default formatting without metric", () => {
-    expect(formatMetricValue(3.14159, undefined)).toBe("3.14");
+  it("formats with default digits", () => {
+    expect(formatMetricValue(3.14159)).toBe("3.14");
   });
 });
 

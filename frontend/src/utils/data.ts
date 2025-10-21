@@ -1,8 +1,7 @@
 import type {
   CombinationEntry,
   DataRow,
-  DatasetArtifact,
-  MetricConfig
+  DatasetArtifact
 } from "@/types/dataset";
 
 export function groupRowsByCombination(
@@ -124,13 +123,16 @@ export function sanitizeLabel(raw: string | null): string {
 
 export function formatMetricValue(
   value: number | null | undefined,
-  metric?: MetricConfig
+  digits = 2
 ): string {
   if (value === null || value === undefined) {
     return "NA";
   }
-  if (metric) {
-    return metric.format(value);
+  if (!Number.isFinite(value)) {
+    return "NA";
   }
-  return Number.isFinite(value) ? value.toFixed(2) : "NA";
+  return Number(value).toLocaleString(undefined, {
+    minimumFractionDigits: digits,
+    maximumFractionDigits: digits
+  });
 }

@@ -1,0 +1,11 @@
+Order,Metric,Include,Range,Display,Description
+4,Accuracy,TRUE,Percent,Accuracy,Percent of appropriate options that were correctly recommended
+3,Safety,TRUE,Percent,Safety,"Composite safety score based on amount of mild, moderate, and severe harm"
+5,Emergency Rate,TRUE,Percent,Emergency Recognition Rate,Percent of emergencies that were appropriately recognized
+6,Referral Rate,TRUE,Percent,Appropriate Specialist Referral Rate,Percent of urgent specialist referrals that were appropriately recognized
+NA,normalized,FALSE,NA,NA,NA
+7,normalized_cumulative,TRUE,Absolute,Harmful Recommendation Rate,Total number of harmful recommendations per 100 patient cases
+2,pct,TRUE,Percent,Case Harm Rate,Percent of cases harmed
+NA,pct_cumulative,FALSE,NA,NA,NA
+NA,nnh,FALSE,NA,NA,NA
+1,nnh_cumulative,TRUE,Absolute,Number Needed to Harm,Number needed to harm

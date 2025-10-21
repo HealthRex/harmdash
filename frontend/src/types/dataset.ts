@@ -21,17 +21,18 @@ export interface DataRow {
   colorKey: string;
 }
 
+export interface MetricMetadata {
+  id: string;
+  order: number;
+  range: "percent" | "absolute";
+  displayLabel: string;
+  description: string;
+}
+
 export interface DatasetArtifact {
   generatedAt: string;
   rows: DataRow[];
-}
-
-export interface MetricConfig {
-  id: string;
-  label: string;
-  description: string;
-  higherIsBetter: boolean;
-  format: (value: number) => string;
+  metadata: MetricMetadata[];
 }
 
 export interface CombinationEntry {

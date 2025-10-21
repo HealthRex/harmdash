@@ -2,8 +2,7 @@
 
 import Plot from "@/components/PlotClient";
 import { ROLE_COLORS } from "@/config/colors";
-import { metricsById, metricsConfig } from "@/config/metrics";
-import type { CombinationEntry, DataRow } from "@/types/dataset";
+import type { CombinationEntry, DataRow, MetricMetadata } from "@/types/dataset";
 import clsx from "clsx";
 import type { Layout, PlotData, PlotMouseEvent } from "plotly.js";
 import { useMemo } from "react";
@@ -23,6 +22,8 @@ interface ScatterChartCardProps {
   onYMetricChange: (metricId: string) => void;
   onPointClick?: (entry: CombinationEntry) => void;
   highlightedCombinationId?: string | null;
+  metrics: MetricMetadata[];
+  metadataMap: Map<string, MetricMetadata>;
 }
 
 export function ScatterChartCard({
@@ -32,10 +33,14 @@ export function ScatterChartCard({
   onXMetricChange,
   onYMetricChange,
   onPointClick,
-  highlightedCombinationId
+  highlightedCombinationId,
+  metrics,
+  metadataMap
 }: ScatterChartCardProps) {
-  const xMetric = metricsById[xMetricId];
-  const yMetric = metricsById[yMetricId];
+  const xMeta = metadataMap.get(xMetricId);
+  const yMeta = metadataMap.get(yMetricId);
+  const xIsPercentMetric = xMeta?.range === "percent";
+  const yIsPercentMetric = yMeta?.range === "percent";
 
   const filtered = useMemo(() => {
     return combinations.filter((entry) => {
@@ -60,9 +65,14 @@ export function ScatterChartCard({
   const data: PlotData[] = useMemo(() => {
     const highlighted = new Set([highlightedCombinationId ?? ""]);
     const traces: PlotData[] = [];
+
     roleGroups.forEach((entries, role) => {
-      const x = entries.map((entry) => entry.metrics[xMetricId]?.mean ?? 0);
-      const y = entries.map((entry) => entry.metrics[yMetricId]?.mean ?? 0);
+      const rawX = entries.map((entry) => entry.metrics[xMetricId]?.mean ?? 0);
+      const rawY = entries.map((entry) => entry.metrics[yMetricId]?.mean ?? 0);
+
+      const x = rawX.map((value) => (xIsPercentMetric ? value * 100 : value));
+      const y = rawY.map((value) => (yIsPercentMetric ? value * 100 : value));
+
       const color = ROLE_COLORS[role] ?? ROLE_COLORS.default;
       const marker = {
         size: entries.map((entry) =>
@@ -92,57 +102,58 @@ export function ScatterChartCard({
         const xCi = entry.metrics[xMetricId]?.ci ?? null;
         const yCi = entry.metrics[yMetricId]?.ci ?? null;
         const condition = entry.condition || "NA";
-        const role = entry.role || "NA";
+        const roleLabel = entry.role || "NA";
         const trials = Math.max(
           entry.metrics[xMetricId]?.trials ?? 0,
           entry.metrics[yMetricId]?.trials ?? 0
         );
+
+        const formatAxisValue = (value: number | null, isPercent: boolean) => {
+          if (value === null) return "NA";
+          return isPercent
+            ? `${formatMetricValue(value * 100, 1)}%`
+            : formatMetricValue(value, 2);
+        };
+
+        const formatCi = (value: number | null, isPercent: boolean) => {
+          if (value === null || value === 0) return null;
+          return isPercent
+            ? `CI: ± ${formatMetricValue(value * 100, 1)}%`
+            : `CI: ± ${formatMetricValue(value, 2)}`;
+        };
+
         const lines = [
           `<b>${entry.displayLabel || entry.model}</b>`,
-          `${xMetric?.label ?? xMetricId}: ${formatMetricValue(
-            xValue,
-            xMetric
-          )}`,
-          xCi
-            ? `CI (${xMetric?.label ?? xMetricId}): ±${formatMetricValue(
-                xCi,
-                xMetric
-              )}`
-            : null,
-          `${yMetric?.label ?? yMetricId}: ${formatMetricValue(
-            yValue,
-            yMetric
-          )}`,
-          yCi
-            ? `CI (${yMetric?.label ?? yMetricId}): ±${formatMetricValue(
-                yCi,
-                yMetric
-              )}`
-            : null,
+          `${xMeta?.displayLabel ?? xMetricId}: ${formatAxisValue(xValue, xIsPercentMetric)}`,
+          formatCi(xCi, xIsPercentMetric),
+          `${yMeta?.displayLabel ?? yMetricId}: ${formatAxisValue(yValue, yIsPercentMetric)}`,
+          formatCi(yCi, yIsPercentMetric),
           `Harm: ${entry.harm || "NA"}`,
           `Condition: ${condition}`,
-          `Role: ${role}`,
+          `Role: ${roleLabel}`,
           `Trials: ${trials || "NA"}`
         ].filter(Boolean);
 
         return `${lines.join("<br>")}<extra></extra>`;
       });
 
-      const xError = entries.map(
-        (entry) => entry.metrics[xMetricId]?.ci ?? 0
-      );
-      const yError = entries.map(
-        (entry) => entry.metrics[yMetricId]?.ci ?? 0
-      );
+      const xErrorRaw = entries.map((entry) => entry.metrics[xMetricId]?.ci ?? 0);
+      const yErrorRaw = entries.map((entry) => entry.metrics[yMetricId]?.ci ?? 0);
 
-      const errorX =
-        xError.some((value) => value && value > 0)
-          ? { type: "data", array: xError, visible: true }
-          : undefined;
-      const errorY =
-        yError.some((value) => value && value > 0)
-          ? { type: "data", array: yError, visible: true }
-          : undefined;
+      const errorX = xErrorRaw.some((value) => value && value > 0)
+        ? {
+            type: "data",
+            array: xErrorRaw.map((value) => (xIsPercentMetric ? value * 100 : value)),
+            visible: true
+          }
+        : undefined;
+      const errorY = yErrorRaw.some((value) => value && value > 0)
+        ? {
+            type: "data",
+            array: yErrorRaw.map((value) => (yIsPercentMetric ? value * 100 : value)),
+            visible: true
+          }
+        : undefined;
 
       traces.push({
         type: "scattergl",
@@ -164,10 +175,10 @@ export function ScatterChartCard({
   }, [
     roleGroups,
     highlightedCombinationId,
-    xMetric,
-    yMetric,
     xMetricId,
-    yMetricId
+    yMetricId,
+    xIsPercentMetric,
+    yIsPercentMetric
   ]);
 
   const layout = useMemo<Partial<Layout>>(
@@ -178,24 +189,28 @@ export function ScatterChartCard({
       plot_bgcolor: "rgba(0,0,0,0)",
       xaxis: {
         title: {
-          text: xMetric?.label ?? xMetricId,
+          text: xMeta?.displayLabel ?? xMetricId,
           font: {
             size: 14,
             family: "Inter, sans-serif"
           }
         },
+        range: xIsPercentMetric ? [0, 100] : undefined,
+        tickformat: xIsPercentMetric ? ".1f" : undefined,
         automargin: true,
         zeroline: false,
         gridcolor: "#e2e8f0"
       },
       yaxis: {
         title: {
-          text: yMetric?.label ?? yMetricId,
+          text: yMeta?.displayLabel ?? yMetricId,
           font: {
             size: 14,
             family: "Inter, sans-serif"
           }
         },
+        range: yIsPercentMetric ? [0, 100] : undefined,
+        tickformat: yIsPercentMetric ? ".1f" : undefined,
         automargin: true,
         zeroline: false,
         gridcolor: "#e2e8f0"
@@ -210,7 +225,7 @@ export function ScatterChartCard({
         y: 1.1
       }
     }),
-    [xMetric, yMetric, xMetricId, yMetricId]
+    [xMeta, yMeta, xMetricId, yMetricId, xIsPercentMetric, yIsPercentMetric]
   );
 
   const handleClick = (event: PlotMouseEvent) => {
@@ -246,9 +261,9 @@ export function ScatterChartCard({
                 onChange={(event) => onXMetricChange(event.target.value)}
                 className="rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-sm shadow-sm transition hover:border-brand-500"
               >
-                {metricsConfig.map((option) => (
+                {metrics.map((option) => (
                   <option key={option.id} value={option.id}>
-                    {option.label}
+                    {option.displayLabel}
                   </option>
                 ))}
               </select>
@@ -260,9 +275,9 @@ export function ScatterChartCard({
                 onChange={(event) => onYMetricChange(event.target.value)}
                 className="rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-sm shadow-sm transition hover:border-brand-500"
               >
-                {metricsConfig.map((option) => (
+                {metrics.map((option) => (
                   <option key={option.id} value={option.id}>
-                    {option.label}
+                    {option.displayLabel}
                   </option>
                 ))}
               </select>

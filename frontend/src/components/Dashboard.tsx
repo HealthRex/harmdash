@@ -19,10 +19,9 @@ interface DashboardProps {
 }
 
 const HARM_OPTIONS = [
-  { value: "Severe", label: "Severe" },
-  { value: "Moderate", label: "Moderate" },
-  { value: "Mild", label: "Mild" },
-  { value: "Uncertain", label: "Uncertain" }
+  { value: "Severe", label: "Severe", color: "#F87171" },
+  { value: "Moderate", label: "Moderate", color: "#FB923C" },
+  { value: "Mild", label: "Mild", color: "#FACC15" }
 ];
 
 const ROLE_OPTIONS = [
@@ -59,9 +58,7 @@ export function Dashboard({ dataset }: DashboardProps) {
   const [barMetricId, setBarMetricId] = useState<string>("Accuracy");
   const [xMetricId, setXMetricId] = useState<string>("normalized");
   const [yMetricId, setYMetricId] = useState<string>("Safety");
-  const [selectedHarmLevels, setSelectedHarmLevels] = useState<string[]>([
-    "Severe"
-  ]);
+  const [selectedHarmLevels, setSelectedHarmLevels] = useState<string[]>(["Severe"]);
   const [selectedRoles, setSelectedRoles] = useState<string[]>(
     ROLE_OPTIONS.map((option) => option.value)
   );
@@ -162,6 +159,10 @@ export function Dashboard({ dataset }: DashboardProps) {
     setSelectedHarmLevels((prev) => toggleWithMinimumSelected(prev, value));
   };
 
+  const handleSelectSeverity = (value: string) => {
+    setSelectedHarmLevels([value]);
+  };
+
   const handleToggleRole = (value: string) => {
     setSelectedRoles((prev) => toggleWithMinimumSelected(prev, value));
   };
@@ -190,6 +191,7 @@ export function Dashboard({ dataset }: DashboardProps) {
           harmOptions={HARM_OPTIONS}
           selectedHarmLevels={selectedHarmLevels}
           onToggleHarm={handleToggleHarm}
+          onSelectSeverity={handleSelectSeverity}
           roleOptions={ROLE_OPTIONS}
           selectedRoles={selectedRoles}
           onToggleRole={handleToggleRole}

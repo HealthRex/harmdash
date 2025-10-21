@@ -6,18 +6,19 @@ import { CONDITION_COLORS } from "@/config/colors";
 interface ToggleOption {
   value: string;
   label: string;
+  color?: string;
 }
 
 interface FiltersPanelProps {
   harmOptions: ToggleOption[];
   selectedHarmLevels: string[];
-  onToggleHarm: (harm: string) => void;
   roleOptions: ToggleOption[];
   selectedRoles: string[];
   onToggleRole: (role: string) => void;
   conditionOptions: ToggleOption[];
   selectedConditions: string[];
   onToggleCondition: (condition: string) => void;
+  onSelectSeverity: (severity: string) => void;
   minTrials: number;
   minTrialsRange: { min: number; max: number };
   onMinTrialsChange: (value: number) => void;
@@ -65,13 +66,13 @@ function TogglePill({
 export function FiltersPanel({
   harmOptions,
   selectedHarmLevels,
-  onToggleHarm,
   roleOptions,
   selectedRoles,
   onToggleRole,
   conditionOptions,
   selectedConditions,
   onToggleCondition,
+  onSelectSeverity,
   minTrials,
   minTrialsRange,
   onMinTrialsChange
@@ -103,8 +104,9 @@ export function FiltersPanel({
               <TogglePill
                 key={option.value}
                 label={option.label}
+                color={option.color}
                 active={selectedHarmLevels.includes(option.value)}
-                onClick={() => onToggleHarm(option.value)}
+                onClick={() => onSelectSeverity(option.value)}
               />
             ))}
           </div>
