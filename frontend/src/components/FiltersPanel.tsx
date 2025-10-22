@@ -1,5 +1,6 @@
 'use client';
 
+import type { CSSProperties } from "react";
 import clsx from "clsx";
 import { TEAM_COLORS } from "@/config/colors";
 
@@ -75,6 +76,68 @@ export function TeamFiltersBar({
   onToggleTeamCondition,
   conditionColorMap
 }: TeamFiltersBarProps) {
+  const inferAgentCount = (group: TeamConditionGroup) => {
+    const labelMatch = group.label.match(/^(\d+)/);
+    if (labelMatch) {
+      const parsed = Number.parseInt(labelMatch[1], 10);
+      if (!Number.isNaN(parsed) && parsed > 0) {
+        return parsed;
+      }
+    }
+
+    const fromConditions = group.conditions.reduce((max, condition) => {
+      const count = condition
+        .split("+")
+        .map((part) => part.trim())
+        .filter(Boolean).length;
+      return Math.max(max, count || 0);
+    }, 0);
+
+    return Math.max(fromConditions, 1);
+  };
+
+  const getTeamCardSizing = (
+    group: TeamConditionGroup,
+    agentCount: number
+  ): CSSProperties => {
+    const baseSizing =
+      agentCount >= 3
+        ? { minWidth: 360, flexGrow: 1.45 }
+        : agentCount === 2
+        ? { minWidth: 225, flexGrow: 1.05 }
+        : { minWidth: 170, flexGrow: 0.78 };
+
+    const charWidth = agentCount >= 3 ? 8 : 6.2;
+    const basePadding = agentCount >= 3 ? 40 : 30;
+
+    const longestConditionLength = group.conditions.reduce(
+      (max, condition) => Math.max(max, condition.trim().length),
+      group.label.length
+    );
+
+    const estimatedButtonWidth = Math.max(
+      agentCount >= 3 ? 190 : 135,
+      Math.round(longestConditionLength * charWidth + basePadding)
+    );
+
+    const buttonCount = Math.max(group.conditions.length, 1);
+    const maxPerRow = agentCount >= 3 ? 3 : 2;
+    const buttonsPerRow = Math.min(buttonCount, maxPerRow);
+    const estimatedRowWidth =
+      estimatedButtonWidth * buttonsPerRow + (buttonsPerRow - 1) * 8;
+
+    const minWidth = Math.min(
+      560,
+      Math.max(baseSizing.minWidth, estimatedRowWidth)
+    );
+    const flexGrow = Math.min(2, Math.max(baseSizing.flexGrow, minWidth / 280));
+
+    return {
+      flex: `${Number(flexGrow.toFixed(2))} 1 0%`,
+      minWidth
+    };
+  };
+
   return (
     <section className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-md shadow-slate-200">
       <header>
@@ -82,36 +145,46 @@ export function TeamFiltersBar({
           TEAM CONFIGURATION
         </h2>
       </header>
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap items-stretch justify-evenly gap-4 md:gap-6">
         {teamGroups.map((group) => {
           const isSelected = selectedTeams.includes(group.team);
           const selectedConditionsForTeam =
             selectedTeamConditions[group.team] ?? group.conditions;
           const teamColor = TEAM_COLORS[group.team] ?? TEAM_COLORS.default;
+          const agentCount = inferAgentCount(group);
 
           return (
             <div
               key={group.team || "unspecified-team"}
               className={clsx(
-                "flex min-w-[220px] flex-1 flex-col gap-2 rounded-xl border p-3 transition",
+                "flex flex-col items-center gap-3 rounded-xl border p-4 text-center transition",
                 isSelected
                   ? "border-brand-200 bg-white shadow-sm"
                   : "border-slate-200 bg-slate-50"
               )}
+              style={getTeamCardSizing(group, agentCount)}
             >
               <button
                 type="button"
                 onClick={() => onToggleTeam(group.team)}
                 className={clsx(
-                  "flex items-center justify-between rounded-lg border px-3 py-2 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+                  "mx-auto inline-flex min-w-[200px] max-w-[220px] items-center justify-center rounded-full border px-4 py-2 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
                   isSelected
                     ? "text-white shadow-sm focus-visible:ring-brand-500"
                     : "bg-white text-slate-600 hover:border-brand-200 focus-visible:ring-brand-500"
                 )}
                 style={
                   isSelected
-                    ? { backgroundColor: teamColor, borderColor: teamColor }
-                    : { borderColor: teamColor, color: teamColor }
+                    ? {
+                        backgroundColor: teamColor,
+                        borderColor: teamColor,
+                        width: "min(100%, 220px)"
+                      }
+                    : {
+                        borderColor: teamColor,
+                        color: teamColor,
+                        width: "min(100%, 220px)"
+                      }
                 }
               >
                 <span className="truncate">{group.label}</span>
@@ -119,7 +192,7 @@ export function TeamFiltersBar({
               {group.conditions.length ? (
                 <div
                   className={clsx(
-                    "flex flex-wrap gap-2",
+                    "flex flex-wrap justify-center gap-2",
                     isSelected ? "" : "opacity-60"
                   )}
                 >
