@@ -15,24 +15,6 @@ interface TeamConditionGroup {
   conditions: string[];
 }
 
-interface FiltersPanelProps {
-  harmOptions: ToggleOption[];
-  selectedHarmLevels: string[];
-  onSelectSeverity: (severity: string) => void;
-  teamGroups: TeamConditionGroup[];
-  selectedTeams: string[];
-  selectedTeamConditions: Record<string, string[]>;
-  onToggleTeam: (team: string) => void;
-  onToggleTeamCondition: (team: string, condition: string) => void;
-  conditionColorMap: Map<string, string>;
-  caseOptions: ToggleOption[];
-  selectedCase: string;
-  onSelectCase: (value: string) => void;
-  minTrials: number;
-  minTrialsRange: { min: number; max: number };
-  onMinTrialsChange: (value: number) => void;
-}
-
 function TogglePill({
   label,
   active,
@@ -76,23 +58,135 @@ function TogglePill({
   );
 }
 
-export function FiltersPanel({
-  harmOptions,
-  selectedHarmLevels,
-  onSelectSeverity,
+interface TeamFiltersBarProps {
+  teamGroups: TeamConditionGroup[];
+  selectedTeams: string[];
+  selectedTeamConditions: Record<string, string[]>;
+  onToggleTeam: (team: string) => void;
+  onToggleTeamCondition: (team: string, condition: string) => void;
+  conditionColorMap: Map<string, string>;
+}
+
+export function TeamFiltersBar({
   teamGroups,
   selectedTeams,
   selectedTeamConditions,
   onToggleTeam,
   onToggleTeamCondition,
-  conditionColorMap,
+  conditionColorMap
+}: TeamFiltersBarProps) {
+  return (
+    <section className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-md shadow-slate-200">
+      <header className="flex flex-col gap-1">
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+          Teams &amp; Conditions
+        </h2>
+        <p className="text-sm text-slate-600">
+          Highlight specific teams and their active configurations.
+        </p>
+      </header>
+      <div className="flex flex-wrap gap-3">
+        {teamGroups.map((group) => {
+          const isSelected = selectedTeams.includes(group.team);
+          const selectedConditionsForTeam =
+            selectedTeamConditions[group.team] ?? group.conditions;
+          const teamColor = TEAM_COLORS[group.team] ?? TEAM_COLORS.default;
+
+          return (
+            <div
+              key={group.team || "unspecified-team"}
+              className={clsx(
+                "flex min-w-[220px] flex-1 flex-col gap-2 rounded-xl border p-3 transition",
+                isSelected
+                  ? "border-brand-200 bg-white shadow-sm"
+                  : "border-slate-200 bg-slate-50"
+              )}
+            >
+              <button
+                type="button"
+                onClick={() => onToggleTeam(group.team)}
+                className={clsx(
+                  "flex items-center justify-between rounded-lg border px-3 py-2 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+                  isSelected
+                    ? "text-white shadow-sm focus-visible:ring-brand-500"
+                    : "bg-white text-slate-600 hover:border-brand-200 focus-visible:ring-brand-500"
+                )}
+                style={
+                  isSelected
+                    ? { backgroundColor: teamColor, borderColor: teamColor }
+                    : { borderColor: teamColor, color: teamColor }
+                }
+              >
+                <span className="truncate">{group.label}</span>
+              </button>
+              {group.conditions.length ? (
+                <div
+                  className={clsx(
+                    "flex flex-wrap gap-2",
+                    isSelected ? "" : "opacity-60"
+                  )}
+                >
+                  {group.conditions.map((condition) => {
+                    const isActive = selectedConditionsForTeam.includes(condition);
+                    const disabled = !isSelected || group.conditions.length <= 1;
+                    const color =
+                      conditionColorMap.get(condition) ?? teamColor;
+
+                    return (
+                      <button
+                        key={condition}
+                        type="button"
+                        disabled={disabled}
+                        onClick={() => onToggleTeamCondition(group.team, condition)}
+                        className={clsx(
+                          "flex items-center gap-2 rounded-full border px-2.5 py-1 text-xs font-medium transition",
+                          isActive
+                            ? "border-transparent bg-brand-50 text-brand-700 shadow-sm"
+                            : "border-slate-200 bg-white text-slate-600 hover:border-brand-200",
+                          disabled
+                            ? "cursor-not-allowed opacity-60 hover:border-slate-200"
+                            : null
+                        )}
+                      >
+                        <span
+                          className="h-2 w-2 rounded-full"
+                          style={{ backgroundColor: color }}
+                        />
+                        <span className="truncate">{condition}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              ) : (
+                <p className="text-xs text-slate-500">
+                  No additional configurations.
+                </p>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+interface DataControlsCardProps {
+  caseOptions: ToggleOption[];
+  selectedCase: string;
+  onSelectCase: (value: string) => void;
+  minTrials: number;
+  minTrialsRange: { min: number; max: number };
+  onMinTrialsChange: (value: number) => void;
+}
+
+export function DataControlsCard({
   caseOptions,
   selectedCase,
   onSelectCase,
   minTrials,
   minTrialsRange,
   onMinTrialsChange
-}: FiltersPanelProps) {
+}: DataControlsCardProps) {
   const minAllowed = Math.max(minTrialsRange.min, 1);
 
   const clampTrials = (value: number) => {
@@ -106,133 +200,16 @@ export function FiltersPanel({
   };
 
   return (
-    <section className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-md shadow-slate-200">
+    <section className="flex h-full flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-md shadow-slate-200">
       <header className="flex flex-col gap-1">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-          Filters
+          Data Controls
         </h2>
         <p className="text-sm text-slate-600">
-          Refine the dashboard by harm severity, team composition, case focus, and data volume.
+          Choose the case focus and minimum trials for the analysis.
         </p>
       </header>
       <div className="flex flex-col gap-3">
-        <div className="flex flex-col gap-2">
-          <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-            Harm Severity
-          </span>
-          <div className="flex flex-wrap gap-2">
-            {harmOptions.map((option) => (
-              <TogglePill
-                key={option.value}
-                label={option.label}
-                color={option.color}
-                active={selectedHarmLevels.includes(option.value)}
-                onClick={() => onSelectSeverity(option.value)}
-              />
-            ))}
-          </div>
-        </div>
-        <div className="flex flex-col gap-2">
-          <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-            Teams &amp; Conditions
-          </span>
-          <div className="flex flex-col gap-3">
-            {teamGroups.map((group) => {
-              const isSelected = selectedTeams.includes(group.team);
-              const selectedConditionsForTeam =
-                selectedTeamConditions[group.team] ?? group.conditions;
-
-              return (
-                <div
-                  key={group.team || "unspecified-team"}
-                  className={clsx(
-                    "rounded-2xl border p-3 transition",
-                    isSelected
-                      ? "border-brand-200 bg-white shadow-sm"
-                      : "border-slate-200 bg-slate-50"
-                  )}
-                >
-                  <div className="flex items-center justify-between">
-                    <TogglePill
-                      label={group.label}
-                      active={isSelected}
-                      onClick={() => onToggleTeam(group.team)}
-                      color={TEAM_COLORS[group.team] ?? TEAM_COLORS.default}
-                    />
-                    {group.conditions.length ? (
-                      <div className="flex items-center gap-1">
-                        {group.conditions.map((condition) => {
-                          const color =
-                            conditionColorMap.get(condition) ??
-                            TEAM_COLORS[group.team] ??
-                            TEAM_COLORS.default;
-                          const isActive = selectedConditionsForTeam.includes(condition);
-                          return (
-                            <span
-                              key={condition}
-                              className={clsx(
-                                "h-1.5 w-6 rounded-full",
-                                !isSelected ? "opacity-20" : !isActive ? "opacity-30" : ""
-                              )}
-                              style={{ backgroundColor: color }}
-                            />
-                          );
-                        })}
-                      </div>
-                    ) : null}
-                  </div>
-                  {group.conditions.length ? (
-                    <div
-                      className={clsx(
-                        "mt-3 flex flex-col gap-2",
-                        isSelected ? "" : "pointer-events-none opacity-60"
-                      )}
-                    >
-                      {group.conditions.map((condition) => {
-                        const isActive = selectedConditionsForTeam.includes(condition);
-                        const disabled = !isSelected || group.conditions.length <= 1;
-                        const color =
-                          conditionColorMap.get(condition) ??
-                          TEAM_COLORS[group.team] ??
-                          TEAM_COLORS.default;
-                        return (
-                          <button
-                            key={condition}
-                            type="button"
-                            disabled={disabled}
-                            onClick={() => onToggleTeamCondition(group.team, condition)}
-                            className={clsx(
-                              "flex items-center justify-between rounded-lg border px-3 py-2 text-sm text-left transition",
-                              isActive
-                                ? "border-transparent bg-brand-50 text-brand-700 shadow-sm"
-                                : "border-slate-200 bg-white text-slate-600 hover:border-brand-200",
-                              disabled ? "cursor-not-allowed opacity-70 hover:border-slate-200" : null
-                            )}
-                          >
-                            <span className="flex items-center gap-2">
-                              <span
-                                className={clsx(
-                                  "h-2.5 w-2.5 rounded-full",
-                                  isActive ? "" : "opacity-40"
-                                )}
-                                style={{ backgroundColor: color }}
-                              />
-                              {condition}
-                            </span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  ) : (
-                    <p className="mt-3 text-xs text-slate-500">
-                      No additional configurations for this team.
-                    </p>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
         <div className="flex flex-col gap-2">
           <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">
             Cases

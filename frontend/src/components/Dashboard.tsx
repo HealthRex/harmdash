@@ -1,9 +1,9 @@
 'use client';
 
 import { BarChartCard } from "@/components/BarChartCard";
-import { FiltersPanel } from "@/components/FiltersPanel";
+import { DataControlsCard, TeamFiltersBar } from "@/components/FiltersPanel";
 import { MetricsSummary } from "@/components/MetricsSummary";
-import { ModelInfoDrawer } from "@/components/ModelInfoDrawer";
+import { ModelInfoDrawer as ModelProfileCard } from "@/components/ModelInfoDrawer";
 import { ScatterChartCard } from "@/components/ScatterChartCard";
 import type {
   CombinationEntry,
@@ -17,12 +17,6 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 interface DashboardProps {
   dataset: DatasetArtifact;
 }
-
-const HARM_OPTIONS = [
-  { value: "Severe", label: "Severe", color: "#F87171" },
-  { value: "Moderate", label: "Moderate", color: "#FB923C" },
-  { value: "Mild", label: "Mild", color: "#FACC15" }
-];
 
 const CASE_OPTIONS = [
   { value: "AllCases", label: "All Cases" },
@@ -109,7 +103,6 @@ export function Dashboard({ dataset }: DashboardProps) {
   const [yMetricId, setYMetricId] = useState<string>(
     () => metricIds[1] ?? metricIds[0] ?? ""
   );
-  const [selectedHarmLevels, setSelectedHarmLevels] = useState<string[]>(["Severe"]);
   const [selectedTeams, setSelectedTeams] = useState<string[]>(() =>
     teamGroups.map((group) => group.team)
   );
@@ -252,10 +245,7 @@ export function Dashboard({ dataset }: DashboardProps) {
   const filteredRows = useMemo(() => {
     return dataset.rows.filter((row) => {
       const isHarmScopedMetric = row.harm && row.harm !== "NA";
-      const harmMatch =
-        !isHarmScopedMetric || selectedHarmLevels.length === 0
-          ? true
-          : selectedHarmLevels.includes(row.harm);
+      const harmMatch = !isHarmScopedMetric ? true : row.harm === "Severe";
       const teamValue = (row.team ?? "").trim();
       const teamMatch =
         selectedTeams.length === 0
@@ -286,7 +276,6 @@ export function Dashboard({ dataset }: DashboardProps) {
     });
   }, [
     dataset.rows,
-    selectedHarmLevels,
     selectedTeams,
     teamConditionLookup,
     alwaysOnConditionSet,
@@ -509,10 +498,6 @@ export function Dashboard({ dataset }: DashboardProps) {
     setComparisonSearch("");
   };
 
-  const handleSelectSeverity = (value: string) => {
-    setSelectedHarmLevels([value]);
-  };
-
   const handleToggleTeam = useCallback((team: string) => {
     setSelectedTeams((prev) => toggleWithMinimumSelected(prev, team));
   }, []);
@@ -567,6 +552,14 @@ export function Dashboard({ dataset }: DashboardProps) {
   return (
     <div className="flex flex-col gap-8 pb-12">
       <MetricsSummary dataset={dataset} />
+      <TeamFiltersBar
+        teamGroups={teamGroups}
+        selectedTeams={selectedTeams}
+        selectedTeamConditions={selectedTeamConditions}
+        onToggleTeam={handleToggleTeam}
+        onToggleTeamCondition={handleToggleTeamCondition}
+        conditionColorMap={conditionColorMap}
+      />
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1.7fr)_minmax(360px,1fr)]">
         <BarChartCard
           rows={filteredRows}
@@ -578,37 +571,7 @@ export function Dashboard({ dataset }: DashboardProps) {
           metadataMap={metadataMap}
           conditionColorMap={conditionColorMap}
         />
-        <FiltersPanel
-          harmOptions={HARM_OPTIONS}
-          selectedHarmLevels={selectedHarmLevels}
-          onSelectSeverity={handleSelectSeverity}
-          teamGroups={teamGroups}
-          selectedTeams={selectedTeams}
-          selectedTeamConditions={selectedTeamConditions}
-          onToggleTeam={handleToggleTeam}
-          onToggleTeamCondition={handleToggleTeamCondition}
-          conditionColorMap={conditionColorMap}
-          caseOptions={CASE_OPTIONS}
-          selectedCase={selectedCase}
-          onSelectCase={handleSelectCase}
-          minTrials={minTrials}
-          minTrialsRange={trialsRange}
-          onMinTrialsChange={handleMinTrialsChange}
-        />
-      </div>
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.7fr)_minmax(360px,1fr)] lg:items-start">
-        <ScatterChartCard
-          combinations={combinations}
-          xMetricId={safeXMetric}
-          yMetricId={safeYMetric}
-          onXMetricChange={setXMetricId}
-          onYMetricChange={setYMetricId}
-          onPointClick={handlePointClick}
-          highlightedCombinationId={selection?.combinationId}
-          metrics={metrics}
-          metadataMap={metadataMap}
-        />
-        <ModelInfoDrawer
+        <ModelProfileCard
           selection={selection}
           comparison={comparisonSelection}
           onClear={handleClearSelection}
@@ -642,6 +605,27 @@ export function Dashboard({ dataset }: DashboardProps) {
             }
           }}
           onActiveTargetChange={setActiveSelectionTarget}
+        />
+      </div>
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.7fr)_minmax(360px,1fr)] lg:items-start">
+        <ScatterChartCard
+          combinations={combinations}
+          xMetricId={safeXMetric}
+          yMetricId={safeYMetric}
+          onXMetricChange={setXMetricId}
+          onYMetricChange={setYMetricId}
+          onPointClick={handlePointClick}
+          highlightedCombinationId={selection?.combinationId}
+          metrics={metrics}
+          metadataMap={metadataMap}
+        />
+        <DataControlsCard
+          caseOptions={CASE_OPTIONS}
+          selectedCase={selectedCase}
+          onSelectCase={handleSelectCase}
+          minTrials={minTrials}
+          minTrialsRange={trialsRange}
+          onMinTrialsChange={handleMinTrialsChange}
         />
       </div>
     </div>
