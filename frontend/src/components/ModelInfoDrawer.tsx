@@ -3,7 +3,7 @@
 import Plot from "@/components/PlotClient";
 import type { CombinationEntry, MetricMetadata } from "@/types/dataset";
 import clsx from "clsx";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import type { Layout, PlotData } from "plotly.js";
 import { formatMetricValue } from "@/utils/data";
 
@@ -80,16 +80,43 @@ export function ModelInfoDrawer({
 
   const description = selection
     ? comparison
-      ? "Comparing the selected models across key metrics."
-      : "Detailed metrics for the selected model and condition."
+      ? "Compare the models across key metrics."
+      : "Detailed metrics for the selected model."
     : comparison
     ? "Comparison metrics for the selected model."
-    : "Click on any bar or point to inspect model performance.";
+    : "Click on data point to view model performance.";
 
-  const primarySelectionLabel =
-    selection?.displayLabel || selection?.model || null;
-  const comparisonSelectionLabel =
-    comparison?.displayLabel || comparison?.model || null;
+  const handlePrimarySelect = useCallback(
+    (entry: CombinationEntry) => {
+      onSuggestionSelect(entry);
+      onModelSearchChange(entry.displayLabel || entry.model || "");
+      setIsFocused(false);
+    },
+    [onModelSearchChange, onSuggestionSelect]
+  );
+
+  const handleComparisonSelect = useCallback(
+    (entry: CombinationEntry) => {
+      onComparisonSuggestionSelect(entry);
+      onComparisonSearchChange(entry.displayLabel || entry.model || "");
+      setIsComparisonFocused(false);
+    },
+    [onComparisonSearchChange, onComparisonSuggestionSelect]
+  );
+
+  const handleClearAll = useCallback(() => {
+    onClear();
+    onClearComparison();
+    onModelSearchChange("");
+    onComparisonSearchChange("");
+    setIsFocused(false);
+    setIsComparisonFocused(false);
+  }, [
+    onClear,
+    onClearComparison,
+    onModelSearchChange,
+    onComparisonSearchChange
+  ]);
 
   const radarData = useMemo(() => {
     if (!selection && !comparison) {
@@ -274,22 +301,19 @@ export function ModelInfoDrawer({
               {description}
             </p>
           </div>
-          {selection ? (
+          {(selection ||
+            comparison ||
+            modelQuery.trim() ||
+            comparisonQuery.trim()) ? (
             <button
               type="button"
-              onClick={onClear}
+              onClick={handleClearAll}
               className="rounded-full border border-slate-200 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600 transition hover:border-brand-400 hover:text-brand-600"
             >
               Clear
             </button>
           ) : null}
         </div>
-        {(primarySelectionLabel || comparisonSelectionLabel) ? (
-          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-            {primarySelectionLabel ? `Primary: ${primarySelectionLabel}` : "Primary: None selected"}
-            {comparisonSelectionLabel ? ` | Comparison: ${comparisonSelectionLabel}` : ""}
-          </p>
-        ) : null}
       </header>
       <div className="flex flex-1 flex-col gap-3">
         <div className="flex flex-col gap-2">
@@ -307,7 +331,20 @@ export function ModelInfoDrawer({
                 onBlur={() => setTimeout(() => setIsFocused(false), 120)}
                 onChange={(event) => {
                   setIsFocused(true);
-                  onModelSearchChange(event.target.value);
+                  const value = event.target.value;
+                  onModelSearchChange(value);
+                  if (value === "") {
+                    onClear();
+                  }
+                }}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    event.preventDefault();
+                    const firstSuggestion = suggestions[0];
+                    if (firstSuggestion) {
+                      handlePrimarySelect(firstSuggestion);
+                    }
+                  }
                 }}
                 className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-700 shadow-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
               />
@@ -323,9 +360,7 @@ export function ModelInfoDrawer({
                           <button
                             type="button"
                             onClick={() => {
-                              onSuggestionSelect(entry);
-                              onModelSearchChange(entry.displayLabel || entry.model || "");
-                              setIsFocused(false);
+                              handlePrimarySelect(entry);
                             }}
                             className={clsx(
                               "flex w-full flex-col items-start gap-0.5 px-3 py-2 text-left text-sm",
@@ -366,7 +401,20 @@ export function ModelInfoDrawer({
                 onBlur={() => setTimeout(() => setIsComparisonFocused(false), 120)}
                 onChange={(event) => {
                   setIsComparisonFocused(true);
-                  onComparisonSearchChange(event.target.value);
+                  const value = event.target.value;
+                  onComparisonSearchChange(value);
+                  if (value === "") {
+                    onClearComparison();
+                  }
+                }}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    event.preventDefault();
+                    const firstSuggestion = comparisonSuggestions[0];
+                    if (firstSuggestion) {
+                      handleComparisonSelect(firstSuggestion);
+                    }
+                  }
                 }}
                 className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-700 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-200"
               />
@@ -382,9 +430,7 @@ export function ModelInfoDrawer({
                           <button
                             type="button"
                             onClick={() => {
-                              onComparisonSuggestionSelect(entry);
-                              onComparisonSearchChange(entry.displayLabel || entry.model || "");
-                              setIsComparisonFocused(false);
+                              handleComparisonSelect(entry);
                             }}
                             className={clsx(
                               "flex w-full flex-col items-start gap-0.5 px-3 py-2 text-left text-sm",
@@ -407,15 +453,6 @@ export function ModelInfoDrawer({
                 </ul>
               ) : null}
             </div>
-            {comparison ? (
-              <button
-                type="button"
-                onClick={onClearComparison}
-                className="self-start text-xs font-semibold text-amber-700 hover:underline"
-              >
-                Clear comparison
-              </button>
-            ) : null}
           </div>
         </div>
         {radarData ? (

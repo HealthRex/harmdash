@@ -9,4 +9,4 @@ Order,Metric,Include,Radar,Better,Range,Min,Max,Display,Description
 NA,normalized_cumulative,FALSE,FALSE,Lower,Absolute,NA,NA,NA,NA
 NA,pct,FALSE,FALSE,Lower,NA,NA,NA,NA,NA
 8,pct_cumulative,TRUE,TRUE,Lower,Percent,0,1,Case Harm Rate,Percent of cases harmed
-NA,nnh,FALSE,FALSE,Higher,Absolute,0,50,NA,NA
+NA,nnh,FALSE,FALSE,Higher,Absolute,0,30,NA,NA

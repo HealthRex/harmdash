@@ -22,11 +22,6 @@ type Props = {
   conditionColorMap: Map<string, string>;
 };
 
-const shortenLabel = (label: string, maxChars = 44) => {
-  if (label.length <= maxChars) return label;
-  return `${label.slice(0, maxChars - 1)}…`;
-};
-
 const getTextColor = (hex: string) => {
   const normalized = hex.replace('#', '');
   const bigint = parseInt(normalized, 16);
@@ -177,7 +172,7 @@ export function BarChartCard({
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
           <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-            Top {topRows.length} {topRows.length === 1 ? "Model" : "Models"}
+            Best
           </h3>
           {topRows.length ? (
             <div className="flex flex-col gap-1">
@@ -190,7 +185,7 @@ export function BarChartCard({
                 const widthPercent = Math.max(Math.min(widthPercentRaw, 100), 0);
                 const barColor = getBarColor(row);
                 const isSelected = highlightedCombinationId === row.combinationId;
-                const displayLabel = shortenLabel(row.displayLabel || row.model);
+                const displayLabel = row.displayLabel || row.model;
                 const formattedValue = formatMetricValue(row.mean, {
                   metadata: metricMeta
                 });
@@ -254,7 +249,7 @@ export function BarChartCard({
         </div>
         <div className="flex flex-col gap-2">
           <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-            Bottom {bottomRows.length} {bottomRows.length === 1 ? "Model" : "Models"}
+            Worst
           </h3>
           {bottomRows.length ? (
             <div className="flex flex-col gap-1">
@@ -267,7 +262,7 @@ export function BarChartCard({
                 const widthPercent = Math.max(Math.min(widthPercentRaw, 100), 0);
                 const barColor = getBarColor(row);
                 const isSelected = highlightedCombinationId === row.combinationId;
-                const displayLabel = shortenLabel(row.displayLabel || row.model);
+                const displayLabel = row.displayLabel || row.model;
                 const formattedValue = formatMetricValue(row.mean, {
                   metadata: metricMeta
                 });
