@@ -3,7 +3,7 @@
 import Plot from "@/components/PlotClient";
 import type { CombinationEntry, MetricMetadata } from "@/types/dataset";
 import clsx from "clsx";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import type { Layout, PlotData } from "plotly.js";
 import { formatMetricValue } from "@/utils/data";
 
@@ -11,6 +11,11 @@ interface ModelInfoDrawerProps {
   selection: CombinationEntry | null;
   onClear: () => void;
   metrics: MetricMetadata[];
+  className?: string;
+  modelQuery: string;
+  onModelSearchChange: (value: string) => void;
+  suggestions: CombinationEntry[];
+  onSuggestionSelect: (entry: CombinationEntry) => void;
 }
 
 function computeNormalizedMetricValue(
@@ -44,8 +49,17 @@ function computeNormalizedMetricValue(
 export function ModelInfoDrawer({
   selection,
   onClear,
-  metrics
+  metrics,
+  className,
+  modelQuery,
+  onModelSearchChange,
+  suggestions,
+  onSuggestionSelect
 }: ModelInfoDrawerProps) {
+  const [isFocused, setIsFocused] = useState(false);
+  const trimmedQuery = modelQuery.trim();
+  const showSuggestions = isFocused && trimmedQuery !== "" && suggestions.length > 0;
+
   const radarData = useMemo(() => {
     if (!selection) {
       return null;
@@ -56,6 +70,9 @@ export function ModelInfoDrawer({
     const hoverTexts: string[] = [];
 
     metrics.forEach((meta) => {
+      if (!meta.includeInRadar) {
+        return;
+      }
       const row = selection.metrics[meta.id];
       const normalized = computeNormalizedMetricValue(row?.mean ?? null, meta);
       if (normalized === null) {
@@ -139,8 +156,9 @@ export function ModelInfoDrawer({
   return (
     <aside
       className={clsx(
-        "flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-md shadow-slate-200 transition",
-        selection ? "opacity-100" : "opacity-75"
+        "flex w-full max-w-full flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-md shadow-slate-200 transition lg:max-w-[520px]",
+        selection ? "opacity-100" : "opacity-75",
+        className
       )}
     >
       <header className="flex items-center justify-between">
@@ -164,107 +182,76 @@ export function ModelInfoDrawer({
           </button>
         ) : null}
       </header>
-      {selection ? (
-        <div className="flex flex-col gap-4">
-          <dl className="grid grid-cols-2 gap-2 text-sm text-slate-600">
-            <div>
-              <dt className="font-medium text-slate-500">Team</dt>
-              <dd>{selection.team || "NA"}</dd>
-            </div>
-            <div>
-              <dt className="font-medium text-slate-500">Condition</dt>
-              <dd>{selection.condition || "NA"}</dd>
-            </div>
-            <div>
-              <dt className="font-medium text-slate-500">Harm Context</dt>
-              <dd>{selection.harm || "NA"}</dd>
-            </div>
-            <div>
-              <dt className="font-medium text-slate-500">Type</dt>
-              <dd>{selection.type || "NA"}</dd>
-            </div>
-            <div>
-              <dt className="font-medium text-slate-500">Cases</dt>
-              <dd>{selection.cases || "NA"}</dd>
-            </div>
-            <div>
-              <dt className="font-medium text-slate-500">Grading</dt>
-              <dd>{selection.grading || "NA"}</dd>
-            </div>
-          </dl>
-          <div className="grid gap-4 lg:grid-cols-2">
-            <div className="flex flex-col gap-2">
-              <h4 className="text-sm font-semibold text-slate-700">
-                Metric Breakdown
-              </h4>
-              <ul className="flex flex-col gap-2">
-                {metrics.map((metric) => {
-                  const row = selection.metrics[metric.id];
+      <div className="flex flex-1 flex-col gap-3">
+        <div className="relative">
+          <input
+            type="search"
+            placeholder="Search models"
+            value={modelQuery}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setTimeout(() => setIsFocused(false), 120)}
+            onChange={(event) => {
+              setIsFocused(true);
+              onModelSearchChange(event.target.value);
+            }}
+            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-700 shadow-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
+          />
+          {showSuggestions ? (
+            <ul className="absolute z-10 mt-1 max-h-48 w-full overflow-auto rounded-lg border border-slate-200 bg-white shadow-lg">
+              {suggestions.length ? (
+                suggestions.map((entry) => {
+                  const label = entry.displayLabel || entry.model;
+                  const subtitle = [entry.team, entry.condition].filter(Boolean).join(" · ");
+                  const selected = selection?.combinationId === entry.combinationId;
                   return (
-                    <li
-                      key={metric.id}
-                      className="flex items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700"
-                    >
-                      <span className="flex flex-col">
-                        <span className="font-medium text-slate-800">
-                          {metric.displayLabel}
-                        </span>
-                        <span className="text-xs text-slate-500">
-                          {metric.description}
-                        </span>
-                      </span>
-                      <span className="flex flex-col items-end">
-                        <span className="text-base font-semibold text-brand-600">
-                          {formatMetricValue(row?.mean ?? null, {
-                            metadata: metric
-                          })}
-                        </span>
-                        {row?.ci !== null &&
-                        row?.ci !== undefined &&
-                        row?.ci !== 0 ? (
-                          <span className="text-xs font-medium text-slate-500">
-                            CI ±{" "}
-                            {formatMetricValue(row.ci, {
-                              metadata: metric
-                            })}
-                          </span>
+                    <li key={entry.combinationId}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          onSuggestionSelect(entry);
+                          onModelSearchChange(entry.displayLabel || entry.model || "");
+                          setIsFocused(false);
+                        }}
+                        className={clsx(
+                          "flex w-full flex-col items-start gap-0.5 px-3 py-2 text-left text-sm",
+                          selected
+                            ? "bg-brand-50 text-brand-700"
+                            : "text-slate-700 hover:bg-slate-100"
+                        )}
+                      >
+                        <span className="font-medium">{label}</span>
+                        {subtitle ? (
+                          <span className="text-xs text-slate-500">{subtitle}</span>
                         ) : null}
-                      </span>
+                      </button>
                     </li>
                   );
-                })}
-              </ul>
-            </div>
-            <div className="flex flex-col gap-2">
-              <h4 className="text-sm font-semibold text-slate-700">
-                Radar View
-              </h4>
-              {radarData ? (
-                <div className="h-[320px] rounded-xl border border-slate-200 bg-slate-50/80 p-2">
-                  <Plot
-                    data={radarData.data}
-                    layout={radarData.layout}
-                    config={{
-                      displayModeBar: false,
-                      responsive: true
-                    }}
-                    style={{ width: "100%", height: "100%" }}
-                    useResizeHandler
-                  />
-                </div>
+                })
               ) : (
-                <div className="flex h-[320px] items-center justify-center rounded-xl border border-dashed border-slate-200 bg-slate-50 text-center text-sm text-slate-500">
-                  Radar view unavailable for the selected model.
-                </div>
+                <li className="px-3 py-2 text-xs text-slate-500">No matches found</li>
               )}
-            </div>
+            </ul>
+          ) : null}
+        </div>
+        {selection && radarData ? (
+          <div className="flex h-[320px] w-full items-center justify-center rounded-xl border border-slate-200 bg-slate-50/80 p-2">
+            <Plot
+              data={radarData.data}
+              layout={radarData.layout}
+              config={{
+                displayModeBar: false,
+                responsive: true
+              }}
+              style={{ width: "100%", height: "100%" }}
+              useResizeHandler
+            />
           </div>
-        </div>
-      ) : (
-        <div className="rounded-lg border border-dashed border-slate-200 bg-slate-50 p-6 text-sm text-slate-500">
-          Interact with the charts to surface a model&apos;s full profile here.
-        </div>
-      )}
+        ) : (
+          <div className="flex h-[320px] items-center justify-center rounded-xl border border-dashed border-slate-200 bg-slate-50 text-center text-sm text-slate-500">
+            Interact with the charts or use the search box to surface a model&apos;s full profile here.
+          </div>
+        )}
+      </div>
     </aside>
   );
 }

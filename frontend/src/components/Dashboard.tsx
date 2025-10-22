@@ -12,7 +12,7 @@ import type {
 } from "@/types/dataset";
 import { CONDITION_COLORS, TEAM_COLORS } from "@/config/colors";
 import { groupRowsByCombination } from "@/utils/data";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 interface DashboardProps {
   dataset: DatasetArtifact;
@@ -53,6 +53,10 @@ export function Dashboard({ dataset }: DashboardProps) {
     [metrics]
   );
   const metricIds = useMemo(() => metrics.map((meta) => meta.id), [metrics]);
+  const allCombinations = useMemo(
+    () => groupRowsByCombination(dataset.rows),
+    [dataset.rows]
+  );
 
   const { teamGroups, alwaysOnConditions } = useMemo(() => {
     const teamMap = new Map<string, Set<string>>();
@@ -131,6 +135,8 @@ export function Dashboard({ dataset }: DashboardProps) {
   }, [dataset.rows]);
   const [minTrials, setMinTrials] = useState<number>(5);
   const [selection, setSelection] = useState<CombinationEntry | null>(null);
+  const [modelSearch, setModelSearch] = useState<string>("");
+  const searchSelectionRef = useRef(false);
 
   useEffect(() => {
     if (minTrials > trialsRange.max) {
@@ -328,21 +334,85 @@ export function Dashboard({ dataset }: DashboardProps) {
   const safeXMetric = ensureMetricExists(xMetricId);
   const safeYMetric = ensureMetricExists(yMetricId);
 
+  const normalizedSearch = modelSearch.trim().toLowerCase();
+
+  const modelSuggestions = useMemo(() => {
+    if (!normalizedSearch) {
+      return [];
+    }
+    const results: CombinationEntry[] = [];
+    const seen = new Set<string>();
+    for (const entry of allCombinations) {
+      const label = (entry.displayLabel || entry.model || "").trim();
+      if (!label) {
+        continue;
+      }
+      const searchable = `${label} ${entry.team ?? ""} ${entry.condition ?? ""}`.toLowerCase();
+      if (!searchable.includes(normalizedSearch)) {
+        continue;
+      }
+      const key = label.toLowerCase();
+      if (seen.has(key)) {
+        continue;
+      }
+      seen.add(key);
+      results.push(entry);
+      if (results.length >= 8) {
+        break;
+      }
+    }
+    return results;
+  }, [allCombinations, normalizedSearch]);
+
+  useEffect(() => {
+    if (!normalizedSearch) {
+      return;
+    }
+    const selectionLabel = (selection?.displayLabel || selection?.model || "").toLowerCase();
+    if (selectionLabel && selectionLabel === normalizedSearch) {
+      return;
+    }
+    const match = modelSuggestions[0];
+    if (match && match.combinationId !== selection?.combinationId) {
+      searchSelectionRef.current = true;
+      setSelection(match);
+    }
+  }, [normalizedSearch, modelSuggestions, selection]);
+
+  useEffect(() => {
+    if (!selection) {
+      return;
+    }
+    if (searchSelectionRef.current) {
+      searchSelectionRef.current = false;
+      return;
+    }
+    const label = selection.displayLabel || selection.model || "";
+    if (label) {
+      setModelSearch(label);
+    }
+  }, [selection]);
+
   const handleBarClick = (row: DataRow) => {
+    searchSelectionRef.current = true;
     const target = combinations.find(
       (entry) => entry.combinationId === row.combinationId
     );
     if (target) {
       setSelection(target);
+      setModelSearch(target.displayLabel || target.model || "");
     }
   };
 
   const handlePointClick = (entry: CombinationEntry) => {
+    searchSelectionRef.current = true;
     setSelection(entry);
+    setModelSearch(entry.displayLabel || entry.model || "");
   };
 
   const handleClearSelection = () => {
     setSelection(null);
+    setModelSearch("");
   };
 
   const handleSelectSeverity = (value: string) => {
@@ -432,22 +502,38 @@ export function Dashboard({ dataset }: DashboardProps) {
           onMinTrialsChange={handleMinTrialsChange}
         />
       </div>
-      <ScatterChartCard
-        combinations={combinations}
-        xMetricId={safeXMetric}
-        yMetricId={safeYMetric}
-        onXMetricChange={setXMetricId}
-        onYMetricChange={setYMetricId}
-        onPointClick={handlePointClick}
-        highlightedCombinationId={selection?.combinationId}
-        metrics={metrics}
-        metadataMap={metadataMap}
-      />
-      <ModelInfoDrawer
-        selection={selection}
-        onClear={handleClearSelection}
-        metrics={metrics}
-      />
+      <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
+        <ScatterChartCard
+          combinations={combinations}
+          xMetricId={safeXMetric}
+          yMetricId={safeYMetric}
+          onXMetricChange={setXMetricId}
+          onYMetricChange={setYMetricId}
+          onPointClick={handlePointClick}
+          highlightedCombinationId={selection?.combinationId}
+          metrics={metrics}
+          metadataMap={metadataMap}
+        />
+        <ModelInfoDrawer
+          selection={selection}
+          onClear={handleClearSelection}
+          metrics={metrics}
+          className="lg:flex-1"
+          modelQuery={modelSearch}
+          onModelSearchChange={setModelSearch}
+          suggestions={modelSuggestions}
+          onSuggestionSelect={(entry) => {
+            const match = allCombinations.find(
+              (candidate) => candidate.combinationId === entry.combinationId
+            );
+            if (match) {
+              searchSelectionRef.current = true;
+              setSelection(match);
+              setModelSearch(match.displayLabel || match.model || "");
+            }
+          }}
+        />
+      </div>
     </div>
   );
 }

@@ -427,7 +427,7 @@ export function ScatterChartCard({
   };
 
   return (
-    <section className="flex flex-col gap-4 rounded-2xl bg-white p-6 shadow-lg shadow-slate-200">
+    <section className="flex w-full max-w-full flex-col gap-4 rounded-2xl bg-white p-6 shadow-lg shadow-slate-200 lg:max-w-[520px]">
       <header className="flex flex-col gap-1">
         <div>
           <h2 className="text-lg font-semibold text-slate-900">
@@ -442,38 +442,8 @@ export function ScatterChartCard({
         </p>
       </header>
       <div className="flex flex-col gap-4">
-        <div className="flex flex-col gap-4 md:grid md:grid-cols-[auto,1fr] md:items-center md:gap-6">
-          <label className="flex w-full max-w-xs flex-col gap-1 text-xs font-medium text-slate-600 md:max-w-[160px] md:self-center md:text-right">
-            Y Metric
-            <select
-              value={yMetricId}
-              onChange={(event) => onYMetricChange(event.target.value)}
-              className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm transition hover:border-brand-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
-            >
-              {metrics.map((option) => (
-                <option key={option.id} value={option.id}>
-                  {option.displayLabel}
-                </option>
-              ))}
-            </select>
-          </label>
-          <div className={clsx("min-h-[520px] w-full flex-1")}>
-            <Plot
-              data={data}
-              layout={layout}
-              config={{
-                displayModeBar: false,
-                responsive: true,
-                scrollZoom: true
-              }}
-              style={{ width: "100%", height: "100%" }}
-              onClick={handleClick}
-              useResizeHandler
-            />
-          </div>
-        </div>
-        <div className="flex justify-center">
-          <label className="flex w-full max-w-xs flex-col gap-1 text-xs font-medium text-slate-600 sm:max-w-sm">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <label className="flex w-full max-w-xs flex-col gap-1 text-xs font-medium text-slate-600">
             X Metric
             <select
               value={xMetricId}
@@ -487,6 +457,34 @@ export function ScatterChartCard({
               ))}
             </select>
           </label>
+          <label className="flex w-full max-w-xs flex-col gap-1 text-xs font-medium text-slate-600">
+            Y Metric
+            <select
+              value={yMetricId}
+              onChange={(event) => onYMetricChange(event.target.value)}
+              className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm transition hover:border-brand-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
+            >
+              {metrics.map((option) => (
+                <option key={option.id} value={option.id}>
+                  {option.displayLabel}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        <div className="aspect-square w-full flex-1">
+          <Plot
+            data={data}
+            layout={layout}
+            config={{
+              displayModeBar: false,
+              responsive: true,
+              scrollZoom: true
+            }}
+            style={{ width: "100%", height: "100%" }}
+            onClick={handleClick}
+            useResizeHandler
+          />
         </div>
       </div>
     </section>

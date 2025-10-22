@@ -30,6 +30,7 @@ export interface MetricMetadata {
   betterDirection: "higher" | "lower";
   axisMin: number | null;
   axisMax: number | null;
+  includeInRadar: boolean;
 }
 
 export interface DatasetArtifact {

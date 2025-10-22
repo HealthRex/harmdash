@@ -13,6 +13,7 @@ const METRICS_CSV_PATH = path.resolve(ROOT, "..", "data", "metrics.csv");
 const METADATA_CSV_PATH = path.resolve(ROOT, "..", "data", "metadata.csv");
 const OUTPUT_DIR = path.resolve(ROOT, "public", "data");
 const OUTPUT_PATH = path.join(OUTPUT_DIR, "ai-harm-summary.json");
+const INDEX_PATH = path.join(OUTPUT_DIR, "combination-index.json");
 
 const numericFields = [
   "trials",
@@ -50,6 +51,7 @@ const metadataSchema = z.object({
   Order: z.union([z.string(), z.number()]).optional(),
   Metric: z.string().min(1),
   Include: z.union([z.string(), z.boolean()]).optional(),
+  Radar: z.union([z.string(), z.boolean()]).optional(),
   Range: z.string().optional(),
   Display: z.string().optional(),
   Description: z.string().optional(),
@@ -204,6 +206,7 @@ async function main() {
         betterDirection: parseBetter(entry.Better),
         axisMin: parseLimit(entry.Min),
         axisMax: parseLimit(entry.Max),
+        includeInRadar: parseBoolean(entry.Radar, true),
         include
       };
     })
@@ -292,7 +295,32 @@ async function main() {
     metadata
   };
 
+  const combinationIndex = [];
+  const seen = new Set();
+  normalizedRows.forEach((row) => {
+    const label = (row.displayLabel || row.model || "").trim();
+    if (!label) {
+      return;
+    }
+    const key = label.toLowerCase();
+    if (!seen.has(key)) {
+      seen.add(key);
+      combinationIndex.push({
+        combinationId: row.combinationId,
+        displayLabel: label,
+        model: row.model,
+        team: row.team,
+        condition: row.condition,
+        harm: row.harm
+      });
+    }
+  });
+  combinationIndex.sort((a, b) =>
+    (a.displayLabel || "").toLowerCase().localeCompare((b.displayLabel || "").toLowerCase())
+  );
+
   await writeFile(OUTPUT_PATH, JSON.stringify(artifact, null, 2));
+  await writeFile(INDEX_PATH, JSON.stringify(combinationIndex, null, 2));
   // eslint-disable-next-line no-console
   console.log(
     `Wrote ${normalizedRows.length} rows to ${path.relative(

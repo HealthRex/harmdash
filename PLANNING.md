@@ -1,57 +1,61 @@
-# Harmdash Project Snapshot
+# Harmdash Architecture Primer
 
-### Purpose  
-Interactive dashboard that benchmarks harm-related outcomes in medical AI recommendation systems. The app ingests curated CSVs, normalizes them into a JSON artifact, and visualizes model performance across multiple safety- and efficacy-focused metrics.
+## Overview
+Harmdash is a Next.js dashboard that benchmarks medical-AI “harm” outcomes. CSV metrics/metadata are normalized into a JSON artifact and rendered via Plotly charts plus a radar profile for each model/team/condition combination.
 
-### Repository Layout  
-```
-root/
-├─ data/                 Raw CSV exports (metrics & metadata)
-├─ frontend/             Next.js 14.2.5 application (TypeScript)
-│  ├─ public/data/       Generated JSON artifact (`ai-harm-summary.json`)
-│  ├─ scripts/           build-data.mjs (CSV → JSON pipeline)
-│  └─ src/               Application code (components, utils, config)
-├─ src/                  (Reserved for backend/CLI utilities – currently empty)
-└─ render.yaml           Render.com deployment blueprint
-```
+## Repository Layout
+- `data/` – source CSVs (`metrics.csv`, `metadata.csv`)
+- `frontend/`
+  - `scripts/build-data.mjs` – CSV→JSON pipeline (also emits `combination-index.json` for search)
+  - `public/data/ai-harm-summary.json` – derived dataset consumed at runtime
+  - `src/` – TypeScript app (components, hooks, utils, config)
+- `render.yaml` – Render.com deployment blueprint
 
-### Data Pipeline  
-* **Source files:** `data/metrics.csv`, `data/metadata.csv`  
-* **Builder:** `frontend/scripts/build-data.mjs` (runs via `npm run prepare-data`, `npm run dev`, and `npm run build`)  
-* **Processing highlights:**  
-  - Zod validation + type coercion for numeric fields  
-  - Team/condition normalization, HTML label stripping  
-  - Filters out baseline rows (e.g., Random/No Intervention for Accuracy/Safety)  
-  - Produces `public/data/ai-harm-summary.json` with `rows`, `metadata`, and compliant color keys  
+## Data Flow
+1. `npm run prepare-data` → `build-data.mjs`
+   - Validates via Zod, coerces numerics, strips HTML labels
+   - Normalizes team/condition strings; drops baseline rows for Accuracy/Safety
+   - Writes `ai-harm-summary.json` (`rows`, `metadata`) and a deduped model index (`combination-index.json`)
+2. Next.js App Router loads the JSON artifact at build/runtime (`frontend/src/lib/getDataset.ts`)
 
-### Frontend Stack & Tooling  
-* **Framework:** Next.js 14.2.5 (App Router, use client components for charts)  
-* **Language:** TypeScript  
-* **Styling:** Tailwind CSS + clsx  
-* **Charts:** `react-plotly.js` (Bar + Scatter visualizations with CI overlays)  
-* **Testing:** Vitest (`npm run test` → `frontend/src/utils/data.test.ts`)  
-* **Linting:** ESLint / TypeScript (`npm run lint`)  
-* **Build targets:** `npm run dev`, `npm run build`, `npm run start`
+## Frontend Stack
+- Framework: Next.js 14.2.5 (App Router, client components)
+- Language: TypeScript
+- Styling: Tailwind CSS + `clsx`
+- Charts: `react-plotly.js` (bar + scatter + radar)
+- Testing: Vitest (`npm run test`)
+- Linting: ESLint/TypeScript (`npm run lint`)
 
-### Core UI Architecture (`frontend/src/components`)  
-* `Dashboard` – central state owner; loads dataset, derives color maps, manages selections (team-condition coupling, cases, trials threshold).  
-* `FiltersPanel` – stacked “Team & Conditions” cards with dependency logic for each team size; Harm severity, Cases, and Trials controls. Human/Control are implicitly included.  
-* `BarChartCard` – splits results into Top/Bottom performers (5 each by default), using normalized colors to mirror filter selections; bars display mean, CI, and model label.  
-* `ScatterChartCard` – plots combinations by selected metrics, grouped and colored by team, with hover details + CI whiskers.  
-* `MetricsSummary` – quick stats (models, metrics, total rows).  
-* `ModelInfoDrawer` – detailed metrics per selection with radar chart (0–1 normalized scores).  
+## Core UI Architecture
+- `Dashboard.tsx`
+  - Loads dataset, builds color map + search index
+  - Owns global filters: harm severity, team-condition mapping, cases, trial floor, model search
+  - Synchronizes scatter selection ←→ radar drawer
+- `FiltersPanel.tsx`
+  - “Team & Conditions” cards (team toggle + dependent condition pills)
+  - Always-on conditions: Human & Control
+  - Additional controls: Harm severity pills, case scope, minimum trials slider
+- `BarChartCard.tsx`
+  - Shows Top/Bottom 5 performers for selected metric
+  - Bars respect `conditionColorMap`; clicking drives selection
+- `ScatterChartCard.tsx`
+  - Square plot with X/Y metric dropdowns above the chart
+  - Points grouped by team color; CI whiskers + zero/100 guide lines
+- `ModelInfoDrawer.tsx`
+  - Always-visible search input (suggestions from `combination-index.json`)
+  - Selecting a suggestion or chart element updates radar & model selection
+  - Radar only plots metrics flagged `Radar=TRUE`; values normalized 0–1
+- `MetricsSummary.tsx` – dataset counters (models, metrics, rows)
 
-### Key Behaviors & Constraints  
-* Team filters dictate which condition pills are visible; condition toggles cannot be active unless their parent team is enabled.  
-* Conditions “Human” and “Control” are always included by design.  
-* Filters apply minimum trials threshold (default 5, floor 1) and case scope (All vs Human subset).  
-* Visuals pull all labels, descriptions, and ranges from `metadata.csv` to ensure consistency.  
-* Color system lives in `frontend/src/config/colors.ts`; `conditionColorMap` generated at runtime keeps filter chips and chart bars aligned.  
+## Key Behaviors & Constraints
+- Team cards determine visible condition pills; conditions become inactive when parent team is deselected.
+- Model search: fuzzy match on name/team/condition; dropdown hides after selection.
+- Minimum trials slider (floor 1) and case filter (All vs Human subset) applied across all views.
+- Colors defined in `src/config/colors.ts`; `conditionColorMap` keeps filters and charts synchronized.
 
-### Dev & Deployment Notes  
-* Run `npm run prepare-data` whenever CSV inputs change.  
-* Development (`npm run dev`) rebuilds the JSON artifact on start and watches for frontend changes.  
-* Production build (`npm run build`) regenerates data, compiles Next.js app, suitable for Render.com deployment via `render.yaml`.  
-* No backend services are currently bundled; API keys are not required for local dashboard usage.  
+## Development Workflow
+- `npm run dev` (rebuilds data, starts Next.js)
+- `npm run build` (rebuilds data, compiles production bundle)
+- No backend dependencies or API keys required for local use; dataset changes require `npm run prepare-data`.
 
-Use this document as a quick orientation for agents needing to extend visuals, adjust metrics, or update the data transformation pipeline.***
+Use this primer as the go-to context when extending the data pipeline, adjusting UI behavior, or adding new visualizations.***
