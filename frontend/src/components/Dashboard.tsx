@@ -368,15 +368,18 @@ export function Dashboard({ dataset }: DashboardProps) {
     if (!normalizedSearch) {
       return;
     }
-    const selectionLabel = (selection?.displayLabel || selection?.model || "").toLowerCase();
-    if (selectionLabel && selectionLabel === normalizedSearch) {
+    const exactMatch = modelSuggestions.find((entry) => {
+      const label = (entry.displayLabel || entry.model || "").trim().toLowerCase();
+      return label !== "" && label === normalizedSearch;
+    });
+    if (!exactMatch) {
       return;
     }
-    const match = modelSuggestions[0];
-    if (match && match.combinationId !== selection?.combinationId) {
-      searchSelectionRef.current = true;
-      setSelection(match);
+    if (exactMatch.combinationId === selection?.combinationId) {
+      return;
     }
+    searchSelectionRef.current = true;
+    setSelection(exactMatch);
   }, [normalizedSearch, modelSuggestions, selection]);
 
   useEffect(() => {
