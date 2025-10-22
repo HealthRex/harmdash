@@ -1,6 +1,6 @@
 export interface DataRow {
   model: string;
-  role: string;
+  team: string;
   condition: string;
   harm: string;
   metric: string;
@@ -27,6 +27,9 @@ export interface MetricMetadata {
   range: "percent" | "absolute";
   displayLabel: string;
   description: string;
+  betterDirection: "higher" | "lower";
+  axisMin: number | null;
+  axisMax: number | null;
 }
 
 export interface DatasetArtifact {
@@ -38,7 +41,7 @@ export interface DatasetArtifact {
 export interface CombinationEntry {
   combinationId: string;
   model: string;
-  role: string;
+  team: string;
   condition: string;
   harm: string;
   cases: string | null;

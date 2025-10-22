@@ -27,7 +27,7 @@ export function groupRowsByCombination(
   const getBaseKey = (row: DataRow) =>
     [
       row.model,
-      row.role,
+      row.team,
       row.condition,
       row.type ?? "",
       row.cases ?? "",
@@ -44,7 +44,7 @@ export function groupRowsByCombination(
       entry = {
         combinationId: row.combinationId,
         model: row.model,
-        role: row.role,
+        team: row.team,
         condition: row.condition,
         harm: row.harm,
         cases: row.cases,

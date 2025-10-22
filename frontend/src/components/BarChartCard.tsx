@@ -1,6 +1,6 @@
 'use client';
 
-import { CONDITION_COLORS, ROLE_COLORS } from "@/config/colors";
+import { TEAM_COLORS } from "@/config/colors";
 import type { DataRow, MetricMetadata } from "@/types/dataset";
 import {
   pickRowsForMetric,
@@ -8,7 +8,7 @@ import {
   formatMetricValue
 } from "@/utils/data";
 import clsx from "clsx";
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 
 type Props = {
   rows: DataRow[];
@@ -19,29 +19,12 @@ type Props = {
   maxItems?: number;
   metrics: MetricMetadata[];
   metadataMap: Map<string, MetricMetadata>;
+  conditionColorMap: Map<string, string>;
 };
-
-const conditionLegendOrder = [
-  "Control",
-  "Solo",
-  "Guardian",
-  "Guardian+Guardian",
-  "Guardian+Stewardship",
-  "Stewardship"
-];
-
-const roleLegendOrder = ["Agent1", "Agent2", "Agent3", "Human"];
 
 const shortenLabel = (label: string, maxChars = 44) => {
   if (label.length <= maxChars) return label;
   return `${label.slice(0, maxChars - 1)}…`;
-};
-
-const getBarColor = (row: DataRow) => {
-  const key = row.colorKey || row.condition || row.role;
-  if (key && CONDITION_COLORS[key]) return CONDITION_COLORS[key];
-  if (key && ROLE_COLORS[key]) return ROLE_COLORS[key];
-  return ROLE_COLORS.default;
 };
 
 const getTextColor = (hex: string) => {
@@ -54,69 +37,110 @@ const getTextColor = (hex: string) => {
   return brightness > 155 ? '#111827' : '#f8fafc';
 };
 
-function LegendBadge({ label, color }: { label: string; color: string }) {
-  return (
-    <span className="flex items-center gap-2 text-xs font-medium text-slate-600">
-      <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: color }} />
-      {label}
-    </span>
-  );
-}
-
 export function BarChartCard({
   rows,
   metricId,
   onMetricChange,
   onBarClick,
   highlightedCombinationId,
-  maxItems = 15,
+  maxItems = 5,
   metrics,
-  metadataMap
+  metadataMap,
+  conditionColorMap
 }: Props) {
   const metricMeta = metadataMap.get(metricId);
   const metricLabel = metricMeta?.displayLabel ?? metricId;
   const metricDescription = metricMeta?.description ?? "";
   const isPercentMetric = metricMeta?.range === "percent";
+  const higherIsBetter = metricMeta?.betterDirection !== "lower";
 
-  const barRows = useMemo(() => {
+  const { topRows, bottomRows, displayRows } = useMemo(() => {
     const filtered = pickRowsForMetric(rows, metricId);
-    return sortRowsForMetric(filtered, true, maxItems);
-  }, [rows, metricId, maxItems]);
+    const sortedForBest = sortRowsForMetric(filtered, higherIsBetter);
+    const perGroup = Math.max(1, maxItems);
+    const top = sortedForBest.slice(0, perGroup);
 
-  const maxValue = useMemo(() => {
-    if (barRows.length === 0) return 1;
-    if (isPercentMetric) return 1;
-    const candidateMax = Math.max(...barRows.map((row) => row.mean ?? 0), 0);
-    return candidateMax <= 0 ? 1 : candidateMax;
-  }, [barRows, isPercentMetric]);
+    const sortedForWorst = sortRowsForMetric(filtered, !higherIsBetter);
+    const bottom: DataRow[] = [];
+    for (const candidate of sortedForWorst) {
+      if (bottom.length >= perGroup) {
+        break;
+      }
+      if (!top.some((row) => row.combinationId === candidate.combinationId)) {
+        bottom.push(candidate);
+      }
+    }
 
-  const conditionLegend = useMemo(() => {
-    const keys = new Set(
-      barRows
-        .map((row) => row.condition)
-        .filter((value): value is string => Boolean(value))
-    );
-    return conditionLegendOrder
-      .filter((key) => keys.has(key))
-      .map((key) => ({
-        label: key,
-        color: CONDITION_COLORS[key] ?? ROLE_COLORS.default
-      }));
-  }, [barRows]);
+    const bottomSorted = sortRowsForMetric(bottom, higherIsBetter);
 
-  const roleLegend = useMemo(() => {
-    const keys = new Set(
-      barRows
-        .map((row) => row.role)
-        .filter((value): value is string => Boolean(value))
-    );
-    return roleLegendOrder
-      .filter((key) => keys.has(key))
-      .map((key) => ({
-        label: key,
-        color: ROLE_COLORS[key] ?? ROLE_COLORS.default
-      }));
-  }, [barRows]);
+    return {
+      topRows: top,
+      bottomRows: bottomSorted,
+      displayRows: [...top, ...bottomSorted]
+    };
+  }, [rows, metricId, maxItems, higherIsBetter]);
+
+  const { axisMin, axisMax } = useMemo(() => {
+    let minValue = Number.POSITIVE_INFINITY;
+    let maxValue = Number.NEGATIVE_INFINITY;
+    displayRows.forEach((row) => {
+      if (row.mean !== null && row.mean !== undefined) {
+        minValue = Math.min(minValue, row.mean);
+        maxValue = Math.max(maxValue, row.mean);
+      }
+    });
+
+    if (minValue === Number.POSITIVE_INFINITY) {
+      minValue = 0;
+    }
+    if (maxValue === Number.NEGATIVE_INFINITY) {
+      maxValue = 0;
+    }
+
+    const defaultMin = isPercentMetric ? 0 : Math.min(0, minValue);
+    const defaultMax = isPercentMetric ? 1 : Math.max(maxValue, 0);
+
+    const resolvedMin =
+      metricMeta?.axisMin !== null && metricMeta?.axisMin !== undefined
+        ? metricMeta.axisMin
+        : defaultMin;
+    const resolvedMax =
+      metricMeta?.axisMax !== null && metricMeta?.axisMax !== undefined
+        ? metricMeta.axisMax
+        : defaultMax;
+
+    const fallbackMax =
+      resolvedMin + Math.abs(resolvedMin || 1) * 0.1;
+    const adjustedMax =
+      resolvedMax > resolvedMin
+        ? resolvedMax
+        : fallbackMax !== resolvedMin
+        ? fallbackMax
+        : resolvedMin + 1;
+
+    return {
+      axisMin: resolvedMin,
+      axisMax: adjustedMax
+    };
+  }, [displayRows, metricMeta?.axisMin, metricMeta?.axisMax, isPercentMetric]);
+
+  const getBarColor = useCallback(
+    (row: DataRow) => {
+      const conditionKey = (row.condition ?? "").trim();
+      if (conditionKey && conditionColorMap.has(conditionKey)) {
+        return conditionColorMap.get(conditionKey)!;
+      }
+      const teamKey = (row.team ?? "").trim();
+      if (teamKey && conditionColorMap.has(teamKey)) {
+        return conditionColorMap.get(teamKey)!;
+      }
+      if (teamKey && TEAM_COLORS[teamKey]) {
+        return TEAM_COLORS[teamKey];
+      }
+      return TEAM_COLORS.default;
+    },
+    [conditionColorMap]
+  );
 
   const handleRowClick = (row: DataRow) => {
     onBarClick?.(row);
@@ -128,10 +152,10 @@ export function BarChartCard({
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 className="text-lg font-semibold text-slate-900">
-              Top Models by {metricLabel}
+              Performance Spread for {metricLabel}
             </h2>
             <p className="text-sm text-slate-500">
-              Click a row to see detailed metrics. Sorted descending by mean value.
+              Compare top and bottom performers side-by-side. Click a row to see detailed metrics.
             </p>
           </div>
           <select
@@ -150,94 +174,176 @@ export function BarChartCard({
           <p className="text-xs text-slate-500">{metricDescription}</p>
         ) : null}
       </header>
-      <div className="flex flex-wrap items-start gap-6">
-        <span className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-xs font-medium uppercase tracking-wide text-slate-600">
-          <span className="h-1.5 w-1.5 rounded-full bg-slate-400" />
-          {"Higher is Better"}
-        </span>
-        {conditionLegend.length ? (
-          <div className="flex flex-wrap items-center gap-3 text-xs text-slate-600">
-            <span className="font-medium uppercase tracking-wide text-slate-500">
-              Condition
-            </span>
-            {conditionLegend.map((item) => (
-              <LegendBadge key={item.label} label={item.label} color={item.color} />
-            ))}
-          </div>
-        ) : null}
-        {roleLegend.length ? (
-          <div className="flex flex-wrap items-center gap-3 text-xs text-slate-600">
-            <span className="font-medium uppercase tracking-wide text-slate-500">
-              Role
-            </span>
-            {roleLegend.map((item) => (
-              <LegendBadge key={item.label} label={item.label} color={item.color} />
-            ))}
-          </div>
-        ) : null}
-      </div>
-      <div className="flex flex-col gap-3">
-        {barRows.map((row) => {
-          const value = row.mean ?? 0;
-          const widthPercentRaw = isPercentMetric
-            ? value * 100
-            : maxValue === 0
-            ? 0
-            : (value / maxValue) * 100;
-          const widthPercent = Math.max(Math.min(widthPercentRaw, 100), 0);
-          const barColor = getBarColor(row);
-          const isSelected = highlightedCombinationId === row.combinationId;
-          const displayLabel = shortenLabel(row.displayLabel || row.model);
-          const formattedValue = formatMetricValue(row.mean, {
-            metadata: metricMeta
-          });
-          const hasCi = row.ci !== null && row.ci !== undefined && row.ci !== 0;
-          const ciLabel = hasCi
-            ? `CI: ± ${formatMetricValue(row.ci, { metadata: metricMeta })}`
-            : "CI: NA";
-          const textColor = getTextColor(barColor);
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2">
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+            Top {topRows.length} {topRows.length === 1 ? "Model" : "Models"}
+          </h3>
+          {topRows.length ? (
+            <div className="flex flex-col gap-1">
+              {topRows.map((row) => {
+                const value = row.mean ?? 0;
+                const valueClamped = Math.min(Math.max(value, axisMin), axisMax);
+                const range = axisMax - axisMin || 1;
+                const widthPercentRaw =
+                  range <= 0 ? 0 : ((valueClamped - axisMin) / range) * 100;
+                const widthPercent = Math.max(Math.min(widthPercentRaw, 100), 0);
+                const barColor = getBarColor(row);
+                const isSelected = highlightedCombinationId === row.combinationId;
+                const displayLabel = shortenLabel(row.displayLabel || row.model);
+                const formattedValue = formatMetricValue(row.mean, {
+                  metadata: metricMeta
+                });
+                const hasCi =
+                  row.ci !== null && row.ci !== undefined && row.ci !== 0;
+                const ciLabel = hasCi
+                  ? `CI: ± ${formatMetricValue(row.ci, { metadata: metricMeta })}`
+                  : "CI: NA";
+                const textColor = getTextColor(barColor);
 
-          return (
-            <button
-              key={row.combinationId}
-              type="button"
-              aria-pressed={isSelected}
-              onClick={() => handleRowClick(row)}
-              className={clsx(
-                'group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 rounded-2xl border border-transparent bg-white/0 px-3 py-3 text-left transition',
-                isSelected
-                  ? 'border-slate-300 bg-gradient-to-r from-white via-slate-50 to-white shadow-sm'
-                  : 'hover:border-slate-200 hover:bg-slate-50/70'
-              )}
-            >
-              <div className="relative h-8 w-full overflow-hidden rounded-[6px]">
-                <div className="absolute inset-0 rounded-[6px] bg-slate-200" />
-                <div
-                  className={clsx(
-                    'absolute inset-0 rounded-[6px] transition-all duration-500 ease-out',
-                    isSelected ? 'opacity-100 shadow-inner shadow-slate-900/10' : 'opacity-95'
-                  )}
-                  style={{
-                    width: `${widthPercent}%`,
-                    backgroundColor: barColor
-                  }}
-                />
-                <span
-                  className="absolute left-4 top-1/2 -translate-y-1/2 truncate text-sm font-medium"
-                  style={{ color: textColor }}
-                  title={row.displayLabel || row.model}
-                >
-                  {displayLabel}
-                </span>
-              </div>
-              <div className="flex flex-col items-end gap-0.5">
-                <span className="text-sm font-semibold text-slate-900">{formattedValue}</span>
-                <span className="text-xs text-slate-500">{ciLabel}</span>
-              </div>
-            </button>
-          );
-        })}
+                return (
+                  <button
+                    key={row.combinationId}
+                    type="button"
+                    aria-pressed={isSelected}
+                    onClick={() => handleRowClick(row)}
+                    className={clsx(
+                      "group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 rounded-2xl border border-transparent bg-white/0 px-2 py-1.5 text-left transition",
+                      isSelected
+                        ? "border-slate-300 bg-gradient-to-r from-white via-slate-50 to-white shadow-sm"
+                        : "hover:border-slate-200 hover:bg-slate-50/70"
+                    )}
+                  >
+                    <div className="relative h-8 w-full overflow-hidden rounded-[6px]">
+                      <div className="absolute inset-0 rounded-[6px] bg-slate-200" />
+                      <div
+                        className={clsx(
+                          "absolute inset-0 rounded-[6px] transition-all duration-500 ease-out",
+                          isSelected
+                            ? "opacity-100 shadow-inner shadow-slate-900/10"
+                            : "opacity-95"
+                        )}
+                        style={{
+                          width: `${widthPercent}%`,
+                          backgroundColor: barColor
+                        }}
+                      />
+                      <span
+                        className="absolute left-4 top-1/2 -translate-y-1/2 truncate text-sm font-medium"
+                        style={{ color: textColor }}
+                        title={row.displayLabel || row.model}
+                      >
+                        {displayLabel}
+                      </span>
+                    </div>
+                    <div className="flex flex-col items-end gap-0.5">
+                      <span className="text-sm font-semibold text-slate-900">
+                        {formattedValue}
+                      </span>
+                      <span className="text-xs text-slate-500">{ciLabel}</span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          ) : (
+            <p className="rounded-lg border border-dashed border-slate-200 bg-slate-50 p-3 text-sm text-slate-500">
+              No models available for the selected filters.
+            </p>
+          )}
+        </div>
+        <div className="flex flex-col gap-2">
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+            Bottom {bottomRows.length} {bottomRows.length === 1 ? "Model" : "Models"}
+          </h3>
+          {bottomRows.length ? (
+            <div className="flex flex-col gap-1">
+              {bottomRows.map((row) => {
+                const value = row.mean ?? 0;
+                const valueClamped = Math.min(Math.max(value, axisMin), axisMax);
+                const range = axisMax - axisMin || 1;
+                const widthPercentRaw =
+                  range <= 0 ? 0 : ((valueClamped - axisMin) / range) * 100;
+                const widthPercent = Math.max(Math.min(widthPercentRaw, 100), 0);
+                const barColor = getBarColor(row);
+                const isSelected = highlightedCombinationId === row.combinationId;
+                const displayLabel = shortenLabel(row.displayLabel || row.model);
+                const formattedValue = formatMetricValue(row.mean, {
+                  metadata: metricMeta
+                });
+                const hasCi =
+                  row.ci !== null && row.ci !== undefined && row.ci !== 0;
+                const ciLabel = hasCi
+                  ? `CI: ± ${formatMetricValue(row.ci, { metadata: metricMeta })}`
+                  : "CI: NA";
+                const textColor = getTextColor(barColor);
+
+                return (
+                  <button
+                    key={row.combinationId}
+                    type="button"
+                    aria-pressed={isSelected}
+                    onClick={() => handleRowClick(row)}
+                    className={clsx(
+                      "group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 rounded-2xl border border-transparent bg-white/0 px-2 py-1.5 text-left transition",
+                      isSelected
+                        ? "border-slate-300 bg-gradient-to-r from-white via-slate-50 to-white shadow-sm"
+                        : "hover:border-slate-200 hover:bg-slate-50/70"
+                    )}
+                  >
+                    <div className="relative h-8 w-full overflow-hidden rounded-[6px]">
+                      <div className="absolute inset-0 rounded-[6px] bg-slate-200" />
+                      <div
+                        className={clsx(
+                          "absolute inset-0 rounded-[6px] transition-all duration-500 ease-out",
+                          isSelected
+                            ? "opacity-100 shadow-inner shadow-slate-900/10"
+                            : "opacity-95"
+                        )}
+                        style={{
+                          width: `${widthPercent}%`,
+                          backgroundColor: barColor
+                        }}
+                      />
+                      <span
+                        className="absolute left-4 top-1/2 -translate-y-1/2 truncate text-sm font-medium"
+                        style={{ color: textColor }}
+                        title={row.displayLabel || row.model}
+                      >
+                        {displayLabel}
+                      </span>
+                    </div>
+                    <div className="flex flex-col items-end gap-0.5">
+                      <span className="text-sm font-semibold text-slate-900">
+                        {formattedValue}
+                      </span>
+                      <span className="text-xs text-slate-500">{ciLabel}</span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          ) : (
+            <p className="rounded-lg border border-dashed border-slate-200 bg-slate-50 p-3 text-sm text-slate-500">
+              No bottom performers to display for the selected filters.
+            </p>
+          )}
+        </div>
       </div>
     </section>
   );
 }
+  const getBarColor = (row: DataRow) => {
+    const conditionKey = (row.condition ?? "").trim();
+    if (conditionKey && conditionColorMap.has(conditionKey)) {
+      return conditionColorMap.get(conditionKey)!;
+    }
+    const key = row.colorKey || row.team;
+    if (key && conditionColorMap.has(key)) {
+      return conditionColorMap.get(key)!;
+    }
+    if (row.team && TEAM_COLORS[row.team]) {
+      return TEAM_COLORS[row.team];
+    }
+    return TEAM_COLORS.default;
+  };

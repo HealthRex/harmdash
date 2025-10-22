@@ -1,16 +1,17 @@
-export const ROLE_COLORS: Record<string, string> = {
-  Agent1: "#6E5DC6",
-  Agent2: "#FF8360",
-  Agent3: "#2FB49C",
+export const TEAM_COLORS: Record<string, string> = {
+  "1 Agent": "#6E5DC6",
+  "2 Agents": "#FF8360",
+  "3 Agents": "#2FB49C",
   Human: "#F4C95D",
   default: "#1F2A44"
 };
 
 export const CONDITION_COLORS: Record<string, string> = {
   Control: "#1F2A44",
-  Solo: "#6E5DC6",
-  Guardian: "#FF8360",
-  "Guardian+Guardian": "#2FB49C",
-  "Guardian+Stewardship": "#F4C95D",
-  Stewardship: "#9D4EDD"
+  Human: "#334155",
+  Advisor: "#3085d6",
+  "Advisor + Guardian": "#f97316",
+  "Advisor + Steward": "#22c55e",
+  "Advisor + Guardian + Guardian": "#8b5cf6",
+  "Advisor + Guardian + Steward": "#ec4899"
 };

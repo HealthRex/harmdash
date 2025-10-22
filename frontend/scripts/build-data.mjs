@@ -28,7 +28,7 @@ const nullableStringFields = ["Format", "Cases", "Grading", "Type", "Label"];
 
 const metricsSchema = z.object({
   Model: z.string().min(1),
-  Role: z.string().optional().default(""),
+  Team: z.string().optional().default(""),
   Condition: z.string().optional().default(""),
   Harm: z.string().optional().default(""),
   Metric: z.string().min(1),
@@ -52,7 +52,10 @@ const metadataSchema = z.object({
   Include: z.union([z.string(), z.boolean()]).optional(),
   Range: z.string().optional(),
   Display: z.string().optional(),
-  Description: z.string().optional()
+  Description: z.string().optional(),
+  Better: z.string().optional(),
+  Min: z.union([z.string(), z.number()]).optional(),
+  Max: z.union([z.string(), z.number()]).optional()
 });
 
 function parseNumber(value) {
@@ -138,10 +141,36 @@ function cleanMetadataString(value, fallback = "") {
   return trimmed;
 }
 
+function parseBetter(value) {
+  if (value === null || value === undefined) {
+    return "higher";
+  }
+  const normalized = String(value).trim().toLowerCase();
+  if (!normalized || normalized === "na") {
+    return "higher";
+  }
+  if (["lower", "low"].includes(normalized)) {
+    return "lower";
+  }
+  return "higher";
+}
+
+function parseLimit(value) {
+  if (value === null || value === undefined) {
+    return null;
+  }
+  const normalized = String(value).trim();
+  if (!normalized || normalized.toLowerCase() === "na") {
+    return null;
+  }
+  const parsed = Number(normalized);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
 function getCombinationId(row) {
   return [
     row.Model,
-    row.Role ?? "",
+    row.Team ?? "",
     row.Condition ?? "",
     row.Harm ?? "",
     row.Type ?? "",
@@ -172,6 +201,9 @@ async function main() {
         range: parseRange(entry.Range),
         displayLabel: cleanMetadataString(entry.Display, entry.Metric),
         description: cleanMetadataString(entry.Description, ""),
+        betterDirection: parseBetter(entry.Better),
+        axisMin: parseLimit(entry.Min),
+        axisMax: parseLimit(entry.Max),
         include
       };
     })
@@ -214,7 +246,7 @@ async function main() {
         enriched[field] = cleanString(row[field]);
       });
 
-      enriched.Role = cleanString(row.Role) ?? "";
+      enriched.Team = cleanString(row.Team) ?? "";
       enriched.Condition = cleanString(row.Condition) ?? "";
       enriched.Harm = cleanString(row.Harm) ?? "";
 
@@ -227,11 +259,11 @@ async function main() {
       const colorKey =
         parsed.Condition && parsed.Condition !== ""
           ? parsed.Condition
-          : parsed.Role || "default";
+          : parsed.Team || "default";
 
       return {
         model: parsed.Model,
-        role: parsed.Role,
+        team: parsed.Team,
         condition: parsed.Condition,
         harm: parsed.Harm,
         metric: parsed.Metric,

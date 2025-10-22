@@ -1,7 +1,7 @@
 'use client';
 
 import Plot from "@/components/PlotClient";
-import { ROLE_COLORS } from "@/config/colors";
+import { TEAM_COLORS } from "@/config/colors";
 import type { CombinationEntry, DataRow, MetricMetadata } from "@/types/dataset";
 import clsx from "clsx";
 import type { Layout, PlotData, PlotMouseEvent } from "plotly.js";
@@ -12,6 +12,60 @@ function sizeFromTrials(a: DataRow | undefined, b: DataRow | undefined) {
   const trials = Math.max(a?.trials ?? 0, b?.trials ?? 0);
   if (trials <= 0) return 10;
   return Math.min(28, 10 + Math.log2(trials + 1) * 4);
+}
+
+function resolveAxisRange(
+  values: number[],
+  meta: MetricMetadata | undefined,
+  isPercentMetric: boolean
+): [number, number] | undefined {
+  const convert = (value: number | null | undefined) => {
+    if (value === null || value === undefined) {
+      return null;
+    }
+    return isPercentMetric ? value * 100 : value;
+  };
+
+  const specifiedMin = convert(meta?.axisMin ?? null);
+  const specifiedMax = convert(meta?.axisMax ?? null);
+
+  const finiteValues = values.filter((value) => Number.isFinite(value));
+  const dataMin =
+    finiteValues.length > 0
+      ? Math.min(...finiteValues)
+      : null;
+  const dataMax =
+    finiteValues.length > 0
+      ? Math.max(...finiteValues)
+      : null;
+
+  let rangeMin =
+    specifiedMin ?? (isPercentMetric ? 0 : dataMin);
+  let rangeMax =
+    specifiedMax ?? (isPercentMetric ? 100 : dataMax);
+
+  if (rangeMin === null && rangeMax === null) {
+    return undefined;
+  }
+
+  if (rangeMin === null && rangeMax !== null) {
+    rangeMin = rangeMax - Math.abs(rangeMax || 1) * 0.1;
+  }
+
+  if (rangeMax === null && rangeMin !== null) {
+    rangeMax = rangeMin + Math.abs(rangeMin || 1) * 0.1 || rangeMin + 1;
+  }
+
+  if (rangeMin === null || rangeMax === null) {
+    return undefined;
+  }
+
+  if (rangeMax <= rangeMin) {
+    const spread = Math.abs(rangeMin || 1) * 0.1 || 1;
+    rangeMax = rangeMin + spread;
+  }
+
+  return [rangeMin, rangeMax];
 }
 
 interface ScatterChartCardProps {
@@ -50,10 +104,10 @@ export function ScatterChartCard({
     });
   }, [combinations, xMetricId, yMetricId]);
 
-  const roleGroups = useMemo(() => {
+  const teamGroups = useMemo(() => {
     const map = new Map<string, CombinationEntry[]>();
     filtered.forEach((entry) => {
-      const key = entry.role || "Other";
+      const key = entry.team || "Unspecified Team";
       if (!map.has(key)) {
         map.set(key, []);
       }
@@ -66,14 +120,14 @@ export function ScatterChartCard({
     const highlighted = new Set([highlightedCombinationId ?? ""]);
     const traces: PlotData[] = [];
 
-    roleGroups.forEach((entries, role) => {
+    teamGroups.forEach((entries, team) => {
       const rawX = entries.map((entry) => entry.metrics[xMetricId]?.mean ?? 0);
       const rawY = entries.map((entry) => entry.metrics[yMetricId]?.mean ?? 0);
 
       const x = rawX.map((value) => (xIsPercentMetric ? value * 100 : value));
       const y = rawY.map((value) => (yIsPercentMetric ? value * 100 : value));
 
-      const color = ROLE_COLORS[role] ?? ROLE_COLORS.default;
+      const color = TEAM_COLORS[team] ?? TEAM_COLORS.default;
       const marker = {
         size: entries.map((entry) =>
           sizeFromTrials(entry.metrics[xMetricId], entry.metrics[yMetricId])
@@ -102,7 +156,7 @@ export function ScatterChartCard({
         const xCi = entry.metrics[xMetricId]?.ci ?? null;
         const yCi = entry.metrics[yMetricId]?.ci ?? null;
         const condition = entry.condition || "NA";
-        const roleLabel = entry.role || "NA";
+        const teamLabel = entry.team || "Unspecified Team";
         const trials = Math.max(
           entry.metrics[xMetricId]?.trials ?? 0,
           entry.metrics[yMetricId]?.trials ?? 0
@@ -132,7 +186,7 @@ export function ScatterChartCard({
           formatCi(yCi, yMeta),
           `Harm: ${entry.harm || "NA"}`,
           `Condition: ${condition}`,
-          `Role: ${roleLabel}`,
+          `Team: ${teamLabel}`,
           `Trials: ${trials || "NA"}`
         ].filter(Boolean);
 
@@ -160,7 +214,7 @@ export function ScatterChartCard({
       traces.push({
         type: "scattergl",
         mode: "markers",
-        name: role,
+        name: team,
         x,
         y,
         text: entries.map((entry) => entry.displayLabel || entry.model),
@@ -175,13 +229,43 @@ export function ScatterChartCard({
 
     return traces;
   }, [
-    roleGroups,
+    teamGroups,
     highlightedCombinationId,
     xMetricId,
     yMetricId,
     xIsPercentMetric,
     yIsPercentMetric
   ]);
+
+  const xDisplayValues = useMemo(() => {
+    return filtered
+      .map((entry) => entry.metrics[xMetricId]?.mean)
+      .filter(
+        (value): value is number =>
+          value !== null && value !== undefined && Number.isFinite(value)
+      )
+      .map((value) => (xIsPercentMetric ? value * 100 : value));
+  }, [filtered, xMetricId, xIsPercentMetric]);
+
+  const yDisplayValues = useMemo(() => {
+    return filtered
+      .map((entry) => entry.metrics[yMetricId]?.mean)
+      .filter(
+        (value): value is number =>
+          value !== null && value !== undefined && Number.isFinite(value)
+      )
+      .map((value) => (yIsPercentMetric ? value * 100 : value));
+  }, [filtered, yMetricId, yIsPercentMetric]);
+
+  const xAxisRange = useMemo(
+    () => resolveAxisRange(xDisplayValues, xMeta, xIsPercentMetric),
+    [xDisplayValues, xMeta, xIsPercentMetric]
+  );
+
+  const yAxisRange = useMemo(
+    () => resolveAxisRange(yDisplayValues, yMeta, yIsPercentMetric),
+    [yDisplayValues, yMeta, yIsPercentMetric]
+  );
 
   const layout = useMemo<Partial<Layout>>(
     () => ({
@@ -191,31 +275,45 @@ export function ScatterChartCard({
       plot_bgcolor: "rgba(0,0,0,0)",
       xaxis: {
         title: {
-          text: xMeta?.displayLabel ?? xMetricId,
+          text: `<b>${xMeta?.displayLabel ?? xMetricId}</b>`,
           font: {
-            size: 14,
+            size: 16,
             family: "Inter, sans-serif"
           }
         },
-        range: xIsPercentMetric ? [0, 100] : undefined,
+        range: xAxisRange,
         tickformat: xIsPercentMetric ? ".1f" : undefined,
         automargin: true,
         zeroline: false,
-        gridcolor: "#e2e8f0"
+        gridcolor: "#e2e8f0",
+        zerolinecolor: "#94a3b8",
+        zerolinewidth: 1.5,
+        tickfont: {
+          size: 12,
+          family: "Inter, sans-serif",
+          color: "#0f172a"
+        }
       },
       yaxis: {
         title: {
-          text: yMeta?.displayLabel ?? yMetricId,
+          text: `<b>${yMeta?.displayLabel ?? yMetricId}</b>`,
           font: {
-            size: 14,
+            size: 16,
             family: "Inter, sans-serif"
           }
         },
-        range: yIsPercentMetric ? [0, 100] : undefined,
+        range: yAxisRange,
         tickformat: yIsPercentMetric ? ".1f" : undefined,
         automargin: true,
         zeroline: false,
-        gridcolor: "#e2e8f0"
+        gridcolor: "#e2e8f0",
+        zerolinecolor: "#94a3b8",
+        zerolinewidth: 1.5,
+        tickfont: {
+          size: 12,
+          family: "Inter, sans-serif",
+          color: "#0f172a"
+        }
       },
       hovermode: "closest",
       font: {
@@ -225,9 +323,92 @@ export function ScatterChartCard({
       legend: {
         orientation: "h",
         y: 1.1
-      }
+      },
+      shapes: (() => {
+        const shapes = [];
+        if (!xAxisRange || (xAxisRange[0] <= 0 && xAxisRange[1] >= 0)) {
+          shapes.push({
+            type: "line",
+            x0: 0,
+            x1: 0,
+            y0: yAxisRange ? yAxisRange[0] : 0,
+            y1: yAxisRange ? yAxisRange[1] : 0,
+            line: {
+              color: "#cbd5f5",
+              width: 1,
+              dash: "dot"
+            }
+          });
+        }
+        if (!yAxisRange || (yAxisRange[0] <= 0 && yAxisRange[1] >= 0)) {
+          shapes.push({
+            type: "line",
+            x0: xAxisRange ? xAxisRange[0] : 0,
+            x1: xAxisRange ? xAxisRange[1] : 0,
+            y0: 0,
+            y1: 0,
+            line: {
+              color: "#cbd5f5",
+              width: 1,
+              dash: "dot"
+            }
+          });
+        }
+        const addPercentLine = (value: number) => {
+          const x100Visible =
+            value >= (xAxisRange ? xAxisRange[0] : Number.NEGATIVE_INFINITY) &&
+            value <= (xAxisRange ? xAxisRange[1] : Number.POSITIVE_INFINITY);
+          if (x100Visible) {
+            shapes.push({
+              type: "line",
+              x0: value,
+              x1: value,
+              y0: yAxisRange ? yAxisRange[0] : 0,
+              y1: yAxisRange ? yAxisRange[1] : 0,
+              line: {
+                color: "#38bdf8",
+                width: 1,
+                dash: "dash"
+              }
+            });
+          }
+
+          const y100Visible =
+            value >= (yAxisRange ? yAxisRange[0] : Number.NEGATIVE_INFINITY) &&
+            value <= (yAxisRange ? yAxisRange[1] : Number.POSITIVE_INFINITY);
+          if (y100Visible) {
+            shapes.push({
+              type: "line",
+              x0: xAxisRange ? xAxisRange[0] : 0,
+              x1: xAxisRange ? xAxisRange[1] : 0,
+              y0: value,
+              y1: value,
+              line: {
+                color: "#38bdf8",
+                width: 1,
+                dash: "dash"
+              }
+            });
+          }
+        };
+
+        if (xIsPercentMetric || yIsPercentMetric) {
+          addPercentLine(100);
+        }
+
+        return shapes;
+      })()
     }),
-    [xMeta, yMeta, xMetricId, yMetricId, xIsPercentMetric, yIsPercentMetric]
+    [
+      xMeta,
+      yMeta,
+      xMetricId,
+      yMetricId,
+      xIsPercentMetric,
+      yIsPercentMetric,
+      xAxisRange,
+      yAxisRange
+    ]
   );
 
   const handleClick = (event: PlotMouseEvent) => {
@@ -246,63 +427,65 @@ export function ScatterChartCard({
   return (
     <section className="flex flex-col gap-4 rounded-2xl bg-white p-6 shadow-lg shadow-slate-200">
       <header className="flex flex-col gap-1">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <h2 className="text-lg font-semibold text-slate-900">
-              Metric Explorer
-            </h2>
-            <p className="text-sm text-slate-500">
-              Compare model behavior across two metrics. Click a point to inspect the full profile.
-            </p>
-          </div>
-          <div className="flex flex-wrap items-center gap-3">
-            <label className="flex flex-col gap-1 text-xs font-medium text-slate-600">
-              X Metric
-              <select
-                value={xMetricId}
-                onChange={(event) => onXMetricChange(event.target.value)}
-                className="rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-sm shadow-sm transition hover:border-brand-500"
-              >
-                {metrics.map((option) => (
-                  <option key={option.id} value={option.id}>
-                    {option.displayLabel}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="flex flex-col gap-1 text-xs font-medium text-slate-600">
-              Y Metric
-              <select
-                value={yMetricId}
-                onChange={(event) => onYMetricChange(event.target.value)}
-                className="rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-sm shadow-sm transition hover:border-brand-500"
-              >
-                {metrics.map((option) => (
-                  <option key={option.id} value={option.id}>
-                    {option.displayLabel}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
+        <div>
+          <h2 className="text-lg font-semibold text-slate-900">
+            Metric Explorer
+          </h2>
+          <p className="text-sm text-slate-500">
+            Compare model behavior across two metrics. Click a point to inspect the full profile.
+          </p>
         </div>
         <p className="text-xs text-slate-500">
           Hover for contextual details. Marker size approximates available trials for the two metrics.
         </p>
       </header>
-      <div className={clsx("min-h-[520px] w-full")}>
-        <Plot
-          data={data}
-          layout={layout}
-          config={{
-            displayModeBar: false,
-            responsive: true,
-            scrollZoom: true
-          }}
-          style={{ width: "100%", height: "100%" }}
-          onClick={handleClick}
-          useResizeHandler
-        />
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 md:grid md:grid-cols-[auto,1fr] md:items-center md:gap-6">
+          <label className="flex w-full max-w-xs flex-col gap-1 text-xs font-medium text-slate-600 md:max-w-[160px] md:self-center md:text-right">
+            Y Metric
+            <select
+              value={yMetricId}
+              onChange={(event) => onYMetricChange(event.target.value)}
+              className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm transition hover:border-brand-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
+            >
+              {metrics.map((option) => (
+                <option key={option.id} value={option.id}>
+                  {option.displayLabel}
+                </option>
+              ))}
+            </select>
+          </label>
+          <div className={clsx("min-h-[520px] w-full flex-1")}>
+            <Plot
+              data={data}
+              layout={layout}
+              config={{
+                displayModeBar: false,
+                responsive: true,
+                scrollZoom: true
+              }}
+              style={{ width: "100%", height: "100%" }}
+              onClick={handleClick}
+              useResizeHandler
+            />
+          </div>
+        </div>
+        <div className="flex justify-center">
+          <label className="flex w-full max-w-xs flex-col gap-1 text-xs font-medium text-slate-600 sm:max-w-sm">
+            X Metric
+            <select
+              value={xMetricId}
+              onChange={(event) => onXMetricChange(event.target.value)}
+              className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm transition hover:border-brand-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
+            >
+              {metrics.map((option) => (
+                <option key={option.id} value={option.id}>
+                  {option.displayLabel}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
       </div>
     </section>
   );

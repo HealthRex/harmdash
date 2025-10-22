@@ -10,6 +10,7 @@ import type {
   DataRow,
   DatasetArtifact
 } from "@/types/dataset";
+import { CONDITION_COLORS, TEAM_COLORS } from "@/config/colors";
 import { groupRowsByCombination } from "@/utils/data";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
@@ -23,20 +24,12 @@ const HARM_OPTIONS = [
   { value: "Mild", label: "Mild", color: "#FACC15" }
 ];
 
-const ROLE_OPTIONS = [
-  { value: "Agent1", label: "Agent 1" },
-  { value: "Agent2", label: "Agent 2" },
-  { value: "Agent3", label: "Agent 3" }
+const CASE_OPTIONS = [
+  { value: "AllCases", label: "All Cases" },
+  { value: "HumanCases", label: "Human Subset" }
 ];
 
-const CONDITION_OPTIONS = [
-  { value: "Solo", label: "Solo" },
-  { value: "Guardian", label: "Guardian" },
-  { value: "Guardian+Stewardship", label: "Guardian + Stewardship" },
-  { value: "Guardian+Guardian", label: "Guardian + Guardian" },
-  { value: "Stewardship", label: "Stewardship" },
-  { value: "Control", label: "Control" }
-];
+const ALWAYS_ON_CONDITION_NAMES = new Set(["human", "control"]);
 
 function toggleWithMinimumSelected(
   current: string[],
@@ -61,18 +54,71 @@ export function Dashboard({ dataset }: DashboardProps) {
   );
   const metricIds = useMemo(() => metrics.map((meta) => meta.id), [metrics]);
 
+  const { teamGroups, alwaysOnConditions } = useMemo(() => {
+    const teamMap = new Map<string, Set<string>>();
+    const allTeams = new Set<string>();
+    const always = new Set<string>();
+
+    dataset.rows.forEach((row) => {
+      const team = (row.team ?? "").trim();
+      const condition = (row.condition ?? "").trim();
+      if (!team) {
+        return;
+      }
+      allTeams.add(team);
+      if (!condition) {
+        return;
+      }
+      if (ALWAYS_ON_CONDITION_NAMES.has(condition.toLowerCase())) {
+        always.add(condition);
+        return;
+      }
+      if (!teamMap.has(team)) {
+        teamMap.set(team, new Set<string>());
+      }
+      teamMap.get(team)!.add(condition);
+    });
+
+    const groups = Array.from(allTeams)
+      .map((team) => {
+        const conditions = Array.from(teamMap.get(team) ?? new Set<string>()).sort((a, b) =>
+          a.localeCompare(b)
+        );
+        return {
+          team,
+          label: team ? team : "Unspecified Team",
+          conditions
+        };
+      })
+      .sort((a, b) => a.label.localeCompare(b.label));
+
+    const alwaysList = Array.from(always).sort((a, b) => a.localeCompare(b));
+
+    return {
+      teamGroups: groups,
+      alwaysOnConditions: alwaysList
+    };
+  }, [dataset.rows]);
+
   const [barMetricId, setBarMetricId] = useState<string>(() => metricIds[0] ?? "");
   const [xMetricId, setXMetricId] = useState<string>(() => metricIds[0] ?? "");
   const [yMetricId, setYMetricId] = useState<string>(
     () => metricIds[1] ?? metricIds[0] ?? ""
   );
   const [selectedHarmLevels, setSelectedHarmLevels] = useState<string[]>(["Severe"]);
-  const [selectedRoles, setSelectedRoles] = useState<string[]>(
-    ROLE_OPTIONS.map((option) => option.value)
+  const [selectedTeams, setSelectedTeams] = useState<string[]>(() =>
+    teamGroups.map((group) => group.team)
   );
-  const [selectedConditions, setSelectedConditions] = useState<string[]>(
-    CONDITION_OPTIONS.map((option) => option.value)
-  );
+  const [selectedTeamConditions, setSelectedTeamConditions] = useState<
+    Record<string, string[]>
+  >(() => {
+    const initial: Record<string, string[]> = {};
+    teamGroups.forEach((group) => {
+      initial[group.team] = [...group.conditions];
+    });
+    return initial;
+  });
+  const [selectedCase, setSelectedCase] = useState<string>(CASE_OPTIONS[0].value);
   const trialsRange = useMemo(() => {
     let maxTrials = 0;
     dataset.rows.forEach((row) => {
@@ -81,7 +127,7 @@ export function Dashboard({ dataset }: DashboardProps) {
       }
     });
     const snappedMax = Math.max(5, Math.ceil(maxTrials / 5) * 5);
-    return { min: 0, max: snappedMax };
+    return { min: 1, max: snappedMax };
   }, [dataset.rows]);
   const [minTrials, setMinTrials] = useState<number>(5);
   const [selection, setSelection] = useState<CombinationEntry | null>(null);
@@ -92,6 +138,105 @@ export function Dashboard({ dataset }: DashboardProps) {
     }
   }, [minTrials, trialsRange.max]);
 
+  useEffect(() => {
+    if (teamGroups.length === 0) {
+      setSelectedTeams([]);
+      setSelectedTeamConditions({});
+      return;
+    }
+
+    setSelectedTeams((prev) => {
+      const valid = prev.filter((team) =>
+        teamGroups.some((group) => group.team === team)
+      );
+      if (valid.length === prev.length && valid.length !== 0) {
+        return prev;
+      }
+      return valid.length ? valid : teamGroups.map((group) => group.team);
+    });
+
+    setSelectedTeamConditions((prev) => {
+      const next: Record<string, string[]> = {};
+      let changed = false;
+
+      teamGroups.forEach((group) => {
+        const allowed = group.conditions;
+        const previous = prev[group.team] ?? allowed;
+        const filtered = previous.filter((value) => allowed.includes(value));
+        const finalValues =
+          filtered.length > 0 || allowed.length === 0
+            ? filtered.length > 0
+              ? filtered
+              : allowed
+            : [];
+        next[group.team] = finalValues;
+        if (!changed) {
+          if (
+            previous.length !== finalValues.length ||
+            !previous.every((value, index) => value === finalValues[index])
+          ) {
+            changed = true;
+          }
+        }
+      });
+
+      const prevKeys = Object.keys(prev);
+      if (!changed && prevKeys.length === Object.keys(next).length) {
+        const same = prevKeys.every((team) => {
+          const prevValues = prev[team];
+          const currentValues = next[team];
+          return (
+            prevValues &&
+            currentValues &&
+            prevValues.length === currentValues.length &&
+            prevValues.every((value, index) => value === currentValues[index])
+          );
+        });
+        if (same) {
+          return prev;
+        }
+      }
+
+      return next;
+    });
+  }, [teamGroups]);
+
+  const alwaysOnConditionSet = useMemo(
+    () => new Set(alwaysOnConditions.map((condition) => condition.toLowerCase())),
+    [alwaysOnConditions]
+  );
+
+  const conditionColorMap = useMemo(() => {
+    const map = new Map<string, string>();
+    teamGroups.forEach((group) => {
+      const teamColor = TEAM_COLORS[group.team] ?? TEAM_COLORS.default;
+      group.conditions.forEach((condition) => {
+        const color = CONDITION_COLORS[condition] ?? teamColor;
+        map.set(condition, color);
+      });
+    });
+
+    alwaysOnConditions.forEach((condition) => {
+      const normalized = condition.trim();
+      if (!normalized) {
+        return;
+      }
+      if (!map.has(normalized)) {
+        map.set(normalized, CONDITION_COLORS[normalized] ?? TEAM_COLORS.default);
+      }
+    });
+
+    return map;
+  }, [teamGroups, alwaysOnConditions]);
+
+  const teamConditionLookup = useMemo(() => {
+    const lookup = new Map<string, Set<string>>();
+    Object.entries(selectedTeamConditions).forEach(([team, conditions]) => {
+      lookup.set(team, new Set(conditions));
+    });
+    return lookup;
+  }, [selectedTeamConditions]);
+
   const filteredRows = useMemo(() => {
     return dataset.rows.filter((row) => {
       const isHarmScopedMetric = row.harm && row.harm !== "NA";
@@ -99,21 +244,41 @@ export function Dashboard({ dataset }: DashboardProps) {
         !isHarmScopedMetric || selectedHarmLevels.length === 0
           ? true
           : selectedHarmLevels.includes(row.harm);
-      const roleMatch =
-        selectedRoles.length === 0 ? true : selectedRoles.includes(row.role);
-      const conditionMatch =
-        selectedConditions.length === 0
+      const teamValue = (row.team ?? "").trim();
+      const teamMatch =
+        selectedTeams.length === 0
           ? true
-          : selectedConditions.includes(row.condition);
+          : selectedTeams.includes(teamValue);
+      const conditionValue = (row.condition ?? "").trim();
+      const conditionMatch = (() => {
+        if (alwaysOnConditionSet.has(conditionValue.toLowerCase())) {
+          return true;
+        }
+        const allowed = teamConditionLookup.get(teamValue);
+        if (!allowed || allowed.size === 0) {
+          return true;
+        }
+        return allowed.has(conditionValue);
+      })();
+      const caseMatch =
+        selectedCase === "AllCases"
+          ? row.cases == null ||
+            row.cases === "" ||
+            row.cases === "AllCases" ||
+            row.cases?.toLowerCase() === "allcases"
+          : row.cases === "HumanCases" ||
+            row.cases?.toLowerCase() === "humancases";
       const trials = row.trials ?? 0;
       const trialsMatch = trials >= minTrials;
-      return harmMatch && roleMatch && conditionMatch && trialsMatch;
+      return harmMatch && teamMatch && conditionMatch && caseMatch && trialsMatch;
     });
   }, [
     dataset.rows,
     selectedHarmLevels,
-    selectedRoles,
-    selectedConditions,
+    selectedTeams,
+    teamConditionLookup,
+    alwaysOnConditionSet,
+    selectedCase,
     minTrials
   ]);
 
@@ -180,20 +345,55 @@ export function Dashboard({ dataset }: DashboardProps) {
     setSelection(null);
   };
 
-  const handleToggleHarm = (value: string) => {
-    setSelectedHarmLevels((prev) => toggleWithMinimumSelected(prev, value));
-  };
-
   const handleSelectSeverity = (value: string) => {
     setSelectedHarmLevels([value]);
   };
 
-  const handleToggleRole = (value: string) => {
-    setSelectedRoles((prev) => toggleWithMinimumSelected(prev, value));
-  };
+  const handleToggleTeam = useCallback((team: string) => {
+    setSelectedTeams((prev) => toggleWithMinimumSelected(prev, team));
+  }, []);
 
-  const handleToggleCondition = (value: string) => {
-    setSelectedConditions((prev) => toggleWithMinimumSelected(prev, value));
+  const handleToggleTeamCondition = useCallback(
+    (team: string, condition: string) => {
+      setSelectedTeamConditions((prev) => {
+        const allowed = teamGroups.find((group) => group.team === team)?.conditions ?? [];
+        if (allowed.length === 0) {
+          return prev;
+        }
+        const current = prev[team] ?? allowed;
+        const has = current.includes(condition);
+        let nextValues: string[];
+        if (has) {
+          if (current.length <= 1) {
+            nextValues = current;
+          } else {
+            nextValues = current.filter((value) => value !== condition);
+          }
+        } else {
+          nextValues = [...current, condition];
+        }
+        const normalized = allowed.filter((value) => nextValues.includes(value));
+        if (normalized.length === 0 && allowed.length > 0) {
+          normalized.push(allowed[0]);
+        }
+        const previous = prev[team] ?? [];
+        if (
+          previous.length === normalized.length &&
+          previous.every((value, index) => value === normalized[index])
+        ) {
+          return prev;
+        }
+        return {
+          ...prev,
+          [team]: normalized
+        };
+      });
+    },
+    [teamGroups]
+  );
+
+  const handleSelectCase = (value: string) => {
+    setSelectedCase(value);
   };
 
   const handleMinTrialsChange = (value: number) => {
@@ -210,21 +410,23 @@ export function Dashboard({ dataset }: DashboardProps) {
           onMetricChange={setBarMetricId}
           onBarClick={handleBarClick}
           highlightedCombinationId={selection?.combinationId}
-          maxItems={15}
           metrics={metrics}
           metadataMap={metadataMap}
+          conditionColorMap={conditionColorMap}
         />
         <FiltersPanel
           harmOptions={HARM_OPTIONS}
           selectedHarmLevels={selectedHarmLevels}
-          onToggleHarm={handleToggleHarm}
           onSelectSeverity={handleSelectSeverity}
-          roleOptions={ROLE_OPTIONS}
-          selectedRoles={selectedRoles}
-          onToggleRole={handleToggleRole}
-          conditionOptions={CONDITION_OPTIONS}
-          selectedConditions={selectedConditions}
-          onToggleCondition={handleToggleCondition}
+          teamGroups={teamGroups}
+          selectedTeams={selectedTeams}
+          selectedTeamConditions={selectedTeamConditions}
+          onToggleTeam={handleToggleTeam}
+          onToggleTeamCondition={handleToggleTeamCondition}
+          conditionColorMap={conditionColorMap}
+          caseOptions={CASE_OPTIONS}
+          selectedCase={selectedCase}
+          onSelectCase={handleSelectCase}
           minTrials={minTrials}
           minTrialsRange={trialsRange}
           onMinTrialsChange={handleMinTrialsChange}

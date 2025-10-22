@@ -23,7 +23,10 @@ describe("formatMetricValue", () => {
     order: 1,
     range: "percent",
     displayLabel: "Percent Metric",
-    description: "A percent metric"
+    description: "A percent metric",
+    betterDirection: "higher",
+    axisMin: null,
+    axisMax: null
   };
 
   const absoluteMeta: MetricMetadata = {
@@ -31,7 +34,10 @@ describe("formatMetricValue", () => {
     order: 2,
     range: "absolute",
     displayLabel: "Absolute Metric",
-    description: "An absolute metric"
+    description: "An absolute metric",
+    betterDirection: "higher",
+    axisMin: null,
+    axisMax: null
   };
 
   it("formats percent metrics with a percent sign", () => {
@@ -62,7 +68,7 @@ describe("groupRowsByCombination", () => {
   const baseRows: DataRow[] = [
     {
       model: "Model A",
-      role: "Agent",
+      team: "Team A",
       condition: "Solo",
       harm: "All",
       metric: "Accuracy",
@@ -79,11 +85,12 @@ describe("groupRowsByCombination", () => {
       type: "AllHarm",
       label: null,
       displayLabel: "Model A",
-      combinationId: "Model A::Agent::Solo::All::AllHarm::HumanCases::Unanimous"
+      combinationId:
+        "Model A::Team A::Solo::All::AllHarm::HumanCases::Unanimous"
     },
     {
       model: "Model A",
-      role: "Agent",
+      team: "Team A",
       condition: "Solo",
       harm: "All",
       metric: "Safety",
@@ -100,7 +107,8 @@ describe("groupRowsByCombination", () => {
       type: "AllHarm",
       label: null,
       displayLabel: "Model A",
-      combinationId: "Model A::Agent::Solo::All::AllHarm::HumanCases::Unanimous"
+      combinationId:
+        "Model A::Team A::Solo::All::AllHarm::HumanCases::Unanimous"
     }
   ];
 
@@ -116,7 +124,7 @@ describe("groupRowsByCombination", () => {
     const rows: DataRow[] = [
       {
         model: "Model B",
-        role: "Agent",
+        team: "Team A",
         condition: "Guardian",
         harm: "",
         metric: "Accuracy",
@@ -133,11 +141,12 @@ describe("groupRowsByCombination", () => {
         type: "AllHarm",
         label: null,
         displayLabel: "Model B",
-        combinationId: "Model B::Agent::Guardian::::AllHarm::AllCases::Unanimous"
+        combinationId:
+          "Model B::Team A::Guardian::::AllHarm::AllCases::Unanimous"
       },
       {
         model: "Model B",
-        role: "Agent",
+        team: "Team A",
         condition: "Guardian",
         harm: "Severe",
         metric: "normalized",
@@ -155,7 +164,7 @@ describe("groupRowsByCombination", () => {
         label: null,
         displayLabel: "Model B",
         combinationId:
-          "Model B::Agent::Guardian::Severe::AllHarm::AllCases::Unanimous"
+          "Model B::Team A::Guardian::Severe::AllHarm::AllCases::Unanimous"
       }
     ];
 
