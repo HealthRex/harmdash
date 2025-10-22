@@ -102,13 +102,13 @@ export function TeamFiltersBar({
   ): CSSProperties => {
     const baseSizing =
       agentCount >= 3
-        ? { minWidth: 360, flexGrow: 1.45 }
+        ? { minWidth: 320, flexGrow: 1.25 }
         : agentCount === 2
         ? { minWidth: 225, flexGrow: 1.05 }
         : { minWidth: 170, flexGrow: 0.78 };
 
-    const charWidth = agentCount >= 3 ? 8 : 6.2;
-    const basePadding = agentCount >= 3 ? 40 : 30;
+    const charWidth = agentCount >= 3 ? 7.2 : 6.2;
+    const basePadding = agentCount >= 3 ? 34 : 30;
 
     const longestConditionLength = group.conditions.reduce(
       (max, condition) => Math.max(max, condition.trim().length),
@@ -116,7 +116,7 @@ export function TeamFiltersBar({
     );
 
     const estimatedButtonWidth = Math.max(
-      agentCount >= 3 ? 190 : 135,
+      agentCount >= 3 ? 170 : 135,
       Math.round(longestConditionLength * charWidth + basePadding)
     );
 
