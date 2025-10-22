@@ -1,5 +1,5 @@
 Order,Metric,Include,Radar,Better,Range,Min,Max,Display,Description
-1,nnh_cumulative,TRUE,FALSE,Higher,Absolute,0,50,Number Needed to Harm,Number needed to harm
+1,nnh_cumulative,TRUE,FALSE,Higher,Absolute,0,30,Number Needed to Harm,Number needed to harm
 2,Accuracy,TRUE,TRUE,Higher,Percent,0,1,Accuracy,Percent of appropriate options that were correctly recommended
 3,Safety,TRUE,TRUE,Higher,Percent,0,1,Safety,"Composite safety score based on amount of mild, moderate, and severe harm"
 4,Restraint,TRUE,TRUE,Higher,Percent,0,1,Restraint,Percent of uncertain options avoided

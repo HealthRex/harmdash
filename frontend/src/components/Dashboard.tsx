@@ -139,6 +139,8 @@ export function Dashboard({ dataset }: DashboardProps) {
     useState<CombinationEntry | null>(null);
   const [modelSearch, setModelSearch] = useState<string>("");
   const [comparisonSearch, setComparisonSearch] = useState<string>("");
+  const [activeSelectionTarget, setActiveSelectionTarget] =
+    useState<"primary" | "comparison" | null>(null);
   const searchSelectionRef = useRef(false);
   const comparisonSearchSelectionRef = useRef(false);
 
@@ -462,21 +464,39 @@ export function Dashboard({ dataset }: DashboardProps) {
     }
   }, [comparisonSelection]);
 
+  const assignSelection = useCallback(
+    (entry: CombinationEntry) => {
+      if (activeSelectionTarget === "comparison") {
+        comparisonSearchSelectionRef.current = true;
+        setComparisonSelection(entry);
+        setComparisonSearch(entry.displayLabel || entry.model || "");
+        return;
+      }
+
+      searchSelectionRef.current = true;
+      setSelection(entry);
+      setModelSearch(entry.displayLabel || entry.model || "");
+    },
+    [
+      activeSelectionTarget,
+      setComparisonSelection,
+      setComparisonSearch,
+      setSelection,
+      setModelSearch
+    ]
+  );
+
   const handleBarClick = (row: DataRow) => {
-    searchSelectionRef.current = true;
     const target = combinations.find(
       (entry) => entry.combinationId === row.combinationId
     );
     if (target) {
-      setSelection(target);
-      setModelSearch(target.displayLabel || target.model || "");
+      assignSelection(target);
     }
   };
 
   const handlePointClick = (entry: CombinationEntry) => {
-    searchSelectionRef.current = true;
-    setSelection(entry);
-    setModelSearch(entry.displayLabel || entry.model || "");
+    assignSelection(entry);
   };
 
   const handleClearSelection = () => {
@@ -621,6 +641,7 @@ export function Dashboard({ dataset }: DashboardProps) {
               setComparisonSearch(match.displayLabel || match.model || "");
             }
           }}
+          onActiveTargetChange={setActiveSelectionTarget}
         />
       </div>
     </div>

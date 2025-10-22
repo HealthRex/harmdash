@@ -22,6 +22,7 @@ interface ModelInfoDrawerProps {
   comparisonSuggestions: CombinationEntry[];
   onSuggestionSelect: (entry: CombinationEntry) => void;
   onComparisonSuggestionSelect: (entry: CombinationEntry) => void;
+  onActiveTargetChange: (target: "primary" | "comparison" | null) => void;
 }
 
 function computeNormalizedMetricValue(
@@ -66,7 +67,8 @@ export function ModelInfoDrawer({
   onComparisonSearchChange,
   comparisonSuggestions,
   onSuggestionSelect,
-  onComparisonSuggestionSelect
+  onComparisonSuggestionSelect,
+  onActiveTargetChange
 }: ModelInfoDrawerProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [isComparisonFocused, setIsComparisonFocused] = useState(false);
@@ -91,8 +93,9 @@ export function ModelInfoDrawer({
       onSuggestionSelect(entry);
       onModelSearchChange(entry.displayLabel || entry.model || "");
       setIsFocused(false);
+      onActiveTargetChange(null);
     },
-    [onModelSearchChange, onSuggestionSelect]
+    [onActiveTargetChange, onModelSearchChange, onSuggestionSelect]
   );
 
   const handleComparisonSelect = useCallback(
@@ -100,8 +103,9 @@ export function ModelInfoDrawer({
       onComparisonSuggestionSelect(entry);
       onComparisonSearchChange(entry.displayLabel || entry.model || "");
       setIsComparisonFocused(false);
+      onActiveTargetChange(null);
     },
-    [onComparisonSearchChange, onComparisonSuggestionSelect]
+    [onActiveTargetChange, onComparisonSearchChange, onComparisonSuggestionSelect]
   );
 
   const handleClearAll = useCallback(() => {
@@ -111,11 +115,13 @@ export function ModelInfoDrawer({
     onComparisonSearchChange("");
     setIsFocused(false);
     setIsComparisonFocused(false);
+    onActiveTargetChange(null);
   }, [
     onClear,
     onClearComparison,
     onModelSearchChange,
-    onComparisonSearchChange
+    onComparisonSearchChange,
+    onActiveTargetChange
   ]);
 
   const radarData = useMemo(() => {
@@ -327,8 +333,16 @@ export function ModelInfoDrawer({
                 type="search"
                 placeholder="Search models"
                 value={modelQuery}
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setTimeout(() => setIsFocused(false), 120)}
+                onFocus={() => {
+                  setIsFocused(true);
+                  onActiveTargetChange("primary");
+                }}
+                onBlur={() =>
+                  setTimeout(() => {
+                    setIsFocused(false);
+                    onActiveTargetChange(null);
+                  }, 120)
+                }
                 onChange={(event) => {
                   setIsFocused(true);
                   const value = event.target.value;
@@ -397,8 +411,16 @@ export function ModelInfoDrawer({
                 type="search"
                 placeholder="Search comparison model"
                 value={comparisonQuery}
-                onFocus={() => setIsComparisonFocused(true)}
-                onBlur={() => setTimeout(() => setIsComparisonFocused(false), 120)}
+                onFocus={() => {
+                  setIsComparisonFocused(true);
+                  onActiveTargetChange("comparison");
+                }}
+                onBlur={() =>
+                  setTimeout(() => {
+                    setIsComparisonFocused(false);
+                    onActiveTargetChange(null);
+                  }, 120)
+                }
                 onChange={(event) => {
                   setIsComparisonFocused(true);
                   const value = event.target.value;
