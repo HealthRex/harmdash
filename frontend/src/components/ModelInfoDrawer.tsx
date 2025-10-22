@@ -137,7 +137,7 @@ export function ModelInfoDrawer({
       comparisonValue: number | null;
     };
 
-    const points: RadarPoint[] = metrics
+    const rawPoints: RadarPoint[] = metrics
       .filter((meta) => meta.includeInRadar)
       .map((meta) => {
         const primaryMetric = selection?.metrics[meta.id];
@@ -158,9 +158,45 @@ export function ModelInfoDrawer({
       })
       .filter((entry) => entry.primaryValue !== null || entry.comparisonValue !== null);
 
-    if (points.length === 0) {
+    if (rawPoints.length === 0) {
       return null;
     }
+
+    const desiredOrder = [
+      "Accuracy",
+      "Restraint",
+      "Emergency Rate",
+      "Referral Rate",
+      "Safety"
+    ];
+
+    const orderPriority = new Map(desiredOrder.map((id, index) => [id, index]));
+
+    const points = rawPoints
+      .map((point, index) => ({ point, index }))
+      .sort((a, b) => {
+        const aPriority = orderPriority.has(a.point.meta.id)
+          ? orderPriority.get(a.point.meta.id) ?? 0
+          : desiredOrder.length + a.index;
+        const bPriority = orderPriority.has(b.point.meta.id)
+          ? orderPriority.get(b.point.meta.id) ?? 0
+          : desiredOrder.length + b.index;
+
+        if (aPriority !== bPriority) {
+          return aPriority - bPriority;
+        }
+
+        return a.index - b.index;
+      })
+      .map((entry) => entry.point);
+
+    const formatAxisLabel = (label: string) => {
+      const words = label.split(" ").filter(Boolean);
+      if (words.length <= 1) {
+        return label;
+      }
+      return `${words[0]}<br>${words.slice(1).join(" ")}`;
+    };
 
     const buildTrace = (
       entry: CombinationEntry | null,
@@ -191,7 +227,8 @@ export function ModelInfoDrawer({
       }
 
       const closedValues = [...values, values[0]];
-      const closedLabels = [...points.map((point) => point.meta.displayLabel), points[0].meta.displayLabel];
+      const formattedLabels = points.map((point) => formatAxisLabel(point.meta.displayLabel));
+      const closedLabels = [...formattedLabels, formattedLabels[0]];
       const closedHover = [...hovers, hovers[0]];
 
       const label = entry.displayLabel || entry.model || "Metric profile";
