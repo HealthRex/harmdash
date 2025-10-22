@@ -33,7 +33,7 @@ export function MetricSelect({
       >
         {options.map((option) => (
           <option key={option.id} value={option.id}>
-            {option.label}
+            {option.displayLabel}
           </option>
         ))}
       </select>

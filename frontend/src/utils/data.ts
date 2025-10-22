@@ -166,9 +166,10 @@ export function formatMetricValue(
         : "absolute"
       : style;
 
-  const overrideDigits =
-    metadata && DIGIT_OVERRIDES[metadata.id]?.[rangeStyle];
-  const resolvedDigits =
+  const overrideDigits = metadata
+    ? DIGIT_OVERRIDES[metadata.id]?.[rangeStyle]
+    : undefined;
+  const resolvedDigits: number =
     digits !== undefined
       ? digits
       : overrideDigits !== undefined
@@ -179,7 +180,7 @@ export function formatMetricValue(
 
   if (rangeStyle === "percent") {
     const scaled = Number(value) * 100;
-    const formatted = scaled.toLocaleString(undefined, {
+    const formatted = Number(scaled).toLocaleString(undefined, {
       minimumFractionDigits: resolvedDigits,
       maximumFractionDigits: resolvedDigits
     });

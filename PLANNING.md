@@ -1,27 +1,57 @@
-# Key Notes
--Project is managed in VSCode and RStudio
--Python venv is stored in this project directory in `.venv`
--Python project is managed with uv and dependencies added with "uv add"
--API keys stored via environment variables: OPENAI_API_KEY, GEMINI_API_KEY, and ANTHROPIC_API_KEY
--Pytest for unit tests. Unit test scripts should NOT require importing the original scripts as modules
+# Harmdash Project Snapshot
 
--Directory structure:
+### Purpose  
+Interactive dashboard that benchmarks harm-related outcomes in medical AI recommendation systems. The app ingests curated CSVs, normalizes them into a JSON artifact, and visualizes model performance across multiple safety- and efficacy-focused metrics.
+
+### Repository Layout  
+```
 root/
-├── input/
-├── output/
-├── src/
-└── tests/
+├─ data/                 Raw CSV exports (metrics & metadata)
+├─ frontend/             Next.js 14.2.5 application (TypeScript)
+│  ├─ public/data/       Generated JSON artifact (`ai-harm-summary.json`)
+│  ├─ scripts/           build-data.mjs (CSV → JSON pipeline)
+│  └─ src/               Application code (components, utils, config)
+├─ src/                  (Reserved for backend/CLI utilities – currently empty)
+└─ render.yaml           Render.com deployment blueprint
+```
 
-* `input/`: storage of input data, files, or external resources
-* `output/`: storage of results, generated files, or other output
-* `src/`: scripts 
-* `tests/`: unit tests
+### Data Pipeline  
+* **Source files:** `data/metrics.csv`, `data/metadata.csv`  
+* **Builder:** `frontend/scripts/build-data.mjs` (runs via `npm run prepare-data`, `npm run dev`, and `npm run build`)  
+* **Processing highlights:**  
+  - Zod validation + type coercion for numeric fields  
+  - Team/condition normalization, HTML label stripping  
+  - Filters out baseline rows (e.g., Random/No Intervention for Accuracy/Safety)  
+  - Produces `public/data/ai-harm-summary.json` with `rows`, `metadata`, and compliant color keys  
 
-All scripts will be named in order of execution (first script should be 01_script, second should be 02_script, etc) when applicable.
-For any output that is generated as a result of a script, the output will be saved in a subdirectory of `output` and have the same name as the script (e.g., output of 02_script.py will be stored in output/02_script).
+### Frontend Stack & Tooling  
+* **Framework:** Next.js 14.2.5 (App Router, use client components for charts)  
+* **Language:** TypeScript  
+* **Styling:** Tailwind CSS + clsx  
+* **Charts:** `react-plotly.js` (Bar + Scatter visualizations with CI overlays)  
+* **Testing:** Vitest (`npm run test` → `frontend/src/utils/data.test.ts`)  
+* **Linting:** ESLint / TypeScript (`npm run lint`)  
+* **Build targets:** `npm run dev`, `npm run build`, `npm run start`
 
-# Overarching Goals
-The goals of this project are to 
+### Core UI Architecture (`frontend/src/components`)  
+* `Dashboard` – central state owner; loads dataset, derives color maps, manages selections (team-condition coupling, cases, trials threshold).  
+* `FiltersPanel` – stacked “Team & Conditions” cards with dependency logic for each team size; Harm severity, Cases, and Trials controls. Human/Control are implicitly included.  
+* `BarChartCard` – splits results into Top/Bottom performers (5 each by default), using normalized colors to mirror filter selections; bars display mean, CI, and model label.  
+* `ScatterChartCard` – plots combinations by selected metrics, grouped and colored by team, with hover details + CI whiskers.  
+* `MetricsSummary` – quick stats (models, metrics, total rows).  
+* `ModelInfoDrawer` – detailed metrics per selection with radar chart (0–1 normalized scores).  
 
-# Detailed Plan
-Python scripts for each of the following tasks:
+### Key Behaviors & Constraints  
+* Team filters dictate which condition pills are visible; condition toggles cannot be active unless their parent team is enabled.  
+* Conditions “Human” and “Control” are always included by design.  
+* Filters apply minimum trials threshold (default 5, floor 1) and case scope (All vs Human subset).  
+* Visuals pull all labels, descriptions, and ranges from `metadata.csv` to ensure consistency.  
+* Color system lives in `frontend/src/config/colors.ts`; `conditionColorMap` generated at runtime keeps filter chips and chart bars aligned.  
+
+### Dev & Deployment Notes  
+* Run `npm run prepare-data` whenever CSV inputs change.  
+* Development (`npm run dev`) rebuilds the JSON artifact on start and watches for frontend changes.  
+* Production build (`npm run build`) regenerates data, compiles Next.js app, suitable for Render.com deployment via `render.yaml`.  
+* No backend services are currently bundled; API keys are not required for local dashboard usage.  
+
+Use this document as a quick orientation for agents needing to extend visuals, adjust metrics, or update the data transformation pipeline.***

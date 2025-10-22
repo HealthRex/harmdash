@@ -333,17 +333,3 @@ export function BarChartCard({
     </section>
   );
 }
-  const getBarColor = (row: DataRow) => {
-    const conditionKey = (row.condition ?? "").trim();
-    if (conditionKey && conditionColorMap.has(conditionKey)) {
-      return conditionColorMap.get(conditionKey)!;
-    }
-    const key = row.colorKey || row.team;
-    if (key && conditionColorMap.has(key)) {
-      return conditionColorMap.get(key)!;
-    }
-    if (row.team && TEAM_COLORS[row.team]) {
-      return TEAM_COLORS[row.team];
-    }
-    return TEAM_COLORS.default;
-  };

@@ -4,7 +4,7 @@ import Plot from "@/components/PlotClient";
 import { TEAM_COLORS } from "@/config/colors";
 import type { CombinationEntry, DataRow, MetricMetadata } from "@/types/dataset";
 import clsx from "clsx";
-import type { Layout, PlotData, PlotMouseEvent } from "plotly.js";
+import type { Layout, PlotData, PlotMouseEvent, Shape } from "plotly.js";
 import { useMemo } from "react";
 import { formatMetricValue } from "@/utils/data";
 
@@ -234,7 +234,9 @@ export function ScatterChartCard({
     xMetricId,
     yMetricId,
     xIsPercentMetric,
-    yIsPercentMetric
+    yIsPercentMetric,
+    xMeta,
+    yMeta
   ]);
 
   const xDisplayValues = useMemo(() => {
@@ -325,7 +327,7 @@ export function ScatterChartCard({
         y: 1.1
       },
       shapes: (() => {
-        const shapes = [];
+        const shapes: Partial<Shape>[] = [];
         if (!xAxisRange || (xAxisRange[0] <= 0 && xAxisRange[1] >= 0)) {
           shapes.push({
             type: "line",
