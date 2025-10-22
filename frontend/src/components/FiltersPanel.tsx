@@ -76,14 +76,11 @@ export function TeamFiltersBar({
   conditionColorMap
 }: TeamFiltersBarProps) {
   return (
-    <section className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-md shadow-slate-200">
-      <header className="flex flex-col gap-1">
+    <section className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-md shadow-slate-200">
+      <header>
         <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-          Teams &amp; Conditions
+          TEAM CONFIGURATION
         </h2>
-        <p className="text-sm text-slate-600">
-          Highlight specific teams and their active configurations.
-        </p>
       </header>
       <div className="flex flex-wrap gap-3">
         {teamGroups.map((group) => {
@@ -139,19 +136,17 @@ export function TeamFiltersBar({
                         disabled={disabled}
                         onClick={() => onToggleTeamCondition(group.team, condition)}
                         className={clsx(
-                          "flex items-center gap-2 rounded-full border px-2.5 py-1 text-xs font-medium transition",
-                          isActive
-                            ? "border-transparent bg-brand-50 text-brand-700 shadow-sm"
-                            : "border-slate-200 bg-white text-slate-600 hover:border-brand-200",
+                          "flex items-center rounded-full border px-2.5 py-1 text-xs font-medium text-white transition",
+                          isActive ? "shadow-sm" : "opacity-80 hover:opacity-100",
                           disabled
                             ? "cursor-not-allowed opacity-60 hover:border-slate-200"
                             : null
                         )}
+                        style={{
+                          backgroundColor: color,
+                          borderColor: color
+                        }}
                       >
-                        <span
-                          className="h-2 w-2 rounded-full"
-                          style={{ backgroundColor: color }}
-                        />
                         <span className="truncate">{condition}</span>
                       </button>
                     );

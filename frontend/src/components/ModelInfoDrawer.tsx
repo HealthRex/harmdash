@@ -516,8 +516,20 @@ export function ModelInfoDrawer({
         </div>
         {radarData ? (
           <>
+            <div className="flex h-[320px] w-full items-center justify-center rounded-xl border border-slate-200 bg-slate-50/80 p-2">
+              <Plot
+                data={radarData.data}
+                layout={radarData.layout}
+                config={{
+                  displayModeBar: false,
+                  responsive: true
+                }}
+                style={{ width: "100%", height: "100%" }}
+                useResizeHandler
+              />
+            </div>
             {(selection || comparison) && (
-              <div className="flex flex-wrap items-center gap-3 rounded-lg bg-slate-100 px-3 py-2 text-xs font-medium text-slate-600">
+              <div className="mt-3 flex flex-wrap items-center gap-3 rounded-lg bg-slate-100 px-3 py-2 text-xs font-medium text-slate-600">
                 {selection ? (
                   <span className="flex items-center gap-2">
                     <span
@@ -538,18 +550,6 @@ export function ModelInfoDrawer({
                 ) : null}
               </div>
             )}
-          <div className="flex h-[320px] w-full items-center justify-center rounded-xl border border-slate-200 bg-slate-50/80 p-2">
-            <Plot
-              data={radarData.data}
-              layout={radarData.layout}
-              config={{
-                displayModeBar: false,
-                responsive: true
-              }}
-              style={{ width: "100%", height: "100%" }}
-              useResizeHandler
-            />
-          </div>
           </>
         ) : (
           <div className="flex h-[320px] items-center justify-center rounded-xl border border-dashed border-slate-200 bg-slate-50 text-center text-sm text-slate-500">

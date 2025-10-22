@@ -11,7 +11,11 @@ import type {
   DatasetArtifact
 } from "@/types/dataset";
 import { CONDITION_COLORS, TEAM_COLORS } from "@/config/colors";
-import { groupRowsByCombination } from "@/utils/data";
+import {
+  groupRowsByCombination,
+  pickRowsForMetric,
+  sortRowsForMetric
+} from "@/utils/data";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 interface DashboardProps {
@@ -24,6 +28,7 @@ const CASE_OPTIONS = [
 ];
 
 const ALWAYS_ON_CONDITION_NAMES = new Set(["human", "control"]);
+const DEFAULT_PROFILE_METRIC_ID = "nnh_cumulative";
 
 function toggleWithMinimumSelected(
   current: string[],
@@ -136,6 +141,7 @@ export function Dashboard({ dataset }: DashboardProps) {
     useState<"primary" | "comparison" | null>(null);
   const searchSelectionRef = useRef(false);
   const comparisonSearchSelectionRef = useRef(false);
+  const hasInitializedDefaultsRef = useRef(false);
 
   useEffect(() => {
     if (minTrials > trialsRange.max) {
@@ -287,6 +293,69 @@ export function Dashboard({ dataset }: DashboardProps) {
     () => groupRowsByCombination(filteredRows),
     [filteredRows]
   );
+
+  useEffect(() => {
+    if (hasInitializedDefaultsRef.current) {
+      return;
+    }
+    if (selection || comparisonSelection) {
+      hasInitializedDefaultsRef.current = true;
+      return;
+    }
+
+    const nnhRows = pickRowsForMetric(
+      filteredRows,
+      DEFAULT_PROFILE_METRIC_ID
+    ).filter((row) => row.mean !== null && Number.isFinite(row.mean));
+
+    if (nnhRows.length === 0) {
+      return;
+    }
+
+    const bestRows = sortRowsForMetric(nnhRows, true);
+    const worstRows = sortRowsForMetric(nnhRows, false);
+
+    const bestRow = bestRows[0] ?? null;
+    const fifthWorstRow =
+      worstRows.length >= 5
+        ? worstRows[4]
+        : worstRows[worstRows.length - 1] ?? null;
+
+    const findEntryByCombinationId = (combinationId: string) =>
+      combinations.find((entry) => entry.combinationId === combinationId) ??
+      allCombinations.find((entry) => entry.combinationId === combinationId) ??
+      null;
+
+    let applied = false;
+
+    if (bestRow) {
+      const entry = findEntryByCombinationId(bestRow.combinationId);
+      if (entry) {
+        setSelection(entry);
+        setModelSearch(entry.displayLabel || entry.model || "");
+        applied = true;
+      }
+    }
+
+    if (fifthWorstRow) {
+      const entry = findEntryByCombinationId(fifthWorstRow.combinationId);
+      if (entry) {
+        setComparisonSelection(entry);
+        setComparisonSearch(entry.displayLabel || entry.model || "");
+        applied = true;
+      }
+    }
+
+    if (applied) {
+      hasInitializedDefaultsRef.current = true;
+    }
+  }, [
+    filteredRows,
+    combinations,
+    allCombinations,
+    selection,
+    comparisonSelection
+  ]);
 
   useEffect(() => {
     if (!selection) {
@@ -567,6 +636,7 @@ export function Dashboard({ dataset }: DashboardProps) {
           onMetricChange={setBarMetricId}
           onBarClick={handleBarClick}
           highlightedCombinationId={selection?.combinationId}
+          comparisonCombinationId={comparisonSelection?.combinationId}
           metrics={metrics}
           metadataMap={metadataMap}
           conditionColorMap={conditionColorMap}

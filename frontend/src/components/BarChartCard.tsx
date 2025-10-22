@@ -16,11 +16,15 @@ type Props = {
   onMetricChange: (metricId: string) => void;
   onBarClick?: (row: DataRow) => void;
   highlightedCombinationId?: string | null;
+  comparisonCombinationId?: string | null;
   maxItems?: number;
   metrics: MetricMetadata[];
   metadataMap: Map<string, MetricMetadata>;
   conditionColorMap: Map<string, string>;
 };
+
+const PRIMARY_SELECTION_COLOR = "#0ea5e9";
+const COMPARISON_SELECTION_COLOR = "#f97316";
 
 const getTextColor = (hex: string) => {
   const normalized = hex.replace('#', '');
@@ -38,6 +42,7 @@ export function BarChartCard({
   onMetricChange,
   onBarClick,
   highlightedCombinationId,
+  comparisonCombinationId,
   maxItems = 5,
   metrics,
   metadataMap,
@@ -119,7 +124,7 @@ export function BarChartCard({
     };
   }, [displayRows, metricMeta?.axisMin, metricMeta?.axisMax, isPercentMetric]);
 
-  const getBarColor = useCallback(
+  const getDefaultBarColor = useCallback(
     (row: DataRow) => {
       const conditionKey = (row.condition ?? "").trim();
       if (conditionKey && conditionColorMap.has(conditionKey)) {
@@ -183,8 +188,17 @@ export function BarChartCard({
                 const widthPercentRaw =
                   range <= 0 ? 0 : ((valueClamped - axisMin) / range) * 100;
                 const widthPercent = Math.max(Math.min(widthPercentRaw, 100), 0);
-                const barColor = getBarColor(row);
-                const isSelected = highlightedCombinationId === row.combinationId;
+                const isPrimarySelected =
+                  highlightedCombinationId === row.combinationId;
+                const isComparisonSelected =
+                  comparisonCombinationId === row.combinationId;
+                const isSelected = isPrimarySelected || isComparisonSelected;
+                const highlightColor = isPrimarySelected
+                  ? PRIMARY_SELECTION_COLOR
+                  : isComparisonSelected
+                  ? COMPARISON_SELECTION_COLOR
+                  : undefined;
+                const barColor = highlightColor ?? getDefaultBarColor(row);
                 const displayLabel = row.displayLabel || row.model;
                 const formattedValue = formatMetricValue(row.mean, {
                   metadata: metricMeta
@@ -205,9 +219,14 @@ export function BarChartCard({
                     className={clsx(
                       "group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 rounded-2xl border border-transparent bg-white/0 px-2 py-1.5 text-left transition",
                       isSelected
-                        ? "border-slate-300 bg-gradient-to-r from-white via-slate-50 to-white shadow-sm"
+                        ? "border-2 bg-gradient-to-r from-white via-slate-50 to-white shadow-sm"
                         : "hover:border-slate-200 hover:bg-slate-50/70"
                     )}
+                    style={
+                      highlightColor
+                        ? { borderColor: highlightColor }
+                        : undefined
+                    }
                   >
                     <div className="relative h-8 w-full overflow-hidden rounded-[6px]">
                       <div className="absolute inset-0 rounded-[6px] bg-slate-200" />
@@ -260,8 +279,17 @@ export function BarChartCard({
                 const widthPercentRaw =
                   range <= 0 ? 0 : ((valueClamped - axisMin) / range) * 100;
                 const widthPercent = Math.max(Math.min(widthPercentRaw, 100), 0);
-                const barColor = getBarColor(row);
-                const isSelected = highlightedCombinationId === row.combinationId;
+                const isPrimarySelected =
+                  highlightedCombinationId === row.combinationId;
+                const isComparisonSelected =
+                  comparisonCombinationId === row.combinationId;
+                const isSelected = isPrimarySelected || isComparisonSelected;
+                const highlightColor = isPrimarySelected
+                  ? PRIMARY_SELECTION_COLOR
+                  : isComparisonSelected
+                  ? COMPARISON_SELECTION_COLOR
+                  : undefined;
+                const barColor = highlightColor ?? getDefaultBarColor(row);
                 const displayLabel = row.displayLabel || row.model;
                 const formattedValue = formatMetricValue(row.mean, {
                   metadata: metricMeta
@@ -282,9 +310,14 @@ export function BarChartCard({
                     className={clsx(
                       "group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 rounded-2xl border border-transparent bg-white/0 px-2 py-1.5 text-left transition",
                       isSelected
-                        ? "border-slate-300 bg-gradient-to-r from-white via-slate-50 to-white shadow-sm"
+                        ? "border-2 bg-gradient-to-r from-white via-slate-50 to-white shadow-sm"
                         : "hover:border-slate-200 hover:bg-slate-50/70"
                     )}
+                    style={
+                      highlightColor
+                        ? { borderColor: highlightColor }
+                        : undefined
+                    }
                   >
                     <div className="relative h-8 w-full overflow-hidden rounded-[6px]">
                       <div className="absolute inset-0 rounded-[6px] bg-slate-200" />
