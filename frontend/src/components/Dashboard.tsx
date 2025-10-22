@@ -135,8 +135,12 @@ export function Dashboard({ dataset }: DashboardProps) {
   }, [dataset.rows]);
   const [minTrials, setMinTrials] = useState<number>(5);
   const [selection, setSelection] = useState<CombinationEntry | null>(null);
+  const [comparisonSelection, setComparisonSelection] =
+    useState<CombinationEntry | null>(null);
   const [modelSearch, setModelSearch] = useState<string>("");
+  const [comparisonSearch, setComparisonSearch] = useState<string>("");
   const searchSelectionRef = useRef(false);
+  const comparisonSearchSelectionRef = useRef(false);
 
   useEffect(() => {
     if (minTrials > trialsRange.max) {
@@ -302,8 +306,22 @@ export function Dashboard({ dataset }: DashboardProps) {
     );
     if (!stillVisible) {
       setSelection(null);
+      setModelSearch("");
     }
   }, [selection, combinations]);
+
+  useEffect(() => {
+    if (!comparisonSelection) {
+      return;
+    }
+    const stillVisible = combinations.some(
+      (entry) => entry.combinationId === comparisonSelection.combinationId
+    );
+    if (!stillVisible) {
+      setComparisonSelection(null);
+      setComparisonSearch("");
+    }
+  }, [comparisonSelection, combinations]);
 
   useEffect(() => {
     if (metricIds.length === 0) {
@@ -334,35 +352,51 @@ export function Dashboard({ dataset }: DashboardProps) {
   const safeXMetric = ensureMetricExists(xMetricId);
   const safeYMetric = ensureMetricExists(yMetricId);
 
-  const normalizedSearch = modelSearch.trim().toLowerCase();
+  const normalizeSearch = useCallback((value: string) => value.trim().toLowerCase(), []);
 
-  const modelSuggestions = useMemo(() => {
-    if (!normalizedSearch) {
-      return [];
-    }
-    const results: CombinationEntry[] = [];
-    const seen = new Set<string>();
-    for (const entry of allCombinations) {
-      const label = (entry.displayLabel || entry.model || "").trim();
-      if (!label) {
-        continue;
+  const normalizedSearch = normalizeSearch(modelSearch);
+  const normalizedComparisonSearch = normalizeSearch(comparisonSearch);
+
+  const buildSuggestions = useCallback(
+    (normalized: string) => {
+      if (!normalized) {
+        return [];
       }
-      const searchable = `${label} ${entry.team ?? ""} ${entry.condition ?? ""}`.toLowerCase();
-      if (!searchable.includes(normalizedSearch)) {
-        continue;
+      const results: CombinationEntry[] = [];
+      const seen = new Set<string>();
+      for (const entry of allCombinations) {
+        const label = (entry.displayLabel || entry.model || "").trim();
+        if (!label) {
+          continue;
+        }
+        const searchable = `${label} ${entry.team ?? ""} ${entry.condition ?? ""}`.toLowerCase();
+        if (!searchable.includes(normalized)) {
+          continue;
+        }
+        const key = label.toLowerCase();
+        if (seen.has(key)) {
+          continue;
+        }
+        seen.add(key);
+        results.push(entry);
+        if (results.length >= 8) {
+          break;
+        }
       }
-      const key = label.toLowerCase();
-      if (seen.has(key)) {
-        continue;
-      }
-      seen.add(key);
-      results.push(entry);
-      if (results.length >= 8) {
-        break;
-      }
-    }
-    return results;
-  }, [allCombinations, normalizedSearch]);
+      return results;
+    },
+    [allCombinations]
+  );
+
+  const modelSuggestions = useMemo(
+    () => buildSuggestions(normalizedSearch),
+    [buildSuggestions, normalizedSearch]
+  );
+
+  const comparisonSuggestions = useMemo(
+    () => buildSuggestions(normalizedComparisonSearch),
+    [buildSuggestions, normalizedComparisonSearch]
+  );
 
   useEffect(() => {
     if (!normalizedSearch) {
@@ -396,6 +430,38 @@ export function Dashboard({ dataset }: DashboardProps) {
     }
   }, [selection]);
 
+  useEffect(() => {
+    if (!normalizedComparisonSearch) {
+      return;
+    }
+    const exactMatch = comparisonSuggestions.find((entry) => {
+      const label = (entry.displayLabel || entry.model || "").trim().toLowerCase();
+      return label !== "" && label === normalizedComparisonSearch;
+    });
+    if (!exactMatch) {
+      return;
+    }
+    if (exactMatch.combinationId === comparisonSelection?.combinationId) {
+      return;
+    }
+    comparisonSearchSelectionRef.current = true;
+    setComparisonSelection(exactMatch);
+  }, [normalizedComparisonSearch, comparisonSuggestions, comparisonSelection]);
+
+  useEffect(() => {
+    if (!comparisonSelection) {
+      return;
+    }
+    if (comparisonSearchSelectionRef.current) {
+      comparisonSearchSelectionRef.current = false;
+      return;
+    }
+    const label = comparisonSelection.displayLabel || comparisonSelection.model || "";
+    if (label) {
+      setComparisonSearch(label);
+    }
+  }, [comparisonSelection]);
+
   const handleBarClick = (row: DataRow) => {
     searchSelectionRef.current = true;
     const target = combinations.find(
@@ -416,6 +482,11 @@ export function Dashboard({ dataset }: DashboardProps) {
   const handleClearSelection = () => {
     setSelection(null);
     setModelSearch("");
+  };
+
+  const handleClearComparison = () => {
+    setComparisonSelection(null);
+    setComparisonSearch("");
   };
 
   const handleSelectSeverity = (value: string) => {
@@ -476,7 +547,7 @@ export function Dashboard({ dataset }: DashboardProps) {
   return (
     <div className="flex flex-col gap-8 pb-12">
       <MetricsSummary dataset={dataset} />
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(320px,0.5fr)]">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.7fr)_minmax(360px,1fr)]">
         <BarChartCard
           rows={filteredRows}
           metricId={safeBarMetric}
@@ -505,7 +576,7 @@ export function Dashboard({ dataset }: DashboardProps) {
           onMinTrialsChange={handleMinTrialsChange}
         />
       </div>
-      <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.7fr)_minmax(360px,1fr)] lg:items-start">
         <ScatterChartCard
           combinations={combinations}
           xMetricId={safeXMetric}
@@ -519,12 +590,17 @@ export function Dashboard({ dataset }: DashboardProps) {
         />
         <ModelInfoDrawer
           selection={selection}
+          comparison={comparisonSelection}
           onClear={handleClearSelection}
+          onClearComparison={handleClearComparison}
           metrics={metrics}
           className="lg:flex-1"
           modelQuery={modelSearch}
           onModelSearchChange={setModelSearch}
           suggestions={modelSuggestions}
+          comparisonQuery={comparisonSearch}
+          onComparisonSearchChange={setComparisonSearch}
+          comparisonSuggestions={comparisonSuggestions}
           onSuggestionSelect={(entry) => {
             const match = allCombinations.find(
               (candidate) => candidate.combinationId === entry.combinationId
@@ -533,6 +609,16 @@ export function Dashboard({ dataset }: DashboardProps) {
               searchSelectionRef.current = true;
               setSelection(match);
               setModelSearch(match.displayLabel || match.model || "");
+            }
+          }}
+          onComparisonSuggestionSelect={(entry) => {
+            const match = allCombinations.find(
+              (candidate) => candidate.combinationId === entry.combinationId
+            );
+            if (match) {
+              comparisonSearchSelectionRef.current = true;
+              setComparisonSelection(match);
+              setComparisonSearch(match.displayLabel || match.model || "");
             }
           }}
         />

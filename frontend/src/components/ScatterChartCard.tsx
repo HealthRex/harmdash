@@ -427,7 +427,7 @@ export function ScatterChartCard({
   };
 
   return (
-    <section className="flex w-full max-w-full flex-col gap-4 rounded-2xl bg-white p-6 shadow-lg shadow-slate-200 lg:max-w-[520px]">
+    <section className="flex w-full flex-col gap-4 rounded-2xl bg-white p-6 shadow-lg shadow-slate-200">
       <header className="flex flex-col gap-1">
         <div>
           <h2 className="text-lg font-semibold text-slate-900">

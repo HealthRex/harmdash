@@ -12,7 +12,7 @@ export function MetricsSummary({ dataset }: MetricsSummaryProps) {
 
   return (
     <section className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-gradient-to-r from-brand-50 via-white to-white p-6 shadow-inner shadow-brand-100">
-      <div className="max-w-xl space-y-2">
+      <div className="max-w-3xl space-y-2">
         <h2 className="text-xl font-semibold text-slate-900">
           First, do NOHARM: Interactive AI Benchmark & Leaderboard
         </h2>

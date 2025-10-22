@@ -152,10 +152,10 @@ export function BarChartCard({
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 className="text-lg font-semibold text-slate-900">
-              Performance Spread for {metricLabel}
+              Performance: Best and Worst Models
             </h2>
             <p className="text-sm text-slate-500">
-              Compare top and bottom performers side-by-side. Click a row to see detailed metrics.
+              Compare model performance on a variety of metrics.
             </p>
           </div>
           <select
