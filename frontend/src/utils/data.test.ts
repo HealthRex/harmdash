@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import type { DataRow } from "@/types/dataset";
 import {
   formatMetricValue,
+  getCombinationBaseKeyFromId,
+  getCombinationBaseKeyFromRow,
   groupRowsByCombination,
   sanitizeLabel
 } from "@/utils/data";
@@ -174,5 +176,46 @@ describe("groupRowsByCombination", () => {
       (entry) => entry.harm === "Severe" && entry.condition === "Guardian"
     );
     expect(severeEntry?.metrics.Accuracy?.mean).toBe(85);
+  });
+});
+
+describe("combination base key helpers", () => {
+  it("normalizes combination ids by removing harm details", () => {
+    const withHarm =
+      "Model X::Team Y::Advisor::Severe::AllHarm::AllCases::Unanimous";
+    const withoutHarm =
+      "Model X::Team Y::Advisor::::AllHarm::AllCases::Unanimous";
+    expect(getCombinationBaseKeyFromId(withHarm)).toBe(
+      getCombinationBaseKeyFromId(withoutHarm)
+    );
+  });
+
+  it("matches base key generated from data rows", () => {
+    const row: DataRow = {
+      model: "Model Z",
+      team: "Team Z",
+      condition: "Guardian",
+      harm: "Severe",
+      metric: "nnh",
+      trials: 5,
+      mean: 4.2,
+      sd: null,
+      se: null,
+      ci: null,
+      order1: null,
+      order2: null,
+      format: null,
+      cases: "AllCases",
+      grading: "Unanimous",
+      type: "AllHarm",
+      label: null,
+      displayLabel: "Model Z",
+      combinationId:
+        "Model Z::Team Z::Guardian::Severe::AllHarm::AllCases::Unanimous"
+    };
+
+    expect(getCombinationBaseKeyFromRow(row)).toBe(
+      getCombinationBaseKeyFromId(row.combinationId)
+    );
   });
 });

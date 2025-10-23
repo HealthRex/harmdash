@@ -5,7 +5,9 @@ import type { DataRow, MetricMetadata } from "@/types/dataset";
 import {
   pickRowsForMetric,
   sortRowsForMetric,
-  formatMetricValue
+  formatMetricValue,
+  getCombinationBaseKeyFromId,
+  getCombinationBaseKeyFromRow
 } from "@/utils/data";
 import clsx from "clsx";
 import { useCallback, useMemo, useState } from "react";
@@ -121,42 +123,52 @@ export function BarChartCard({
       bottomWithSelections.map((row) => row.combinationId)
     );
 
-    const selectedIds = Array.from(
-      new Set(
-        [highlightedCombinationId, comparisonCombinationId].filter(
-          (value): value is string => Boolean(value)
-        )
-      )
-    );
-
-    selectedIds.forEach((selectedId) => {
-      if (topIds.has(selectedId) || bottomIds.has(selectedId)) {
-        return;
+    const selectionTargets = [
+      {
+        combinationId: highlightedCombinationId ?? null,
+        baseKey: getCombinationBaseKeyFromId(highlightedCombinationId)
+      },
+      {
+        combinationId: comparisonCombinationId ?? null,
+        baseKey: getCombinationBaseKeyFromId(comparisonCombinationId)
       }
+    ].filter((target) => target.combinationId || target.baseKey);
 
-      const match = filtered.find(
-        (row) => row.combinationId === selectedId
-      );
+    selectionTargets.forEach((target) => {
+      const match = filtered.find((row) => {
+        if (target.combinationId && row.combinationId === target.combinationId) {
+          return true;
+        }
+        if (target.baseKey) {
+          return getCombinationBaseKeyFromRow(row) === target.baseKey;
+        }
+        return false;
+      });
+
       if (!match) {
         return;
       }
 
-      const bestRank = bestOrder.get(selectedId);
-      const worstRank = worstOrder.get(selectedId);
+      if (topIds.has(match.combinationId) || bottomIds.has(match.combinationId)) {
+        return;
+      }
+
+      const bestRank = bestOrder.get(match.combinationId);
+      const worstRank = worstOrder.get(match.combinationId);
       if (bestRank === undefined || worstRank === undefined) {
         return;
       }
 
       if (bestRank <= worstRank) {
         topWithSelections = insertInOrder(topWithSelections, match, bestOrder);
-        topIds.add(selectedId);
+        topIds.add(match.combinationId);
       } else {
         bottomWithSelections = insertInOrder(
           bottomWithSelections,
           match,
           worstOrder
         );
-        bottomIds.add(selectedId);
+        bottomIds.add(match.combinationId);
       }
     });
 
@@ -254,6 +266,15 @@ export function BarChartCard({
     setViewMode((current) => (current === "all" ? "bestWorst" : "all"));
   };
 
+  const primaryBaseKey = useMemo(
+    () => getCombinationBaseKeyFromId(highlightedCombinationId),
+    [highlightedCombinationId]
+  );
+  const comparisonBaseKey = useMemo(
+    () => getCombinationBaseKeyFromId(comparisonCombinationId),
+    [comparisonCombinationId]
+  );
+
   const renderRowButton = (row: DataRow) => {
     const value = row.mean ?? 0;
     const valueClamped = Math.min(Math.max(value, axisMin), axisMax);
@@ -261,9 +282,13 @@ export function BarChartCard({
     const widthPercentRaw =
       range <= 0 ? 0 : ((valueClamped - axisMin) / range) * 100;
     const widthPercent = Math.max(Math.min(widthPercentRaw, 100), 0);
-    const isPrimarySelected = highlightedCombinationId === row.combinationId;
+    const rowBaseKey = getCombinationBaseKeyFromRow(row);
+    const isPrimarySelected =
+      highlightedCombinationId === row.combinationId ||
+      (primaryBaseKey !== null && rowBaseKey === primaryBaseKey);
     const isComparisonSelected =
-      comparisonCombinationId === row.combinationId;
+      comparisonCombinationId === row.combinationId ||
+      (comparisonBaseKey !== null && rowBaseKey === comparisonBaseKey);
     const isSelected = isPrimarySelected || isComparisonSelected;
     const highlightColor = isPrimarySelected
       ? PRIMARY_SELECTION_COLOR

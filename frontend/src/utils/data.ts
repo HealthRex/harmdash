@@ -192,3 +192,42 @@ export function formatMetricValue(
     maximumFractionDigits: resolvedDigits
   });
 }
+
+export function getCombinationBaseKeyFromId(
+  combinationId: string | null | undefined
+): string | null {
+  if (!combinationId) {
+    return null;
+  }
+
+  const parts = combinationId.split("::");
+  if (parts.length < 7) {
+    return combinationId;
+  }
+
+  const normalized = [...parts];
+  while (normalized.length < 7) {
+    normalized.push("");
+  }
+
+  const [model, team, condition, _harm, type, cases, grading] = normalized;
+  return [
+    model ?? "",
+    team ?? "",
+    condition ?? "",
+    type ?? "",
+    cases ?? "",
+    grading ?? ""
+  ].join("::");
+}
+
+export function getCombinationBaseKeyFromRow(row: DataRow): string {
+  return [
+    row.model ?? "",
+    row.team ?? "",
+    row.condition ?? "",
+    row.type ?? "",
+    row.cases ?? "",
+    row.grading ?? ""
+  ].join("::");
+}
