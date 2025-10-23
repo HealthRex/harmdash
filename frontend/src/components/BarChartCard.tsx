@@ -26,6 +26,26 @@ type Props = {
 const PRIMARY_SELECTION_COLOR = "#0ea5e9";
 const COMPARISON_SELECTION_COLOR = "#f97316";
 
+const toBaseCombinationId = (
+  combinationId: string | null | undefined
+): string | null => {
+  if (!combinationId) {
+    return null;
+  }
+  const parts = combinationId.split("::");
+  if (parts.length <= 1) {
+    return combinationId;
+  }
+  if (parts.length > 3) {
+    parts.splice(3, 1);
+  }
+  return parts.join("::");
+};
+
+const getRowBaseId = (row: DataRow): string => {
+  return toBaseCombinationId(row.combinationId) ?? row.combinationId;
+};
+
 const getTextColor = (hex: string) => {
   const normalized = hex.replace('#', '');
   const bigint = parseInt(normalized, 16);
@@ -53,6 +73,8 @@ export function BarChartCard({
   const metricDescription = metricMeta?.description ?? "";
   const isPercentMetric = metricMeta?.range === "percent";
   const higherIsBetter = metricMeta?.betterDirection !== "lower";
+  const highlightedBaseId = toBaseCombinationId(highlightedCombinationId);
+  const comparisonBaseId = toBaseCombinationId(comparisonCombinationId);
 
   const { topRows, bottomRows, displayRows } = useMemo(() => {
     const filtered = pickRowsForMetric(rows, metricId);
@@ -74,10 +96,10 @@ export function BarChartCard({
     const bottomSorted = sortRowsForMetric(bottom, higherIsBetter);
 
     const bestOrder = new Map(
-      sortedForBest.map((row, index) => [row.combinationId, index])
+      sortedForBest.map((row, index) => [getRowBaseId(row), index])
     );
     const worstOrder = new Map(
-      sortedForWorst.map((row, index) => [row.combinationId, index])
+      sortedForWorst.map((row, index) => [getRowBaseId(row), index])
     );
 
     const insertInOrder = (
@@ -85,7 +107,8 @@ export function BarChartCard({
       row: DataRow,
       orderMap: Map<string, number>
     ): DataRow[] => {
-      const targetIndex = orderMap.get(row.combinationId);
+      const rowBaseId = getRowBaseId(row);
+      const targetIndex = orderMap.get(rowBaseId);
       if (targetIndex === undefined) {
         return collection;
       }
@@ -94,8 +117,9 @@ export function BarChartCard({
       let inserted = false;
       for (let index = 0; index < next.length; index += 1) {
         const existing = next[index];
+        const existingBaseId = getRowBaseId(existing);
         const existingOrder =
-          orderMap.get(existing.combinationId) ?? Number.POSITIVE_INFINITY;
+          orderMap.get(existingBaseId) ?? Number.POSITIVE_INFINITY;
         if (existingOrder > targetIndex) {
           next.splice(index, 0, row);
           inserted = true;
@@ -110,14 +134,14 @@ export function BarChartCard({
 
     let topWithSelections = [...top];
     let bottomWithSelections = [...bottomSorted];
-    const topIds = new Set(topWithSelections.map((row) => row.combinationId));
+    const topIds = new Set(topWithSelections.map((row) => getRowBaseId(row)));
     const bottomIds = new Set(
-      bottomWithSelections.map((row) => row.combinationId)
+      bottomWithSelections.map((row) => getRowBaseId(row))
     );
 
     const selectedIds = Array.from(
       new Set(
-        [highlightedCombinationId, comparisonCombinationId].filter(
+        [highlightedBaseId, comparisonBaseId].filter(
           (value): value is string => Boolean(value)
         )
       )
@@ -128,9 +152,7 @@ export function BarChartCard({
         return;
       }
 
-      const match = filtered.find(
-        (row) => row.combinationId === selectedId
-      );
+      const match = filtered.find((row) => getRowBaseId(row) === selectedId);
       if (!match) {
         return;
       }
@@ -157,7 +179,7 @@ export function BarChartCard({
     const combinedDisplay = [
       ...topWithSelections,
       ...bottomWithSelections.filter(
-        (row) => !topIds.has(row.combinationId)
+        (row) => !topIds.has(getRowBaseId(row))
       )
     ];
 
@@ -171,8 +193,8 @@ export function BarChartCard({
     metricId,
     maxItems,
     higherIsBetter,
-    highlightedCombinationId,
-    comparisonCombinationId
+    highlightedBaseId,
+    comparisonBaseId
   ]);
 
   const { axisMin, axisMax } = useMemo(() => {
@@ -283,10 +305,9 @@ export function BarChartCard({
                 const widthPercentRaw =
                   range <= 0 ? 0 : ((valueClamped - axisMin) / range) * 100;
                 const widthPercent = Math.max(Math.min(widthPercentRaw, 100), 0);
-                const isPrimarySelected =
-                  highlightedCombinationId === row.combinationId;
-                const isComparisonSelected =
-                  comparisonCombinationId === row.combinationId;
+                const rowBaseId = getRowBaseId(row);
+                const isPrimarySelected = highlightedBaseId === rowBaseId;
+                const isComparisonSelected = comparisonBaseId === rowBaseId;
                 const isSelected = isPrimarySelected || isComparisonSelected;
                 const highlightColor = isPrimarySelected
                   ? PRIMARY_SELECTION_COLOR
@@ -386,10 +407,9 @@ export function BarChartCard({
                 const widthPercentRaw =
                   range <= 0 ? 0 : ((valueClamped - axisMin) / range) * 100;
                 const widthPercent = Math.max(Math.min(widthPercentRaw, 100), 0);
-                const isPrimarySelected =
-                  highlightedCombinationId === row.combinationId;
-                const isComparisonSelected =
-                  comparisonCombinationId === row.combinationId;
+                const rowBaseId = getRowBaseId(row);
+                const isPrimarySelected = highlightedBaseId === rowBaseId;
+                const isComparisonSelected = comparisonBaseId === rowBaseId;
                 const isSelected = isPrimarySelected || isComparisonSelected;
                 const highlightColor = isPrimarySelected
                   ? PRIMARY_SELECTION_COLOR
