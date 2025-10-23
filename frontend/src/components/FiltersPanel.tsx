@@ -250,16 +250,26 @@ export function TeamFiltersBar({
                             : onToggleTeamCondition(group.team, condition)
                         }
                         className={clsx(
-                          "flex items-center rounded-full border px-2.5 py-1 text-xs font-medium text-white transition",
-                          isActive ? "shadow-sm" : "opacity-80 hover:opacity-100",
+                          "flex items-center rounded-full border px-2.5 py-1 text-xs font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2",
+                          isActive
+                            ? "text-white shadow-sm"
+                            : "bg-white opacity-80 hover:opacity-100",
                           disabled
                             ? "cursor-not-allowed opacity-60 hover:border-slate-200"
                             : null
                         )}
-                        style={{
-                          backgroundColor: color,
-                          borderColor: color
-                        }}
+                        style={
+                          isActive
+                            ? {
+                                backgroundColor: color,
+                                borderColor: color
+                              }
+                            : {
+                                backgroundColor: "#ffffff",
+                                borderColor: color,
+                                color
+                              }
+                        }
                       >
                         <span className="truncate">{condition}</span>
                       </button>
