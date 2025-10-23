@@ -168,7 +168,7 @@ export function TeamFiltersBar({
                 type="button"
                 onClick={() => onToggleTeam(group.team)}
                 className={clsx(
-                  "mx-auto inline-flex min-w-[200px] max-w-[220px] items-center justify-center rounded-full border px-4 py-2 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+                  "mx-auto inline-flex min-w-[160px] max-w-[176px] items-center justify-center rounded-full border px-4 py-2 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
                   isSelected
                     ? "text-white shadow-sm focus-visible:ring-brand-500"
                     : "bg-white text-slate-600 hover:border-brand-200 focus-visible:ring-brand-500"
@@ -178,12 +178,12 @@ export function TeamFiltersBar({
                     ? {
                         backgroundColor: teamColor,
                         borderColor: teamColor,
-                        width: "min(100%, 220px)"
+                        width: "min(100%, 176px)"
                       }
                     : {
                         borderColor: teamColor,
                         color: teamColor,
-                        width: "min(100%, 220px)"
+                        width: "min(100%, 176px)"
                       }
                 }
               >

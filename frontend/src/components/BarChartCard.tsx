@@ -73,12 +73,107 @@ export function BarChartCard({
 
     const bottomSorted = sortRowsForMetric(bottom, higherIsBetter);
 
-    return {
-      topRows: top,
-      bottomRows: bottomSorted,
-      displayRows: [...top, ...bottomSorted]
+    const bestOrder = new Map(
+      sortedForBest.map((row, index) => [row.combinationId, index])
+    );
+    const worstOrder = new Map(
+      sortedForWorst.map((row, index) => [row.combinationId, index])
+    );
+
+    const insertInOrder = (
+      collection: DataRow[],
+      row: DataRow,
+      orderMap: Map<string, number>
+    ): DataRow[] => {
+      const targetIndex = orderMap.get(row.combinationId);
+      if (targetIndex === undefined) {
+        return collection;
+      }
+
+      const next = [...collection];
+      let inserted = false;
+      for (let index = 0; index < next.length; index += 1) {
+        const existing = next[index];
+        const existingOrder =
+          orderMap.get(existing.combinationId) ?? Number.POSITIVE_INFINITY;
+        if (existingOrder > targetIndex) {
+          next.splice(index, 0, row);
+          inserted = true;
+          break;
+        }
+      }
+      if (!inserted) {
+        next.push(row);
+      }
+      return next;
     };
-  }, [rows, metricId, maxItems, higherIsBetter]);
+
+    let topWithSelections = [...top];
+    let bottomWithSelections = [...bottomSorted];
+    const topIds = new Set(topWithSelections.map((row) => row.combinationId));
+    const bottomIds = new Set(
+      bottomWithSelections.map((row) => row.combinationId)
+    );
+
+    const selectedIds = Array.from(
+      new Set(
+        [highlightedCombinationId, comparisonCombinationId].filter(
+          (value): value is string => Boolean(value)
+        )
+      )
+    );
+
+    selectedIds.forEach((selectedId) => {
+      if (topIds.has(selectedId) || bottomIds.has(selectedId)) {
+        return;
+      }
+
+      const match = filtered.find(
+        (row) => row.combinationId === selectedId
+      );
+      if (!match) {
+        return;
+      }
+
+      const bestRank = bestOrder.get(selectedId);
+      const worstRank = worstOrder.get(selectedId);
+      if (bestRank === undefined || worstRank === undefined) {
+        return;
+      }
+
+      if (bestRank <= worstRank) {
+        topWithSelections = insertInOrder(topWithSelections, match, bestOrder);
+        topIds.add(selectedId);
+      } else {
+        bottomWithSelections = insertInOrder(
+          bottomWithSelections,
+          match,
+          worstOrder
+        );
+        bottomIds.add(selectedId);
+      }
+    });
+
+    const combinedDisplay = [
+      ...topWithSelections,
+      ...bottomWithSelections.filter(
+        (row) => !topIds.has(row.combinationId)
+      )
+    ];
+
+    return {
+      topRows: topWithSelections,
+      bottomRows: bottomWithSelections,
+      displayRows: combinedDisplay
+    };
+  }, [
+    rows,
+    metricId,
+    maxItems,
+    higherIsBetter,
+    highlightedCombinationId,
+    comparisonCombinationId
+  ]);
 
   const { axisMin, axisMax } = useMemo(() => {
     let minValue = Number.POSITIVE_INFINITY;
@@ -198,7 +293,7 @@ export function BarChartCard({
                   : isComparisonSelected
                   ? COMPARISON_SELECTION_COLOR
                   : undefined;
-                const barColor = highlightColor ?? getDefaultBarColor(row);
+                const barColor = getDefaultBarColor(row);
                 const displayLabel = row.displayLabel || row.model;
                 const formattedValue = formatMetricValue(row.mean, {
                   metadata: metricMeta
@@ -217,14 +312,17 @@ export function BarChartCard({
                     aria-pressed={isSelected}
                     onClick={() => handleRowClick(row)}
                     className={clsx(
-                      "group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 rounded-2xl border border-transparent bg-white/0 px-2 py-1.5 text-left transition",
+                      "relative group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 rounded-2xl border border-transparent bg-white/0 px-2 py-1.5 text-left transition",
                       isSelected
                         ? "border-2 bg-gradient-to-r from-white via-slate-50 to-white shadow-sm"
                         : "hover:border-slate-200 hover:bg-slate-50/70"
                     )}
                     style={
                       highlightColor
-                        ? { borderColor: highlightColor }
+                        ? {
+                            borderColor: highlightColor,
+                            boxShadow: `0 0 0 2px ${highlightColor}1a`
+                          }
                         : undefined
                     }
                   >
@@ -242,6 +340,15 @@ export function BarChartCard({
                           backgroundColor: barColor
                         }}
                       />
+                      {highlightColor ? (
+                        <div
+                          aria-hidden
+                          className="pointer-events-none absolute inset-0 rounded-[6px]"
+                          style={{
+                            boxShadow: `inset 0 0 0 2px ${highlightColor}40`
+                          }}
+                        />
+                      ) : null}
                       <span
                         className="absolute left-4 top-1/2 -translate-y-1/2 truncate text-sm font-medium"
                         style={{ color: textColor }}
@@ -289,7 +396,7 @@ export function BarChartCard({
                   : isComparisonSelected
                   ? COMPARISON_SELECTION_COLOR
                   : undefined;
-                const barColor = highlightColor ?? getDefaultBarColor(row);
+                const barColor = getDefaultBarColor(row);
                 const displayLabel = row.displayLabel || row.model;
                 const formattedValue = formatMetricValue(row.mean, {
                   metadata: metricMeta
@@ -308,14 +415,17 @@ export function BarChartCard({
                     aria-pressed={isSelected}
                     onClick={() => handleRowClick(row)}
                     className={clsx(
-                      "group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 rounded-2xl border border-transparent bg-white/0 px-2 py-1.5 text-left transition",
+                      "relative group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 rounded-2xl border border-transparent bg-white/0 px-2 py-1.5 text-left transition",
                       isSelected
                         ? "border-2 bg-gradient-to-r from-white via-slate-50 to-white shadow-sm"
                         : "hover:border-slate-200 hover:bg-slate-50/70"
                     )}
                     style={
                       highlightColor
-                        ? { borderColor: highlightColor }
+                        ? {
+                            borderColor: highlightColor,
+                            boxShadow: `0 0 0 2px ${highlightColor}1a`
+                          }
                         : undefined
                     }
                   >
@@ -333,6 +443,15 @@ export function BarChartCard({
                           backgroundColor: barColor
                         }}
                       />
+                      {highlightColor ? (
+                        <div
+                          aria-hidden
+                          className="pointer-events-none absolute inset-0 rounded-[6px]"
+                          style={{
+                            boxShadow: `inset 0 0 0 2px ${highlightColor}40`
+                          }}
+                        />
+                      ) : null}
                       <span
                         className="absolute left-4 top-1/2 -translate-y-1/2 truncate text-sm font-medium"
                         style={{ color: textColor }}
