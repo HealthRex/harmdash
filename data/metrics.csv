@@ -61,9 +61,9 @@ Gemini 2.0 Flash + Gemini 2.5 Pro,2-Agent Team,Advisor + Guardian,NA,Accuracy,3,
 Gemini 2.0 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Accuracy,5,0.862,0.009,0.004,0.008,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + Llama 4 Maverick
 Gemini 2.0 Flash + Llama 4 Scout,2-Agent Team,Advisor + Guardian,NA,Accuracy,3,0.859,0.011,0.006,0.012,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + Llama 4 Scout
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,NA,Accuracy,5,0.835,0.009,0.004,0.008,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Accuracy,2,0.783,0.026,0.019,0.036,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,NA,Accuracy,1,0.822,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Accuracy,1,0.835,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Accuracy,3,0.78,0.019,0.011,0.022,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,NA,Accuracy,3,0.824,0.004,0.003,0.005,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Accuracy,4,0.827,0.009,0.004,0.008,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Accuracy,3,0.754,0.002,0.001,0.002,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
 Gemini 2.5 Pro + GPT-4.1,2-Agent Team,Advisor + Guardian,NA,Accuracy,5,0.867,0.033,0.015,0.029,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + GPT-4.1
 Gemini 2.5 Pro + GPT-5,2-Agent Team,Advisor + Guardian,NA,Accuracy,3,0.779,0.009,0.005,0.01,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + GPT-5
@@ -191,7 +191,7 @@ Claude Haiku 4.5,Solo Model,Advisor,NA,Accuracy,1,0.775,NA,NA,NA,NA,NA,NO,AllCas
 Claude Sonnet 3.7,Solo Model,Advisor,NA,Accuracy,10,0.798,0.008,0.002,0.005,NA,NA,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7
 Claude Sonnet 4.5,Solo Model,Advisor,NA,Accuracy,1,0.756,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5
 Commercial Model,Solo Model,Advisor,NA,Accuracy,30,0.844,0.011,0.002,0.004,NA,NA,NO,AllCases,Unanimous,AllHarm,Commercial Model
-Consensus,Solo Model,Advisor,NA,Accuracy,10,0.8,0.007,0.002,0.004,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,NA,Accuracy,10,0.802,0.007,0.002,0.005,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
 DeepSeek R1,Solo Model,Advisor,NA,Accuracy,12,0.799,0.012,0.003,0.007,NA,NA,NO,AllCases,Unanimous,AllHarm,DeepSeek R1
 GPT-4.1,Solo Model,Advisor,NA,Accuracy,10,0.802,0.006,0.002,0.004,NA,NA,NO,AllCases,Unanimous,AllHarm,GPT-4.1
 GPT-4.1 mini,Solo Model,Advisor,NA,Accuracy,10,0.752,0.007,0.002,0.004,NA,NA,NO,AllCases,Unanimous,AllHarm,GPT-4.1 mini
@@ -272,9 +272,9 @@ Gemini 2.0 Flash + Gemini 2.5 Pro,2-Agent Team,Advisor + Guardian,NA,Emergency R
 Gemini 2.0 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Emergency Rate,5,0,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + Llama 4 Maverick
 Gemini 2.0 Flash + Llama 4 Scout,2-Agent Team,Advisor + Guardian,NA,Emergency Rate,3,0,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + Llama 4 Scout
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,NA,Emergency Rate,5,0.1,0.224,0.1,0.196,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Emergency Rate,2,0.25,0.354,0.25,0.49,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,NA,Emergency Rate,1,0.5,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Emergency Rate,1,0.5,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Emergency Rate,3,0.333,0.289,0.167,0.327,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,NA,Emergency Rate,3,0.5,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Emergency Rate,4,0.5,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Emergency Rate,3,0.667,0.577,0.333,0.653,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
 Gemini 2.5 Pro + GPT-4.1,2-Agent Team,Advisor + Guardian,NA,Emergency Rate,5,1,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + GPT-4.1
 Gemini 2.5 Pro + GPT-5,2-Agent Team,Advisor + Guardian,NA,Emergency Rate,3,1,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + GPT-5
@@ -483,9 +483,9 @@ Gemini 2.0 Flash + Gemini 2.5 Pro,2-Agent Team,Advisor + Guardian,NA,Referral Ra
 Gemini 2.0 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Referral Rate,5,0.748,0.041,0.018,0.036,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + Llama 4 Maverick
 Gemini 2.0 Flash + Llama 4 Scout,2-Agent Team,Advisor + Guardian,NA,Referral Rate,3,0.738,0.049,0.028,0.056,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + Llama 4 Scout
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,NA,Referral Rate,5,0.705,0.062,0.028,0.055,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Referral Rate,2,0.852,0.046,0.033,0.064,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,NA,Referral Rate,1,0.82,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Referral Rate,1,0.852,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Referral Rate,3,0.858,0.034,0.02,0.039,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,NA,Referral Rate,3,0.831,0.009,0.005,0.011,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Referral Rate,4,0.865,0.016,0.008,0.015,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Referral Rate,3,0.757,0.026,0.015,0.029,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
 Gemini 2.5 Pro + GPT-4.1,2-Agent Team,Advisor + Guardian,NA,Referral Rate,5,0.875,0.034,0.015,0.03,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + GPT-4.1
 Gemini 2.5 Pro + GPT-5,2-Agent Team,Advisor + Guardian,NA,Referral Rate,3,0.776,0.009,0.005,0.011,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + GPT-5
@@ -613,7 +613,7 @@ Claude Haiku 4.5,Solo Model,Advisor,NA,Referral Rate,1,0.672,NA,NA,NA,NA,NA,NO,A
 Claude Sonnet 3.7,Solo Model,Advisor,NA,Referral Rate,10,0.684,0.017,0.005,0.011,NA,NA,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7
 Claude Sonnet 4.5,Solo Model,Advisor,NA,Referral Rate,1,0.656,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5
 Commercial Model,Solo Model,Advisor,NA,Referral Rate,30,0.771,0.034,0.006,0.012,NA,NA,NO,AllCases,Unanimous,AllHarm,Commercial Model
-Consensus,Solo Model,Advisor,NA,Referral Rate,10,0.766,0.017,0.005,0.011,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,NA,Referral Rate,10,0.759,0.011,0.003,0.007,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
 DeepSeek R1,Solo Model,Advisor,NA,Referral Rate,12,0.801,0.021,0.006,0.012,NA,NA,NO,AllCases,Unanimous,AllHarm,DeepSeek R1
 GPT-4.1,Solo Model,Advisor,NA,Referral Rate,10,0.748,0.027,0.009,0.017,NA,NA,NO,AllCases,Unanimous,AllHarm,GPT-4.1
 GPT-4.1 mini,Solo Model,Advisor,NA,Referral Rate,10,0.567,0.032,0.01,0.02,NA,NA,NO,AllCases,Unanimous,AllHarm,GPT-4.1 mini
@@ -694,9 +694,9 @@ Gemini 2.0 Flash + Gemini 2.5 Pro,2-Agent Team,Advisor + Guardian,NA,Restraint,3
 Gemini 2.0 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Restraint,5,0.583,0.004,0.002,0.004,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + Llama 4 Maverick
 Gemini 2.0 Flash + Llama 4 Scout,2-Agent Team,Advisor + Guardian,NA,Restraint,3,0.571,0.001,0.001,0.001,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + Llama 4 Scout
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,NA,Restraint,5,0.645,0.004,0.002,0.003,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Restraint,2,0.729,0.001,0,0.001,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,NA,Restraint,1,0.694,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Restraint,1,0.669,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Restraint,3,0.729,0,0,0.001,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,NA,Restraint,3,0.697,0.004,0.002,0.004,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Restraint,4,0.665,0.005,0.003,0.005,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Restraint,3,0.787,0.005,0.003,0.005,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
 Gemini 2.5 Pro + GPT-4.1,2-Agent Team,Advisor + Guardian,NA,Restraint,5,0.484,0.048,0.022,0.042,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + GPT-4.1
 Gemini 2.5 Pro + GPT-5,2-Agent Team,Advisor + Guardian,NA,Restraint,3,0.805,0.003,0.002,0.004,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + GPT-5
@@ -824,7 +824,7 @@ Claude Haiku 4.5,Solo Model,Advisor,NA,Restraint,1,0.674,NA,NA,NA,NA,NA,NO,AllCa
 Claude Sonnet 3.7,Solo Model,Advisor,NA,Restraint,10,0.73,0.006,0.002,0.004,NA,NA,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7
 Claude Sonnet 4.5,Solo Model,Advisor,NA,Restraint,1,0.786,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5
 Commercial Model,Solo Model,Advisor,NA,Restraint,30,0.717,0.007,0.001,0.002,NA,NA,NO,AllCases,Unanimous,AllHarm,Commercial Model
-Consensus,Solo Model,Advisor,NA,Restraint,10,0.778,0.005,0.002,0.003,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,NA,Restraint,10,0.776,0.006,0.002,0.004,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
 DeepSeek R1,Solo Model,Advisor,NA,Restraint,12,0.702,0.011,0.003,0.006,NA,NA,NO,AllCases,Unanimous,AllHarm,DeepSeek R1
 GPT-4.1,Solo Model,Advisor,NA,Restraint,10,0.659,0.006,0.002,0.003,NA,NA,NO,AllCases,Unanimous,AllHarm,GPT-4.1
 GPT-4.1 mini,Solo Model,Advisor,NA,Restraint,10,0.69,0.006,0.002,0.004,NA,NA,NO,AllCases,Unanimous,AllHarm,GPT-4.1 mini
@@ -905,9 +905,9 @@ Gemini 2.0 Flash + Gemini 2.5 Pro,2-Agent Team,Advisor + Guardian,NA,Safety,3,0.
 Gemini 2.0 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Safety,5,0.68,0.008,0.004,0.007,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + Llama 4 Maverick
 Gemini 2.0 Flash + Llama 4 Scout,2-Agent Team,Advisor + Guardian,NA,Safety,3,0.667,0.01,0.006,0.011,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + Llama 4 Scout
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,NA,Safety,5,0.714,0.014,0.006,0.013,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Safety,2,0.743,0.018,0.013,0.025,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,NA,Safety,1,0.738,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Safety,1,0.77,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Safety,3,0.729,0.027,0.015,0.03,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,NA,Safety,3,0.756,0.017,0.01,0.019,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Safety,4,0.753,0.02,0.01,0.019,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Safety,3,0.698,0.015,0.009,0.017,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
 Gemini 2.5 Pro + GPT-4.1,2-Agent Team,Advisor + Guardian,NA,Safety,5,0.263,0.068,0.03,0.059,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + GPT-4.1
 Gemini 2.5 Pro + GPT-5,2-Agent Team,Advisor + Guardian,NA,Safety,3,0.753,0.027,0.016,0.031,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + GPT-5
@@ -1035,7 +1035,7 @@ Claude Haiku 4.5,Solo Model,Advisor,NA,Safety,1,0.663,NA,NA,NA,NA,NA,NO,AllCases
 Claude Sonnet 3.7,Solo Model,Advisor,NA,Safety,10,0.7,0.014,0.004,0.009,NA,NA,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7
 Claude Sonnet 4.5,Solo Model,Advisor,NA,Safety,1,0.711,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5
 Commercial Model,Solo Model,Advisor,NA,Safety,30,0.733,0.024,0.004,0.009,NA,NA,NO,AllCases,Unanimous,AllHarm,Commercial Model
-Consensus,Solo Model,Advisor,NA,Safety,10,0.73,0.011,0.004,0.007,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,NA,Safety,10,0.733,0.011,0.004,0.007,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
 DeepSeek R1,Solo Model,Advisor,NA,Safety,12,0.725,0.025,0.007,0.014,NA,NA,NO,AllCases,Unanimous,AllHarm,DeepSeek R1
 GPT-4.1,Solo Model,Advisor,NA,Safety,10,0.685,0.011,0.004,0.007,NA,NA,NO,AllCases,Unanimous,AllHarm,GPT-4.1
 GPT-4.1 mini,Solo Model,Advisor,NA,Safety,10,0.575,0.02,0.006,0.012,NA,NA,NO,AllCases,Unanimous,AllHarm,GPT-4.1 mini
@@ -1364,21 +1364,21 @@ Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Uncertain,nnh,5,5.706
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Mild,nnh,5,2.983,0.159,0.071,0.139,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Moderate,nnh,5,2.649,0.114,0.051,0.1,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Severe,nnh,5,9.677,0.893,0.399,0.783,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,None,nnh,2,66.667,47.14,33.333,65.333,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,nnh,2,4.5,0.707,0.5,0.98,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,nnh,2,3.438,0.577,0.408,0.8,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,nnh,2,2.744,0.159,0.113,0.221,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Severe,nnh,2,10.556,0.786,0.556,1.089,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,None,nnh,1,100,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Uncertain,nnh,1,4.167,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Mild,nnh,1,3.333,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Moderate,nnh,1,2.857,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Severe,nnh,1,10,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,None,nnh,1,100,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Uncertain,nnh,1,5.263,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Mild,nnh,1,3.333,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Moderate,nnh,1,2.273,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Severe,nnh,1,16.667,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,None,nnh,3,77.778,38.49,22.222,43.556,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,nnh,3,4.961,0.942,0.544,1.066,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,nnh,3,3.403,0.412,0.238,0.467,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,nnh,3,2.643,0.209,0.121,0.237,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Severe,nnh,3,10.067,1.012,0.584,1.145,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,None,nnh,3,100,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Uncertain,nnh,3,4.111,0.096,0.056,0.109,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Mild,nnh,3,3.213,0.313,0.181,0.355,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Moderate,nnh,3,2.871,0.247,0.143,0.28,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Severe,nnh,3,11.667,1.443,0.833,1.633,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,None,nnh,4,100,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Uncertain,nnh,4,6.732,1.256,0.628,1.231,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Mild,nnh,4,2.981,0.27,0.135,0.265,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Moderate,nnh,4,2.3,0.054,0.027,0.053,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Severe,nnh,4,14.683,2.632,1.316,2.58,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,None,nnh,3,48.333,44.814,25.874,50.712,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,nnh,3,5.328,0.697,0.402,0.789,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,nnh,3,3.032,0.092,0.053,0.104,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
@@ -2014,11 +2014,11 @@ Commercial Model,Solo Model,Advisor,Uncertain,nnh,30,4.523,0.509,0.093,0.182,NA,
 Commercial Model,Solo Model,Advisor,Mild,nnh,30,3.095,0.215,0.039,0.077,NA,NA,NO,AllCases,Unanimous,AllHarm,Commercial Model
 Commercial Model,Solo Model,Advisor,Moderate,nnh,30,2.94,0.22,0.04,0.079,NA,NA,NO,AllCases,Unanimous,AllHarm,Commercial Model
 Commercial Model,Solo Model,Advisor,Severe,nnh,30,10.325,1.697,0.31,0.607,NA,NA,NO,AllCases,Unanimous,AllHarm,Commercial Model
-Consensus,Solo Model,Advisor,None,nnh,10,44.167,21.534,6.81,13.347,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Uncertain,nnh,10,4.648,0.454,0.144,0.282,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Mild,nnh,10,3.015,0.209,0.066,0.13,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Moderate,nnh,10,3.185,0.267,0.084,0.166,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Severe,nnh,10,9.217,0.707,0.224,0.438,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,None,nnh,10,45,21.943,6.939,13.6,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Uncertain,nnh,10,4.751,0.421,0.133,0.261,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Mild,nnh,10,2.923,0.297,0.094,0.184,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Moderate,nnh,10,3.275,0.314,0.099,0.195,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Severe,nnh,10,9.197,0.485,0.153,0.3,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
 DeepSeek R1,Solo Model,Advisor,None,nnh,12,95.833,14.434,4.167,8.167,NA,NA,NO,AllCases,Unanimous,AllHarm,DeepSeek R1
 DeepSeek R1,Solo Model,Advisor,Uncertain,nnh,12,4.749,0.66,0.191,0.374,NA,NA,NO,AllCases,Unanimous,AllHarm,DeepSeek R1
 DeepSeek R1,Solo Model,Advisor,Mild,nnh,12,3.576,0.359,0.104,0.203,NA,NA,NO,AllCases,Unanimous,AllHarm,DeepSeek R1
@@ -2114,11 +2114,11 @@ No Intervention,Solo Model,Control,Uncertain,nnh,1,7.143,NA,NA,NA,312.44,65.477,
 No Intervention,Solo Model,Control,Mild,nnh,1,4.762,NA,NA,NA,312.44,65.477,NO,AllCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
 No Intervention,Solo Model,Control,Moderate,nnh,1,3.03,NA,NA,NA,312.44,65.477,NO,AllCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
 No Intervention,Solo Model,Control,Severe,nnh,1,3.448,NA,NA,NA,312.44,65.477,NO,AllCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
-Random Intervention,Solo Model,Control,None,nnh,10,100,0,0,0,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Uncertain,nnh,10,90,21.082,6.667,13.067,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Mild,nnh,10,8.502,2.59,0.819,1.605,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Moderate,nnh,10,2.071,0.175,0.055,0.109,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Severe,nnh,10,2.659,0.292,0.092,0.181,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,None,nnh,10,100,0,0,0,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Uncertain,nnh,10,85,24.152,7.638,14.97,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Mild,nnh,10,8.596,2.422,0.766,1.501,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Moderate,nnh,10,2.125,0.281,0.089,0.174,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Severe,nnh,10,2.606,0.298,0.094,0.185,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,None,nnh_cumulative,3,1,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7 + Claude Sonnet 3.7
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Uncertain,nnh_cumulative,3,1,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7 + Claude Sonnet 3.7
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Mild,nnh_cumulative,3,1.277,0.041,0.024,0.046,NA,NA,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7 + Claude Sonnet 3.7
@@ -2429,21 +2429,21 @@ Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Uncertain,nnh_cumulat
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Mild,nnh_cumulative,5,1.223,0.017,0.007,0.015,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Moderate,nnh_cumulative,5,2.078,0.092,0.041,0.081,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Severe,nnh_cumulative,5,9.677,0.893,0.399,0.783,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,None,nnh_cumulative,2,1,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,nnh_cumulative,2,1.021,0.015,0.01,0.02,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,nnh_cumulative,2,1.325,0.037,0.026,0.052,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,nnh_cumulative,2,2.178,0.134,0.095,0.186,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Severe,nnh_cumulative,2,10.556,0.786,0.556,1.089,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,None,nnh_cumulative,1,1,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Uncertain,nnh_cumulative,1,1.01,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Mild,nnh_cumulative,1,1.333,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Moderate,nnh_cumulative,1,2.222,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Severe,nnh_cumulative,1,10,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,None,nnh_cumulative,1,1,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Uncertain,nnh_cumulative,1,1.01,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Mild,nnh_cumulative,1,1.25,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Moderate,nnh_cumulative,1,2,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Severe,nnh_cumulative,1,16.667,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,None,nnh_cumulative,3,1,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,nnh_cumulative,3,1.017,0.012,0.007,0.014,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,nnh_cumulative,3,1.29,0.066,0.038,0.075,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,nnh_cumulative,3,2.093,0.175,0.101,0.198,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Severe,nnh_cumulative,3,10.067,1.012,0.584,1.145,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,None,nnh_cumulative,3,1,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Uncertain,nnh_cumulative,3,1.007,0.006,0.003,0.007,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Mild,nnh_cumulative,3,1.333,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Moderate,nnh_cumulative,3,2.299,0.176,0.102,0.199,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Severe,nnh_cumulative,3,11.667,1.443,0.833,1.633,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,None,nnh_cumulative,4,1,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Uncertain,nnh_cumulative,4,1.005,0.006,0.003,0.006,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Mild,nnh_cumulative,4,1.188,0.047,0.024,0.046,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Moderate,nnh_cumulative,4,1.98,0.023,0.011,0.022,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Severe,nnh_cumulative,4,14.683,2.632,1.316,2.58,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,None,nnh_cumulative,3,1,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,nnh_cumulative,3,1.035,0.022,0.013,0.025,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,nnh_cumulative,3,1.288,0.01,0.006,0.011,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
@@ -3080,10 +3080,10 @@ Commercial Model,Solo Model,Advisor,Mild,nnh_cumulative,30,1.307,0.041,0.008,0.0
 Commercial Model,Solo Model,Advisor,Moderate,nnh_cumulative,30,2.275,0.147,0.027,0.053,NA,NA,NO,AllCases,Unanimous,AllHarm,Commercial Model
 Commercial Model,Solo Model,Advisor,Severe,nnh_cumulative,30,10.325,1.697,0.31,0.607,NA,NA,NO,AllCases,Unanimous,AllHarm,Commercial Model
 Consensus,Solo Model,Advisor,None,nnh_cumulative,10,1,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Uncertain,nnh_cumulative,10,1.026,0.011,0.004,0.007,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Mild,nnh_cumulative,10,1.32,0.027,0.009,0.017,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Moderate,nnh_cumulative,10,2.362,0.154,0.049,0.096,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Severe,nnh_cumulative,10,9.217,0.707,0.224,0.438,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Uncertain,nnh_cumulative,10,1.027,0.01,0.003,0.006,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Mild,nnh_cumulative,10,1.313,0.03,0.01,0.019,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Moderate,nnh_cumulative,10,2.409,0.172,0.054,0.107,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Severe,nnh_cumulative,10,9.197,0.485,0.153,0.3,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
 DeepSeek R1,Solo Model,Advisor,None,nnh_cumulative,12,1,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,DeepSeek R1
 DeepSeek R1,Solo Model,Advisor,Uncertain,nnh_cumulative,12,1.007,0.007,0.002,0.004,NA,NA,NO,AllCases,Unanimous,AllHarm,DeepSeek R1
 DeepSeek R1,Solo Model,Advisor,Mild,nnh_cumulative,12,1.285,0.047,0.014,0.026,NA,NA,NO,AllCases,Unanimous,AllHarm,DeepSeek R1
@@ -3179,11 +3179,11 @@ No Intervention,Solo Model,Control,Uncertain,nnh_cumulative,1,1.031,NA,NA,NA,312
 No Intervention,Solo Model,Control,Mild,nnh_cumulative,1,1.205,NA,NA,NA,312.44,65.477,NO,AllCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
 No Intervention,Solo Model,Control,Moderate,nnh_cumulative,1,1.613,NA,NA,NA,312.44,65.477,NO,AllCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
 No Intervention,Solo Model,Control,Severe,nnh_cumulative,1,3.448,NA,NA,NA,312.44,65.477,NO,AllCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
-Random Intervention,Solo Model,Control,None,nnh_cumulative,10,1,0,0,0,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Uncertain,nnh_cumulative,10,1,0,0,0,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Mild,nnh_cumulative,10,1.007,0.008,0.003,0.005,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Moderate,nnh_cumulative,10,1.156,0.047,0.015,0.029,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Severe,nnh_cumulative,10,2.659,0.292,0.092,0.181,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,None,nnh_cumulative,10,1,0,0,0,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Uncertain,nnh_cumulative,10,1,0,0,0,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Mild,nnh_cumulative,10,1.011,0.008,0.002,0.005,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Moderate,nnh_cumulative,10,1.156,0.033,0.01,0.02,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Severe,nnh_cumulative,10,2.606,0.298,0.094,0.185,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Uncertain,normalized,3,420,6.928,4,7.84,NA,NA,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7 + Claude Sonnet 3.7
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Mild,normalized,3,109,4.583,2.646,5.186,NA,NA,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7 + Claude Sonnet 3.7
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Moderate,normalized,3,67,2.646,1.528,2.994,NA,NA,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7 + Claude Sonnet 3.7
@@ -3432,18 +3432,18 @@ Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Uncertain,normalized,
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Mild,normalized,5,129.8,4.919,2.2,4.312,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Moderate,normalized,5,96.2,4.868,2.177,4.267,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Severe,normalized,5,14.6,2.408,1.077,2.111,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,normalized,2,416,1.414,1,1.96,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,normalized,2,123.5,2.121,1.5,2.94,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,normalized,2,67.5,12.021,8.5,16.66,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Severe,normalized,2,10,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Uncertain,normalized,1,470,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Mild,normalized,1,118,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Moderate,normalized,1,63,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Severe,normalized,1,12,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Uncertain,normalized,1,509,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Mild,normalized,1,144,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Moderate,normalized,1,67,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Severe,normalized,1,8,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,normalized,3,416,1,0.577,1.132,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,normalized,3,123.333,1.528,0.882,1.729,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,normalized,3,70.333,9.815,5.667,11.107,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Severe,normalized,3,12,3.464,2,3.92,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Uncertain,normalized,3,465.333,5.686,3.283,6.435,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Mild,normalized,3,115,3.606,2.082,4.08,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Moderate,normalized,3,65.333,2.517,1.453,2.848,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Severe,normalized,3,10.333,1.528,0.882,1.729,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Uncertain,normalized,4,514.25,7.974,3.987,7.814,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Mild,normalized,4,141.75,2.63,1.315,2.577,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Moderate,normalized,4,73,4.546,2.273,4.455,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Severe,normalized,4,8.75,1.5,0.75,1.47,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,normalized,3,328,7,4.041,7.921,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,normalized,3,108.333,3.786,2.186,4.284,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,normalized,3,60.667,4.726,2.728,5.348,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
@@ -3952,10 +3952,10 @@ Commercial Model,Solo Model,Advisor,Uncertain,normalized,30,434.967,10.549,1.926
 Commercial Model,Solo Model,Advisor,Mild,normalized,30,104.867,4.637,0.847,1.659,NA,NA,NO,AllCases,Unanimous,AllHarm,Commercial Model
 Commercial Model,Solo Model,Advisor,Moderate,normalized,30,68.967,4.46,0.814,1.596,NA,NA,NO,AllCases,Unanimous,AllHarm,Commercial Model
 Commercial Model,Solo Model,Advisor,Severe,normalized,30,13.3,2.535,0.463,0.907,NA,NA,NO,AllCases,Unanimous,AllHarm,Commercial Model
-Consensus,Solo Model,Advisor,Uncertain,normalized,10,341.8,7.451,2.356,4.618,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Mild,normalized,10,104.4,2.591,0.819,1.606,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Moderate,normalized,10,63.4,2.797,0.884,1.733,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Severe,normalized,10,16.4,1.174,0.371,0.728,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Uncertain,normalized,10,344,9.333,2.951,5.785,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Mild,normalized,10,103.8,3.458,1.093,2.143,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Moderate,normalized,10,62.5,3.689,1.167,2.287,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Severe,normalized,10,16.4,1.075,0.34,0.666,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
 DeepSeek R1,Solo Model,Advisor,Uncertain,normalized,12,458.667,16.3,4.705,9.223,NA,NA,NO,AllCases,Unanimous,AllHarm,DeepSeek R1
 DeepSeek R1,Solo Model,Advisor,Mild,normalized,12,114.75,7.485,2.161,4.235,NA,NA,NO,AllCases,Unanimous,AllHarm,DeepSeek R1
 DeepSeek R1,Solo Model,Advisor,Moderate,normalized,12,78.333,5.466,1.578,3.093,NA,NA,NO,AllCases,Unanimous,AllHarm,DeepSeek R1
@@ -4032,10 +4032,10 @@ No Intervention,Solo Model,Control,Uncertain,normalized,1,14,NA,NA,NA,312.44,65.
 No Intervention,Solo Model,Control,Mild,normalized,1,21,NA,NA,NA,312.44,65.477,NO,AllCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
 No Intervention,Solo Model,Control,Moderate,normalized,1,33,NA,NA,NA,312.44,65.477,NO,AllCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
 No Intervention,Solo Model,Control,Severe,normalized,1,29,NA,NA,NA,312.44,65.477,NO,AllCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
-Random Intervention,Solo Model,Control,Uncertain,normalized,10,354.1,9.098,2.877,5.639,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Mild,normalized,10,203.3,9.922,3.138,6.15,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Moderate,normalized,10,192.8,9.566,3.025,5.929,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Severe,normalized,10,58.3,6.945,2.196,4.305,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Uncertain,normalized,10,355.7,13.961,4.415,8.653,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Mild,normalized,10,201.6,11.047,3.493,6.847,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Moderate,normalized,10,189.2,7.871,2.489,4.879,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Severe,normalized,10,60.5,6.133,1.939,3.801,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Uncertain,normalized_cumulative,3,611,2.646,1.528,2.994,NA,NA,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7 + Claude Sonnet 3.7
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Mild,normalized_cumulative,3,191,4.359,2.517,4.933,NA,NA,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7 + Claude Sonnet 3.7
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Moderate,normalized_cumulative,3,82,2,1.155,2.263,NA,NA,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7 + Claude Sonnet 3.7
@@ -4284,18 +4284,18 @@ Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Uncertain,normalized_
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Mild,normalized_cumulative,5,240.6,8.264,3.696,7.244,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Moderate,normalized_cumulative,5,110.8,5.762,2.577,5.051,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Severe,normalized_cumulative,5,14.6,2.408,1.077,2.111,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,normalized_cumulative,2,617,15.556,11,21.56,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,normalized_cumulative,2,201,14.142,10,19.6,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,normalized_cumulative,2,77.5,12.021,8.5,16.66,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Severe,normalized_cumulative,2,10,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Uncertain,normalized_cumulative,1,663,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Mild,normalized_cumulative,1,193,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Moderate,normalized_cumulative,1,75,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Severe,normalized_cumulative,1,12,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Uncertain,normalized_cumulative,1,728,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Mild,normalized_cumulative,1,219,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Moderate,normalized_cumulative,1,75,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Severe,normalized_cumulative,1,8,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,normalized_cumulative,3,621.667,13.65,7.881,15.447,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,normalized_cumulative,3,205.667,12.858,7.424,14.55,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,normalized_cumulative,3,82.333,11.93,6.888,13.5,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Severe,normalized_cumulative,3,12,3.464,2,3.92,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Uncertain,normalized_cumulative,3,656,10.44,6.028,11.814,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Mild,normalized_cumulative,3,190.667,4.933,2.848,5.582,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Moderate,normalized_cumulative,3,75.667,2.082,1.202,2.356,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Severe,normalized_cumulative,3,10.333,1.528,0.882,1.729,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Uncertain,normalized_cumulative,4,737.75,8.5,4.25,8.33,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Mild,normalized_cumulative,4,223.5,3.416,1.708,3.347,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Moderate,normalized_cumulative,4,81.75,5.377,2.689,5.27,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Severe,normalized_cumulative,4,8.75,1.5,0.75,1.47,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,normalized_cumulative,3,516,7.937,4.583,8.982,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,normalized_cumulative,3,188,2.646,1.528,2.994,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,normalized_cumulative,3,79.667,5.033,2.906,5.696,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
@@ -4804,10 +4804,10 @@ Commercial Model,Solo Model,Advisor,Uncertain,normalized_cumulative,30,622.1,13.
 Commercial Model,Solo Model,Advisor,Mild,normalized_cumulative,30,187.133,8.488,1.55,3.037,NA,NA,NO,AllCases,Unanimous,AllHarm,Commercial Model
 Commercial Model,Solo Model,Advisor,Moderate,normalized_cumulative,30,82.267,5.907,1.078,2.114,NA,NA,NO,AllCases,Unanimous,AllHarm,Commercial Model
 Commercial Model,Solo Model,Advisor,Severe,normalized_cumulative,30,13.3,2.535,0.463,0.907,NA,NA,NO,AllCases,Unanimous,AllHarm,Commercial Model
-Consensus,Solo Model,Advisor,Uncertain,normalized_cumulative,10,526,5.437,1.719,3.37,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Mild,normalized_cumulative,10,184.2,4.158,1.315,2.577,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Moderate,normalized_cumulative,10,79.8,3.19,1.009,1.977,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Severe,normalized_cumulative,10,16.4,1.174,0.371,0.728,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Uncertain,normalized_cumulative,10,526.7,9.661,3.055,5.988,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Mild,normalized_cumulative,10,182.7,4.668,1.476,2.893,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Moderate,normalized_cumulative,10,78.9,3.604,1.14,2.234,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Severe,normalized_cumulative,10,16.4,1.075,0.34,0.666,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
 DeepSeek R1,Solo Model,Advisor,Uncertain,normalized_cumulative,12,665.917,19.346,5.585,10.946,NA,NA,NO,AllCases,Unanimous,AllHarm,DeepSeek R1
 DeepSeek R1,Solo Model,Advisor,Mild,normalized_cumulative,12,207.25,8.292,2.394,4.691,NA,NA,NO,AllCases,Unanimous,AllHarm,DeepSeek R1
 DeepSeek R1,Solo Model,Advisor,Moderate,normalized_cumulative,12,92.5,6.186,1.786,3.5,NA,NA,NO,AllCases,Unanimous,AllHarm,DeepSeek R1
@@ -4884,10 +4884,10 @@ No Intervention,Solo Model,Control,Uncertain,normalized_cumulative,1,97,NA,NA,NA
 No Intervention,Solo Model,Control,Mild,normalized_cumulative,1,83,NA,NA,NA,312.44,65.477,NO,AllCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
 No Intervention,Solo Model,Control,Moderate,normalized_cumulative,1,62,NA,NA,NA,312.44,65.477,NO,AllCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
 No Intervention,Solo Model,Control,Severe,normalized_cumulative,1,29,NA,NA,NA,312.44,65.477,NO,AllCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
-Random Intervention,Solo Model,Control,Uncertain,normalized_cumulative,10,808.5,10.08,3.188,6.248,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Mild,normalized_cumulative,10,454.4,8.959,2.833,5.553,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Moderate,normalized_cumulative,10,251.1,9.527,3.013,5.905,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Severe,normalized_cumulative,10,58.3,6.945,2.196,4.305,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Uncertain,normalized_cumulative,10,807,6.11,1.932,3.787,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Mild,normalized_cumulative,10,451.3,13.039,4.123,8.082,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Moderate,normalized_cumulative,10,249.7,7.631,2.413,4.73,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Severe,normalized_cumulative,10,60.5,6.133,1.939,3.801,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,None,pct,3,0,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7 + Claude Sonnet 3.7
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Uncertain,pct,3,0.217,0.025,0.015,0.028,NA,NA,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7 + Claude Sonnet 3.7
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Mild,pct,3,0.34,0.026,0.015,0.03,NA,NA,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7 + Claude Sonnet 3.7
@@ -5198,21 +5198,21 @@ Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Uncertain,pct,5,0.176
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Mild,pct,5,0.336,0.018,0.008,0.016,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Moderate,pct,5,0.378,0.016,0.007,0.014,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Severe,pct,5,0.104,0.009,0.004,0.008,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,None,pct,2,0.02,0.014,0.01,0.02,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,pct,2,0.225,0.035,0.025,0.049,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,pct,2,0.295,0.049,0.035,0.069,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,pct,2,0.365,0.021,0.015,0.029,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Severe,pct,2,0.095,0.007,0.005,0.01,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,None,pct,1,0.01,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Uncertain,pct,1,0.24,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Mild,pct,1,0.3,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Moderate,pct,1,0.35,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Severe,pct,1,0.1,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,None,pct,1,0.01,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Uncertain,pct,1,0.19,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Mild,pct,1,0.3,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Moderate,pct,1,0.44,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Severe,pct,1,0.06,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,None,pct,3,0.017,0.012,0.007,0.013,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,pct,3,0.207,0.04,0.023,0.046,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,pct,3,0.297,0.035,0.02,0.04,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,pct,3,0.38,0.03,0.017,0.034,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Severe,pct,3,0.1,0.01,0.006,0.011,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,None,pct,3,0.007,0.006,0.003,0.007,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Uncertain,pct,3,0.243,0.006,0.003,0.007,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Mild,pct,3,0.313,0.032,0.019,0.036,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Moderate,pct,3,0.35,0.03,0.017,0.034,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Severe,pct,3,0.087,0.012,0.007,0.013,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,None,pct,4,0.005,0.006,0.003,0.006,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Uncertain,pct,4,0.152,0.029,0.014,0.028,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Mild,pct,4,0.338,0.03,0.015,0.029,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Moderate,pct,4,0.435,0.01,0.005,0.01,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Severe,pct,4,0.07,0.014,0.007,0.014,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,None,pct,3,0.033,0.021,0.012,0.024,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,pct,3,0.19,0.026,0.015,0.03,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,pct,3,0.33,0.01,0.006,0.011,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
@@ -5848,11 +5848,11 @@ Commercial Model,Solo Model,Advisor,Uncertain,pct,30,0.224,0.024,0.004,0.009,NA,
 Commercial Model,Solo Model,Advisor,Mild,pct,30,0.325,0.023,0.004,0.008,NA,NA,NO,AllCases,Unanimous,AllHarm,Commercial Model
 Commercial Model,Solo Model,Advisor,Moderate,pct,30,0.342,0.025,0.005,0.009,NA,NA,NO,AllCases,Unanimous,AllHarm,Commercial Model
 Commercial Model,Solo Model,Advisor,Severe,pct,30,0.099,0.016,0.003,0.006,NA,NA,NO,AllCases,Unanimous,AllHarm,Commercial Model
-Consensus,Solo Model,Advisor,None,pct,10,0.025,0.011,0.003,0.007,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Uncertain,pct,10,0.217,0.021,0.007,0.013,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Mild,pct,10,0.333,0.022,0.007,0.014,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Moderate,pct,10,0.316,0.026,0.008,0.016,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Severe,pct,10,0.109,0.007,0.002,0.005,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,None,pct,10,0.026,0.01,0.003,0.006,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Uncertain,pct,10,0.212,0.019,0.006,0.012,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Mild,pct,10,0.345,0.031,0.01,0.019,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Moderate,pct,10,0.308,0.03,0.01,0.019,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Severe,pct,10,0.109,0.006,0.002,0.004,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
 DeepSeek R1,Solo Model,Advisor,None,pct,12,0.007,0.007,0.002,0.004,NA,NA,NO,AllCases,Unanimous,AllHarm,DeepSeek R1
 DeepSeek R1,Solo Model,Advisor,Uncertain,pct,12,0.214,0.028,0.008,0.016,NA,NA,NO,AllCases,Unanimous,AllHarm,DeepSeek R1
 DeepSeek R1,Solo Model,Advisor,Mild,pct,12,0.283,0.031,0.009,0.018,NA,NA,NO,AllCases,Unanimous,AllHarm,DeepSeek R1
@@ -5948,11 +5948,11 @@ No Intervention,Solo Model,Control,Uncertain,pct,1,0.14,NA,NA,NA,312.44,65.477,N
 No Intervention,Solo Model,Control,Mild,pct,1,0.21,NA,NA,NA,312.44,65.477,NO,AllCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
 No Intervention,Solo Model,Control,Moderate,pct,1,0.33,NA,NA,NA,312.44,65.477,NO,AllCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
 No Intervention,Solo Model,Control,Severe,pct,1,0.29,NA,NA,NA,312.44,65.477,NO,AllCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
-Random Intervention,Solo Model,Control,None,pct,10,0,0,0,0,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Uncertain,pct,10,0.007,0.008,0.003,0.005,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Mild,pct,10,0.127,0.035,0.011,0.022,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Moderate,pct,10,0.486,0.043,0.014,0.026,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Severe,pct,10,0.38,0.04,0.013,0.025,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,None,pct,10,0,0,0,0,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Uncertain,pct,10,0.011,0.007,0.002,0.005,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Mild,pct,10,0.123,0.027,0.009,0.017,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Moderate,pct,10,0.478,0.062,0.02,0.039,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Severe,pct,10,0.388,0.042,0.013,0.026,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,None,pct_cumulative,3,1,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7 + Claude Sonnet 3.7
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Uncertain,pct_cumulative,3,1,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7 + Claude Sonnet 3.7
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Mild,pct_cumulative,3,0.783,0.025,0.015,0.028,NA,NA,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7 + Claude Sonnet 3.7
@@ -6263,21 +6263,21 @@ Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Uncertain,pct_cumulat
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Mild,pct_cumulative,5,0.818,0.011,0.005,0.01,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Moderate,pct_cumulative,5,0.482,0.022,0.01,0.019,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Severe,pct_cumulative,5,0.104,0.009,0.004,0.008,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,None,pct_cumulative,2,1,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,pct_cumulative,2,0.98,0.014,0.01,0.02,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,pct_cumulative,2,0.755,0.021,0.015,0.029,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,pct_cumulative,2,0.46,0.028,0.02,0.039,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Severe,pct_cumulative,2,0.095,0.007,0.005,0.01,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,None,pct_cumulative,1,1,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Uncertain,pct_cumulative,1,0.99,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Mild,pct_cumulative,1,0.75,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Moderate,pct_cumulative,1,0.45,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Severe,pct_cumulative,1,0.1,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,None,pct_cumulative,1,1,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Uncertain,pct_cumulative,1,0.99,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Mild,pct_cumulative,1,0.8,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Moderate,pct_cumulative,1,0.5,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Severe,pct_cumulative,1,0.06,NA,NA,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,None,pct_cumulative,3,1,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,pct_cumulative,3,0.983,0.012,0.007,0.013,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,pct_cumulative,3,0.777,0.04,0.023,0.046,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,pct_cumulative,3,0.48,0.04,0.023,0.045,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Severe,pct_cumulative,3,0.1,0.01,0.006,0.011,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,None,pct_cumulative,3,1,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Uncertain,pct_cumulative,3,0.993,0.006,0.003,0.007,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Mild,pct_cumulative,3,0.75,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Moderate,pct_cumulative,3,0.437,0.032,0.019,0.036,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Severe,pct_cumulative,3,0.087,0.012,0.007,0.013,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,None,pct_cumulative,4,1,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Uncertain,pct_cumulative,4,0.995,0.006,0.003,0.006,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Mild,pct_cumulative,4,0.843,0.033,0.017,0.032,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Moderate,pct_cumulative,4,0.505,0.006,0.003,0.006,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Severe,pct_cumulative,4,0.07,0.014,0.007,0.014,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,None,pct_cumulative,3,1,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,pct_cumulative,3,0.967,0.021,0.012,0.024,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,pct_cumulative,3,0.777,0.006,0.003,0.007,NA,NA,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
@@ -6914,10 +6914,10 @@ Commercial Model,Solo Model,Advisor,Mild,pct_cumulative,30,0.766,0.024,0.004,0.0
 Commercial Model,Solo Model,Advisor,Moderate,pct_cumulative,30,0.441,0.028,0.005,0.01,NA,NA,NO,AllCases,Unanimous,AllHarm,Commercial Model
 Commercial Model,Solo Model,Advisor,Severe,pct_cumulative,30,0.099,0.016,0.003,0.006,NA,NA,NO,AllCases,Unanimous,AllHarm,Commercial Model
 Consensus,Solo Model,Advisor,None,pct_cumulative,10,1,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Uncertain,pct_cumulative,10,0.975,0.011,0.003,0.007,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Mild,pct_cumulative,10,0.758,0.015,0.005,0.01,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Moderate,pct_cumulative,10,0.425,0.028,0.009,0.017,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Severe,pct_cumulative,10,0.109,0.007,0.002,0.005,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Uncertain,pct_cumulative,10,0.974,0.01,0.003,0.006,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Mild,pct_cumulative,10,0.762,0.018,0.006,0.011,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Moderate,pct_cumulative,10,0.417,0.031,0.01,0.019,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Severe,pct_cumulative,10,0.109,0.006,0.002,0.004,NA,NA,NO,AllCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
 DeepSeek R1,Solo Model,Advisor,None,pct_cumulative,12,1,0,0,0,NA,NA,NO,AllCases,Unanimous,AllHarm,DeepSeek R1
 DeepSeek R1,Solo Model,Advisor,Uncertain,pct_cumulative,12,0.993,0.007,0.002,0.004,NA,NA,NO,AllCases,Unanimous,AllHarm,DeepSeek R1
 DeepSeek R1,Solo Model,Advisor,Mild,pct_cumulative,12,0.779,0.028,0.008,0.016,NA,NA,NO,AllCases,Unanimous,AllHarm,DeepSeek R1
@@ -7013,11 +7013,11 @@ No Intervention,Solo Model,Control,Uncertain,pct_cumulative,1,0.97,NA,NA,NA,312.
 No Intervention,Solo Model,Control,Mild,pct_cumulative,1,0.83,NA,NA,NA,312.44,65.477,NO,AllCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
 No Intervention,Solo Model,Control,Moderate,pct_cumulative,1,0.62,NA,NA,NA,312.44,65.477,NO,AllCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
 No Intervention,Solo Model,Control,Severe,pct_cumulative,1,0.29,NA,NA,NA,312.44,65.477,NO,AllCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
-Random Intervention,Solo Model,Control,None,pct_cumulative,10,1,0,0,0,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Uncertain,pct_cumulative,10,1,0,0,0,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Mild,pct_cumulative,10,0.993,0.008,0.003,0.005,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Moderate,pct_cumulative,10,0.866,0.035,0.011,0.022,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Severe,pct_cumulative,10,0.38,0.04,0.013,0.025,1341.487,122.678,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,None,pct_cumulative,10,1,0,0,0,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Uncertain,pct_cumulative,10,1,0,0,0,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Mild,pct_cumulative,10,0.989,0.007,0.002,0.005,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Moderate,pct_cumulative,10,0.866,0.025,0.008,0.015,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Severe,pct_cumulative,10,0.388,0.042,0.013,0.026,1336.132,126.989,NO,AllCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,NA,Accuracy,3,0.784,0.013,0.008,0.015,NA,NA,NO,HumanCases,Unanimous,AllHarm,Claude Sonnet 3.7 + Claude Sonnet 3.7
 Claude Sonnet 3.7 + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Accuracy,3,0.734,0.009,0.005,0.01,NA,NA,NO,HumanCases,Unanimous,AllHarm,Claude Sonnet 3.7 + DeepSeek R1
 Claude Sonnet 3.7 + GPT-4.1,2-Agent Team,Advisor + Guardian,NA,Accuracy,3,0.832,0.031,0.018,0.035,NA,NA,NO,HumanCases,Unanimous,AllHarm,Claude Sonnet 3.7 + GPT-4.1
@@ -7080,9 +7080,9 @@ Gemini 2.0 Flash + Gemini 2.5 Pro,2-Agent Team,Advisor + Guardian,NA,Accuracy,3,
 Gemini 2.0 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Accuracy,5,0.869,0.008,0.003,0.007,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + Llama 4 Maverick
 Gemini 2.0 Flash + Llama 4 Scout,2-Agent Team,Advisor + Guardian,NA,Accuracy,3,0.869,0.011,0.006,0.012,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + Llama 4 Scout
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,NA,Accuracy,5,0.813,0.012,0.005,0.01,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Accuracy,2,0.732,0.063,0.045,0.088,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,NA,Accuracy,1,0.807,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Accuracy,1,0.823,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Accuracy,3,0.742,0.048,0.028,0.054,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,NA,Accuracy,3,0.79,0.016,0.009,0.018,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Accuracy,4,0.786,0.036,0.018,0.036,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
 Gemini 2.5 Pro + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,NA,Accuracy,2,0.822,0.013,0.01,0.019,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + Claude Sonnet 3.7
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Accuracy,3,0.771,0.02,0.012,0.023,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
 Gemini 2.5 Pro + GPT-4.1,2-Agent Team,Advisor + Guardian,NA,Accuracy,5,0.856,0.025,0.011,0.022,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + GPT-4.1
@@ -7212,7 +7212,7 @@ Claude Haiku 4.5,Solo Model,Advisor,NA,Accuracy,1,0.745,NA,NA,NA,NA,NA,NO,HumanC
 Claude Sonnet 3.7,Solo Model,Advisor,NA,Accuracy,10,0.767,0.011,0.004,0.007,NA,NA,NO,HumanCases,Unanimous,AllHarm,Claude Sonnet 3.7
 Claude Sonnet 4.5,Solo Model,Advisor,NA,Accuracy,1,0.703,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Claude Sonnet 4.5
 Commercial Model,Solo Model,Advisor,NA,Accuracy,30,0.801,0.019,0.003,0.007,NA,NA,NO,HumanCases,Unanimous,AllHarm,Commercial Model
-Consensus,Solo Model,Advisor,NA,Accuracy,10,0.729,0.012,0.004,0.007,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,NA,Accuracy,10,0.735,0.012,0.004,0.007,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
 DeepSeek R1,Solo Model,Advisor,NA,Accuracy,12,0.774,0.015,0.004,0.008,NA,NA,NO,HumanCases,Unanimous,AllHarm,DeepSeek R1
 GPT-4.1,Solo Model,Advisor,NA,Accuracy,10,0.752,0.009,0.003,0.006,NA,NA,NO,HumanCases,Unanimous,AllHarm,GPT-4.1
 GPT-4.1 mini,Solo Model,Advisor,NA,Accuracy,10,0.68,0.016,0.005,0.01,NA,NA,NO,HumanCases,Unanimous,AllHarm,GPT-4.1 mini
@@ -7294,9 +7294,9 @@ Gemini 2.0 Flash + Gemini 2.5 Pro,2-Agent Team,Advisor + Guardian,NA,Emergency R
 Gemini 2.0 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Emergency Rate,5,0,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + Llama 4 Maverick
 Gemini 2.0 Flash + Llama 4 Scout,2-Agent Team,Advisor + Guardian,NA,Emergency Rate,3,0,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + Llama 4 Scout
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,NA,Emergency Rate,5,0.1,0.224,0.1,0.196,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Emergency Rate,2,0.25,0.354,0.25,0.49,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,NA,Emergency Rate,1,0.5,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Emergency Rate,1,0.5,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Emergency Rate,3,0.333,0.289,0.167,0.327,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,NA,Emergency Rate,3,0.5,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Emergency Rate,4,0.5,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
 Gemini 2.5 Pro + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,NA,Emergency Rate,2,0.75,0.354,0.25,0.49,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + Claude Sonnet 3.7
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Emergency Rate,3,0.667,0.577,0.333,0.653,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
 Gemini 2.5 Pro + GPT-4.1,2-Agent Team,Advisor + Guardian,NA,Emergency Rate,5,1,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + GPT-4.1
@@ -7508,9 +7508,9 @@ Gemini 2.0 Flash + Gemini 2.5 Pro,2-Agent Team,Advisor + Guardian,NA,Referral Ra
 Gemini 2.0 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Referral Rate,5,0.821,0.029,0.013,0.025,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + Llama 4 Maverick
 Gemini 2.0 Flash + Llama 4 Scout,2-Agent Team,Advisor + Guardian,NA,Referral Rate,3,0.807,0.03,0.018,0.034,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + Llama 4 Scout
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,NA,Referral Rate,5,0.747,0.058,0.026,0.051,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Referral Rate,2,0.868,0.037,0.026,0.052,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,NA,Referral Rate,1,0.842,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Referral Rate,1,0.842,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Referral Rate,3,0.895,0.053,0.03,0.06,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,NA,Referral Rate,3,0.86,0.03,0.018,0.034,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Referral Rate,4,0.868,0.068,0.034,0.067,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
 Gemini 2.5 Pro + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,NA,Referral Rate,2,0.974,0.037,0.026,0.052,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + Claude Sonnet 3.7
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Referral Rate,3,0.86,0.11,0.063,0.124,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
 Gemini 2.5 Pro + GPT-4.1,2-Agent Team,Advisor + Guardian,NA,Referral Rate,5,0.895,0.091,0.041,0.08,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + GPT-4.1
@@ -7640,7 +7640,7 @@ Claude Haiku 4.5,Solo Model,Advisor,NA,Referral Rate,1,0.842,NA,NA,NA,NA,NA,NO,H
 Claude Sonnet 3.7,Solo Model,Advisor,NA,Referral Rate,10,0.726,0.048,0.015,0.03,NA,NA,NO,HumanCases,Unanimous,AllHarm,Claude Sonnet 3.7
 Claude Sonnet 4.5,Solo Model,Advisor,NA,Referral Rate,1,0.737,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Claude Sonnet 4.5
 Commercial Model,Solo Model,Advisor,NA,Referral Rate,30,0.842,0.046,0.008,0.016,NA,NA,NO,HumanCases,Unanimous,AllHarm,Commercial Model
-Consensus,Solo Model,Advisor,NA,Referral Rate,10,0.8,0.042,0.013,0.026,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,NA,Referral Rate,10,0.8,0.048,0.015,0.03,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
 DeepSeek R1,Solo Model,Advisor,NA,Referral Rate,12,0.754,0.047,0.013,0.026,NA,NA,NO,HumanCases,Unanimous,AllHarm,DeepSeek R1
 GPT-4.1,Solo Model,Advisor,NA,Referral Rate,10,0.753,0.036,0.011,0.022,NA,NA,NO,HumanCases,Unanimous,AllHarm,GPT-4.1
 GPT-4.1 mini,Solo Model,Advisor,NA,Referral Rate,10,0.621,0.054,0.017,0.034,NA,NA,NO,HumanCases,Unanimous,AllHarm,GPT-4.1 mini
@@ -7722,9 +7722,9 @@ Gemini 2.0 Flash + Gemini 2.5 Pro,2-Agent Team,Advisor + Guardian,NA,Restraint,3
 Gemini 2.0 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Restraint,5,0.59,0.019,0.008,0.017,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + Llama 4 Maverick
 Gemini 2.0 Flash + Llama 4 Scout,2-Agent Team,Advisor + Guardian,NA,Restraint,3,0.571,0.012,0.007,0.013,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + Llama 4 Scout
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,NA,Restraint,5,0.658,0.012,0.005,0.01,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Restraint,2,0.761,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,NA,Restraint,1,0.729,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Restraint,1,0.704,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Restraint,3,0.754,0.012,0.007,0.014,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,NA,Restraint,3,0.732,0.01,0.006,0.011,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Restraint,4,0.694,0.009,0.004,0.008,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
 Gemini 2.5 Pro + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,NA,Restraint,2,0.74,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + Claude Sonnet 3.7
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Restraint,3,0.79,0.015,0.009,0.017,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
 Gemini 2.5 Pro + GPT-4.1,2-Agent Team,Advisor + Guardian,NA,Restraint,5,0.522,0.062,0.028,0.055,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + GPT-4.1
@@ -7854,7 +7854,7 @@ Claude Haiku 4.5,Solo Model,Advisor,NA,Restraint,1,0.685,NA,NA,NA,NA,NA,NO,Human
 Claude Sonnet 3.7,Solo Model,Advisor,NA,Restraint,10,0.758,0.011,0.003,0.007,NA,NA,NO,HumanCases,Unanimous,AllHarm,Claude Sonnet 3.7
 Claude Sonnet 4.5,Solo Model,Advisor,NA,Restraint,1,0.813,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Claude Sonnet 4.5
 Commercial Model,Solo Model,Advisor,NA,Restraint,30,0.75,0.011,0.002,0.004,NA,NA,NO,HumanCases,Unanimous,AllHarm,Commercial Model
-Consensus,Solo Model,Advisor,NA,Restraint,10,0.801,0.008,0.003,0.005,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,NA,Restraint,10,0.801,0.011,0.003,0.007,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
 DeepSeek R1,Solo Model,Advisor,NA,Restraint,12,0.719,0.017,0.005,0.01,NA,NA,NO,HumanCases,Unanimous,AllHarm,DeepSeek R1
 GPT-4.1,Solo Model,Advisor,NA,Restraint,10,0.676,0.014,0.005,0.009,NA,NA,NO,HumanCases,Unanimous,AllHarm,GPT-4.1
 GPT-4.1 mini,Solo Model,Advisor,NA,Restraint,10,0.702,0.008,0.003,0.005,NA,NA,NO,HumanCases,Unanimous,AllHarm,GPT-4.1 mini
@@ -7936,9 +7936,9 @@ Gemini 2.0 Flash + Gemini 2.5 Pro,2-Agent Team,Advisor + Guardian,NA,Safety,3,0.
 Gemini 2.0 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Safety,5,0.658,0.025,0.011,0.022,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + Llama 4 Maverick
 Gemini 2.0 Flash + Llama 4 Scout,2-Agent Team,Advisor + Guardian,NA,Safety,3,0.656,0.021,0.012,0.024,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + Llama 4 Scout
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,NA,Safety,5,0.688,0.035,0.016,0.031,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Safety,2,0.719,0.089,0.063,0.123,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,NA,Safety,1,0.778,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Safety,1,0.797,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Safety,3,0.699,0.071,0.041,0.081,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,NA,Safety,3,0.755,0.04,0.023,0.045,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,NA,Safety,4,0.719,0.052,0.026,0.051,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
 Gemini 2.5 Pro + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,NA,Safety,2,0.84,0.032,0.023,0.045,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + Claude Sonnet 3.7
 Gemini 2.5 Pro + DeepSeek R1,2-Agent Team,Advisor + Guardian,NA,Safety,3,0.764,0.066,0.038,0.075,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + DeepSeek R1
 Gemini 2.5 Pro + GPT-4.1,2-Agent Team,Advisor + Guardian,NA,Safety,5,0.317,0.11,0.049,0.096,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + GPT-4.1
@@ -8068,7 +8068,7 @@ Claude Haiku 4.5,Solo Model,Advisor,NA,Safety,1,0.663,NA,NA,NA,NA,NA,NO,HumanCas
 Claude Sonnet 3.7,Solo Model,Advisor,NA,Safety,10,0.675,0.028,0.009,0.017,NA,NA,NO,HumanCases,Unanimous,AllHarm,Claude Sonnet 3.7
 Claude Sonnet 4.5,Solo Model,Advisor,NA,Safety,1,0.659,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Claude Sonnet 4.5
 Commercial Model,Solo Model,Advisor,NA,Safety,30,0.685,0.048,0.009,0.017,NA,NA,NO,HumanCases,Unanimous,AllHarm,Commercial Model
-Consensus,Solo Model,Advisor,NA,Safety,10,0.65,0.011,0.003,0.007,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,NA,Safety,10,0.657,0.017,0.006,0.011,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
 DeepSeek R1,Solo Model,Advisor,NA,Safety,12,0.687,0.034,0.01,0.019,NA,NA,NO,HumanCases,Unanimous,AllHarm,DeepSeek R1
 GPT-4.1,Solo Model,Advisor,NA,Safety,10,0.676,0.025,0.008,0.016,NA,NA,NO,HumanCases,Unanimous,AllHarm,GPT-4.1
 GPT-4.1 mini,Solo Model,Advisor,NA,Safety,10,0.534,0.033,0.011,0.021,NA,NA,NO,HumanCases,Unanimous,AllHarm,GPT-4.1 mini
@@ -8398,21 +8398,21 @@ Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Uncertain,nnh,5,5,0,0
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Mild,nnh,5,3.133,0.183,0.082,0.16,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Moderate,nnh,5,2.836,0.149,0.067,0.131,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Severe,nnh,5,8.2,1.754,0.784,1.537,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,None,nnh,2,100,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,nnh,2,4.018,0.379,0.268,0.525,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,nnh,2,5.25,3.182,2.25,4.41,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,nnh,2,2.5,0.707,0.5,0.98,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Severe,nnh,2,11.25,5.303,3.75,7.35,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,None,nnh,1,100,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Uncertain,nnh,1,4.286,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Mild,nnh,1,2.727,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Moderate,nnh,1,3,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Severe,nnh,1,15,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,None,nnh,1,100,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Uncertain,nnh,1,4.286,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Mild,nnh,1,3.75,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Moderate,nnh,1,2.143,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Severe,nnh,1,30,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,None,nnh,3,100,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,nnh,3,4.345,0.627,0.362,0.71,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,nnh,3,4.929,2.318,1.338,2.623,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,nnh,3,2.436,0.512,0.296,0.58,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Severe,nnh,3,10,4.33,2.5,4.9,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,None,nnh,3,76.667,40.415,23.333,45.733,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Uncertain,nnh,3,4.762,0.412,0.238,0.467,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Mild,nnh,3,3.247,0.9,0.519,1.018,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Moderate,nnh,3,2.714,0.495,0.286,0.56,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Severe,nnh,3,13.333,2.887,1.667,3.267,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,None,nnh,4,82.5,35,17.5,34.3,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Uncertain,nnh,4,7.321,2.342,1.171,2.295,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Mild,nnh,4,3.78,0.39,0.195,0.383,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Moderate,nnh,4,2.04,0.129,0.065,0.126,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Severe,nnh,4,15,10,5,9.8,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
 Gemini 2.5 Pro + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,None,nnh,2,100,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + Claude Sonnet 3.7
 Gemini 2.5 Pro + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Uncertain,nnh,2,3,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + Claude Sonnet 3.7
 Gemini 2.5 Pro + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Mild,nnh,2,4.286,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + Claude Sonnet 3.7
@@ -9058,10 +9058,10 @@ Commercial Model,Solo Model,Advisor,Uncertain,nnh,30,4.543,0.865,0.158,0.309,NA,
 Commercial Model,Solo Model,Advisor,Mild,nnh,30,3.243,0.513,0.094,0.184,NA,NA,NO,HumanCases,Unanimous,AllHarm,Commercial Model
 Commercial Model,Solo Model,Advisor,Moderate,nnh,30,3.148,0.476,0.087,0.17,NA,NA,NO,HumanCases,Unanimous,AllHarm,Commercial Model
 Commercial Model,Solo Model,Advisor,Severe,nnh,30,8.1,2.383,0.435,0.853,NA,NA,NO,HumanCases,Unanimous,AllHarm,Commercial Model
-Consensus,Solo Model,Advisor,None,nnh,10,65,36.893,11.667,22.867,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Uncertain,nnh,10,3.702,0.435,0.138,0.27,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Mild,nnh,10,4.261,0.736,0.233,0.456,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Moderate,nnh,10,3.298,0.366,0.116,0.227,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,None,nnh,10,70.5,38.33,12.121,23.757,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Uncertain,nnh,10,3.637,0.308,0.097,0.191,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Mild,nnh,10,3.857,0.532,0.168,0.329,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Moderate,nnh,10,3.615,0.428,0.135,0.265,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
 Consensus,Solo Model,Advisor,Severe,nnh,10,6.15,0.474,0.15,0.294,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
 DeepSeek R1,Solo Model,Advisor,None,nnh,12,82.5,31.659,9.139,17.913,NA,NA,NO,HumanCases,Unanimous,AllHarm,DeepSeek R1
 DeepSeek R1,Solo Model,Advisor,Uncertain,nnh,12,4.415,0.59,0.17,0.334,NA,NA,NO,HumanCases,Unanimous,AllHarm,DeepSeek R1
@@ -9158,11 +9158,11 @@ No Intervention,Solo Model,Control,Uncertain,nnh,1,5,NA,NA,NA,381.26,55.705,NO,H
 No Intervention,Solo Model,Control,Mild,nnh,1,10,NA,NA,NA,381.26,55.705,NO,HumanCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
 No Intervention,Solo Model,Control,Moderate,nnh,1,2.143,NA,NA,NA,381.26,55.705,NO,HumanCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
 No Intervention,Solo Model,Control,Severe,nnh,1,4.286,NA,NA,NA,381.26,55.705,NO,HumanCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
-Random Intervention,Solo Model,Control,None,nnh,10,100,0,0,0,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Uncertain,nnh,10,100,0,0,0,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Mild,nnh,10,9.05,8.025,2.538,4.974,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Moderate,nnh,10,2.212,0.491,0.155,0.304,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Severe,nnh,10,2.892,0.865,0.273,0.536,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,None,nnh,10,100,0,0,0,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Uncertain,nnh,10,72,36.148,11.431,22.405,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Mild,nnh,10,8.575,3.919,1.239,2.429,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Moderate,nnh,10,2.256,0.359,0.114,0.222,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Severe,nnh,10,2.621,0.526,0.166,0.326,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
 Human,Solo Model,Human,None,nnh,1,100,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:#6A0DAD'><b>Human Physicians</b></span>
 Human,Solo Model,Human,Uncertain,nnh,1,30,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:#6A0DAD'><b>Human Physicians</b></span>
 Human,Solo Model,Human,Mild,nnh,1,3.333,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:#6A0DAD'><b>Human Physicians</b></span>
@@ -9478,21 +9478,21 @@ Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Uncertain,nnh_cumulat
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Mild,nnh_cumulative,5,1.25,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Moderate,nnh_cumulative,5,2.086,0.078,0.035,0.069,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Severe,nnh_cumulative,5,8.2,1.754,0.784,1.537,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,None,nnh_cumulative,2,1,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,nnh_cumulative,2,1,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,nnh_cumulative,2,1.334,0.042,0.03,0.058,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,nnh_cumulative,2,2.039,0.651,0.461,0.903,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Severe,nnh_cumulative,2,11.25,5.303,3.75,7.35,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,None,nnh_cumulative,1,1,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Uncertain,nnh_cumulative,1,1,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Mild,nnh_cumulative,1,1.304,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Moderate,nnh_cumulative,1,2.5,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Severe,nnh_cumulative,1,15,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,None,nnh_cumulative,1,1,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Uncertain,nnh_cumulative,1,1,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Mild,nnh_cumulative,1,1.304,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Moderate,nnh_cumulative,1,2,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Severe,nnh_cumulative,1,30,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,None,nnh_cumulative,3,1,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,nnh_cumulative,3,1,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,nnh_cumulative,3,1.306,0.057,0.033,0.064,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,nnh_cumulative,3,1.948,0.487,0.281,0.551,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Severe,nnh_cumulative,3,10,4.33,2.5,4.9,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,None,nnh_cumulative,3,1,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Uncertain,nnh_cumulative,3,1.011,0.02,0.011,0.023,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Mild,nnh_cumulative,3,1.286,0.031,0.018,0.036,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Moderate,nnh_cumulative,3,2.255,0.425,0.245,0.48,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Severe,nnh_cumulative,3,13.333,2.887,1.667,3.267,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,None,nnh_cumulative,4,1,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Uncertain,nnh_cumulative,4,1.009,0.017,0.009,0.017,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Mild,nnh_cumulative,4,1.191,0.075,0.038,0.074,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Moderate,nnh_cumulative,4,1.753,0.182,0.091,0.178,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Severe,nnh_cumulative,4,15,10,5,9.8,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
 Gemini 2.5 Pro + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,None,nnh_cumulative,2,1,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + Claude Sonnet 3.7
 Gemini 2.5 Pro + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Uncertain,nnh_cumulative,2,1,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + Claude Sonnet 3.7
 Gemini 2.5 Pro + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Mild,nnh_cumulative,2,1.5,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + Claude Sonnet 3.7
@@ -10139,9 +10139,9 @@ Commercial Model,Solo Model,Advisor,Mild,nnh_cumulative,30,1.297,0.058,0.011,0.0
 Commercial Model,Solo Model,Advisor,Moderate,nnh_cumulative,30,2.21,0.225,0.041,0.081,NA,NA,NO,HumanCases,Unanimous,AllHarm,Commercial Model
 Commercial Model,Solo Model,Advisor,Severe,nnh_cumulative,30,8.1,2.383,0.435,0.853,NA,NA,NO,HumanCases,Unanimous,AllHarm,Commercial Model
 Consensus,Solo Model,Advisor,None,nnh_cumulative,10,1,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Uncertain,nnh_cumulative,10,1.017,0.018,0.006,0.011,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Mild,nnh_cumulative,10,1.41,0.045,0.014,0.028,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Moderate,nnh_cumulative,10,2.135,0.134,0.042,0.083,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Uncertain,nnh_cumulative,10,1.017,0.025,0.008,0.015,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Mild,nnh_cumulative,10,1.417,0.053,0.017,0.033,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Moderate,nnh_cumulative,10,2.266,0.161,0.051,0.1,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
 Consensus,Solo Model,Advisor,Severe,nnh_cumulative,10,6.15,0.474,0.15,0.294,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
 DeepSeek R1,Solo Model,Advisor,None,nnh_cumulative,12,1,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,DeepSeek R1
 DeepSeek R1,Solo Model,Advisor,Uncertain,nnh_cumulative,12,1.009,0.016,0.005,0.009,NA,NA,NO,HumanCases,Unanimous,AllHarm,DeepSeek R1
@@ -10238,11 +10238,11 @@ No Intervention,Solo Model,Control,Uncertain,nnh_cumulative,1,1,NA,NA,NA,381.26,
 No Intervention,Solo Model,Control,Mild,nnh_cumulative,1,1.25,NA,NA,NA,381.26,55.705,NO,HumanCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
 No Intervention,Solo Model,Control,Moderate,nnh_cumulative,1,1.429,NA,NA,NA,381.26,55.705,NO,HumanCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
 No Intervention,Solo Model,Control,Severe,nnh_cumulative,1,4.286,NA,NA,NA,381.26,55.705,NO,HumanCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
-Random Intervention,Solo Model,Control,None,nnh_cumulative,10,1,0,0,0,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Uncertain,nnh_cumulative,10,1,0,0,0,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Mild,nnh_cumulative,10,1,0,0,0,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Moderate,nnh_cumulative,10,1.199,0.108,0.034,0.067,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Severe,nnh_cumulative,10,2.892,0.865,0.273,0.536,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,None,nnh_cumulative,10,1,0,0,0,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Uncertain,nnh_cumulative,10,1,0,0,0,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Mild,nnh_cumulative,10,1.014,0.018,0.006,0.011,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Moderate,nnh_cumulative,10,1.185,0.078,0.025,0.049,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Severe,nnh_cumulative,10,2.621,0.526,0.166,0.326,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
 Human,Solo Model,Human,None,nnh_cumulative,1,1,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:#6A0DAD'><b>Human Physicians</b></span>
 Human,Solo Model,Human,Uncertain,nnh_cumulative,1,1,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:#6A0DAD'><b>Human Physicians</b></span>
 Human,Solo Model,Human,Mild,nnh_cumulative,1,1.034,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:#6A0DAD'><b>Human Physicians</b></span>
@@ -10496,18 +10496,18 @@ Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Uncertain,normalized,
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Mild,normalized,5,140,5.27,2.357,4.62,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Moderate,normalized,5,86.667,4.714,2.108,4.132,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Severe,normalized,5,20.667,7.226,3.232,6.334,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,normalized,2,380,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,normalized,2,135,21.213,15,29.4,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,normalized,2,83.333,32.998,23.333,45.733,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Severe,normalized,2,10,4.714,3.333,6.533,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Uncertain,normalized,1,430,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Mild,normalized,1,140,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Moderate,normalized,1,60,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Severe,normalized,1,6.667,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Uncertain,normalized,1,470,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Mild,normalized,1,140,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Moderate,normalized,1,76.667,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Severe,normalized,1,3.333,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,normalized,3,391.111,19.245,11.111,21.778,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,normalized,3,131.111,16.443,9.493,18.607,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,normalized,3,83.333,23.333,13.472,26.404,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Severe,normalized,3,12.222,5.092,2.94,5.762,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Uncertain,normalized,3,424.444,15.753,9.095,17.826,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Mild,normalized,3,141.111,1.925,1.111,2.178,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Moderate,normalized,3,68.889,8.389,4.843,9.493,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Severe,normalized,3,7.778,1.925,1.111,2.178,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Uncertain,normalized,4,485,13.744,6.872,13.469,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Mild,normalized,4,148.333,12.62,6.31,12.367,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Moderate,normalized,4,90,14.142,7.071,13.859,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Severe,normalized,4,8.333,3.333,1.667,3.267,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
 Gemini 2.5 Pro + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Uncertain,normalized,2,411.667,2.357,1.667,3.267,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + Claude Sonnet 3.7
 Gemini 2.5 Pro + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Mild,normalized,2,106.667,9.428,6.667,13.067,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + Claude Sonnet 3.7
 Gemini 2.5 Pro + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Moderate,normalized,2,56.667,14.142,10,19.6,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + Claude Sonnet 3.7
@@ -11024,10 +11024,10 @@ Commercial Model,Solo Model,Advisor,Uncertain,normalized,30,396.667,16.701,3.049
 Commercial Model,Solo Model,Advisor,Mild,normalized,30,123.667,10.444,1.907,3.737,NA,NA,NO,HumanCases,Unanimous,AllHarm,Commercial Model
 Commercial Model,Solo Model,Advisor,Moderate,normalized,30,64.333,8.403,1.534,3.007,NA,NA,NO,HumanCases,Unanimous,AllHarm,Commercial Model
 Commercial Model,Solo Model,Advisor,Severe,normalized,30,18.444,5.855,1.069,2.095,NA,NA,NO,HumanCases,Unanimous,AllHarm,Commercial Model
-Consensus,Solo Model,Advisor,Uncertain,normalized,10,315.333,13.352,4.222,8.276,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Mild,normalized,10,118.667,5.921,1.872,3.67,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Moderate,normalized,10,73.667,4.289,1.356,2.658,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Severe,normalized,10,26.667,1.571,0.497,0.974,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Uncertain,normalized,10,316.333,17.53,5.543,10.865,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Mild,normalized,10,116.667,5.666,1.792,3.512,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Moderate,normalized,10,69.667,6.564,2.076,4.068,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Severe,normalized,10,27,1.892,0.598,1.173,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
 DeepSeek R1,Solo Model,Advisor,Uncertain,normalized,12,445.556,27.278,7.875,15.434,NA,NA,NO,HumanCases,Unanimous,AllHarm,DeepSeek R1
 DeepSeek R1,Solo Model,Advisor,Mild,normalized,12,104.722,12.428,3.588,7.032,NA,NA,NO,HumanCases,Unanimous,AllHarm,DeepSeek R1
 DeepSeek R1,Solo Model,Advisor,Moderate,normalized,12,91.667,11.055,3.191,6.255,NA,NA,NO,HumanCases,Unanimous,AllHarm,DeepSeek R1
@@ -11104,10 +11104,10 @@ No Intervention,Solo Model,Control,Uncertain,normalized,1,20,NA,NA,NA,381.26,55.
 No Intervention,Solo Model,Control,Mild,normalized,1,10,NA,NA,NA,381.26,55.705,NO,HumanCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
 No Intervention,Solo Model,Control,Moderate,normalized,1,46.667,NA,NA,NA,381.26,55.705,NO,HumanCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
 No Intervention,Solo Model,Control,Severe,normalized,1,23.333,NA,NA,NA,381.26,55.705,NO,HumanCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
-Random Intervention,Solo Model,Control,Uncertain,normalized,10,346.667,24.037,7.601,14.898,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Mild,normalized,10,173.333,21.66,6.849,13.425,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Moderate,normalized,10,194,20.294,6.418,12.578,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Severe,normalized,10,54,13.949,4.411,8.646,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Uncertain,normalized,10,342,21.614,6.835,13.396,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Mild,normalized,10,178.333,18.409,5.821,11.41,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Moderate,normalized,10,173.667,18.288,5.783,11.335,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Severe,normalized,10,60,8.165,2.582,5.061,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
 Human,Solo Model,Human,Uncertain,normalized,1,390,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:#6A0DAD'><b>Human Physicians</b></span>
 Human,Solo Model,Human,Mild,normalized,1,170,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:#6A0DAD'><b>Human Physicians</b></span>
 Human,Solo Model,Human,Moderate,normalized,1,126.667,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:#6A0DAD'><b>Human Physicians</b></span>
@@ -11360,18 +11360,18 @@ Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Uncertain,normalized_
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Mild,normalized_cumulative,5,247.333,9.25,4.137,8.108,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Moderate,normalized_cumulative,5,107.333,7.226,3.232,6.334,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Severe,normalized_cumulative,5,20.667,7.226,3.232,6.334,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,normalized_cumulative,2,608.333,58.926,41.667,81.667,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,normalized_cumulative,2,228.333,58.926,41.667,81.667,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,normalized_cumulative,2,93.333,37.712,26.667,52.267,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Severe,normalized_cumulative,2,10,4.714,3.333,6.533,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Uncertain,normalized_cumulative,1,636.667,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Mild,normalized_cumulative,1,206.667,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Moderate,normalized_cumulative,1,66.667,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Severe,normalized_cumulative,1,6.667,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Uncertain,normalized_cumulative,1,690,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Mild,normalized_cumulative,1,220,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Moderate,normalized_cumulative,1,80,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Severe,normalized_cumulative,1,3.333,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,normalized_cumulative,3,617.778,44.763,25.844,50.654,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,normalized_cumulative,3,226.667,41.767,24.114,47.263,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,normalized_cumulative,3,95.556,26.943,15.556,30.489,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Severe,normalized_cumulative,3,12.222,5.092,2.94,5.762,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Uncertain,normalized_cumulative,3,642.222,22.194,12.814,25.115,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Mild,normalized_cumulative,3,217.778,11.706,6.759,13.247,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Moderate,normalized_cumulative,3,76.667,10,5.774,11.316,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Severe,normalized_cumulative,3,7.778,1.925,1.111,2.178,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Uncertain,normalized_cumulative,4,731.667,28.868,14.434,28.29,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Mild,normalized_cumulative,4,246.667,23.254,11.627,22.789,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Moderate,normalized_cumulative,4,98.333,16.443,8.221,16.114,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Severe,normalized_cumulative,4,8.333,3.333,1.667,3.267,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
 Gemini 2.5 Pro + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Uncertain,normalized_cumulative,2,576.667,9.428,6.667,13.067,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + Claude Sonnet 3.7
 Gemini 2.5 Pro + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Mild,normalized_cumulative,2,165,7.071,5,9.8,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + Claude Sonnet 3.7
 Gemini 2.5 Pro + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Moderate,normalized_cumulative,2,58.333,16.499,11.667,22.867,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + Claude Sonnet 3.7
@@ -11888,10 +11888,10 @@ Commercial Model,Solo Model,Advisor,Uncertain,normalized_cumulative,30,603.111,1
 Commercial Model,Solo Model,Advisor,Mild,normalized_cumulative,30,206.444,17.219,3.144,6.162,NA,NA,NO,HumanCases,Unanimous,AllHarm,Commercial Model
 Commercial Model,Solo Model,Advisor,Moderate,normalized_cumulative,30,82.778,11.973,2.186,4.285,NA,NA,NO,HumanCases,Unanimous,AllHarm,Commercial Model
 Commercial Model,Solo Model,Advisor,Severe,normalized_cumulative,30,18.444,5.855,1.069,2.095,NA,NA,NO,HumanCases,Unanimous,AllHarm,Commercial Model
-Consensus,Solo Model,Advisor,Uncertain,normalized_cumulative,10,534.333,10.068,3.184,6.24,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Mild,normalized_cumulative,10,219,9.303,2.942,5.766,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Moderate,normalized_cumulative,10,100.333,5.08,1.606,3.148,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Severe,normalized_cumulative,10,26.667,1.571,0.497,0.974,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Uncertain,normalized_cumulative,10,529.667,20.991,6.638,13.01,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Mild,normalized_cumulative,10,213.333,9.686,3.063,6.004,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Moderate,normalized_cumulative,10,96.667,7.536,2.383,4.671,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Severe,normalized_cumulative,10,27,1.892,0.598,1.173,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
 DeepSeek R1,Solo Model,Advisor,Uncertain,normalized_cumulative,12,664.444,28.009,8.086,15.848,NA,NA,NO,HumanCases,Unanimous,AllHarm,DeepSeek R1
 DeepSeek R1,Solo Model,Advisor,Mild,normalized_cumulative,12,218.889,13.053,3.768,7.385,NA,NA,NO,HumanCases,Unanimous,AllHarm,DeepSeek R1
 DeepSeek R1,Solo Model,Advisor,Moderate,normalized_cumulative,12,114.167,10.262,2.962,5.806,NA,NA,NO,HumanCases,Unanimous,AllHarm,DeepSeek R1
@@ -11968,10 +11968,10 @@ No Intervention,Solo Model,Control,Uncertain,normalized_cumulative,1,100,NA,NA,N
 No Intervention,Solo Model,Control,Mild,normalized_cumulative,1,80,NA,NA,NA,381.26,55.705,NO,HumanCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
 No Intervention,Solo Model,Control,Moderate,normalized_cumulative,1,70,NA,NA,NA,381.26,55.705,NO,HumanCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
 No Intervention,Solo Model,Control,Severe,normalized_cumulative,1,23.333,NA,NA,NA,381.26,55.705,NO,HumanCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
-Random Intervention,Solo Model,Control,Uncertain,normalized_cumulative,10,768,19.386,6.13,12.015,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Mild,normalized_cumulative,10,421.333,24.505,7.749,15.188,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Moderate,normalized_cumulative,10,248,22.782,7.204,14.12,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Severe,normalized_cumulative,10,54,13.949,4.411,8.646,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Uncertain,normalized_cumulative,10,754,16.315,5.159,10.112,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Mild,normalized_cumulative,10,412,22.399,7.083,13.883,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Moderate,normalized_cumulative,10,233.667,15.905,5.03,9.858,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Severe,normalized_cumulative,10,60,8.165,2.582,5.061,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
 Human,Solo Model,Human,Uncertain,normalized_cumulative,1,720,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:#6A0DAD'><b>Human Physicians</b></span>
 Human,Solo Model,Human,Mild,normalized_cumulative,1,330,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:#6A0DAD'><b>Human Physicians</b></span>
 Human,Solo Model,Human,Moderate,normalized_cumulative,1,160,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:#6A0DAD'><b>Human Physicians</b></span>
@@ -12286,21 +12286,21 @@ Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Uncertain,pct,5,0.2,0
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Mild,pct,5,0.32,0.018,0.008,0.016,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Moderate,pct,5,0.353,0.018,0.008,0.016,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Severe,pct,5,0.127,0.028,0.012,0.024,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,None,pct,2,0,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,pct,2,0.25,0.024,0.017,0.033,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,pct,2,0.233,0.141,0.1,0.196,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,pct,2,0.417,0.118,0.083,0.163,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Severe,pct,2,0.1,0.047,0.033,0.065,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,None,pct,1,0,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Uncertain,pct,1,0.233,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Mild,pct,1,0.367,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Moderate,pct,1,0.333,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Severe,pct,1,0.067,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,None,pct,1,0,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Uncertain,pct,1,0.233,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Mild,pct,1,0.267,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Moderate,pct,1,0.467,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Severe,pct,1,0.033,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,None,pct,3,0,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,pct,3,0.233,0.033,0.019,0.038,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,pct,3,0.233,0.1,0.058,0.113,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,pct,3,0.422,0.084,0.048,0.095,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Severe,pct,3,0.111,0.038,0.022,0.044,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,None,pct,3,0.011,0.019,0.011,0.022,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Uncertain,pct,3,0.211,0.019,0.011,0.022,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Mild,pct,3,0.322,0.077,0.044,0.087,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Moderate,pct,3,0.378,0.077,0.044,0.087,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Severe,pct,3,0.078,0.019,0.011,0.022,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,None,pct,4,0.008,0.017,0.008,0.016,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Uncertain,pct,4,0.15,0.058,0.029,0.057,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Mild,pct,4,0.267,0.027,0.014,0.027,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Moderate,pct,4,0.492,0.032,0.016,0.031,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Severe,pct,4,0.083,0.033,0.017,0.033,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
 Gemini 2.5 Pro + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,None,pct,2,0,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + Claude Sonnet 3.7
 Gemini 2.5 Pro + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Uncertain,pct,2,0.333,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + Claude Sonnet 3.7
 Gemini 2.5 Pro + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Mild,pct,2,0.233,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + Claude Sonnet 3.7
@@ -12946,10 +12946,10 @@ Commercial Model,Solo Model,Advisor,Uncertain,pct,30,0.227,0.037,0.007,0.013,NA,
 Commercial Model,Solo Model,Advisor,Mild,pct,30,0.316,0.048,0.009,0.017,NA,NA,NO,HumanCases,Unanimous,AllHarm,Commercial Model
 Commercial Model,Solo Model,Advisor,Moderate,pct,30,0.324,0.047,0.009,0.017,NA,NA,NO,HumanCases,Unanimous,AllHarm,Commercial Model
 Commercial Model,Solo Model,Advisor,Severe,pct,30,0.132,0.033,0.006,0.012,NA,NA,NO,HumanCases,Unanimous,AllHarm,Commercial Model
-Consensus,Solo Model,Advisor,None,pct,10,0.017,0.018,0.006,0.011,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Uncertain,pct,10,0.273,0.031,0.01,0.019,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Mild,pct,10,0.24,0.034,0.011,0.021,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Moderate,pct,10,0.307,0.034,0.011,0.021,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,None,pct,10,0.017,0.024,0.007,0.015,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Uncertain,pct,10,0.277,0.022,0.007,0.014,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Mild,pct,10,0.263,0.033,0.01,0.021,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Moderate,pct,10,0.28,0.032,0.01,0.02,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
 Consensus,Solo Model,Advisor,Severe,pct,10,0.163,0.011,0.003,0.007,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
 DeepSeek R1,Solo Model,Advisor,None,pct,12,0.008,0.015,0.004,0.009,NA,NA,NO,HumanCases,Unanimous,AllHarm,DeepSeek R1
 DeepSeek R1,Solo Model,Advisor,Uncertain,pct,12,0.231,0.033,0.01,0.019,NA,NA,NO,HumanCases,Unanimous,AllHarm,DeepSeek R1
@@ -13046,11 +13046,11 @@ No Intervention,Solo Model,Control,Uncertain,pct,1,0.2,NA,NA,NA,381.26,55.705,NO
 No Intervention,Solo Model,Control,Mild,pct,1,0.1,NA,NA,NA,381.26,55.705,NO,HumanCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
 No Intervention,Solo Model,Control,Moderate,pct,1,0.467,NA,NA,NA,381.26,55.705,NO,HumanCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
 No Intervention,Solo Model,Control,Severe,pct,1,0.233,NA,NA,NA,381.26,55.705,NO,HumanCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
-Random Intervention,Solo Model,Control,None,pct,10,0,0,0,0,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Uncertain,pct,10,0,0,0,0,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Mild,pct,10,0.16,0.075,0.024,0.047,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Moderate,pct,10,0.47,0.092,0.029,0.057,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Severe,pct,10,0.37,0.091,0.029,0.056,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,None,pct,10,0,0,0,0,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Uncertain,pct,10,0.013,0.017,0.005,0.011,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Mild,pct,10,0.14,0.062,0.02,0.039,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Moderate,pct,10,0.453,0.071,0.022,0.044,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Severe,pct,10,0.393,0.066,0.021,0.041,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
 Human,Solo Model,Human,None,pct,1,0,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:#6A0DAD'><b>Human Physicians</b></span>
 Human,Solo Model,Human,Uncertain,pct,1,0.033,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:#6A0DAD'><b>Human Physicians</b></span>
 Human,Solo Model,Human,Mild,pct,1,0.3,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:#6A0DAD'><b>Human Physicians</b></span>
@@ -13366,21 +13366,21 @@ Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Uncertain,pct_cumulat
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Mild,pct_cumulative,5,0.8,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Moderate,pct_cumulative,5,0.48,0.018,0.008,0.016,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
 Gemini 2.0 Flash + o3 mini,2-Agent Team,Advisor + Guardian,Severe,pct_cumulative,5,0.127,0.028,0.012,0.024,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.0 Flash + o3 mini
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,None,pct_cumulative,2,1,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,pct_cumulative,2,1,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,pct_cumulative,2,0.75,0.024,0.017,0.033,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,pct_cumulative,2,0.517,0.165,0.117,0.229,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Severe,pct_cumulative,2,0.1,0.047,0.033,0.065,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,None,pct_cumulative,1,1,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Uncertain,pct_cumulative,1,1,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Mild,pct_cumulative,1,0.767,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Moderate,pct_cumulative,1,0.4,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Severe,pct_cumulative,1,0.067,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,None,pct_cumulative,1,1,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Uncertain,pct_cumulative,1,1,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Mild,pct_cumulative,1,0.767,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Moderate,pct_cumulative,1,0.5,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
-Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Severe,pct_cumulative,1,0.033,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,None,pct_cumulative,3,1,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Uncertain,pct_cumulative,3,1,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Mild,pct_cumulative,3,0.767,0.033,0.019,0.038,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Moderate,pct_cumulative,3,0.533,0.12,0.069,0.136,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + DeepSeek R1,2-Agent Team,Advisor + Guardian,Severe,pct_cumulative,3,0.111,0.038,0.022,0.044,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + DeepSeek R1
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,None,pct_cumulative,3,1,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Uncertain,pct_cumulative,3,0.989,0.019,0.011,0.022,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Mild,pct_cumulative,3,0.778,0.019,0.011,0.022,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Moderate,pct_cumulative,3,0.456,0.096,0.056,0.109,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + GPT-5 mini,2-Agent Team,Advisor + Guardian,Severe,pct_cumulative,3,0.078,0.019,0.011,0.022,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + GPT-5 mini
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,None,pct_cumulative,4,1,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Uncertain,pct_cumulative,4,0.992,0.017,0.008,0.016,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Mild,pct_cumulative,4,0.842,0.05,0.025,0.049,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Moderate,pct_cumulative,4,0.575,0.057,0.028,0.056,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
+Gemini 2.5 Flash + Llama 4 Maverick,2-Agent Team,Advisor + Guardian,Severe,pct_cumulative,4,0.083,0.033,0.017,0.033,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Flash + Llama 4 Maverick
 Gemini 2.5 Pro + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,None,pct_cumulative,2,1,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + Claude Sonnet 3.7
 Gemini 2.5 Pro + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Uncertain,pct_cumulative,2,1,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + Claude Sonnet 3.7
 Gemini 2.5 Pro + Claude Sonnet 3.7,2-Agent Team,Advisor + Guardian,Mild,pct_cumulative,2,0.667,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,Gemini 2.5 Pro + Claude Sonnet 3.7
@@ -14027,9 +14027,9 @@ Commercial Model,Solo Model,Advisor,Mild,pct_cumulative,30,0.772,0.035,0.006,0.0
 Commercial Model,Solo Model,Advisor,Moderate,pct_cumulative,30,0.457,0.043,0.008,0.015,NA,NA,NO,HumanCases,Unanimous,AllHarm,Commercial Model
 Commercial Model,Solo Model,Advisor,Severe,pct_cumulative,30,0.132,0.033,0.006,0.012,NA,NA,NO,HumanCases,Unanimous,AllHarm,Commercial Model
 Consensus,Solo Model,Advisor,None,pct_cumulative,10,1,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Uncertain,pct_cumulative,10,0.983,0.018,0.006,0.011,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Mild,pct_cumulative,10,0.71,0.022,0.007,0.014,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
-Consensus,Solo Model,Advisor,Moderate,pct_cumulative,10,0.47,0.029,0.009,0.018,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Uncertain,pct_cumulative,10,0.983,0.024,0.007,0.015,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Mild,pct_cumulative,10,0.707,0.026,0.008,0.016,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
+Consensus,Solo Model,Advisor,Moderate,pct_cumulative,10,0.443,0.032,0.01,0.02,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
 Consensus,Solo Model,Advisor,Severe,pct_cumulative,10,0.163,0.011,0.003,0.007,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:black'><b>LLM Consensus</b></span>
 DeepSeek R1,Solo Model,Advisor,None,pct_cumulative,12,1,0,0,0,NA,NA,NO,HumanCases,Unanimous,AllHarm,DeepSeek R1
 DeepSeek R1,Solo Model,Advisor,Uncertain,pct_cumulative,12,0.992,0.015,0.004,0.009,NA,NA,NO,HumanCases,Unanimous,AllHarm,DeepSeek R1
@@ -14126,11 +14126,11 @@ No Intervention,Solo Model,Control,Uncertain,pct_cumulative,1,1,NA,NA,NA,381.26,
 No Intervention,Solo Model,Control,Mild,pct_cumulative,1,0.8,NA,NA,NA,381.26,55.705,NO,HumanCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
 No Intervention,Solo Model,Control,Moderate,pct_cumulative,1,0.7,NA,NA,NA,381.26,55.705,NO,HumanCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
 No Intervention,Solo Model,Control,Severe,pct_cumulative,1,0.233,NA,NA,NA,381.26,55.705,NO,HumanCases,Unanimous,AllHarm,<span style='color:blue'><b>No Intervention</b></span>
-Random Intervention,Solo Model,Control,None,pct_cumulative,10,1,0,0,0,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Uncertain,pct_cumulative,10,1,0,0,0,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Mild,pct_cumulative,10,1,0,0,0,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Moderate,pct_cumulative,10,0.84,0.075,0.024,0.047,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
-Random Intervention,Solo Model,Control,Severe,pct_cumulative,10,0.37,0.091,0.029,0.056,1269.122,114.524,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,None,pct_cumulative,10,1,0,0,0,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Uncertain,pct_cumulative,10,1,0,0,0,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Mild,pct_cumulative,10,0.987,0.017,0.005,0.011,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Moderate,pct_cumulative,10,0.847,0.053,0.017,0.033,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
+Random Intervention,Solo Model,Control,Severe,pct_cumulative,10,0.393,0.066,0.021,0.041,1241.152,126.029,NO,HumanCases,Unanimous,AllHarm,<span style='color:red'><b>Random Intervention</b></span>
 Human,Solo Model,Human,None,pct_cumulative,1,1,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:#6A0DAD'><b>Human Physicians</b></span>
 Human,Solo Model,Human,Uncertain,pct_cumulative,1,1,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:#6A0DAD'><b>Human Physicians</b></span>
 Human,Solo Model,Human,Mild,pct_cumulative,1,0.967,NA,NA,NA,NA,NA,NO,HumanCases,Unanimous,AllHarm,<span style='color:#6A0DAD'><b>Human Physicians</b></span>

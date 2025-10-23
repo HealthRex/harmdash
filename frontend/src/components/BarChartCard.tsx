@@ -12,6 +12,24 @@ import {
 import clsx from "clsx";
 import { useCallback, useMemo, useState } from "react";
 
+const applyAlpha = (hex: string, alpha: number) => {
+  const normalized = hex.replace("#", "");
+  const clampAlpha = Math.min(Math.max(alpha, 0), 1);
+  if (normalized.length === 3) {
+    const r = parseInt(normalized[0] + normalized[0], 16);
+    const g = parseInt(normalized[1] + normalized[1], 16);
+    const b = parseInt(normalized[2] + normalized[2], 16);
+    return `rgba(${r}, ${g}, ${b}, ${clampAlpha})`;
+  }
+  if (normalized.length !== 6) {
+    return hex;
+  }
+  const r = parseInt(normalized.slice(0, 2), 16);
+  const g = parseInt(normalized.slice(2, 4), 16);
+  const b = parseInt(normalized.slice(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${clampAlpha})`;
+};
+
 type Props = {
   rows: DataRow[];
   metricId: string;
@@ -306,6 +324,43 @@ export function BarChartCard({
       : "CI: NA";
     const textColor = getTextColor(barColor);
 
+    const renderConfidenceVisual = () => {
+      if (!hasCi || range <= 0) {
+        return null;
+      }
+      const ciHalf = row.ci ?? 0;
+      const baseMean = row.mean ?? axisMin;
+      const ciMin = baseMean - ciHalf;
+      const ciMax = baseMean + ciHalf;
+      const clamp = (val: number) => Math.min(Math.max(val, axisMin), axisMax);
+      const percent = (val: number) =>
+        Math.max(
+          Math.min(((clamp(val) - axisMin) / range) * 100, 100),
+          0
+        );
+      const startPercent = percent(ciMin);
+      const endPercent = percent(ciMax);
+      const bandWidth = Math.max(endPercent - startPercent, 0);
+      if (bandWidth <= 0) {
+        return null;
+      }
+
+      return (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-y-[3px] rounded-[6px]"
+          style={{
+            left: `${startPercent}%`,
+            width: `${bandWidth}%`,
+            background: `linear-gradient(to right, ${applyAlpha(
+              barColor,
+              0.12
+            )}, ${applyAlpha(barColor, 0.3)})`
+          }}
+        />
+      );
+    };
+
     return (
       <button
         key={row.combinationId}
@@ -329,6 +384,7 @@ export function BarChartCard({
       >
         <div className="relative h-8 w-full overflow-hidden rounded-[6px]">
           <div className="absolute inset-0 rounded-[6px] bg-slate-200" />
+          {renderConfidenceVisual()}
           <div
             className={clsx(
               "absolute inset-0 rounded-[6px] transition-all duration-500 ease-out",

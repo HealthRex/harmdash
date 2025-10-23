@@ -17,7 +17,7 @@ export function MetricsSummary({ dataset }: MetricsSummaryProps) {
     >
       <div className="max-w-3xl space-y-2">
         <h2 className="text-xl font-semibold text-slate-900">
-          First, do NOHARM: Interactive AI Benchmark & Leaderboard
+          First, Do NOHARM: Interactive AI Benchmark Leaderboard
         </h2>
         <p className="text-sm text-slate-600">
           Analyze how leading AI models perform in the NOHARM medical AI benchmark. Select a metric to visualize rankings, compare trade-offs, and inspect the full metric profile.
