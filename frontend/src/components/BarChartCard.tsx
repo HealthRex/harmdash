@@ -552,10 +552,10 @@ export function BarChartCard({
       aria-pressed={showConfidence}
       onClick={toggleConfidence}
       className={clsx(
-        "rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide transition-colors duration-300 ease-out",
+        "rounded-full border px-2.5 py-1 text-[0.7rem] font-medium uppercase tracking-wide transition-colors duration-300 ease-out",
         showConfidence
-          ? "border-orange-300 bg-orange-50 text-orange-700 shadow-sm"
-          : "border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:text-slate-700"
+          ? "border-slate-300 bg-slate-100 text-slate-700"
+          : "border-slate-200 bg-white text-slate-400 hover:border-slate-300 hover:text-slate-600"
       )}
       title={
         showConfidence
@@ -858,9 +858,11 @@ export function BarChartCard({
           </div>
           <div className="flex min-w-[12rem] flex-col items-end gap-2">
             <select
+              id="bar-chart-metric-select"
               value={metricId}
               onChange={(event) => onMetricChange(event.target.value)}
-              className="w-full rounded-lg border border-brand-200 bg-brand-50 px-3 py-2 text-sm font-medium text-brand-900 shadow transition focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-300 hover:border-brand-300"
+              aria-label="Select metric"
+              className="w-full rounded-xl border-2 border-brand-300 bg-brand-50 px-4 py-2.5 text-base font-semibold text-brand-900 shadow transition focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-400 hover:border-brand-400"
             >
               {metrics.map((option) => (
                 <option key={option.id} value={option.id}>
