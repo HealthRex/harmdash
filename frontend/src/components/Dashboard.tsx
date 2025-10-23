@@ -31,16 +31,24 @@ const ALWAYS_ON_CONDITION_NAMES = new Set(["human", "control"]);
 
 const TEAM_DISPLAY_PRIORITIES: Record<string, number> = {
   "solo model": 0,
+  "solo models": 0,
   "solo": 0,
   "1 agent": 0,
   "1-agent team": 0,
+  "1 agent team": 0,
+  "1-agent teams": 0,
+  "1 agent teams": 0,
   "solo team": 0,
   "2-agent team": 1,
+  "2-agent teams": 1,
   "2 agents": 1,
   "2 agent team": 1,
+  "2 agent teams": 1,
   "3-agent team": 2,
+  "3-agent teams": 2,
   "3 agents": 2,
-  "3 agent team": 2
+  "3 agent team": 2,
+  "3 agent teams": 2
 };
 const DEFAULT_PROFILE_METRIC_ID = "nnh_cumulative";
 

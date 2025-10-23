@@ -3,8 +3,10 @@ export const TEAM_COLORS: Record<string, string> = {
   "Solo Models": "#7C3AED",
   "1 Agent": "#7C3AED",
   "2-Agent Team": "#0284C7",
+  "2-Agent Teams": "#0284C7",
   "2 Agents": "#0284C7",
   "3-Agent Team": "#16A34A",
+  "3-Agent Teams": "#16A34A",
   "3 Agents": "#16A34A",
   Human: "#F59E0B",
   default: "#0F172A"

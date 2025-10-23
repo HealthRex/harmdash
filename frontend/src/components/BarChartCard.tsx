@@ -78,6 +78,7 @@ export function BarChartCard({
   const [viewMode, setViewMode] = useState<"bestWorst" | "all">(
     "bestWorst"
   );
+  const [showConfidence, setShowConfidence] = useState(true);
   const isAllView = viewMode === "all";
   const metricMeta = metadataMap.get(metricId);
   const metricDescription = metricMeta?.description ?? "";
@@ -541,6 +542,31 @@ export function BarChartCard({
     setViewMode((current) => (current === "all" ? "bestWorst" : "all"));
   };
 
+  const toggleConfidence = () => {
+    setShowConfidence((current) => !current);
+  };
+
+  const renderConfidenceToggle = () => (
+    <button
+      type="button"
+      aria-pressed={showConfidence}
+      onClick={toggleConfidence}
+      className={clsx(
+        "rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide transition-colors duration-300 ease-out",
+        showConfidence
+          ? "border-orange-300 bg-orange-50 text-orange-700 shadow-sm"
+          : "border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:text-slate-700"
+      )}
+      title={
+        showConfidence
+          ? "Hide confidence intervals"
+          : "Show confidence intervals"
+      }
+    >
+      Confidence
+    </button>
+  );
+
   const primaryBaseKey = useMemo(
     () => getCombinationBaseKeyFromId(highlightedCombinationId),
     [highlightedCombinationId]
@@ -588,7 +614,7 @@ export function BarChartCard({
     const textColor = getTextColor(barColor);
 
     const renderConfidenceVisual = () => {
-      if (!hasCi || range <= 0) {
+      if (!showConfidence || !hasCi || range <= 0) {
         return null;
       }
       const ciHalf = row.ci ?? 0;
@@ -730,17 +756,22 @@ export function BarChartCard({
   ) => {
     if (target.viewMode === "all") {
       return (
-        <div className="flex flex-col gap-2">
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-            All Models
-          </h3>
-          {renderRowGroup(
-            target.allRows,
-            "No models available for the selected filters.",
-            meta,
-            { axisMin: target.axisMin, axisMax: target.axisMax },
-            registerElement
-          )}
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center justify-between gap-3">
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+              All Models
+            </h3>
+            {renderConfidenceToggle()}
+          </div>
+          <div className="flex flex-col gap-2">
+            {renderRowGroup(
+              target.allRows,
+              "No models available for the selected filters.",
+              meta,
+              { axisMin: target.axisMin, axisMax: target.axisMax },
+              registerElement
+            )}
+          </div>
         </div>
       );
     }
@@ -748,9 +779,12 @@ export function BarChartCard({
     return (
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-            Best
-          </h3>
+          <div className="flex items-center justify-between gap-3">
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+              Best
+            </h3>
+            {renderConfidenceToggle()}
+          </div>
           {renderRowGroup(
             target.topRows,
             "No models available for the selected filters.",
@@ -822,7 +856,7 @@ export function BarChartCard({
               Compare model performance on a variety of metrics.
             </p>
           </div>
-          <div className="flex min-w-[12rem] flex-col items-end gap-1">
+          <div className="flex min-w-[12rem] flex-col items-end gap-2">
             <select
               value={metricId}
               onChange={(event) => onMetricChange(event.target.value)}

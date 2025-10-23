@@ -18,12 +18,21 @@ interface TeamConditionGroup {
 
 const TEAM_AGENT_COUNT_MAP: Record<string, number> = {
   "1 agent": 1,
+  "1-agent team": 1,
+  "1 agent team": 1,
   solo: 1,
   "solo model": 1,
+  "solo models": 1,
   "2 agents": 2,
   "2 agent team": 2,
+  "2 agent teams": 2,
+  "2-agent team": 2,
+  "2-agent teams": 2,
   "3 agents": 3,
-  "3 agent team": 3
+  "3 agent team": 3,
+  "3 agent teams": 3,
+  "3-agent team": 3,
+  "3-agent teams": 3
 };
 
 function TogglePill({
