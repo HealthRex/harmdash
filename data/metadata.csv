@@ -8,5 +8,5 @@ Order,Metric,Include,Radar,Better,Range,Min,Max,Display,Description
 7,normalized,TRUE,FALSE,Lower,NA,NA,NA,Harmful Recommendations,Total number of harmful recommendations per 100 patient cases
 NA,normalized_cumulative,FALSE,FALSE,Lower,Absolute,NA,NA,NA,NA
 NA,pct,FALSE,FALSE,Lower,NA,NA,NA,NA,NA
-8,pct_cumulative,TRUE,TRUE,Lower,Percent,0,1,Case Harm Rate,Percent of cases harmed
+8,pct_cumulative,TRUE,FALSE,Lower,Percent,0,1,Case Harm Rate,Percent of cases harmed
 NA,nnh,FALSE,FALSE,Higher,Absolute,0,30,NA,NA

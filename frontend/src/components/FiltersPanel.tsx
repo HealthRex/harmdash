@@ -16,6 +16,16 @@ interface TeamConditionGroup {
   conditions: string[];
 }
 
+const TEAM_AGENT_COUNT_MAP: Record<string, number> = {
+  "1 agent": 1,
+  solo: 1,
+  "solo model": 1,
+  "2 agents": 2,
+  "2 agent team": 2,
+  "3 agents": 3,
+  "3 agent team": 3
+};
+
 function TogglePill({
   label,
   active,
@@ -77,12 +87,25 @@ export function TeamFiltersBar({
   conditionColorMap
 }: TeamFiltersBarProps) {
   const inferAgentCount = (group: TeamConditionGroup) => {
-    const labelMatch = group.label.match(/^(\d+)/);
+    const normalizedLabel = group.label.trim().toLowerCase();
+    const normalizedTeam = group.team.trim().toLowerCase();
+
+    const directMatch = TEAM_AGENT_COUNT_MAP[normalizedTeam];
+    if (directMatch) {
+      return directMatch;
+    }
+
+    const labelMatch = group.label.match(/(\d+)/);
     if (labelMatch) {
       const parsed = Number.parseInt(labelMatch[1], 10);
       if (!Number.isNaN(parsed) && parsed > 0) {
         return parsed;
       }
+    }
+
+    const labelLookup = TEAM_AGENT_COUNT_MAP[normalizedLabel];
+    if (labelLookup) {
+      return labelLookup;
     }
 
     const fromConditions = group.conditions.reduce((max, condition) => {
