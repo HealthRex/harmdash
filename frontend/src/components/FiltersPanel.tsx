@@ -175,6 +175,13 @@ export function TeamFiltersBar({
             selectedTeamConditions[group.team] ?? group.conditions;
           const teamColor = TEAM_COLORS[group.team] ?? TEAM_COLORS.default;
           const agentCount = inferAgentCount(group);
+          const normalizedTeam = group.team.trim().toLowerCase();
+          const normalizedLabel = group.label.trim().toLowerCase();
+          const isSoloModelsGroup =
+            normalizedTeam === "solo model" ||
+            normalizedTeam === "solo models" ||
+            normalizedLabel === "solo model" ||
+            normalizedLabel === "solo models";
 
           return (
             <div
@@ -220,8 +227,15 @@ export function TeamFiltersBar({
                   )}
                 >
                   {group.conditions.map((condition) => {
-                    const isActive = selectedConditionsForTeam.includes(condition);
-                    const disabled = !isSelected || group.conditions.length <= 1;
+                    const normalizedCondition = condition.trim().toLowerCase();
+                    const syncsWithSoloModels =
+                      isSoloModelsGroup && normalizedCondition === "advisor";
+                    const isActive = syncsWithSoloModels
+                      ? isSelected
+                      : selectedConditionsForTeam.includes(condition);
+                    const disabled = syncsWithSoloModels
+                      ? false
+                      : !isSelected || group.conditions.length <= 1;
                     const color =
                       conditionColorMap.get(condition) ?? teamColor;
 
@@ -230,7 +244,11 @@ export function TeamFiltersBar({
                         key={condition}
                         type="button"
                         disabled={disabled}
-                        onClick={() => onToggleTeamCondition(group.team, condition)}
+                        onClick={() =>
+                          syncsWithSoloModels
+                            ? onToggleTeam(group.team)
+                            : onToggleTeamCondition(group.team, condition)
+                        }
                         className={clsx(
                           "flex items-center rounded-full border px-2.5 py-1 text-xs font-medium text-white transition",
                           isActive ? "shadow-sm" : "opacity-80 hover:opacity-100",

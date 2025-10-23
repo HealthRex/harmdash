@@ -8,7 +8,7 @@ import {
   formatMetricValue
 } from "@/utils/data";
 import clsx from "clsx";
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 type Props = {
   rows: DataRow[];
@@ -48,8 +48,11 @@ export function BarChartCard({
   metadataMap,
   conditionColorMap
 }: Props) {
+  const [viewMode, setViewMode] = useState<"bestWorst" | "all">(
+    "bestWorst"
+  );
+  const isAllView = viewMode === "all";
   const metricMeta = metadataMap.get(metricId);
-  const metricLabel = metricMeta?.displayLabel ?? metricId;
   const metricDescription = metricMeta?.description ?? "";
   const isPercentMetric = metricMeta?.range === "percent";
   const higherIsBetter = metricMeta?.betterDirection !== "lower";
@@ -57,7 +60,7 @@ export function BarChartCard({
     ? "Higher is better"
     : "Lower is better";
 
-  const { topRows, bottomRows, displayRows } = useMemo(() => {
+  const { topRows, bottomRows, displayRows, allRows } = useMemo(() => {
     const filtered = pickRowsForMetric(rows, metricId);
     const sortedForBest = sortRowsForMetric(filtered, higherIsBetter);
     const perGroup = Math.max(1, maxItems);
@@ -167,7 +170,8 @@ export function BarChartCard({
     return {
       topRows: topWithSelections,
       bottomRows: bottomWithSelections,
-      displayRows: combinedDisplay
+      displayRows: combinedDisplay,
+      allRows: sortedForBest
     };
   }, [
     rows,
@@ -178,10 +182,12 @@ export function BarChartCard({
     comparisonCombinationId
   ]);
 
+  const rowsForAxis = isAllView ? allRows : displayRows;
+
   const { axisMin, axisMax } = useMemo(() => {
     let minValue = Number.POSITIVE_INFINITY;
     let maxValue = Number.NEGATIVE_INFINITY;
-    displayRows.forEach((row) => {
+    rowsForAxis.forEach((row) => {
       if (row.mean !== null && row.mean !== undefined) {
         minValue = Math.min(minValue, row.mean);
         maxValue = Math.max(maxValue, row.mean);
@@ -220,7 +226,7 @@ export function BarChartCard({
       axisMin: resolvedMin,
       axisMax: adjustedMax
     };
-  }, [displayRows, metricMeta?.axisMin, metricMeta?.axisMax, isPercentMetric]);
+  }, [rowsForAxis, metricMeta?.axisMin, metricMeta?.axisMax, isPercentMetric]);
 
   const getDefaultBarColor = useCallback(
     (row: DataRow) => {
@@ -244,13 +250,139 @@ export function BarChartCard({
     onBarClick?.(row);
   };
 
+  const toggleViewMode = () => {
+    setViewMode((current) => (current === "all" ? "bestWorst" : "all"));
+  };
+
+  const renderRowButton = (row: DataRow) => {
+    const value = row.mean ?? 0;
+    const valueClamped = Math.min(Math.max(value, axisMin), axisMax);
+    const range = axisMax - axisMin || 1;
+    const widthPercentRaw =
+      range <= 0 ? 0 : ((valueClamped - axisMin) / range) * 100;
+    const widthPercent = Math.max(Math.min(widthPercentRaw, 100), 0);
+    const isPrimarySelected = highlightedCombinationId === row.combinationId;
+    const isComparisonSelected =
+      comparisonCombinationId === row.combinationId;
+    const isSelected = isPrimarySelected || isComparisonSelected;
+    const highlightColor = isPrimarySelected
+      ? PRIMARY_SELECTION_COLOR
+      : isComparisonSelected
+      ? COMPARISON_SELECTION_COLOR
+      : undefined;
+    const barColor = getDefaultBarColor(row);
+    const displayLabel = row.displayLabel || row.model;
+    const formattedValue = formatMetricValue(row.mean, {
+      metadata: metricMeta
+    });
+    const hasCi = row.ci !== null && row.ci !== undefined && row.ci !== 0;
+    const ciLabel = hasCi
+      ? `CI: ± ${formatMetricValue(row.ci, { metadata: metricMeta })}`
+      : "CI: NA";
+    const textColor = getTextColor(barColor);
+
+    return (
+      <button
+        key={row.combinationId}
+        type="button"
+        aria-pressed={isSelected}
+        onClick={() => handleRowClick(row)}
+        className={clsx(
+          "relative group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 rounded-2xl border border-transparent bg-white/0 px-2 py-1.5 text-left transition",
+          isSelected
+            ? "border-2 bg-gradient-to-r from-white via-slate-50 to-white shadow-sm"
+            : "hover:border-slate-200 hover:bg-slate-50/70"
+        )}
+        style={
+          highlightColor
+            ? {
+                borderColor: highlightColor,
+                boxShadow: `0 0 0 2px ${highlightColor}1a`
+              }
+            : undefined
+        }
+      >
+        <div className="relative h-8 w-full overflow-hidden rounded-[6px]">
+          <div className="absolute inset-0 rounded-[6px] bg-slate-200" />
+          <div
+            className={clsx(
+              "absolute inset-0 rounded-[6px] transition-all duration-500 ease-out",
+              isSelected
+                ? "opacity-100 shadow-inner shadow-slate-900/10"
+                : "opacity-95"
+            )}
+            style={{
+              width: `${widthPercent}%`,
+              backgroundColor: barColor
+            }}
+          />
+          {highlightColor ? (
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 rounded-[6px]"
+              style={{
+                boxShadow: `inset 0 0 0 2px ${highlightColor}40`
+              }}
+            />
+          ) : null}
+          <span
+            className="absolute left-4 top-1/2 -translate-y-1/2 truncate text-sm font-medium"
+            style={{ color: textColor }}
+            title={row.displayLabel || row.model}
+          >
+            {displayLabel}
+          </span>
+        </div>
+        <div className="flex flex-col items-end gap-0.5">
+          <span className="text-sm font-semibold text-slate-900">
+            {formattedValue}
+          </span>
+          <span className="text-xs text-slate-500">{ciLabel}</span>
+        </div>
+      </button>
+    );
+  };
+
+  const renderRowGroup = (rowsToRender: DataRow[], emptyMessage: string) => {
+    if (!rowsToRender.length) {
+      return (
+        <p className="rounded-lg border border-dashed border-slate-200 bg-slate-50 p-3 text-sm text-slate-500">
+          {emptyMessage}
+        </p>
+      );
+    }
+
+    return (
+      <div className="flex flex-col gap-1">
+        {rowsToRender.map(renderRowButton)}
+      </div>
+    );
+  };
+
   return (
     <section className="flex flex-col gap-4 rounded-2xl bg-white p-6 shadow-lg shadow-slate-200">
       <header className="flex flex-col gap-1">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <h2 className="text-lg font-semibold text-slate-900">
-              Performance: Best and Worst Models
+              Performance:{" "}
+              <button
+                type="button"
+                onClick={toggleViewMode}
+                aria-pressed={isAllView}
+                className={clsx(
+                  "rounded px-1 font-semibold text-brand-600 underline decoration-dashed underline-offset-4 transition hover:text-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500/40",
+                  isAllView ? "text-brand-700" : undefined
+                )}
+                title={
+                  isAllView
+                    ? "Show only the best and worst performers"
+                    : "Show all models"
+                }
+              >
+                {isAllView ? "All" : "Best and Worst"}
+              </button>{" "}
+              Models
             </h2>
             <p className="text-sm text-slate-500">
               Compare model performance on a variety of metrics.
@@ -277,214 +409,35 @@ export function BarChartCard({
           <p className="text-xs text-slate-500">{metricDescription}</p>
         ) : null}
       </header>
-      <div className="flex flex-col gap-4">
+      {isAllView ? (
         <div className="flex flex-col gap-2">
           <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-            Best
+            All Models
           </h3>
-          {topRows.length ? (
-            <div className="flex flex-col gap-1">
-              {topRows.map((row) => {
-                const value = row.mean ?? 0;
-                const valueClamped = Math.min(Math.max(value, axisMin), axisMax);
-                const range = axisMax - axisMin || 1;
-                const widthPercentRaw =
-                  range <= 0 ? 0 : ((valueClamped - axisMin) / range) * 100;
-                const widthPercent = Math.max(Math.min(widthPercentRaw, 100), 0);
-                const isPrimarySelected =
-                  highlightedCombinationId === row.combinationId;
-                const isComparisonSelected =
-                  comparisonCombinationId === row.combinationId;
-                const isSelected = isPrimarySelected || isComparisonSelected;
-                const highlightColor = isPrimarySelected
-                  ? PRIMARY_SELECTION_COLOR
-                  : isComparisonSelected
-                  ? COMPARISON_SELECTION_COLOR
-                  : undefined;
-                const barColor = getDefaultBarColor(row);
-                const displayLabel = row.displayLabel || row.model;
-                const formattedValue = formatMetricValue(row.mean, {
-                  metadata: metricMeta
-                });
-                const hasCi =
-                  row.ci !== null && row.ci !== undefined && row.ci !== 0;
-                const ciLabel = hasCi
-                  ? `CI: ± ${formatMetricValue(row.ci, { metadata: metricMeta })}`
-                  : "CI: NA";
-                const textColor = getTextColor(barColor);
-
-                return (
-                  <button
-                    key={row.combinationId}
-                    type="button"
-                    aria-pressed={isSelected}
-                    onClick={() => handleRowClick(row)}
-                    className={clsx(
-                      "relative group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 rounded-2xl border border-transparent bg-white/0 px-2 py-1.5 text-left transition",
-                      isSelected
-                        ? "border-2 bg-gradient-to-r from-white via-slate-50 to-white shadow-sm"
-                        : "hover:border-slate-200 hover:bg-slate-50/70"
-                    )}
-                    style={
-                      highlightColor
-                        ? {
-                            borderColor: highlightColor,
-                            boxShadow: `0 0 0 2px ${highlightColor}1a`
-                          }
-                        : undefined
-                    }
-                  >
-                    <div className="relative h-8 w-full overflow-hidden rounded-[6px]">
-                      <div className="absolute inset-0 rounded-[6px] bg-slate-200" />
-                      <div
-                        className={clsx(
-                          "absolute inset-0 rounded-[6px] transition-all duration-500 ease-out",
-                          isSelected
-                            ? "opacity-100 shadow-inner shadow-slate-900/10"
-                            : "opacity-95"
-                        )}
-                        style={{
-                          width: `${widthPercent}%`,
-                          backgroundColor: barColor
-                        }}
-                      />
-                      {highlightColor ? (
-                        <div
-                          aria-hidden
-                          className="pointer-events-none absolute inset-0 rounded-[6px]"
-                          style={{
-                            boxShadow: `inset 0 0 0 2px ${highlightColor}40`
-                          }}
-                        />
-                      ) : null}
-                      <span
-                        className="absolute left-4 top-1/2 -translate-y-1/2 truncate text-sm font-medium"
-                        style={{ color: textColor }}
-                        title={row.displayLabel || row.model}
-                      >
-                        {displayLabel}
-                      </span>
-                    </div>
-                    <div className="flex flex-col items-end gap-0.5">
-                      <span className="text-sm font-semibold text-slate-900">
-                        {formattedValue}
-                      </span>
-                      <span className="text-xs text-slate-500">{ciLabel}</span>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          ) : (
-            <p className="rounded-lg border border-dashed border-slate-200 bg-slate-50 p-3 text-sm text-slate-500">
-              No models available for the selected filters.
-            </p>
-          )}
+          {renderRowGroup(allRows, "No models available for the selected filters.")}
         </div>
-        <div className="flex flex-col gap-2">
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-            Worst
-          </h3>
-          {bottomRows.length ? (
-            <div className="flex flex-col gap-1">
-              {bottomRows.map((row) => {
-                const value = row.mean ?? 0;
-                const valueClamped = Math.min(Math.max(value, axisMin), axisMax);
-                const range = axisMax - axisMin || 1;
-                const widthPercentRaw =
-                  range <= 0 ? 0 : ((valueClamped - axisMin) / range) * 100;
-                const widthPercent = Math.max(Math.min(widthPercentRaw, 100), 0);
-                const isPrimarySelected =
-                  highlightedCombinationId === row.combinationId;
-                const isComparisonSelected =
-                  comparisonCombinationId === row.combinationId;
-                const isSelected = isPrimarySelected || isComparisonSelected;
-                const highlightColor = isPrimarySelected
-                  ? PRIMARY_SELECTION_COLOR
-                  : isComparisonSelected
-                  ? COMPARISON_SELECTION_COLOR
-                  : undefined;
-                const barColor = getDefaultBarColor(row);
-                const displayLabel = row.displayLabel || row.model;
-                const formattedValue = formatMetricValue(row.mean, {
-                  metadata: metricMeta
-                });
-                const hasCi =
-                  row.ci !== null && row.ci !== undefined && row.ci !== 0;
-                const ciLabel = hasCi
-                  ? `CI: ± ${formatMetricValue(row.ci, { metadata: metricMeta })}`
-                  : "CI: NA";
-                const textColor = getTextColor(barColor);
-
-                return (
-                  <button
-                    key={row.combinationId}
-                    type="button"
-                    aria-pressed={isSelected}
-                    onClick={() => handleRowClick(row)}
-                    className={clsx(
-                      "relative group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 rounded-2xl border border-transparent bg-white/0 px-2 py-1.5 text-left transition",
-                      isSelected
-                        ? "border-2 bg-gradient-to-r from-white via-slate-50 to-white shadow-sm"
-                        : "hover:border-slate-200 hover:bg-slate-50/70"
-                    )}
-                    style={
-                      highlightColor
-                        ? {
-                            borderColor: highlightColor,
-                            boxShadow: `0 0 0 2px ${highlightColor}1a`
-                          }
-                        : undefined
-                    }
-                  >
-                    <div className="relative h-8 w-full overflow-hidden rounded-[6px]">
-                      <div className="absolute inset-0 rounded-[6px] bg-slate-200" />
-                      <div
-                        className={clsx(
-                          "absolute inset-0 rounded-[6px] transition-all duration-500 ease-out",
-                          isSelected
-                            ? "opacity-100 shadow-inner shadow-slate-900/10"
-                            : "opacity-95"
-                        )}
-                        style={{
-                          width: `${widthPercent}%`,
-                          backgroundColor: barColor
-                        }}
-                      />
-                      {highlightColor ? (
-                        <div
-                          aria-hidden
-                          className="pointer-events-none absolute inset-0 rounded-[6px]"
-                          style={{
-                            boxShadow: `inset 0 0 0 2px ${highlightColor}40`
-                          }}
-                        />
-                      ) : null}
-                      <span
-                        className="absolute left-4 top-1/2 -translate-y-1/2 truncate text-sm font-medium"
-                        style={{ color: textColor }}
-                        title={row.displayLabel || row.model}
-                      >
-                        {displayLabel}
-                      </span>
-                    </div>
-                    <div className="flex flex-col items-end gap-0.5">
-                      <span className="text-sm font-semibold text-slate-900">
-                        {formattedValue}
-                      </span>
-                      <span className="text-xs text-slate-500">{ciLabel}</span>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          ) : (
-            <p className="rounded-lg border border-dashed border-slate-200 bg-slate-50 p-3 text-sm text-slate-500">
-              No bottom performers to display for the selected filters.
-            </p>
-          )}
+      ) : (
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-2">
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+              Best
+            </h3>
+            {renderRowGroup(
+              topRows,
+              "No models available for the selected filters."
+            )}
+          </div>
+          <div className="flex flex-col gap-2">
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+              Worst
+            </h3>
+            {renderRowGroup(
+              bottomRows,
+              "No bottom performers to display for the selected filters."
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }

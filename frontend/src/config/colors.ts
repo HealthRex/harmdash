@@ -1,5 +1,6 @@
 export const TEAM_COLORS: Record<string, string> = {
   "Solo Model": "#7C3AED",
+  "Solo Models": "#7C3AED",
   "1 Agent": "#7C3AED",
   "2-Agent Team": "#0284C7",
   "2 Agents": "#0284C7",
