@@ -10,7 +10,14 @@ import {
   getCombinationBaseKeyFromRow
 } from "@/utils/data";
 import clsx from "clsx";
-import { useCallback, useMemo, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState
+} from "react";
 
 const applyAlpha = (hex: string, alpha: number) => {
   const normalized = hex.replace("#", "");
@@ -80,7 +87,7 @@ export function BarChartCard({
     ? "Higher is better"
     : "Lower is better";
 
-  const { topRows, bottomRows, displayRows, allRows } = useMemo(() => {
+  const dataForMetric = useMemo(() => {
     const filtered = pickRowsForMetric(rows, metricId);
     const sortedForBest = sortRowsForMetric(filtered, higherIsBetter);
     const perGroup = Math.max(1, maxItems);
@@ -212,7 +219,20 @@ export function BarChartCard({
     comparisonCombinationId
   ]);
 
+  const { topRows, bottomRows, displayRows, allRows } = dataForMetric;
+
   const rowsForAxis = isAllView ? allRows : displayRows;
+
+  type Snapshot = {
+    metricId: string;
+    viewMode: "bestWorst" | "all";
+    topRows: DataRow[];
+    bottomRows: DataRow[];
+    displayRows: DataRow[];
+    allRows: DataRow[];
+    axisMin: number;
+    axisMax: number;
+  };
 
   const { axisMin, axisMax } = useMemo(() => {
     let minValue = Number.POSITIVE_INFINITY;
@@ -258,6 +278,243 @@ export function BarChartCard({
     };
   }, [rowsForAxis, metricMeta?.axisMin, metricMeta?.axisMax, isPercentMetric]);
 
+  const snapshot = useMemo<Snapshot>(() => {
+    return {
+      metricId,
+      viewMode,
+      topRows,
+      bottomRows,
+      displayRows,
+      allRows,
+      axisMin,
+      axisMax
+    };
+  }, [
+    metricId,
+    viewMode,
+    topRows,
+    bottomRows,
+    displayRows,
+    allRows,
+    axisMin,
+    axisMax
+  ]);
+
+  const encodeRowOrder = (rowsToEncode: DataRow[]) =>
+    rowsToEncode.map((row) => row.combinationId).join("|");
+
+  const snapshotKey = useMemo(() => {
+    return [
+      snapshot.metricId,
+      snapshot.viewMode,
+      encodeRowOrder(snapshot.displayRows),
+      encodeRowOrder(snapshot.allRows),
+      encodeRowOrder(snapshot.topRows),
+      encodeRowOrder(snapshot.bottomRows),
+      snapshot.axisMin.toPrecision(6),
+      snapshot.axisMax.toPrecision(6)
+    ].join("::");
+  }, [snapshot]);
+
+  const previousSnapshotRef = useRef<Snapshot>(snapshot);
+  const previousKeyRef = useRef<string>(snapshotKey);
+  const fadeTimeoutRef = useRef<number>();
+  const [outgoingSnapshot, setOutgoingSnapshot] = useState<Snapshot | null>(null);
+  const [isFadingOut, setIsFadingOut] = useState(false);
+  const [transitionPhase, setTransitionPhase] = useState<
+    "idle" | "prepare" | "entering"
+  >("idle");
+
+  const rowElementsRef = useRef<Map<string, HTMLButtonElement>>(
+    new Map()
+  );
+  const previousPositionsRef = useRef<Map<string, DOMRect>>(new Map());
+  const activeAnimationsRef = useRef<Map<string, Animation>>(new Map());
+  const hasMeasuredPositionsRef = useRef(false);
+  const prefersReducedMotionRef = useRef(false);
+
+  const registerRowElement = useCallback(
+    (combinationId: string, element: HTMLButtonElement | null) => {
+      const registry = rowElementsRef.current;
+      if (!element) {
+        registry.delete(combinationId);
+        return;
+      }
+      registry.set(combinationId, element);
+    },
+    []
+  );
+
+  useEffect(() => {
+    if (transitionPhase !== "prepare") {
+      return;
+    }
+    const frame = window.requestAnimationFrame(() => {
+      setTransitionPhase("entering");
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [transitionPhase]);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !("matchMedia" in window)) {
+      return;
+    }
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => {
+      prefersReducedMotionRef.current = mediaQuery.matches;
+      if (mediaQuery.matches) {
+        activeAnimationsRef.current.forEach((animation) => animation.cancel());
+        activeAnimationsRef.current.clear();
+      }
+    };
+    updatePreference();
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", updatePreference);
+      return () => mediaQuery.removeEventListener("change", updatePreference);
+    }
+    mediaQuery.addListener(updatePreference);
+    return () => mediaQuery.removeListener(updatePreference);
+  }, []);
+
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const registry = rowElementsRef.current;
+    if (!registry.size) {
+      previousPositionsRef.current = new Map();
+      return;
+    }
+
+    const nextPositions = new Map<string, DOMRect>();
+    registry.forEach((element, key) => {
+      nextPositions.set(key, element.getBoundingClientRect());
+    });
+
+    if (!hasMeasuredPositionsRef.current) {
+      previousPositionsRef.current = nextPositions;
+      hasMeasuredPositionsRef.current = true;
+      return;
+    }
+
+    if (prefersReducedMotionRef.current) {
+      previousPositionsRef.current = nextPositions;
+      return;
+    }
+
+    const activeAnimations = activeAnimationsRef.current;
+
+    nextPositions.forEach((rect, key) => {
+      const element = registry.get(key);
+      if (!element) {
+        return;
+      }
+
+      const previousRect = previousPositionsRef.current.get(key);
+      const existingAnimation = activeAnimations.get(key);
+      existingAnimation?.cancel();
+
+      if (!previousRect) {
+        const animation = element.animate(
+          [
+            { transform: "translateY(16px)", opacity: 0 },
+            { transform: "translateY(0px)", opacity: 1 }
+          ],
+          {
+            duration: 600,
+            easing: "cubic-bezier(0.33,1,0.68,1)",
+            fill: "both"
+          }
+        );
+        animation.onfinish = () => {
+          if (activeAnimations.get(key) === animation) {
+            activeAnimations.delete(key);
+          }
+        };
+        animation.oncancel = () => {
+          if (activeAnimations.get(key) === animation) {
+            activeAnimations.delete(key);
+          }
+        };
+        activeAnimations.set(key, animation);
+        return;
+      }
+
+      const deltaX = previousRect.left - rect.left;
+      const deltaY = previousRect.top - rect.top;
+
+      if (Math.abs(deltaX) < 0.5 && Math.abs(deltaY) < 0.5) {
+        activeAnimations.delete(key);
+        return;
+      }
+
+      const animation = element.animate(
+        [
+          {
+            transform: `translate(${deltaX}px, ${deltaY}px)`,
+            opacity: 0.75
+          },
+          { transform: "translate(0px, 0px)", opacity: 1 }
+        ],
+        {
+          duration: 700,
+          easing: "cubic-bezier(0.22,1,0.36,1)",
+          fill: "both"
+        }
+      );
+      animation.onfinish = () => {
+        if (activeAnimations.get(key) === animation) {
+          activeAnimations.delete(key);
+        }
+      };
+      animation.oncancel = () => {
+        if (activeAnimations.get(key) === animation) {
+          activeAnimations.delete(key);
+        }
+      };
+      activeAnimations.set(key, animation);
+    });
+
+    activeAnimations.forEach((animation, key) => {
+      if (!nextPositions.has(key)) {
+        animation.cancel();
+        activeAnimations.delete(key);
+      }
+    });
+
+    previousPositionsRef.current = nextPositions;
+  }, [snapshotKey]);
+
+  useEffect(() => {
+    const previousKey = previousKeyRef.current;
+    if (previousKey && previousKey !== snapshotKey) {
+      setOutgoingSnapshot(previousSnapshotRef.current);
+      setIsFadingOut(true);
+      setTransitionPhase("prepare");
+
+      if (fadeTimeoutRef.current) {
+        window.clearTimeout(fadeTimeoutRef.current);
+      }
+
+      fadeTimeoutRef.current = window.setTimeout(() => {
+        setOutgoingSnapshot(null);
+        setIsFadingOut(false);
+        setTransitionPhase("idle");
+        fadeTimeoutRef.current = undefined;
+      }, 700);
+    }
+
+    previousSnapshotRef.current = snapshot;
+    previousKeyRef.current = snapshotKey;
+
+    return () => {
+      if (fadeTimeoutRef.current) {
+        window.clearTimeout(fadeTimeoutRef.current);
+      }
+    };
+  }, [snapshotKey, snapshot]);
+
   const getDefaultBarColor = useCallback(
     (row: DataRow) => {
       const conditionKey = (row.condition ?? "").trim();
@@ -293,12 +550,18 @@ export function BarChartCard({
     [comparisonCombinationId]
   );
 
-  const renderRowButton = (row: DataRow) => {
+  const renderRowButton = (
+    row: DataRow,
+    meta: MetricMetadata | undefined,
+    axisMinValue: number,
+    axisMaxValue: number,
+    registerElement?: (id: string, element: HTMLButtonElement | null) => void
+  ) => {
     const value = row.mean ?? 0;
-    const valueClamped = Math.min(Math.max(value, axisMin), axisMax);
-    const range = axisMax - axisMin || 1;
+    const valueClamped = Math.min(Math.max(value, axisMinValue), axisMaxValue);
+    const range = axisMaxValue - axisMinValue || 1;
     const widthPercentRaw =
-      range <= 0 ? 0 : ((valueClamped - axisMin) / range) * 100;
+      range <= 0 ? 0 : ((valueClamped - axisMinValue) / range) * 100;
     const widthPercent = Math.max(Math.min(widthPercentRaw, 100), 0);
     const rowBaseKey = getCombinationBaseKeyFromRow(row);
     const isPrimarySelected =
@@ -316,11 +579,11 @@ export function BarChartCard({
     const barColor = getDefaultBarColor(row);
     const displayLabel = row.displayLabel || row.model;
     const formattedValue = formatMetricValue(row.mean, {
-      metadata: metricMeta
+      metadata: meta
     });
     const hasCi = row.ci !== null && row.ci !== undefined && row.ci !== 0;
     const ciLabel = hasCi
-      ? `CI: ± ${formatMetricValue(row.ci, { metadata: metricMeta })}`
+      ? `CI: ± ${formatMetricValue(row.ci, { metadata: meta })}`
       : "CI: NA";
     const textColor = getTextColor(barColor);
 
@@ -329,13 +592,14 @@ export function BarChartCard({
         return null;
       }
       const ciHalf = row.ci ?? 0;
-      const baseMean = row.mean ?? axisMin;
+      const baseMean = row.mean ?? axisMinValue;
       const ciMin = baseMean - ciHalf;
       const ciMax = baseMean + ciHalf;
-      const clamp = (val: number) => Math.min(Math.max(val, axisMin), axisMax);
+      const clamp = (val: number) =>
+        Math.min(Math.max(val, axisMinValue), axisMaxValue);
       const percent = (val: number) =>
         Math.max(
-          Math.min(((clamp(val) - axisMin) / range) * 100, 100),
+          Math.min(((clamp(val) - axisMinValue) / range) * 100, 100),
           0
         );
       const startPercent = percent(ciMin);
@@ -363,12 +627,17 @@ export function BarChartCard({
 
     return (
       <button
+        ref={
+          registerElement
+            ? (node) => registerElement(row.combinationId, node)
+            : undefined
+        }
         key={row.combinationId}
         type="button"
         aria-pressed={isSelected}
         onClick={() => handleRowClick(row)}
         className={clsx(
-          "relative group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 rounded-2xl border border-transparent bg-white/0 px-2 py-1.5 text-left transition",
+          "relative group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 rounded-2xl border border-transparent bg-white/0 px-2 py-1.5 text-left transition-all duration-[550ms] ease-[cubic-bezier(0.33,1,0.68,1)]",
           isSelected
             ? "border-2 bg-gradient-to-r from-white via-slate-50 to-white shadow-sm"
             : "hover:border-slate-200 hover:bg-slate-50/70"
@@ -387,7 +656,7 @@ export function BarChartCard({
           {renderConfidenceVisual()}
           <div
             className={clsx(
-              "absolute inset-0 rounded-[6px] transition-all duration-500 ease-out",
+              "absolute inset-0 rounded-[6px] transition-all duration-[650ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
               isSelected
                 ? "opacity-100 shadow-inner shadow-slate-900/10"
                 : "opacity-95"
@@ -424,24 +693,108 @@ export function BarChartCard({
     );
   };
 
-  const renderRowGroup = (rowsToRender: DataRow[], emptyMessage: string) => {
+  const renderRowGroup = (
+    rowsToRender: DataRow[],
+    emptyMessage: string,
+    meta: MetricMetadata | undefined,
+    axisBounds: { axisMin: number; axisMax: number },
+    registerElement?: (id: string, element: HTMLButtonElement | null) => void
+  ) => {
     if (!rowsToRender.length) {
       return (
-        <p className="rounded-lg border border-dashed border-slate-200 bg-slate-50 p-3 text-sm text-slate-500">
+        <p className="rounded-lg border border-dashed border-slate-200 bg-slate-50 p-3 text-sm text-slate-500 transition-all duration-500 ease-out">
           {emptyMessage}
         </p>
       );
     }
 
     return (
-      <div className="flex flex-col gap-1">
-        {rowsToRender.map(renderRowButton)}
+      <div className="flex flex-col gap-1 transition-all duration-500 ease-out">
+        {rowsToRender.map((row) =>
+          renderRowButton(
+            row,
+            meta,
+            axisBounds.axisMin,
+            axisBounds.axisMax,
+            registerElement
+          )
+        )}
       </div>
     );
   };
 
+  const renderSnapshotContent = (
+    target: Snapshot,
+    meta: MetricMetadata | undefined,
+    registerElement?: (id: string, element: HTMLButtonElement | null) => void
+  ) => {
+    if (target.viewMode === "all") {
+      return (
+        <div className="flex flex-col gap-2">
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+            All Models
+          </h3>
+          {renderRowGroup(
+            target.allRows,
+            "No models available for the selected filters.",
+            meta,
+            { axisMin: target.axisMin, axisMax: target.axisMax },
+            registerElement
+          )}
+        </div>
+      );
+    }
+
+    return (
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2">
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+            Best
+          </h3>
+          {renderRowGroup(
+            target.topRows,
+            "No models available for the selected filters.",
+            meta,
+            { axisMin: target.axisMin, axisMax: target.axisMax },
+            registerElement
+          )}
+        </div>
+        <div className="flex flex-col gap-2">
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+            Worst
+          </h3>
+          {renderRowGroup(
+            target.bottomRows,
+            "No bottom performers to display for the selected filters.",
+            meta,
+            { axisMin: target.axisMin, axisMax: target.axisMax },
+            registerElement
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  const shouldAnimate = transitionPhase !== "idle" || isFadingOut;
+  const transitionTimingClass =
+    "transition-all duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)]";
+  const incomingClassName = clsx(
+    "relative",
+    transitionTimingClass,
+    shouldAnimate ? "will-change-transform will-change-opacity" : undefined,
+    transitionPhase === "prepare"
+      ? "opacity-0 translate-y-2"
+      : "opacity-100 translate-y-0"
+  );
+  const outgoingClassName = clsx(
+    "pointer-events-none absolute inset-0",
+    transitionTimingClass,
+    shouldAnimate ? "will-change-transform will-change-opacity" : undefined,
+    isFadingOut ? "opacity-0 -translate-y-2" : "opacity-100 translate-y-0"
+  );
+
   return (
-    <section className="flex flex-col gap-4 rounded-2xl bg-white p-6 shadow-lg shadow-slate-200">
+    <section className="flex flex-col gap-4 rounded-2xl bg-white p-6 shadow-lg shadow-slate-200 transition-all duration-[600ms] ease-[cubic-bezier(0.33,1,0.68,1)]">
       <header className="flex flex-col gap-1">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
@@ -452,7 +805,7 @@ export function BarChartCard({
                 onClick={toggleViewMode}
                 aria-pressed={isAllView}
                 className={clsx(
-                  "rounded px-1 font-semibold text-brand-600 underline decoration-dashed underline-offset-4 transition hover:text-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500/40",
+                  "rounded px-1 font-semibold text-brand-600 underline decoration-dashed underline-offset-4 transition-colors duration-500 ease-out hover:text-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500/40",
                   isAllView ? "text-brand-700" : undefined
                 )}
                 title={
@@ -490,35 +843,23 @@ export function BarChartCard({
           <p className="text-xs text-slate-500">{metricDescription}</p>
         ) : null}
       </header>
-      {isAllView ? (
-        <div className="flex flex-col gap-2">
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-            All Models
-          </h3>
-          {renderRowGroup(allRows, "No models available for the selected filters.")}
-        </div>
-      ) : (
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col gap-2">
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-              Best
-            </h3>
-            {renderRowGroup(
-              topRows,
-              "No models available for the selected filters."
+      <div className="relative">
+        {outgoingSnapshot ? (
+          <div aria-hidden className={outgoingClassName}>
+            {renderSnapshotContent(
+              outgoingSnapshot,
+              metadataMap.get(outgoingSnapshot.metricId)
             )}
           </div>
-          <div className="flex flex-col gap-2">
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-              Worst
-            </h3>
-            {renderRowGroup(
-              bottomRows,
-              "No bottom performers to display for the selected filters."
-            )}
-          </div>
+        ) : null}
+        <div className={incomingClassName}>
+          {renderSnapshotContent(
+            snapshot,
+            metadataMap.get(snapshot.metricId),
+            registerRowElement
+          )}
         </div>
-      )}
+      </div>
     </section>
   );
 }

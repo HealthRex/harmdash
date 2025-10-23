@@ -46,7 +46,7 @@ function TogglePill({
       onClick={onClick}
       disabled={disabled}
       className={clsx(
-        "rounded-full border px-3 py-1.5 text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2",
+        "rounded-full border px-3 py-1.5 text-sm font-medium transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2",
         active
           ? "border-transparent text-white shadow"
           : "bg-white text-slate-600 hover:brightness-95",
@@ -162,7 +162,7 @@ export function TeamFiltersBar({
   };
 
   return (
-    <section className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-md shadow-slate-200">
+    <section className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-md shadow-slate-200 transition-all duration-[600ms] ease-[cubic-bezier(0.33,1,0.68,1)]">
       <header>
         <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
           TEAM CONFIGURATION
@@ -190,7 +190,7 @@ export function TeamFiltersBar({
             <div
               key={group.team || "unspecified-team"}
               className={clsx(
-                "flex flex-col items-center gap-3 rounded-xl border p-4 text-center transition",
+                "flex flex-col items-center gap-3 rounded-xl border p-4 text-center transition-all duration-[650ms] ease-[cubic-bezier(0.33,1,0.68,1)]",
                 isSelected
                   ? "border-brand-200 bg-white shadow-sm"
                   : "border-slate-200 bg-slate-50"
@@ -201,7 +201,7 @@ export function TeamFiltersBar({
                 type="button"
                 onClick={() => onToggleTeam(group.team)}
                 className={clsx(
-                  "mx-auto inline-flex min-w-[160px] max-w-[176px] items-center justify-center rounded-full border px-4 py-2 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+                  "mx-auto inline-flex min-w-[160px] max-w-[176px] items-center justify-center rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-[550ms] ease-[cubic-bezier(0.33,1,0.68,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
                   isSelected
                     ? "text-white shadow-sm focus-visible:ring-brand-500"
                     : "bg-white text-slate-600 hover:border-brand-200 focus-visible:ring-brand-500"
@@ -225,7 +225,7 @@ export function TeamFiltersBar({
               {group.conditions.length ? (
                 <div
                   className={clsx(
-                    "flex flex-wrap justify-center gap-2",
+                    "flex flex-wrap justify-center gap-2 transition-all duration-500 ease-out",
                     isSelected ? "" : "opacity-60"
                   )}
                 >
@@ -254,7 +254,7 @@ export function TeamFiltersBar({
                             : onToggleTeamCondition(group.team, condition)
                         }
                         className={clsx(
-                          "flex items-center rounded-full border px-2.5 py-1 text-xs font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2",
+                          "flex items-center rounded-full border px-2.5 py-1 text-xs font-medium transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2",
                           isActive
                             ? "text-white shadow-sm"
                             : "bg-white opacity-80 hover:opacity-100",
