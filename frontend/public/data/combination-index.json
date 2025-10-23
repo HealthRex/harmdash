@@ -1184,10 +1184,10 @@
     "harm": ""
   },
   {
-    "combinationId": "No Intervention::1 Agent::Control::None::AllHarm::AllCases::Unanimous",
+    "combinationId": "No Intervention::Solo Model::Control::None::AllHarm::AllCases::Unanimous",
     "displayLabel": "No Intervention",
     "model": "No Intervention",
-    "team": "1 Agent",
+    "team": "Solo Model",
     "condition": "Control",
     "harm": "None"
   },
@@ -1328,10 +1328,10 @@
     "harm": ""
   },
   {
-    "combinationId": "Random Intervention::1 Agent::Control::None::AllHarm::AllCases::Unanimous",
+    "combinationId": "Random Intervention::Solo Model::Control::None::AllHarm::AllCases::Unanimous",
     "displayLabel": "Random Intervention",
     "model": "Random Intervention",
-    "team": "1 Agent",
+    "team": "Solo Model",
     "condition": "Control",
     "harm": "None"
   }
