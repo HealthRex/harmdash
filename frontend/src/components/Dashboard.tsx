@@ -28,6 +28,20 @@ const CASE_OPTIONS = [
 ];
 
 const ALWAYS_ON_CONDITION_NAMES = new Set(["human", "control"]);
+
+const TEAM_DISPLAY_PRIORITIES: Record<string, number> = {
+  "solo model": 0,
+  "solo": 0,
+  "1 agent": 0,
+  "1-agent team": 0,
+  "solo team": 0,
+  "2-agent team": 1,
+  "2 agents": 1,
+  "2 agent team": 1,
+  "3-agent team": 2,
+  "3 agents": 2,
+  "3 agent team": 2
+};
 const DEFAULT_PROFILE_METRIC_ID = "nnh_cumulative";
 
 function toggleWithMinimumSelected(
@@ -93,7 +107,23 @@ export function Dashboard({ dataset }: DashboardProps) {
           conditions
         };
       })
-      .sort((a, b) => a.label.localeCompare(b.label));
+      .sort((a, b) => {
+        const normalize = (value: string) => value.trim().toLowerCase();
+        const aTeam = normalize(a.team);
+        const bTeam = normalize(b.team);
+        const aLabel = normalize(a.label);
+        const bLabel = normalize(b.label);
+        const aPriority =
+          TEAM_DISPLAY_PRIORITIES[aTeam] ?? TEAM_DISPLAY_PRIORITIES[aLabel] ?? Infinity;
+        const bPriority =
+          TEAM_DISPLAY_PRIORITIES[bTeam] ?? TEAM_DISPLAY_PRIORITIES[bLabel] ?? Infinity;
+
+        if (aPriority !== bPriority) {
+          return aPriority - bPriority;
+        }
+
+        return a.label.localeCompare(b.label);
+      });
 
     const alwaysList = Array.from(always).sort((a, b) => a.localeCompare(b));
 

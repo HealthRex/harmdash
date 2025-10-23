@@ -53,6 +53,9 @@ export function BarChartCard({
   const metricDescription = metricMeta?.description ?? "";
   const isPercentMetric = metricMeta?.range === "percent";
   const higherIsBetter = metricMeta?.betterDirection !== "lower";
+  const betterDirectionLabel = higherIsBetter
+    ? "Higher is better"
+    : "Lower is better";
 
   const { topRows, bottomRows, displayRows } = useMemo(() => {
     const filtered = pickRowsForMetric(rows, metricId);
@@ -244,7 +247,7 @@ export function BarChartCard({
   return (
     <section className="flex flex-col gap-4 rounded-2xl bg-white p-6 shadow-lg shadow-slate-200">
       <header className="flex flex-col gap-1">
-        <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <h2 className="text-lg font-semibold text-slate-900">
               Performance: Best and Worst Models
@@ -253,17 +256,22 @@ export function BarChartCard({
               Compare model performance on a variety of metrics.
             </p>
           </div>
-          <select
-            value={metricId}
-            onChange={(event) => onMetricChange(event.target.value)}
-            className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm transition hover:border-brand-500"
-          >
-            {metrics.map((option) => (
-              <option key={option.id} value={option.id}>
-                {option.displayLabel}
-              </option>
-            ))}
-          </select>
+          <div className="flex min-w-[12rem] flex-col items-end gap-1">
+            <select
+              value={metricId}
+              onChange={(event) => onMetricChange(event.target.value)}
+              className="w-full rounded-lg border border-brand-200 bg-brand-50 px-3 py-2 text-sm font-medium text-brand-900 shadow transition focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-300 hover:border-brand-300"
+            >
+              {metrics.map((option) => (
+                <option key={option.id} value={option.id}>
+                  {option.displayLabel}
+                </option>
+              ))}
+            </select>
+            <span className="text-xs font-semibold uppercase tracking-wide text-brand-700">
+              {betterDirectionLabel}
+            </span>
+          </div>
         </div>
         {metricDescription ? (
           <p className="text-xs text-slate-500">{metricDescription}</p>
