@@ -173,6 +173,9 @@ export function TeamFiltersBar({
           const isSelected = selectedTeams.includes(group.team);
           const selectedConditionsForTeam =
             selectedTeamConditions[group.team] ?? group.conditions;
+          const hasClearedConditions =
+            Array.isArray(selectedTeamConditions[group.team]) &&
+            selectedTeamConditions[group.team].length === 0;
           const teamColor = TEAM_COLORS[group.team] ?? TEAM_COLORS.default;
           const agentCount = inferAgentCount(group);
           const normalizedTeam = group.team.trim().toLowerCase();
@@ -235,7 +238,8 @@ export function TeamFiltersBar({
                       : selectedConditionsForTeam.includes(condition);
                     const disabled = syncsWithSoloModels
                       ? false
-                      : !isSelected || group.conditions.length <= 1;
+                      : (!isSelected && !hasClearedConditions) ||
+                        group.conditions.length <= 1;
                     const color =
                       conditionColorMap.get(condition) ?? teamColor;
 

@@ -601,43 +601,98 @@ export function Dashboard({ dataset }: DashboardProps) {
     setSelectedTeams((prev) => toggleWithMinimumSelected(prev, team));
   }, []);
 
-  const handleToggleTeamCondition = useCallback(
-    (team: string, condition: string) => {
-      setSelectedTeamConditions((prev) => {
-        const allowed = teamGroups.find((group) => group.team === team)?.conditions ?? [];
-        if (allowed.length === 0) {
-          return prev;
+  const addTeamInDisplayOrder = useCallback(
+    (teams: string[], teamToAdd: string) => {
+      if (teams.includes(teamToAdd)) {
+        return teams;
+      }
+
+      const ordering = teamGroups.map((group) => group.team);
+      const insertionIndex = ordering.indexOf(teamToAdd);
+      if (insertionIndex === -1) {
+        return [...teams, teamToAdd];
+      }
+
+      const next = [...teams];
+      let targetIndex = next.length;
+      for (let index = 0; index < next.length; index += 1) {
+        const existing = next[index];
+        const existingOrderIndex = ordering.indexOf(existing);
+        if (existingOrderIndex !== -1 && existingOrderIndex > insertionIndex) {
+          targetIndex = index;
+          break;
         }
-        const current = prev[team] ?? allowed;
-        const has = current.includes(condition);
-        let nextValues: string[];
-        if (has) {
-          if (current.length <= 1) {
-            nextValues = current;
-          } else {
-            nextValues = current.filter((value) => value !== condition);
-          }
-        } else {
-          nextValues = [...current, condition];
-        }
-        const normalized = allowed.filter((value) => nextValues.includes(value));
-        if (normalized.length === 0 && allowed.length > 0) {
-          normalized.push(allowed[0]);
-        }
-        const previous = prev[team] ?? [];
-        if (
-          previous.length === normalized.length &&
-          previous.every((value, index) => value === normalized[index])
-        ) {
-          return prev;
-        }
-        return {
-          ...prev,
-          [team]: normalized
-        };
-      });
+      }
+
+      next.splice(targetIndex, 0, teamToAdd);
+      return next;
     },
     [teamGroups]
+  );
+
+  const handleToggleTeamCondition = useCallback(
+    (team: string, condition: string) => {
+      const allowed = teamGroups.find((group) => group.team === team)?.conditions ?? [];
+      if (allowed.length === 0) {
+        return;
+      }
+
+      const current =
+        team in selectedTeamConditions ? selectedTeamConditions[team] : allowed;
+      const has = current.includes(condition);
+      const toggledValues = has
+        ? current.filter((value) => value !== condition)
+        : [...current, condition];
+
+      const normalized = allowed.filter((value) => toggledValues.includes(value));
+
+      if (normalized.length === 0) {
+        const nextTeams = toggleWithMinimumSelected(selectedTeams, team);
+        if (nextTeams.length === selectedTeams.length) {
+          return;
+        }
+
+        setSelectedTeams(nextTeams);
+        setSelectedTeamConditions((prev) => {
+          const previousValues = team in prev ? prev[team] : allowed;
+          if (previousValues.length === 0) {
+            return prev;
+          }
+          return {
+            ...prev,
+            [team]: []
+          };
+        });
+        return;
+      }
+
+      const previous = selectedTeamConditions[team] ?? allowed;
+      const unchanged =
+        previous.length === normalized.length &&
+        previous.every((value, index) => value === normalized[index]);
+
+      if (!selectedTeams.includes(team)) {
+        const nextTeams = addTeamInDisplayOrder(selectedTeams, team);
+        if (nextTeams.length !== selectedTeams.length) {
+          setSelectedTeams(nextTeams);
+        }
+      }
+
+      if (unchanged) {
+        return;
+      }
+
+      setSelectedTeamConditions((prev) => ({
+        ...prev,
+        [team]: normalized
+      }));
+    },
+    [
+      teamGroups,
+      selectedTeamConditions,
+      selectedTeams,
+      addTeamInDisplayOrder
+    ]
   );
 
   const handleSelectCase = (value: string) => {
