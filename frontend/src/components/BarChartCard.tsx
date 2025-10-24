@@ -342,6 +342,18 @@ export function BarChartCard({
     "primary" | "comparison" | null
   >(null);
   const [dropTargetId, setDropTargetId] = useState<string | null>(null);
+  const [touchDragState, setTouchDragState] = useState<
+    { pointerId: number; type: "primary" | "comparison" }
+      | null
+  >(null);
+
+  const rowById = useMemo(() => {
+    const map = new Map<string, DataRow>();
+    rows.forEach((row) => {
+      map.set(row.combinationId, row);
+    });
+    return map;
+  }, [rows]);
 
   const rowElementsRef = useRef<Map<string, HTMLButtonElement>>(
     new Map()
@@ -378,14 +390,107 @@ export function BarChartCard({
   const handleHighlightDragEnd = useCallback(() => {
     setDropTargetId(null);
     setDraggedHighlight(null);
+    setTouchDragState(null);
   }, []);
 
   const handleHighlightPointerDown = useCallback(
-    (event: ReactPointerEvent<HTMLElement>) => {
+    (
+      event: ReactPointerEvent<HTMLElement>,
+      type: "primary" | "comparison"
+    ) => {
       event.stopPropagation();
+      if (event.pointerType === "mouse") {
+        return;
+      }
+      event.preventDefault();
+      const { pointerId, currentTarget } = event;
+      if (typeof currentTarget.setPointerCapture === "function") {
+        try {
+          currentTarget.setPointerCapture(pointerId);
+        } catch {
+          // Some browsers might throw if the pointer cannot be captured.
+        }
+      }
+      setDraggedHighlight(type);
+      setTouchDragState({ pointerId, type });
     },
     []
   );
+
+  useEffect(() => {
+    if (!touchDragState) {
+      return undefined;
+    }
+
+    const handlePointerMove = (event: PointerEvent) => {
+      if (event.pointerId !== touchDragState.pointerId) {
+        return;
+      }
+      event.preventDefault();
+      const targetElement = document.elementFromPoint(
+        event.clientX,
+        event.clientY
+      );
+      const button = targetElement?.closest<HTMLButtonElement>(
+        "button[data-combination-id]"
+      );
+      const combinationId = button?.dataset.combinationId ?? null;
+      setDropTargetId((current) =>
+        current === combinationId ? current : combinationId
+      );
+    };
+
+    const handlePointerEnd = (event: PointerEvent) => {
+      if (event.pointerId !== touchDragState.pointerId) {
+        return;
+      }
+      event.preventDefault();
+      const targetElement = document.elementFromPoint(
+        event.clientX,
+        event.clientY
+      );
+      const button = targetElement?.closest<HTMLButtonElement>(
+        "button[data-combination-id]"
+      );
+      const combinationId = button?.dataset.combinationId ?? null;
+      if (combinationId && onHighlightAssign) {
+        const row = rowById.get(combinationId);
+        if (row) {
+          onHighlightAssign(touchDragState.type, row);
+        }
+      }
+      handleHighlightDragEnd();
+    };
+
+    const handlePointerCancel = (event: PointerEvent) => {
+      if (event.pointerId !== touchDragState.pointerId) {
+        return;
+      }
+      event.preventDefault();
+      handleHighlightDragEnd();
+    };
+
+    document.addEventListener("pointermove", handlePointerMove, {
+      passive: false
+    });
+    document.addEventListener("pointerup", handlePointerEnd, {
+      passive: false
+    });
+    document.addEventListener("pointercancel", handlePointerCancel, {
+      passive: false
+    });
+
+    return () => {
+      document.removeEventListener("pointermove", handlePointerMove);
+      document.removeEventListener("pointerup", handlePointerEnd);
+      document.removeEventListener("pointercancel", handlePointerCancel);
+    };
+  }, [
+    touchDragState,
+    handleHighlightDragEnd,
+    onHighlightAssign,
+    rowById
+  ]);
 
   useEffect(() => {
     if (transitionPhase !== "prepare") {
@@ -731,6 +836,7 @@ export function BarChartCard({
         }
         key={row.combinationId}
         type="button"
+        data-combination-id={row.combinationId}
         aria-pressed={isSelected}
         onClick={() => handleRowClick(row)}
         className={clsx(
@@ -790,7 +896,9 @@ export function BarChartCard({
                 key={type}
                 aria-hidden="true"
                 draggable
-                onPointerDown={handleHighlightPointerDown}
+                onPointerDown={(event) =>
+                  handleHighlightPointerDown(event, type)
+                }
                 onDragStart={(event) =>
                   handleHighlightDragStart(event, type)
                 }

@@ -26,6 +26,9 @@ interface ModelInfoDrawerProps {
   onSuggestionSelect: (entry: CombinationEntry) => void;
   onComparisonSuggestionSelect: (entry: CombinationEntry) => void;
   onActiveTargetChange: (target: "primary" | "comparison" | null) => void;
+  minTrials: number;
+  minTrialsRange: { min: number; max: number };
+  onMinTrialsChange: (value: number) => void;
 }
 
 function computeNormalizedMetricValue(
@@ -71,7 +74,10 @@ export function ModelInfoDrawer({
   comparisonSuggestions,
   onSuggestionSelect,
   onComparisonSuggestionSelect,
-  onActiveTargetChange
+  onActiveTargetChange,
+  minTrials,
+  minTrialsRange,
+  onMinTrialsChange
 }: ModelInfoDrawerProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [isComparisonFocused, setIsComparisonFocused] = useState(false);
@@ -85,6 +91,15 @@ export function ModelInfoDrawer({
     isComparisonFocused &&
     trimmedComparisonQuery !== "" &&
     comparisonSuggestions.length > 0;
+  const minAllowed = Math.max(minTrialsRange.min, 1);
+
+  const clampTrials = useCallback(
+    (value: number) => {
+      const numeric = Number.isFinite(value) ? Math.round(value) : minAllowed;
+      return Math.min(Math.max(numeric, minAllowed), minTrialsRange.max);
+    },
+    [minAllowed, minTrialsRange.max]
+  );
 
   useEffect(() => {
     if (!showSuggestions) {
@@ -690,6 +705,38 @@ export function ModelInfoDrawer({
             Interact with the charts or use the search boxes to surface up to two models for comparison.
           </div>
         )}
+      </div>
+      <div className="flex flex-col gap-2 border-t border-slate-200 pt-4">
+        <label
+          className="text-xs font-semibold uppercase tracking-wide text-slate-500"
+          htmlFor="min-trials-slider"
+        >
+          Minimum trials
+        </label>
+        <div className="flex items-center gap-3">
+          <input
+            id="min-trials-slider"
+            type="range"
+            min={minAllowed}
+            max={minTrialsRange.max}
+            step={1}
+            value={minTrials}
+            onChange={(event) =>
+              onMinTrialsChange(clampTrials(Number(event.target.value)))
+            }
+            className="flex-1 accent-brand-600"
+          />
+          <input
+            type="number"
+            min={minAllowed}
+            max={minTrialsRange.max}
+            value={minTrials}
+            onChange={(event) =>
+              onMinTrialsChange(clampTrials(Number(event.target.value)))
+            }
+            className="w-16 rounded-md border border-slate-300 px-2 py-1 text-xs text-slate-600 shadow-sm"
+          />
+        </div>
       </div>
     </aside>
   );

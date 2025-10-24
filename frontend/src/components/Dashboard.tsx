@@ -1,7 +1,7 @@
 'use client';
 
 import { BarChartCard } from "@/components/BarChartCard";
-import { DataControlsCard, TeamFiltersBar } from "@/components/FiltersPanel";
+import { TeamFiltersBar } from "@/components/FiltersPanel";
 import { MetricsSummary } from "@/components/MetricsSummary";
 import { ModelInfoDrawer as ModelProfileCard } from "@/components/ModelInfoDrawer";
 import { ScatterChartCard } from "@/components/ScatterChartCard";
@@ -904,26 +904,22 @@ export function Dashboard({ dataset }: DashboardProps) {
             }
           }}
           onActiveTargetChange={setActiveSelectionTarget}
-        />
-      </div>
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.7fr)_minmax(360px,1fr)] lg:items-start">
-        <ScatterChartCard
-          combinations={combinations}
-          xMetricId={safeXMetric}
-          yMetricId={safeYMetric}
-          onXMetricChange={setXMetricId}
-          onYMetricChange={setYMetricId}
-          onPointClick={handlePointClick}
-          highlightedCombinationId={selection?.combinationId}
-          metrics={metrics}
-          metadataMap={metadataMap}
-        />
-        <DataControlsCard
           minTrials={minTrials}
           minTrialsRange={trialsRange}
           onMinTrialsChange={handleMinTrialsChange}
         />
       </div>
+      <ScatterChartCard
+        combinations={combinations}
+        xMetricId={safeXMetric}
+        yMetricId={safeYMetric}
+        onXMetricChange={setXMetricId}
+        onYMetricChange={setYMetricId}
+        onPointClick={handlePointClick}
+        highlightedCombinationId={selection?.combinationId}
+        metrics={metrics}
+        metadataMap={metadataMap}
+      />
     </div>
   );
 }
