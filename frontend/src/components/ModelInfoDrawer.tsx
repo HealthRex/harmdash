@@ -3,12 +3,28 @@
 import Plot from "@/components/PlotClient";
 import type { CombinationEntry, MetricMetadata } from "@/types/dataset";
 import clsx from "clsx";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Layout, PlotData } from "plotly.js";
+import type { PlotParams } from "react-plotly.js";
 import { formatMetricValue } from "@/utils/data";
 
 const PRIMARY_SELECTION_COLOR = "#0ea5e9";
 const COMPARISON_SELECTION_COLOR = "#f97316";
+
+const MAX_RADAR_VALUE = 1.05;
+
+const bouncyProgress = (progress: number): number => {
+  if (progress <= 0) {
+    return 0;
+  }
+  if (progress >= 1) {
+    return 1;
+  }
+
+  const eased = 1 - Math.pow(1 - progress, 3);
+  const bounce = Math.sin(progress * Math.PI) * (1 - progress) * 0.2;
+  return Math.min(Math.max(eased + bounce, 0), 1.08);
+};
 
 interface ModelInfoDrawerProps {
   selection: CombinationEntry | null;
@@ -84,6 +100,9 @@ export function ModelInfoDrawer({
   const [primaryHighlightIndex, setPrimaryHighlightIndex] = useState<number>(-1);
   const [comparisonHighlightIndex, setComparisonHighlightIndex] =
     useState<number>(-1);
+  const [animatedTraces, setAnimatedTraces] = useState<PlotData[] | null>(null);
+  const animationFrameRef = useRef<number | null>(null);
+  const lastAnimatedValuesRef = useRef<Record<string, number[]>>({});
   const trimmedQuery = modelQuery.trim();
   const trimmedComparisonQuery = comparisonQuery.trim();
   const showSuggestions = isFocused && trimmedQuery !== "" && suggestions.length > 0;
@@ -261,7 +280,8 @@ export function ModelInfoDrawer({
       entry: CombinationEntry | null,
       getValue: (point: RadarPoint) => number | null,
       getMetric: (point: RadarPoint) => CombinationEntry["metrics"][string] | undefined,
-      styles: { fill: string; line: string; marker: string; opacity: number }
+      styles: { fill: string; line: string; marker: string; opacity: number },
+      traceId: string
     ): PlotData | null => {
       if (!entry) {
         return null;
@@ -309,7 +329,8 @@ export function ModelInfoDrawer({
           width: 2
         },
         opacity: styles.opacity,
-        fillcolor: styles.fill
+        fillcolor: styles.fill,
+        uid: traceId
       } as PlotData;
     };
 
@@ -324,7 +345,8 @@ export function ModelInfoDrawer({
         line: PRIMARY_SELECTION_COLOR,
         marker: PRIMARY_SELECTION_COLOR,
         opacity: 0.75
-      }
+      },
+      "primary-trace"
     );
     if (primaryTrace) {
       traces.push(primaryTrace);
@@ -339,7 +361,8 @@ export function ModelInfoDrawer({
         line: COMPARISON_SELECTION_COLOR,
         marker: COMPARISON_SELECTION_COLOR,
         opacity: 0.6
-      }
+      },
+      "comparison-trace"
     );
     if (comparisonTrace) {
       traces.push(comparisonTrace);
@@ -353,7 +376,7 @@ export function ModelInfoDrawer({
       margin: { l: 20, r: 20, t: 30, b: 20 },
       polar: {
         radialaxis: {
-          range: [0, 1],
+          range: [0, MAX_RADAR_VALUE],
           showgrid: true,
           gridcolor: "#cbd5f5",
           showline: false,
@@ -378,11 +401,120 @@ export function ModelInfoDrawer({
       font: {
         family: "Inter, sans-serif",
         color: "#0f172a"
-      }
+      },
+      uirevision: "model-radar"
     };
 
     return { data: traces, layout };
   }, [comparison, metrics, selection]);
+
+  const plotConfig = useMemo<NonNullable<PlotParams["config"]>>(
+    () => ({
+      displayModeBar: false,
+      responsive: true
+    }),
+    []
+  );
+
+  useEffect(() => {
+    if (!radarData) {
+      if (animationFrameRef.current !== null) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
+      lastAnimatedValuesRef.current = {};
+      setAnimatedTraces(null);
+      return;
+    }
+
+    const targetTraces = Array.isArray(radarData.data) ? radarData.data : [];
+
+    if (animationFrameRef.current !== null) {
+      cancelAnimationFrame(animationFrameRef.current);
+      animationFrameRef.current = null;
+    }
+
+    const snapshots = targetTraces.map((trace, index) => {
+      const uid =
+        typeof trace.uid === "string" && trace.uid.length > 0
+          ? trace.uid
+          : `trace-${index}`;
+      const rawTarget = Array.isArray(trace.r) ? trace.r : [];
+      const targetValues = rawTarget.map((value) =>
+        typeof value === "number" && Number.isFinite(value) ? value : 0
+      );
+      const previousValues = lastAnimatedValuesRef.current[uid];
+      const startValues =
+        previousValues && previousValues.length === targetValues.length
+          ? [...previousValues]
+          : targetValues.map(() => 0);
+
+      return { trace, uid, startValues, targetValues };
+    });
+
+    const activeUids = new Set(snapshots.map((snapshot) => snapshot.uid));
+    Object.keys(lastAnimatedValuesRef.current).forEach((uid) => {
+      if (!activeUids.has(uid)) {
+        delete lastAnimatedValuesRef.current[uid];
+      }
+    });
+
+    const initialFrame = snapshots.map(({ trace, startValues, uid }) => {
+      const starting = startValues.map((value) =>
+        Math.min(Math.max(value, 0), MAX_RADAR_VALUE)
+      );
+      lastAnimatedValuesRef.current[uid] = [...starting];
+      return {
+        ...trace,
+        r: starting
+      } as PlotData;
+    });
+
+    setAnimatedTraces(initialFrame);
+
+    if (snapshots.length === 0) {
+      return;
+    }
+
+    const duration = 900;
+    const startTime = performance.now();
+
+    const step = (timestamp: number) => {
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(Math.max(elapsed / duration, 0), 1);
+      const easedProgress = bouncyProgress(progress);
+
+      const frameTraces = snapshots.map(({ trace, startValues, targetValues, uid }) => {
+        const interpolated = targetValues.map((targetValue, valueIndex) => {
+          const fromValue = startValues[valueIndex] ?? 0;
+          const raw = fromValue + (targetValue - fromValue) * easedProgress;
+          return Math.min(Math.max(raw, 0), MAX_RADAR_VALUE);
+        });
+        lastAnimatedValuesRef.current[uid] = [...interpolated];
+        return {
+          ...trace,
+          r: interpolated
+        } as PlotData;
+      });
+
+      setAnimatedTraces(frameTraces);
+
+      if (progress < 1) {
+        animationFrameRef.current = requestAnimationFrame(step);
+      } else {
+        animationFrameRef.current = null;
+      }
+    };
+
+    animationFrameRef.current = requestAnimationFrame(step);
+
+    return () => {
+      if (animationFrameRef.current !== null) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
+    };
+  }, [radarData]);
 
   return (
     <aside
@@ -667,12 +799,9 @@ export function ModelInfoDrawer({
           <>
             <div className="flex h-[320px] w-full items-center justify-center rounded-xl border border-slate-200 bg-slate-50/80 p-2">
               <Plot
-                data={radarData.data}
+                data={animatedTraces ?? radarData.data}
                 layout={radarData.layout}
-                config={{
-                  displayModeBar: false,
-                  responsive: true
-                }}
+                config={plotConfig}
                 style={{ width: "100%", height: "100%" }}
                 useResizeHandler
               />
