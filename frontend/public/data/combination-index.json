@@ -160,6 +160,14 @@
     "harm": ""
   },
   {
+    "combinationId": "DeepSeek R1 + DeepSeek R1 + DeepSeek R1::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "DeepSeek R1 + DeepSeek R1 + DeepSeek R1",
+    "model": "DeepSeek R1 + DeepSeek R1 + DeepSeek R1",
+    "team": "3-Agent Teams",
+    "condition": "Advisor + Guardian + Guardian",
+    "harm": ""
+  },
+  {
     "combinationId": "DeepSeek R1 + Gemini 2.0 Flash::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
     "displayLabel": "DeepSeek R1 + Gemini 2.0 Flash",
     "model": "DeepSeek R1 + Gemini 2.0 Flash",
@@ -181,6 +189,22 @@
     "model": "DeepSeek R1 + Gemini 2.5 Flash",
     "team": "2-Agent Teams",
     "condition": "Advisor + Guardian",
+    "harm": ""
+  },
+  {
+    "combinationId": "DeepSeek R1 + Gemini 2.5 Flash + Gemini 2.5 Pro::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "DeepSeek R1 + Gemini 2.5 Flash + Gemini 2.5 Pro",
+    "model": "DeepSeek R1 + Gemini 2.5 Flash + Gemini 2.5 Pro",
+    "team": "3-Agent Teams",
+    "condition": "Advisor + Guardian + Guardian",
+    "harm": ""
+  },
+  {
+    "combinationId": "DeepSeek R1 + Gemini 2.5 Flash + GPT-5::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "DeepSeek R1 + Gemini 2.5 Flash + GPT-5",
+    "model": "DeepSeek R1 + Gemini 2.5 Flash + GPT-5",
+    "team": "3-Agent Teams",
+    "condition": "Advisor + Guardian + Guardian",
     "harm": ""
   },
   {
@@ -413,6 +437,30 @@
     "model": "Gemini 2.5 Flash + Llama 4 Maverick",
     "team": "2-Agent Teams",
     "condition": "Advisor + Guardian",
+    "harm": ""
+  },
+  {
+    "combinationId": "Gemini 2.5 Flash + Llama 4 Maverick + DeepSeek R1::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "Gemini 2.5 Flash + Llama 4 Maverick + DeepSeek R1",
+    "model": "Gemini 2.5 Flash + Llama 4 Maverick + DeepSeek R1",
+    "team": "3-Agent Teams",
+    "condition": "Advisor + Guardian + Guardian",
+    "harm": ""
+  },
+  {
+    "combinationId": "Gemini 2.5 Flash + Llama 4 Maverick + Gemini 2.5 Pro::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "Gemini 2.5 Flash + Llama 4 Maverick + Gemini 2.5 Pro",
+    "model": "Gemini 2.5 Flash + Llama 4 Maverick + Gemini 2.5 Pro",
+    "team": "3-Agent Teams",
+    "condition": "Advisor + Guardian + Guardian",
+    "harm": ""
+  },
+  {
+    "combinationId": "Gemini 2.5 Flash + Llama 4 Maverick + GPT-5::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "Gemini 2.5 Flash + Llama 4 Maverick + GPT-5",
+    "model": "Gemini 2.5 Flash + Llama 4 Maverick + GPT-5",
+    "team": "3-Agent Teams",
+    "condition": "Advisor + Guardian + Guardian",
     "harm": ""
   },
   {
@@ -1093,6 +1141,14 @@
     "model": "Llama 4 Scout + Gemini 2.5 Pro",
     "team": "2-Agent Teams",
     "condition": "Advisor + Guardian",
+    "harm": ""
+  },
+  {
+    "combinationId": "Llama 4 Scout + Gemini 2.5 Pro + DeepSeek R1::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "Llama 4 Scout + Gemini 2.5 Pro + DeepSeek R1",
+    "model": "Llama 4 Scout + Gemini 2.5 Pro + DeepSeek R1",
+    "team": "3-Agent Teams",
+    "condition": "Advisor + Guardian + Guardian",
     "harm": ""
   },
   {

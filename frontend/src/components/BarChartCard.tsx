@@ -341,6 +341,7 @@ export function BarChartCard({
   const [draggedHighlight, setDraggedHighlight] = useState<
     "primary" | "comparison" | null
   >(null);
+  const [showDragHint, setShowDragHint] = useState(true);
   const [dropTargetId, setDropTargetId] = useState<string | null>(null);
   const [touchDragState, setTouchDragState] = useState<
     { pointerId: number; type: "primary" | "comparison" }
@@ -383,6 +384,7 @@ export function BarChartCard({
         event.dataTransfer.setData("text/plain", type);
       }
       setDraggedHighlight(type);
+      setShowDragHint(false);
     },
     []
   );
@@ -413,9 +415,18 @@ export function BarChartCard({
       }
       setDraggedHighlight(type);
       setTouchDragState({ pointerId, type });
+      setShowDragHint(false);
     },
     []
   );
+
+  useEffect(() => {
+    if (!showDragHint || typeof window === "undefined") {
+      return;
+    }
+    const timeout = window.setTimeout(() => setShowDragHint(false), 4000);
+    return () => window.clearTimeout(timeout);
+  }, [showDragHint]);
 
   useEffect(() => {
     if (!touchDragState) {
@@ -908,7 +919,7 @@ export function BarChartCard({
                   event.stopPropagation();
                 }}
                 className={clsx(
-                  "flex h-5 w-5 cursor-grab items-center justify-center rounded-full border-2 bg-white text-[0px] shadow-sm transition-colors duration-200",
+                  "group/handle relative flex h-5 w-5 cursor-grab items-center justify-center rounded-full border-2 bg-white text-[0px] shadow-sm transition-colors duration-200",
                   type === "primary"
                     ? "border-sky-300 hover:border-sky-400"
                     : "border-amber-300 hover:border-amber-400"
@@ -918,17 +929,24 @@ export function BarChartCard({
                     ? "Drag to choose the primary highlight"
                     : "Drag to choose the comparison highlight"
                 }
-              >
-                <span
-                  className="h-2.5 w-2.5 rounded-full"
-                  style={{
-                    backgroundColor:
-                      type === "primary"
-                        ? PRIMARY_SELECTION_COLOR
-                        : COMPARISON_SELECTION_COLOR
-                  }}
-                />
-              </span>
+                >
+                  <span
+                    className="h-2.5 w-2.5 rounded-full"
+                    style={{
+                      backgroundColor:
+                        type === "primary"
+                          ? PRIMARY_SELECTION_COLOR
+                          : COMPARISON_SELECTION_COLOR
+                    }}
+                  />
+                  {showDragHint ? (
+                    <span
+                      className="pointer-events-none absolute left-1/2 top-full z-10 mt-1 -translate-x-1/2 whitespace-nowrap rounded-full bg-slate-900/95 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-white opacity-100 shadow-lg transition-opacity duration-200 group-hover/handle:opacity-100 group-focus-visible/handle:opacity-100"
+                    >
+                      Drag and drop
+                    </span>
+                  ) : null}
+                </span>
             ))
           ) : (
             <span aria-hidden="true" className="h-5 w-5" />
