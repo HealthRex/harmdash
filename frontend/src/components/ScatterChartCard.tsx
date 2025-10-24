@@ -510,10 +510,10 @@ export function ScatterChartCard({
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <label className="flex w-full max-w-xs flex-col gap-1 text-xs font-medium text-slate-600">
-            X Metric
+            Y Metric
             <select
-              value={xMetricId}
-              onChange={(event) => onXMetricChange(event.target.value)}
+              value={yMetricId}
+              onChange={(event) => onYMetricChange(event.target.value)}
               className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm transition hover:border-brand-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
             >
               {metrics.map((option) => (
@@ -524,10 +524,10 @@ export function ScatterChartCard({
             </select>
           </label>
           <label className="flex w-full max-w-xs flex-col gap-1 text-xs font-medium text-slate-600">
-            Y Metric
+            X Metric
             <select
-              value={yMetricId}
-              onChange={(event) => onYMetricChange(event.target.value)}
+              value={xMetricId}
+              onChange={(event) => onXMetricChange(event.target.value)}
               className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm transition hover:border-brand-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
             >
               {metrics.map((option) => (

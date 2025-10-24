@@ -378,7 +378,7 @@ export function ModelInfoDrawer({
       )}
     >
       <header className="flex flex-col gap-3">
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
           <div>
             <h3 className="text-lg font-semibold text-slate-900">
               Model Profiles
@@ -394,7 +394,7 @@ export function ModelInfoDrawer({
             <button
               type="button"
               onClick={handleClearAll}
-              className="rounded-full border border-slate-200 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600 transition hover:border-brand-400 hover:text-brand-600"
+              className="self-start rounded-full border border-slate-200 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600 transition hover:border-brand-400 hover:text-brand-600"
             >
               Clear
             </button>

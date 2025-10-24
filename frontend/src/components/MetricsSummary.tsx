@@ -12,10 +12,10 @@ export function MetricsSummary({ dataset }: MetricsSummaryProps) {
 
   return (
     <section
-      className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-sky-200 bg-gradient-to-r from-sky-50 via-white to-blue-50 p-6 shadow-inner"
+      className="flex flex-col gap-6 rounded-2xl border border-sky-200 bg-gradient-to-r from-sky-50 via-white to-blue-50 p-6 shadow-inner sm:flex-row sm:flex-wrap sm:items-center sm:justify-between"
       style={{ boxShadow: "0 18px 45px -20px rgba(14, 165, 233, 0.4)" }}
     >
-      <div className="max-w-3xl space-y-2">
+      <div className="space-y-2 text-center sm:max-w-3xl sm:text-left">
         <h2 className="text-xl font-semibold text-slate-900">
           First, Do NOHARM: Interactive AI Benchmark Leaderboard
         </h2>
@@ -23,8 +23,8 @@ export function MetricsSummary({ dataset }: MetricsSummaryProps) {
           Analyze how leading AI models perform in the NOHARM medical AI benchmark. Select a metric to visualize rankings, compare trade-offs, and inspect the full metric profile.
         </p>
       </div>
-      <dl className="flex gap-6 text-center text-sm">
-        <div>
+      <dl className="grid w-full gap-3 text-sm sm:w-auto sm:grid-cols-3 sm:gap-6">
+        <div className="rounded-xl bg-white/70 p-3 text-center shadow-sm sm:bg-transparent sm:p-0 sm:shadow-none">
           <dt className="text-xs uppercase tracking-wide text-slate-500">
             Models
           </dt>
@@ -32,7 +32,7 @@ export function MetricsSummary({ dataset }: MetricsSummaryProps) {
             {summary.totalModels}
           </dd>
         </div>
-        <div>
+        <div className="rounded-xl bg-white/70 p-3 text-center shadow-sm sm:bg-transparent sm:p-0 sm:shadow-none">
           <dt className="text-xs uppercase tracking-wide text-slate-500">
             Metrics
           </dt>
@@ -40,7 +40,7 @@ export function MetricsSummary({ dataset }: MetricsSummaryProps) {
             {summary.totalMetrics}
           </dd>
         </div>
-        <div>
+        <div className="rounded-xl bg-white/70 p-3 text-center shadow-sm sm:bg-transparent sm:p-0 sm:shadow-none">
           <dt className="text-xs uppercase tracking-wide text-slate-500">
             Data Points
           </dt>

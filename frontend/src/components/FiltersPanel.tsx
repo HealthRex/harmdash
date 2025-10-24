@@ -114,10 +114,15 @@ export function TeamFiltersBar({
       Math.max(baseSizing.minWidth, estimatedRowWidth)
     );
     const flexGrow = Math.min(2, Math.max(baseSizing.flexGrow, minWidth / 280));
+    const roundedWidth = Math.round(minWidth);
+    const responsiveBasis = `min(${roundedWidth}px, 100%)`;
 
     return {
-      flex: `${Number(flexGrow.toFixed(2))} 1 0%`,
-      minWidth
+      flexGrow: Number(flexGrow.toFixed(2)),
+      flexShrink: 1,
+      flexBasis: responsiveBasis,
+      minWidth: responsiveBasis,
+      maxWidth: "100%"
     };
   };
 
@@ -128,7 +133,7 @@ export function TeamFiltersBar({
           TEAM CONFIGURATION
         </h2>
       </header>
-      <div className="flex flex-wrap items-stretch justify-evenly gap-4 md:gap-6">
+      <div className="flex flex-wrap items-stretch justify-center gap-4 md:gap-6">
         {teamGroups.map((group) => {
           const isSelected = selectedTeams.includes(group.team);
           const selectedConditionsForTeam =
@@ -150,7 +155,7 @@ export function TeamFiltersBar({
             <div
               key={group.team || "unspecified-team"}
               className={clsx(
-                "flex flex-col items-center gap-3 rounded-xl border p-4 text-center transition-all duration-[650ms] ease-[cubic-bezier(0.33,1,0.68,1)]",
+                "flex w-full flex-col items-center gap-3 rounded-xl border p-4 text-center transition-all duration-[650ms] ease-[cubic-bezier(0.33,1,0.68,1)] sm:w-auto",
                 isSelected
                   ? "border-brand-200 bg-white shadow-sm"
                   : "border-slate-200 bg-slate-50"
@@ -291,7 +296,7 @@ export function DataControlsCard({
           <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">
             Minimum Trials
           </span>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
             <input
               type="range"
               min={minAllowed}
