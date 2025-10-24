@@ -18,6 +18,11 @@ import {
   useRef,
   useState
 } from "react";
+import type {
+  CSSProperties,
+  DragEvent as ReactDragEvent,
+  PointerEvent as ReactPointerEvent
+} from "react";
 
 const applyAlpha = (hex: string, alpha: number) => {
   const normalized = hex.replace("#", "");
@@ -42,6 +47,7 @@ type Props = {
   metricId: string;
   onMetricChange: (metricId: string) => void;
   onBarClick?: (row: DataRow) => void;
+  onHighlightAssign?: (target: "primary" | "comparison", row: DataRow) => void;
   highlightedCombinationId?: string | null;
   comparisonCombinationId?: string | null;
   maxItems?: number;
@@ -68,6 +74,7 @@ export function BarChartCard({
   metricId,
   onMetricChange,
   onBarClick,
+  onHighlightAssign,
   highlightedCombinationId,
   comparisonCombinationId,
   maxItems = 5,
@@ -142,12 +149,14 @@ export function BarChartCard({
       return next;
     };
 
-    let topWithSelections = [...top];
-    let bottomWithSelections = [...bottomSorted];
+    const topWithSelections = [...top];
+    const bottomWithSelections = [...bottomSorted];
+    const selectedRows: DataRow[] = [];
     const topIds = new Set(topWithSelections.map((row) => row.combinationId));
     const bottomIds = new Set(
       bottomWithSelections.map((row) => row.combinationId)
     );
+    const selectedIds = new Set<string>();
 
     const selectionTargets = [
       {
@@ -185,28 +194,27 @@ export function BarChartCard({
         return;
       }
 
-      if (bestRank <= worstRank) {
-        topWithSelections = insertInOrder(topWithSelections, match, bestOrder);
-        topIds.add(match.combinationId);
-      } else {
-        bottomWithSelections = insertInOrder(
-          bottomWithSelections,
-          match,
-          worstOrder
-        );
-        bottomIds.add(match.combinationId);
+      if (selectedIds.has(match.combinationId)) {
+        return;
       }
+
+      const targetCollection = insertInOrder(selectedRows, match, bestOrder);
+      selectedRows.splice(0, selectedRows.length, ...targetCollection);
+      selectedIds.add(match.combinationId);
     });
 
     const combinedDisplay = [
       ...topWithSelections,
+      ...selectedRows,
       ...bottomWithSelections.filter(
-        (row) => !topIds.has(row.combinationId)
+        (row) =>
+          !topIds.has(row.combinationId) && !selectedIds.has(row.combinationId)
       )
     ];
 
     return {
       topRows: topWithSelections,
+      selectedRows,
       bottomRows: bottomWithSelections,
       displayRows: combinedDisplay,
       allRows: sortedForBest
@@ -220,7 +228,8 @@ export function BarChartCard({
     comparisonCombinationId
   ]);
 
-  const { topRows, bottomRows, displayRows, allRows } = dataForMetric;
+  const { topRows, selectedRows, bottomRows, displayRows, allRows } =
+    dataForMetric;
 
   const rowsForAxis = isAllView ? allRows : displayRows;
 
@@ -228,6 +237,7 @@ export function BarChartCard({
     metricId: string;
     viewMode: "bestWorst" | "all";
     topRows: DataRow[];
+    selectedRows: DataRow[];
     bottomRows: DataRow[];
     displayRows: DataRow[];
     allRows: DataRow[];
@@ -284,6 +294,7 @@ export function BarChartCard({
       metricId,
       viewMode,
       topRows,
+      selectedRows,
       bottomRows,
       displayRows,
       allRows,
@@ -294,6 +305,7 @@ export function BarChartCard({
     metricId,
     viewMode,
     topRows,
+    selectedRows,
     bottomRows,
     displayRows,
     allRows,
@@ -311,6 +323,7 @@ export function BarChartCard({
       encodeRowOrder(snapshot.displayRows),
       encodeRowOrder(snapshot.allRows),
       encodeRowOrder(snapshot.topRows),
+      encodeRowOrder(snapshot.selectedRows),
       encodeRowOrder(snapshot.bottomRows),
       snapshot.axisMin.toPrecision(6),
       snapshot.axisMax.toPrecision(6)
@@ -325,6 +338,10 @@ export function BarChartCard({
   const [transitionPhase, setTransitionPhase] = useState<
     "idle" | "prepare" | "entering"
   >("idle");
+  const [draggedHighlight, setDraggedHighlight] = useState<
+    "primary" | "comparison" | null
+  >(null);
+  const [dropTargetId, setDropTargetId] = useState<string | null>(null);
 
   const rowElementsRef = useRef<Map<string, HTMLButtonElement>>(
     new Map()
@@ -342,6 +359,30 @@ export function BarChartCard({
         return;
       }
       registry.set(combinationId, element);
+    },
+    []
+  );
+
+  const handleHighlightDragStart = useCallback(
+    (event: ReactDragEvent<HTMLElement>, type: "primary" | "comparison") => {
+      event.stopPropagation();
+      if (event.dataTransfer) {
+        event.dataTransfer.effectAllowed = "move";
+        event.dataTransfer.setData("text/plain", type);
+      }
+      setDraggedHighlight(type);
+    },
+    []
+  );
+
+  const handleHighlightDragEnd = useCallback(() => {
+    setDropTargetId(null);
+    setDraggedHighlight(null);
+  }, []);
+
+  const handleHighlightPointerDown = useCallback(
+    (event: ReactPointerEvent<HTMLElement>) => {
+      event.stopPropagation();
     },
     []
   );
@@ -612,6 +653,36 @@ export function BarChartCard({
       ? `CI: ± ${formatMetricValue(row.ci, { metadata: meta })}`
       : "CI: NA";
     const textColor = getTextColor(barColor);
+    const highlightHandles: Array<"primary" | "comparison"> = [];
+    if (isPrimarySelected) {
+      highlightHandles.push("primary");
+    }
+    if (isComparisonSelected) {
+      highlightHandles.push("comparison");
+    }
+    const hasHandles = highlightHandles.length > 0;
+    const isDropTarget =
+      dropTargetId === row.combinationId && draggedHighlight !== null;
+    const dropTargetColor =
+      draggedHighlight === "comparison"
+        ? COMPARISON_SELECTION_COLOR
+        : PRIMARY_SELECTION_COLOR;
+
+    const buttonStyle: CSSProperties = {};
+    const boxShadows: string[] = [];
+    if (highlightColor) {
+      buttonStyle.borderColor = highlightColor;
+      boxShadows.push(`0 0 0 2px ${highlightColor}1a`);
+    }
+    if (isDropTarget) {
+      if (!highlightColor) {
+        buttonStyle.borderColor = dropTargetColor;
+      }
+      boxShadows.push(`0 0 0 ${highlightColor ? 4 : 2}px ${dropTargetColor}33`);
+    }
+    if (boxShadows.length > 0) {
+      buttonStyle.boxShadow = boxShadows.join(", ");
+    }
 
     const renderConfidenceVisual = () => {
       if (!showConfidence || !hasCi || range <= 0) {
@@ -663,20 +734,98 @@ export function BarChartCard({
         aria-pressed={isSelected}
         onClick={() => handleRowClick(row)}
         className={clsx(
-          "relative group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 rounded-2xl border border-transparent bg-white/0 px-2 py-1.5 text-left transition-[background-color,border-color,box-shadow,opacity] duration-[550ms] ease-[cubic-bezier(0.33,1,0.68,1)]",
+          "relative group grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-2xl border border-transparent bg-white/0 px-2 py-1.5 text-left transition-[background-color,border-color,box-shadow,opacity] duration-[550ms] ease-[cubic-bezier(0.33,1,0.68,1)]",
           isSelected
             ? "border-2 bg-gradient-to-r from-white via-slate-50 to-white shadow-sm"
-            : "hover:border-slate-200 hover:bg-slate-50/70"
+            : "hover:border-slate-200 hover:bg-slate-50/70",
+          isDropTarget ? "border-dashed" : undefined
         )}
-        style={
-          highlightColor
-            ? {
-                borderColor: highlightColor,
-                boxShadow: `0 0 0 2px ${highlightColor}1a`
-              }
-            : undefined
-        }
+        style={buttonStyle}
+        onDragEnter={(event) => {
+          if (!draggedHighlight) {
+            return;
+          }
+          event.preventDefault();
+          setDropTargetId(row.combinationId);
+        }}
+        onDragOver={(event) => {
+          if (!draggedHighlight) {
+            return;
+          }
+          event.preventDefault();
+          event.dataTransfer.dropEffect = "move";
+        }}
+        onDragLeave={(event) => {
+          if (!draggedHighlight) {
+            return;
+          }
+          const related = event.relatedTarget as Node | null;
+          if (!related || !event.currentTarget.contains(related)) {
+            setDropTargetId((current) =>
+              current === row.combinationId ? null : current
+            );
+          }
+        }}
+        onDrop={(event) => {
+          const type =
+            draggedHighlight ??
+            (event.dataTransfer?.getData("text/plain") as
+              | "primary"
+              | "comparison"
+              | undefined);
+          if (type !== "primary" && type !== "comparison") {
+            return;
+          }
+          event.preventDefault();
+          event.stopPropagation();
+          onHighlightAssign?.(type, row);
+          setDropTargetId(null);
+          handleHighlightDragEnd();
+        }}
       >
+        <div className="flex w-7 flex-col items-center justify-center gap-1">
+          {hasHandles ? (
+            highlightHandles.map((type) => (
+              <span
+                key={type}
+                aria-hidden="true"
+                draggable
+                onPointerDown={handleHighlightPointerDown}
+                onDragStart={(event) =>
+                  handleHighlightDragStart(event, type)
+                }
+                onDragEnd={handleHighlightDragEnd}
+                onClick={(event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }}
+                className={clsx(
+                  "flex h-5 w-5 cursor-grab items-center justify-center rounded-full border-2 bg-white text-[0px] shadow-sm transition-colors duration-200",
+                  type === "primary"
+                    ? "border-sky-300 hover:border-sky-400"
+                    : "border-amber-300 hover:border-amber-400"
+                )}
+                title={
+                  type === "primary"
+                    ? "Drag to choose the primary highlight"
+                    : "Drag to choose the comparison highlight"
+                }
+              >
+                <span
+                  className="h-2.5 w-2.5 rounded-full"
+                  style={{
+                    backgroundColor:
+                      type === "primary"
+                        ? PRIMARY_SELECTION_COLOR
+                        : COMPARISON_SELECTION_COLOR
+                  }}
+                />
+              </span>
+            ))
+          ) : (
+            <span aria-hidden="true" className="h-5 w-5" />
+          )}
+        </div>
         <div className="relative h-8 w-full overflow-hidden rounded-[6px]">
           <div className="absolute inset-0 rounded-[6px] bg-slate-200" />
           {renderConfidenceVisual()}
@@ -793,6 +942,20 @@ export function BarChartCard({
             registerElement
           )}
         </div>
+        {target.selectedRows.length ? (
+          <div className="flex flex-col gap-2">
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+              Selected
+            </h3>
+            {renderRowGroup(
+              target.selectedRows,
+              "No selected models to display.",
+              meta,
+              { axisMin: target.axisMin, axisMax: target.axisMax },
+              registerElement
+            )}
+          </div>
+        ) : null}
         <div className="flex flex-col gap-2">
           <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
             Worst

@@ -670,6 +670,35 @@ export function Dashboard({ dataset }: DashboardProps) {
     }
   };
 
+  const handleHighlightAssign = useCallback(
+    (target: "primary" | "comparison", row: DataRow) => {
+      const match = combinations.find(
+        (entry) => entry.combinationId === row.combinationId
+      );
+      if (!match) {
+        return;
+      }
+
+      if (target === "comparison") {
+        comparisonSearchSelectionRef.current = true;
+        setComparisonSelection(match);
+        setComparisonSearch(match.displayLabel || match.model || "");
+        return;
+      }
+
+      searchSelectionRef.current = true;
+      setSelection(match);
+      setModelSearch(match.displayLabel || match.model || "");
+    },
+    [
+      combinations,
+      setComparisonSelection,
+      setComparisonSearch,
+      setSelection,
+      setModelSearch
+    ]
+  );
+
   const handlePointClick = (entry: CombinationEntry) => {
     assignSelection(entry);
   };
@@ -807,6 +836,7 @@ export function Dashboard({ dataset }: DashboardProps) {
           metricId={safeBarMetric}
           onMetricChange={setBarMetricId}
           onBarClick={handleBarClick}
+          onHighlightAssign={handleHighlightAssign}
           highlightedCombinationId={selection?.combinationId}
           comparisonCombinationId={comparisonSelection?.combinationId}
           metrics={metrics}
