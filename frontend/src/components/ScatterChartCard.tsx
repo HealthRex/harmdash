@@ -3,10 +3,28 @@
 import Plot from "@/components/PlotClient";
 import { TEAM_COLORS } from "@/config/colors";
 import type { CombinationEntry, DataRow, MetricMetadata } from "@/types/dataset";
-import clsx from "clsx";
 import type { Layout, PlotData, PlotMouseEvent, Shape } from "plotly.js";
 import { useMemo } from "react";
 import { formatMetricValue } from "@/utils/data";
+
+const LEGEND_PRIORITY_GROUPS: readonly string[][] = [
+  ["Solo Models", "Solo Model", "1 Agent"],
+  ["2-Agent Teams", "2-Agent Team", "2 Agents"],
+  ["3-Agent Teams", "3-Agent Team", "3 Agents"]
+];
+
+const LEGEND_PRIORITY_MAP = new Map<string, number>();
+
+LEGEND_PRIORITY_GROUPS.forEach((group, index) => {
+  group.forEach((label) => {
+    LEGEND_PRIORITY_MAP.set(label.trim().toLowerCase(), index);
+  });
+});
+
+function getLegendPriority(label: string): number {
+  const normalized = label.trim().toLowerCase();
+  return LEGEND_PRIORITY_MAP.get(normalized) ?? LEGEND_PRIORITY_GROUPS.length;
+}
 
 function sizeFromTrials(a: DataRow | undefined, b: DataRow | undefined) {
   const trials = Math.max(a?.trials ?? 0, b?.trials ?? 0);
@@ -116,11 +134,24 @@ export function ScatterChartCard({
     return map;
   }, [filtered]);
 
+  const sortedTeams = useMemo(() => {
+    return Array.from(teamGroups.entries()).sort((a, b) => {
+      const aPriority = getLegendPriority(a[0]);
+      const bPriority = getLegendPriority(b[0]);
+
+      if (aPriority !== bPriority) {
+        return aPriority - bPriority;
+      }
+
+      return a[0].localeCompare(b[0]);
+    });
+  }, [teamGroups]);
+
   const data: PlotData[] = useMemo(() => {
     const highlighted = new Set([highlightedCombinationId ?? ""]);
     const traces: PlotData[] = [];
 
-    teamGroups.forEach((entries, team) => {
+    sortedTeams.forEach(([team, entries]) => {
       const rawX = entries.map((entry) => entry.metrics[xMetricId]?.mean ?? 0);
       const rawY = entries.map((entry) => entry.metrics[yMetricId]?.mean ?? 0);
 
@@ -236,7 +267,7 @@ export function ScatterChartCard({
 
     return traces;
   }, [
-    teamGroups,
+    sortedTeams,
     highlightedCombinationId,
     xMetricId,
     yMetricId,
@@ -276,6 +307,22 @@ export function ScatterChartCard({
     [yDisplayValues, yMeta, yIsPercentMetric]
   );
 
+  const xAxisTitle = useMemo(() => {
+    const label = xMeta?.displayLabel ?? xMetricId;
+    if (!xIsPercentMetric) {
+      return label;
+    }
+    return /%/.test(label) ? label : `${label} (%)`;
+  }, [xMeta, xMetricId, xIsPercentMetric]);
+
+  const yAxisTitle = useMemo(() => {
+    const label = yMeta?.displayLabel ?? yMetricId;
+    if (!yIsPercentMetric) {
+      return label;
+    }
+    return /%/.test(label) ? label : `${label} (%)`;
+  }, [yMeta, yMetricId, yIsPercentMetric]);
+
   const layout = useMemo<Partial<Layout>>(
     () => ({
       margin: { l: 60, r: 20, t: 40, b: 60 },
@@ -284,19 +331,24 @@ export function ScatterChartCard({
       plot_bgcolor: "rgba(0,0,0,0)",
       xaxis: {
         title: {
-          text: `<b>${xMeta?.displayLabel ?? xMetricId}</b>`,
+          text: `<b>${xAxisTitle}</b>`,
           font: {
             size: 16,
             family: "Inter, sans-serif"
           }
         },
         range: xAxisRange,
-        tickformat: xIsPercentMetric ? ".1f" : undefined,
+        tickformat: xIsPercentMetric ? ".0f" : undefined,
+        ticksuffix: xIsPercentMetric ? "%" : undefined,
         automargin: true,
         zeroline: false,
         gridcolor: "#e2e8f0",
         zerolinecolor: "#94a3b8",
         zerolinewidth: 1.5,
+        showline: true,
+        mirror: true,
+        linecolor: "#94a3b8",
+        linewidth: 1.5,
         tickfont: {
           size: 12,
           family: "Inter, sans-serif",
@@ -305,19 +357,24 @@ export function ScatterChartCard({
       },
       yaxis: {
         title: {
-          text: `<b>${yMeta?.displayLabel ?? yMetricId}</b>`,
+          text: `<b>${yAxisTitle}</b>`,
           font: {
             size: 16,
             family: "Inter, sans-serif"
           }
         },
         range: yAxisRange,
-        tickformat: yIsPercentMetric ? ".1f" : undefined,
+        tickformat: yIsPercentMetric ? ".0f" : undefined,
+        ticksuffix: yIsPercentMetric ? "%" : undefined,
         automargin: true,
         zeroline: false,
         gridcolor: "#e2e8f0",
         zerolinecolor: "#94a3b8",
         zerolinewidth: 1.5,
+        showline: true,
+        mirror: true,
+        linecolor: "#94a3b8",
+        linewidth: 1.5,
         tickfont: {
           size: 12,
           family: "Inter, sans-serif",
@@ -331,7 +388,8 @@ export function ScatterChartCard({
       },
       legend: {
         orientation: "h",
-        y: 1.1
+        y: 1.1,
+        traceorder: "normal"
       },
       shapes: (() => {
         const shapes: Partial<Shape>[] = [];
@@ -409,14 +467,12 @@ export function ScatterChartCard({
       })()
     }),
     [
-      xMeta,
-      yMeta,
-      xMetricId,
-      yMetricId,
       xIsPercentMetric,
       yIsPercentMetric,
       xAxisRange,
-      yAxisRange
+      yAxisRange,
+      xAxisTitle,
+      yAxisTitle
     ]
   );
 

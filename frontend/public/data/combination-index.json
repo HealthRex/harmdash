@@ -424,14 +424,6 @@
     "harm": ""
   },
   {
-    "combinationId": "Gemini 2.5 Pro + Claude Sonnet 3.7::2-Agent Teams::Advisor + Guardian::::AllHarm::HumanCases::Unanimous",
-    "displayLabel": "Gemini 2.5 Pro + Claude Sonnet 3.7",
-    "model": "Gemini 2.5 Pro + Claude Sonnet 3.7",
-    "team": "2-Agent Teams",
-    "condition": "Advisor + Guardian",
-    "harm": ""
-  },
-  {
     "combinationId": "Gemini 2.5 Pro + DeepSeek R1::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
     "displayLabel": "Gemini 2.5 Pro + DeepSeek R1",
     "model": "Gemini 2.5 Pro + DeepSeek R1",
@@ -928,7 +920,7 @@
     "harm": ""
   },
   {
-    "combinationId": "Human::Solo Models::Human::::AllHarm::HumanCases::Unanimous",
+    "combinationId": "Human::Solo Models::Human::::AllHarm::AllCases::Unanimous",
     "displayLabel": "Human Physicians",
     "model": "Human",
     "team": "Solo Models",

@@ -7,6 +7,9 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import type { Layout, PlotData } from "plotly.js";
 import { formatMetricValue } from "@/utils/data";
 
+const PRIMARY_SELECTION_COLOR = "#0ea5e9";
+const COMPARISON_SELECTION_COLOR = "#f97316";
+
 interface ModelInfoDrawerProps {
   selection: CombinationEntry | null;
   comparison: CombinationEntry | null;
@@ -302,9 +305,9 @@ export function ModelInfoDrawer({
       (point) => point.primaryValue,
       (point) => point.primaryMetric,
       {
-        fill: "rgba(56, 189, 248, 0.25)",
-        line: "#0ea5e9",
-        marker: "#38bdf8",
+        fill: "rgba(14, 165, 233, 0.25)",
+        line: PRIMARY_SELECTION_COLOR,
+        marker: PRIMARY_SELECTION_COLOR,
         opacity: 0.75
       }
     );
@@ -318,8 +321,8 @@ export function ModelInfoDrawer({
       (point) => point.comparisonMetric,
       {
         fill: "rgba(249, 115, 22, 0.2)",
-        line: "#f97316",
-        marker: "#fb923c",
+        line: COMPARISON_SELECTION_COLOR,
+        marker: COMPARISON_SELECTION_COLOR,
         opacity: 0.6
       }
     );
@@ -470,7 +473,7 @@ export function ModelInfoDrawer({
                     }
                   }
                 }}
-                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-700 shadow-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
+                className="w-full rounded-lg border-2 border-[#0ea5e9] bg-[#0ea5e9]/10 px-3 py-2 text-sm font-medium text-slate-900 shadow-sm ring-1 ring-inset ring-[#0ea5e9]/25 transition focus:border-[#0ea5e9] focus:outline-none focus:ring-2 focus:ring-[#0ea5e9]/50"
               />
               {showSuggestions ? (
                 <ul
@@ -496,7 +499,7 @@ export function ModelInfoDrawer({
                             className={clsx(
                               "flex w-full flex-col items-start gap-0.5 px-3 py-2 text-left text-sm",
                               selected
-                                ? "bg-brand-50 text-brand-700"
+                                ? "bg-[#0ea5e9]/10 text-slate-900"
                                 : isActive
                                 ? "bg-slate-100 text-slate-900"
                                 : "text-slate-700 hover:bg-slate-100"
@@ -595,7 +598,7 @@ export function ModelInfoDrawer({
                     }
                   }
                 }}
-                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-700 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-200"
+                className="w-full rounded-lg border-2 border-[#f97316] bg-[#f97316]/10 px-3 py-2 text-sm font-medium text-slate-900 shadow-sm ring-1 ring-inset ring-[#f97316]/25 transition focus:border-[#f97316] focus:outline-none focus:ring-2 focus:ring-[#f97316]/50"
               />
               {showComparisonSuggestions ? (
                 <ul
@@ -621,7 +624,7 @@ export function ModelInfoDrawer({
                             className={clsx(
                               "flex w-full flex-col items-start gap-0.5 px-3 py-2 text-left text-sm",
                               selected
-                                ? "bg-amber-50 text-amber-700"
+                                ? "bg-[#f97316]/10 text-slate-900"
                                 : isActive
                                 ? "bg-slate-100 text-slate-900"
                                 : "text-slate-700 hover:bg-slate-100"
@@ -665,7 +668,7 @@ export function ModelInfoDrawer({
                   <span className="flex items-center gap-2">
                     <span
                       className="h-2.5 w-2.5 rounded-full"
-                      style={{ backgroundColor: "#0ea5e9" }}
+                      style={{ backgroundColor: PRIMARY_SELECTION_COLOR }}
                     />
                     {selection.displayLabel || selection.model || "Primary"}
                   </span>
@@ -674,7 +677,7 @@ export function ModelInfoDrawer({
                   <span className="flex items-center gap-2">
                     <span
                       className="h-2.5 w-2.5 rounded-full"
-                      style={{ backgroundColor: "#f97316" }}
+                      style={{ backgroundColor: COMPARISON_SELECTION_COLOR }}
                     />
                     {comparison.displayLabel || comparison.model || "Comparison"}
                   </span>

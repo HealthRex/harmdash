@@ -8,7 +8,8 @@ import { ScatterChartCard } from "@/components/ScatterChartCard";
 import type {
   CombinationEntry,
   DataRow,
-  DatasetArtifact
+  DatasetArtifact,
+  MetricMetadata
 } from "@/types/dataset";
 import { CONDITION_COLORS, TEAM_COLORS } from "@/config/colors";
 import {
@@ -26,6 +27,18 @@ const CASE_OPTIONS = [
   { value: "AllCases", label: "All Cases" },
   { value: "HumanCases", label: "Human Subset" }
 ];
+
+const DEFAULT_X_METRIC_ID = "Safety";
+
+function resolvePreferredMetricId(
+  metricIds: string[],
+  preferredId: string
+): string | undefined {
+  const normalizedPreferred = preferredId.trim().toLowerCase();
+  return metricIds.find(
+    (candidate) => candidate.trim().toLowerCase() === normalizedPreferred
+  );
+}
 
 const ALWAYS_ON_CONDITION_NAMES = new Set(["human", "control"]);
 
@@ -78,11 +91,15 @@ function toggleWithMinimumSelected(
 
 export function Dashboard({ dataset }: DashboardProps) {
   const metrics = useMemo(() => dataset.metadata, [dataset.metadata]);
+  const metricIds = useMemo(() => metrics.map((meta) => meta.id), [metrics]);
+  const preferredXMetricId = useMemo(
+    () => resolvePreferredMetricId(metricIds, DEFAULT_X_METRIC_ID),
+    [metricIds]
+  );
   const metadataMap = useMemo(
-    () => new Map(metrics.map((meta) => [meta.id, meta])),
+    () => new Map<string, MetricMetadata>(metrics.map((meta) => [meta.id, meta])),
     [metrics]
   );
-  const metricIds = useMemo(() => metrics.map((meta) => meta.id), [metrics]);
   const allCombinations = useMemo(
     () => groupRowsByCombination(dataset.rows),
     [dataset.rows]
@@ -151,7 +168,10 @@ export function Dashboard({ dataset }: DashboardProps) {
   }, [dataset.rows]);
 
   const [barMetricId, setBarMetricId] = useState<string>(() => metricIds[0] ?? "");
-  const [xMetricId, setXMetricId] = useState<string>(() => metricIds[0] ?? "");
+  const [xMetricId, setXMetricId] = useState<string>(() => {
+    const preferred = resolvePreferredMetricId(metricIds, DEFAULT_X_METRIC_ID);
+    return preferred ?? metricIds[0] ?? "";
+  });
   const [yMetricId, setYMetricId] = useState<string>(
     () => metricIds[1] ?? metricIds[0] ?? ""
   );
@@ -324,7 +344,9 @@ export function Dashboard({ dataset }: DashboardProps) {
           : row.cases === "HumanCases" ||
             row.cases?.toLowerCase() === "humancases";
       const trials = row.trials ?? 0;
-      const trialsMatch = trials >= minTrials;
+      const modelValue = (row.model ?? "").trim().toLowerCase();
+      const isHumanModel = modelValue === "human";
+      const trialsMatch = isHumanModel ? true : trials >= minTrials;
       return harmMatch && teamMatch && conditionMatch && caseMatch && trialsMatch;
     });
   }, [
@@ -360,13 +382,14 @@ export function Dashboard({ dataset }: DashboardProps) {
     }
 
     const bestRows = sortRowsForMetric(nnhRows, true);
-    const worstRows = sortRowsForMetric(nnhRows, false);
 
     const bestRow = bestRows[0] ?? null;
-    const fifthWorstRow =
-      worstRows.length >= 5
-        ? worstRows[4]
-        : worstRows[worstRows.length - 1] ?? null;
+    const fifthBestRow =
+      bestRows.length >= 5
+        ? bestRows[4]
+        : bestRows.length > 0
+        ? bestRows[bestRows.length - 1]
+        : null;
 
     const findEntryByCombinationId = (combinationId: string) =>
       combinations.find((entry) => entry.combinationId === combinationId) ??
@@ -384,8 +407,8 @@ export function Dashboard({ dataset }: DashboardProps) {
       }
     }
 
-    if (fifthWorstRow) {
-      const entry = findEntryByCombinationId(fifthWorstRow.combinationId);
+    if (fifthBestRow) {
+      const entry = findEntryByCombinationId(fifthBestRow.combinationId);
       if (entry) {
         setComparisonSelection(entry);
         setComparisonSearch(entry.displayLabel || entry.model || "");
@@ -436,19 +459,30 @@ export function Dashboard({ dataset }: DashboardProps) {
     }
 
     setBarMetricId((prev) => (metricIds.includes(prev) ? prev : metricIds[0]));
-    setXMetricId((prev) => (metricIds.includes(prev) ? prev : metricIds[0]));
+    setXMetricId((prev) => {
+      if (metricIds.includes(prev)) {
+        return prev;
+      }
+      if (preferredXMetricId) {
+        return preferredXMetricId;
+      }
+      return metricIds[0] ?? prev;
+    });
     setYMetricId((prev) => {
       if (metricIds.includes(prev)) {
         return prev;
       }
       return metricIds[1] ?? metricIds[0];
     });
-  }, [metricIds]);
+  }, [metricIds, preferredXMetricId]);
 
   const ensureMetricExists = useCallback(
-    (metricId: string) => {
+    (metricId: string, preferred?: string) => {
       if (metricIds.includes(metricId)) {
         return metricId;
+      }
+      if (preferred && metricIds.includes(preferred)) {
+        return preferred;
       }
       return metricIds[0] ?? metricId;
     },
@@ -456,7 +490,7 @@ export function Dashboard({ dataset }: DashboardProps) {
   );
 
   const safeBarMetric = ensureMetricExists(barMetricId);
-  const safeXMetric = ensureMetricExists(xMetricId);
+  const safeXMetric = ensureMetricExists(xMetricId, preferredXMetricId);
   const safeYMetric = ensureMetricExists(yMetricId);
 
   const normalizeSearch = useCallback((value: string) => value.trim().toLowerCase(), []);
