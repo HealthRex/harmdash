@@ -156,7 +156,6 @@ export function ScatterChartCard({
         const xCi = entry.metrics[xMetricId]?.ci ?? null;
         const yCi = entry.metrics[yMetricId]?.ci ?? null;
         const condition = entry.condition || "NA";
-        const teamLabel = entry.team || "Unspecified Team";
         const trials = Math.max(
           entry.metrics[xMetricId]?.trials ?? 0,
           entry.metrics[yMetricId]?.trials ?? 0
@@ -170,27 +169,33 @@ export function ScatterChartCard({
           return formatMetricValue(value, { metadata: meta });
         };
 
-        const formatCi = (
+        const formatMetricLine = (
+          label: string,
           value: number | null,
+          ci: number | null,
           meta: MetricMetadata | undefined
         ) => {
-          if (value === null || value === 0) return null;
-          return `CI: ± ${formatMetricValue(value, { metadata: meta })}`;
+          const formattedValue = formatAxisValue(value, meta);
+          if (formattedValue === "NA") {
+            return `${label}: NA`;
+          }
+
+          if (ci === null || ci === 0) {
+            return `${label}: ${formattedValue}`;
+          }
+
+          const formattedCi = formatMetricValue(ci, { metadata: meta });
+          return `${label}: ${formattedValue} ± ${formattedCi}`;
         };
 
         const lines = [
-          `<b>${entry.displayLabel || entry.model}</b>`,
-          `${xMeta?.displayLabel ?? xMetricId}: ${formatAxisValue(xValue, xMeta)}`,
-          formatCi(xCi, xMeta),
-          `${yMeta?.displayLabel ?? yMetricId}: ${formatAxisValue(yValue, yMeta)}`,
-          formatCi(yCi, yMeta),
-          `Harm: ${entry.harm || "NA"}`,
+          formatMetricLine(xMeta?.displayLabel ?? xMetricId, xValue, xCi, xMeta),
+          formatMetricLine(yMeta?.displayLabel ?? yMetricId, yValue, yCi, yMeta),
           `Condition: ${condition}`,
-          `Team: ${teamLabel}`,
           `Trials: ${trials || "NA"}`
         ].filter(Boolean);
 
-        return `${lines.join("<br>")}<extra></extra>`;
+        return lines.join("<br>");
       });
 
       const xErrorRaw = entries.map((entry) => entry.metrics[xMetricId]?.ci ?? 0);

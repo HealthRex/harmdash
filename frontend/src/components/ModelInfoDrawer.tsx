@@ -3,7 +3,7 @@
 import Plot from "@/components/PlotClient";
 import type { CombinationEntry, MetricMetadata } from "@/types/dataset";
 import clsx from "clsx";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import type { Layout, PlotData } from "plotly.js";
 import { formatMetricValue } from "@/utils/data";
 
@@ -72,6 +72,9 @@ export function ModelInfoDrawer({
 }: ModelInfoDrawerProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [isComparisonFocused, setIsComparisonFocused] = useState(false);
+  const [primaryHighlightIndex, setPrimaryHighlightIndex] = useState<number>(-1);
+  const [comparisonHighlightIndex, setComparisonHighlightIndex] =
+    useState<number>(-1);
   const trimmedQuery = modelQuery.trim();
   const trimmedComparisonQuery = comparisonQuery.trim();
   const showSuggestions = isFocused && trimmedQuery !== "" && suggestions.length > 0;
@@ -79,6 +82,40 @@ export function ModelInfoDrawer({
     isComparisonFocused &&
     trimmedComparisonQuery !== "" &&
     comparisonSuggestions.length > 0;
+
+  useEffect(() => {
+    if (!showSuggestions) {
+      setPrimaryHighlightIndex(-1);
+      return;
+    }
+
+    setPrimaryHighlightIndex((prev) => {
+      if (prev < 0) {
+        return 0;
+      }
+      if (prev >= suggestions.length) {
+        return Math.max(0, suggestions.length - 1);
+      }
+      return prev;
+    });
+  }, [showSuggestions, suggestions]);
+
+  useEffect(() => {
+    if (!showComparisonSuggestions) {
+      setComparisonHighlightIndex(-1);
+      return;
+    }
+
+    setComparisonHighlightIndex((prev) => {
+      if (prev < 0) {
+        return 0;
+      }
+      if (prev >= comparisonSuggestions.length) {
+        return Math.max(0, comparisonSuggestions.length - 1);
+      }
+      return prev;
+    });
+  }, [showComparisonSuggestions, comparisonSuggestions]);
 
   const description = selection
     ? comparison
@@ -92,6 +129,7 @@ export function ModelInfoDrawer({
     (entry: CombinationEntry) => {
       onSuggestionSelect(entry);
       onModelSearchChange(entry.displayLabel || entry.model || "");
+      setPrimaryHighlightIndex(-1);
       setIsFocused(false);
       onActiveTargetChange(null);
     },
@@ -102,6 +140,7 @@ export function ModelInfoDrawer({
     (entry: CombinationEntry) => {
       onComparisonSuggestionSelect(entry);
       onComparisonSearchChange(entry.displayLabel || entry.model || "");
+      setComparisonHighlightIndex(-1);
       setIsComparisonFocused(false);
       onActiveTargetChange(null);
     },
@@ -115,6 +154,8 @@ export function ModelInfoDrawer({
     onComparisonSearchChange("");
     setIsFocused(false);
     setIsComparisonFocused(false);
+    setPrimaryHighlightIndex(-1);
+    setComparisonHighlightIndex(-1);
     onActiveTargetChange(null);
   }, [
     onClear,
@@ -384,28 +425,65 @@ export function ModelInfoDrawer({
                   setIsFocused(true);
                   const value = event.target.value;
                   onModelSearchChange(value);
+                  setPrimaryHighlightIndex(-1);
                   if (value === "") {
                     onClear();
                   }
                 }}
                 onKeyDown={(event) => {
+                  if (event.key === "ArrowDown") {
+                    event.preventDefault();
+                    if (suggestions.length > 0) {
+                      setPrimaryHighlightIndex((prev) => {
+                        if (prev < 0) {
+                          return 0;
+                        }
+                        return (prev + 1) % suggestions.length;
+                      });
+                    }
+                    return;
+                  }
+                  if (event.key === "ArrowUp") {
+                    event.preventDefault();
+                    if (suggestions.length > 0) {
+                      setPrimaryHighlightIndex((prev) => {
+                        if (prev < 0) {
+                          return suggestions.length - 1;
+                        }
+                        return (prev - 1 + suggestions.length) % suggestions.length;
+                      });
+                    }
+                    return;
+                  }
                   if (event.key === "Enter") {
                     event.preventDefault();
-                    const firstSuggestion = suggestions[0];
-                    if (firstSuggestion) {
-                      handlePrimarySelect(firstSuggestion);
+                    const index =
+                      primaryHighlightIndex >= 0
+                        ? primaryHighlightIndex
+                        : suggestions.length > 0
+                        ? 0
+                        : -1;
+                    if (index >= 0) {
+                      const suggestion = suggestions[index];
+                      if (suggestion) {
+                        handlePrimarySelect(suggestion);
+                      }
                     }
                   }
                 }}
                 className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-700 shadow-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
               />
               {showSuggestions ? (
-                <ul className="absolute z-10 mt-1 max-h-48 w-full overflow-auto rounded-lg border border-slate-200 bg-white shadow-lg">
+                <ul
+                  className="absolute z-10 mt-1 max-h-48 w-full overflow-auto rounded-lg border border-slate-200 bg-white shadow-lg"
+                  role="listbox"
+                >
                   {suggestions.length ? (
-                    suggestions.map((entry) => {
+                    suggestions.map((entry, index) => {
                       const label = entry.displayLabel || entry.model;
                       const subtitle = [entry.team, entry.condition].filter(Boolean).join(" · ");
                       const selected = selection?.combinationId === entry.combinationId;
+                      const isActive = index === primaryHighlightIndex;
                       return (
                         <li key={entry.combinationId}>
                           <button
@@ -413,12 +491,19 @@ export function ModelInfoDrawer({
                             onClick={() => {
                               handlePrimarySelect(entry);
                             }}
+                            onMouseEnter={() => {
+                              setPrimaryHighlightIndex(index);
+                            }}
                             className={clsx(
                               "flex w-full flex-col items-start gap-0.5 px-3 py-2 text-left text-sm",
                               selected
                                 ? "bg-brand-50 text-brand-700"
+                                : isActive
+                                ? "bg-slate-100 text-slate-900"
                                 : "text-slate-700 hover:bg-slate-100"
                             )}
+                            role="option"
+                            aria-selected={selected || isActive}
                           >
                             <span className="font-medium">{label}</span>
                             {subtitle ? (
@@ -462,28 +547,68 @@ export function ModelInfoDrawer({
                   setIsComparisonFocused(true);
                   const value = event.target.value;
                   onComparisonSearchChange(value);
+                  setComparisonHighlightIndex(-1);
                   if (value === "") {
                     onClearComparison();
                   }
                 }}
                 onKeyDown={(event) => {
+                  if (event.key === "ArrowDown") {
+                    event.preventDefault();
+                    if (comparisonSuggestions.length > 0) {
+                      setComparisonHighlightIndex((prev) => {
+                        if (prev < 0) {
+                          return 0;
+                        }
+                        return (prev + 1) % comparisonSuggestions.length;
+                      });
+                    }
+                    return;
+                  }
+                  if (event.key === "ArrowUp") {
+                    event.preventDefault();
+                    if (comparisonSuggestions.length > 0) {
+                      setComparisonHighlightIndex((prev) => {
+                        if (prev < 0) {
+                          return comparisonSuggestions.length - 1;
+                        }
+                        return (
+                          (prev - 1 + comparisonSuggestions.length) %
+                          comparisonSuggestions.length
+                        );
+                      });
+                    }
+                    return;
+                  }
                   if (event.key === "Enter") {
                     event.preventDefault();
-                    const firstSuggestion = comparisonSuggestions[0];
-                    if (firstSuggestion) {
-                      handleComparisonSelect(firstSuggestion);
+                    const index =
+                      comparisonHighlightIndex >= 0
+                        ? comparisonHighlightIndex
+                        : comparisonSuggestions.length > 0
+                        ? 0
+                        : -1;
+                    if (index >= 0) {
+                      const suggestion = comparisonSuggestions[index];
+                      if (suggestion) {
+                        handleComparisonSelect(suggestion);
+                      }
                     }
                   }
                 }}
                 className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-700 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-200"
               />
               {showComparisonSuggestions ? (
-                <ul className="absolute z-10 mt-1 max-h-48 w-full overflow-auto rounded-lg border border-slate-200 bg-white shadow-lg">
+                <ul
+                  className="absolute z-10 mt-1 max-h-48 w-full overflow-auto rounded-lg border border-slate-200 bg-white shadow-lg"
+                  role="listbox"
+                >
                   {comparisonSuggestions.length ? (
-                    comparisonSuggestions.map((entry) => {
+                    comparisonSuggestions.map((entry, index) => {
                       const label = entry.displayLabel || entry.model;
                       const subtitle = [entry.team, entry.condition].filter(Boolean).join(" · ");
                       const selected = comparison?.combinationId === entry.combinationId;
+                      const isActive = index === comparisonHighlightIndex;
                       return (
                         <li key={entry.combinationId}>
                           <button
@@ -491,12 +616,19 @@ export function ModelInfoDrawer({
                             onClick={() => {
                               handleComparisonSelect(entry);
                             }}
+                            onMouseEnter={() => {
+                              setComparisonHighlightIndex(index);
+                            }}
                             className={clsx(
                               "flex w-full flex-col items-start gap-0.5 px-3 py-2 text-left text-sm",
                               selected
                                 ? "bg-amber-50 text-amber-700"
+                                : isActive
+                                ? "bg-slate-100 text-slate-900"
                                 : "text-slate-700 hover:bg-slate-100"
                             )}
+                            role="option"
+                            aria-selected={selected || isActive}
                           >
                             <span className="font-medium">{label}</span>
                             {subtitle ? (

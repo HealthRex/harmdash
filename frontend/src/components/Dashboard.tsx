@@ -29,6 +29,15 @@ const CASE_OPTIONS = [
 
 const ALWAYS_ON_CONDITION_NAMES = new Set(["human", "control"]);
 
+const escapeRegExp = (value: string): string =>
+  value.replace(/[-/\^$*+?.()|[\]{}]/g, "\\$&");
+
+interface SuggestionCandidate {
+  entry: CombinationEntry;
+  score: number;
+  order: number;
+}
+
 const TEAM_DISPLAY_PRIORITIES: Record<string, number> = {
   "solo model": 0,
   "solo models": 0,
@@ -460,28 +469,92 @@ export function Dashboard({ dataset }: DashboardProps) {
       if (!normalized) {
         return [];
       }
-      const results: CombinationEntry[] = [];
-      const seen = new Set<string>();
-      for (const entry of allCombinations) {
+
+      const escaped = escapeRegExp(normalized);
+      const boundaryRegex = new RegExp(`\\b${escaped}`);
+      const candidates = new Map<string, SuggestionCandidate>();
+
+      allCombinations.forEach((entry, index) => {
         const label = (entry.displayLabel || entry.model || "").trim();
         if (!label) {
-          continue;
+          return;
         }
+
+        const labelLower = label.toLowerCase();
+        const modelLower = (entry.model ?? "").trim().toLowerCase();
         const searchable = `${label} ${entry.team ?? ""} ${entry.condition ?? ""}`.toLowerCase();
+
         if (!searchable.includes(normalized)) {
-          continue;
+          return;
         }
-        const key = label.toLowerCase();
-        if (seen.has(key)) {
-          continue;
+
+        let score = 0;
+
+        if (labelLower === normalized) {
+          score += 1_000_000;
         }
-        seen.add(key);
-        results.push(entry);
-        if (results.length >= 8) {
-          break;
+
+        if (modelLower === normalized) {
+          score += 1_000_000;
         }
-      }
-      return results;
+
+        if (labelLower.startsWith(normalized)) {
+          score += 10_000;
+        }
+
+        if (modelLower.startsWith(normalized)) {
+          score += 5_000;
+        }
+
+        boundaryRegex.lastIndex = 0;
+        if (boundaryRegex.test(labelLower)) {
+          score += 2_000;
+        }
+
+        const labelIndex = labelLower.indexOf(normalized);
+        if (labelIndex >= 0) {
+          score += Math.max(0, 1_000 - labelIndex);
+        }
+
+        const searchableIndex = searchable.indexOf(normalized);
+        if (searchableIndex >= 0) {
+          score += Math.max(0, 500 - searchableIndex);
+        }
+
+        const plusPenalty = (label.match(/\+/g) ?? []).length * 100;
+        score -= plusPenalty;
+
+        score -= label.length;
+
+        const key = labelLower;
+        const existing = candidates.get(key);
+
+        if (!existing || score > existing.score || (score === existing.score && index < existing.order)) {
+          candidates.set(key, {
+            entry,
+            score,
+            order: index
+          });
+        }
+      });
+
+      return Array.from(candidates.values())
+        .sort((a, b) => {
+          if (a.score !== b.score) {
+            return b.score - a.score;
+          }
+          const aLabel = (a.entry.displayLabel || a.entry.model || "").trim();
+          const bLabel = (b.entry.displayLabel || b.entry.model || "").trim();
+          if (aLabel && bLabel) {
+            const labelComparison = aLabel.localeCompare(bLabel);
+            if (labelComparison !== 0) {
+              return labelComparison;
+            }
+          }
+          return a.order - b.order;
+        })
+        .slice(0, 8)
+        .map((candidate) => candidate.entry);
     },
     [allCombinations]
   );

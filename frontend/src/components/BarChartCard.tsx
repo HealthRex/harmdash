@@ -663,7 +663,7 @@ export function BarChartCard({
         aria-pressed={isSelected}
         onClick={() => handleRowClick(row)}
         className={clsx(
-          "relative group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 rounded-2xl border border-transparent bg-white/0 px-2 py-1.5 text-left transition-all duration-[550ms] ease-[cubic-bezier(0.33,1,0.68,1)]",
+          "relative group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 rounded-2xl border border-transparent bg-white/0 px-2 py-1.5 text-left transition-[background-color,border-color,box-shadow,opacity] duration-[550ms] ease-[cubic-bezier(0.33,1,0.68,1)]",
           isSelected
             ? "border-2 bg-gradient-to-r from-white via-slate-50 to-white shadow-sm"
             : "hover:border-slate-200 hover:bg-slate-50/70"
@@ -682,7 +682,7 @@ export function BarChartCard({
           {renderConfidenceVisual()}
           <div
             className={clsx(
-              "absolute inset-0 rounded-[6px] transition-all duration-[650ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
+              "absolute inset-0 rounded-[6px] transition-[width,background-color,opacity,box-shadow] duration-[650ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
               isSelected
                 ? "opacity-100 shadow-inner shadow-slate-900/10"
                 : "opacity-95"
