@@ -23,11 +23,6 @@ interface DashboardProps {
   dataset: DatasetArtifact;
 }
 
-const CASE_OPTIONS = [
-  { value: "AllCases", label: "All Cases" },
-  { value: "HumanCases", label: "Human Subset" }
-];
-
 const DEFAULT_X_METRIC_ID = "Safety";
 
 function resolvePreferredMetricId(
@@ -187,7 +182,6 @@ export function Dashboard({ dataset }: DashboardProps) {
     });
     return initial;
   });
-  const [selectedCase, setSelectedCase] = useState<string>(CASE_OPTIONS[0].value);
   const trialsRange = useMemo(() => {
     let maxTrials = 0;
     dataset.rows.forEach((row) => {
@@ -335,26 +329,17 @@ export function Dashboard({ dataset }: DashboardProps) {
         }
         return allowed.has(conditionValue);
       })();
-      const caseMatch =
-        selectedCase === "AllCases"
-          ? row.cases == null ||
-            row.cases === "" ||
-            row.cases === "AllCases" ||
-            row.cases?.toLowerCase() === "allcases"
-          : row.cases === "HumanCases" ||
-            row.cases?.toLowerCase() === "humancases";
       const trials = row.trials ?? 0;
       const modelValue = (row.model ?? "").trim().toLowerCase();
       const isHumanModel = modelValue === "human";
       const trialsMatch = isHumanModel ? true : trials >= minTrials;
-      return harmMatch && teamMatch && conditionMatch && caseMatch && trialsMatch;
+      return harmMatch && teamMatch && conditionMatch && trialsMatch;
     });
   }, [
     dataset.rows,
     selectedTeams,
     teamConditionLookup,
     alwaysOnConditionSet,
-    selectedCase,
     minTrials
   ]);
 
@@ -384,12 +369,9 @@ export function Dashboard({ dataset }: DashboardProps) {
     const bestRows = sortRowsForMetric(nnhRows, true);
 
     const bestRow = bestRows[0] ?? null;
-    const fifthBestRow =
-      bestRows.length >= 5
-        ? bestRows[4]
-        : bestRows.length > 0
-        ? bestRows[bestRows.length - 1]
-        : null;
+    const humanRow = bestRows.find(
+      (row) => (row.model ?? "").trim().toLowerCase() === "human"
+    );
 
     const findEntryByCombinationId = (combinationId: string) =>
       combinations.find((entry) => entry.combinationId === combinationId) ??
@@ -407,13 +389,28 @@ export function Dashboard({ dataset }: DashboardProps) {
       }
     }
 
-    if (fifthBestRow) {
-      const entry = findEntryByCombinationId(fifthBestRow.combinationId);
-      if (entry) {
-        setComparisonSelection(entry);
-        setComparisonSearch(entry.displayLabel || entry.model || "");
-        applied = true;
+    const findHumanEntry = () => {
+      const row = humanRow;
+      if (row) {
+        return findEntryByCombinationId(row.combinationId);
       }
+      return (
+        combinations.find(
+          (entry) => entry.model.trim().toLowerCase() === "human"
+        ) ??
+        allCombinations.find(
+          (entry) => entry.model.trim().toLowerCase() === "human"
+        ) ??
+        null
+      );
+    };
+
+    const humanEntry = findHumanEntry();
+
+    if (humanEntry) {
+      setComparisonSelection(humanEntry);
+      setComparisonSearch(humanEntry.displayLabel || humanEntry.model || "");
+      applied = true;
     }
 
     if (applied) {
@@ -845,10 +842,6 @@ export function Dashboard({ dataset }: DashboardProps) {
     ]
   );
 
-  const handleSelectCase = (value: string) => {
-    setSelectedCase(value);
-  };
-
   const handleMinTrialsChange = (value: number) => {
     setMinTrials(value);
   };
@@ -926,9 +919,6 @@ export function Dashboard({ dataset }: DashboardProps) {
           metadataMap={metadataMap}
         />
         <DataControlsCard
-          caseOptions={CASE_OPTIONS}
-          selectedCase={selectedCase}
-          onSelectCase={handleSelectCase}
           minTrials={minTrials}
           minTrialsRange={trialsRange}
           onMinTrialsChange={handleMinTrialsChange}

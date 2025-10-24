@@ -325,7 +325,7 @@ export function ScatterChartCard({
 
   const layout = useMemo<Partial<Layout>>(
     () => ({
-      margin: { l: 60, r: 20, t: 40, b: 60 },
+      margin: { l: 60, r: 20, t: 80, b: 60 },
       height: 520,
       paper_bgcolor: "rgba(0,0,0,0)",
       plot_bgcolor: "rgba(0,0,0,0)",
@@ -388,7 +388,10 @@ export function ScatterChartCard({
       },
       legend: {
         orientation: "h",
-        y: 1.1,
+        x: 0.5,
+        xanchor: "center",
+        y: 1.12,
+        yanchor: "bottom",
         traceorder: "normal"
       },
       shapes: (() => {

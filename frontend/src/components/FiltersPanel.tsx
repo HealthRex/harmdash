@@ -4,12 +4,6 @@ import type { CSSProperties } from "react";
 import clsx from "clsx";
 import { TEAM_COLORS } from "@/config/colors";
 
-interface ToggleOption {
-  value: string;
-  label: string;
-  color?: string;
-}
-
 interface TeamConditionGroup {
   team: string;
   label: string;
@@ -34,49 +28,6 @@ const TEAM_AGENT_COUNT_MAP: Record<string, number> = {
   "3-agent team": 3,
   "3-agent teams": 3
 };
-
-function TogglePill({
-  label,
-  active,
-  onClick,
-  color,
-  disabled = false
-}: {
-  label: string;
-  active: boolean;
-  onClick: () => void;
-  color?: string;
-  disabled?: boolean;
-}) {
-  const baseColor = color ?? "#6E5DC6";
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={disabled}
-      className={clsx(
-        "rounded-full border px-3 py-1.5 text-sm font-medium transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2",
-        active
-          ? "border-transparent text-white shadow"
-          : "bg-white text-slate-600 hover:brightness-95",
-        disabled ? "cursor-not-allowed opacity-60" : null
-      )}
-      style={
-        active
-          ? {
-              backgroundColor: baseColor,
-              borderColor: baseColor
-            }
-          : {
-              borderColor: baseColor,
-              color: baseColor
-            }
-      }
-    >
-      {label}
-    </button>
-  );
-}
 
 interface TeamFiltersBarProps {
   teamGroups: TeamConditionGroup[];
@@ -303,18 +254,12 @@ export function TeamFiltersBar({
 }
 
 interface DataControlsCardProps {
-  caseOptions: ToggleOption[];
-  selectedCase: string;
-  onSelectCase: (value: string) => void;
   minTrials: number;
   minTrialsRange: { min: number; max: number };
   onMinTrialsChange: (value: number) => void;
 }
 
 export function DataControlsCard({
-  caseOptions,
-  selectedCase,
-  onSelectCase,
   minTrials,
   minTrialsRange,
   onMinTrialsChange
@@ -338,25 +283,10 @@ export function DataControlsCard({
           Data Controls
         </h2>
         <p className="text-sm text-slate-600">
-          Choose the case focus and minimum trials for the analysis.
+          Adjust the minimum trials threshold for the analysis.
         </p>
       </header>
       <div className="flex flex-col gap-3">
-        <div className="flex flex-col gap-2">
-          <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-            Cases
-          </span>
-          <div className="flex flex-wrap gap-2">
-            {caseOptions.map((option) => (
-              <TogglePill
-                key={option.value}
-                label={option.label}
-                active={selectedCase === option.value}
-                onClick={() => onSelectCase(option.value)}
-              />
-            ))}
-          </div>
-        </div>
         <div className="flex flex-col gap-2">
           <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">
             Minimum Trials
