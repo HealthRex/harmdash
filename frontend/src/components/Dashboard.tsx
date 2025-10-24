@@ -500,6 +500,9 @@ export function Dashboard({ dataset }: DashboardProps) {
     if (!normalizedSearch) {
       return;
     }
+    if (searchSelectionRef.current) {
+      return;
+    }
     const exactMatch = modelSuggestions.find((entry) => {
       const label = (entry.displayLabel || entry.model || "").trim().toLowerCase();
       return label !== "" && label === normalizedSearch;
@@ -530,6 +533,9 @@ export function Dashboard({ dataset }: DashboardProps) {
 
   useEffect(() => {
     if (!normalizedComparisonSearch) {
+      return;
+    }
+    if (comparisonSearchSelectionRef.current) {
       return;
     }
     const exactMatch = comparisonSuggestions.find((entry) => {
