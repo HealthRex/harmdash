@@ -338,8 +338,7 @@ export function ModelInfoDrawer({
           range: [0, 1],
           showgrid: true,
           gridcolor: "#cbd5f5",
-          showline: true,
-          linecolor: "#94a3b8",
+          showline: false,
           tickvals: [0, 0.25, 0.5, 0.75, 1],
           showticklabels: false,
           ticks: ""

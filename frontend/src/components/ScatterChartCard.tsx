@@ -160,6 +160,7 @@ export function ScatterChartCard({
           entry.metrics[xMetricId]?.trials ?? 0,
           entry.metrics[yMetricId]?.trials ?? 0
         );
+        const modelName = entry.displayLabel || entry.model || "Unknown Model";
 
         const formatAxisValue = (
           value: number | null,
@@ -189,9 +190,10 @@ export function ScatterChartCard({
         };
 
         const lines = [
+          `<b>${modelName}</b>`,
+          `Prompt: ${condition}`,
           formatMetricLine(xMeta?.displayLabel ?? xMetricId, xValue, xCi, xMeta),
           formatMetricLine(yMeta?.displayLabel ?? yMetricId, yValue, yCi, yMeta),
-          `Condition: ${condition}`,
           `Trials: ${trials || "NA"}`
         ].filter(Boolean);
 
