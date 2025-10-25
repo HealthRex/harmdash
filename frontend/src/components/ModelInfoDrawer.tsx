@@ -103,6 +103,8 @@ export function ModelInfoDrawer({
   const [animatedTraces, setAnimatedTraces] = useState<PlotData[] | null>(null);
   const animationFrameRef = useRef<number | null>(null);
   const lastAnimatedValuesRef = useRef<Record<string, number[]>>({});
+  const primarySearchRef = useRef<HTMLInputElement | null>(null);
+  const comparisonSearchRef = useRef<HTMLInputElement | null>(null);
   const trimmedQuery = modelQuery.trim();
   const trimmedComparisonQuery = comparisonQuery.trim();
   const showSuggestions = isFocused && trimmedQuery !== "" && suggestions.length > 0;
@@ -183,6 +185,26 @@ export function ModelInfoDrawer({
     },
     [onActiveTargetChange, onComparisonSearchChange, onComparisonSuggestionSelect]
   );
+
+  useEffect(() => {
+    const input = comparisonSearchRef.current;
+    if (!input) {
+      return;
+    }
+
+    input.focus({ preventScroll: true });
+    requestAnimationFrame(() => {
+      const activeInput = comparisonSearchRef.current;
+      if (!activeInput) {
+        return;
+      }
+
+      const length = activeInput.value.length;
+      if (typeof activeInput.setSelectionRange === "function") {
+        activeInput.setSelectionRange(0, length);
+      }
+    });
+  }, []);
 
   const handleClearAll = useCallback(() => {
     onClear();
@@ -559,10 +581,24 @@ export function ModelInfoDrawer({
                 id="model-search"
                 type="search"
                 placeholder="Search models"
+                ref={primarySearchRef}
                 value={modelQuery}
                 onFocus={() => {
                   setIsFocused(true);
                   onActiveTargetChange("primary");
+                  if (primarySearchRef.current) {
+                    requestAnimationFrame(() => {
+                      const input = primarySearchRef.current;
+                      if (!input) {
+                        return;
+                      }
+
+                      const length = input.value.length;
+                      if (typeof input.setSelectionRange === "function") {
+                        input.setSelectionRange(0, length);
+                      }
+                    });
+                  }
                 }}
                 onBlur={() =>
                   setTimeout(() => {
@@ -681,10 +717,24 @@ export function ModelInfoDrawer({
                 id="comparison-search"
                 type="search"
                 placeholder="Search comparison model"
+                ref={comparisonSearchRef}
                 value={comparisonQuery}
                 onFocus={() => {
                   setIsComparisonFocused(true);
                   onActiveTargetChange("comparison");
+                  if (comparisonSearchRef.current) {
+                    requestAnimationFrame(() => {
+                      const input = comparisonSearchRef.current;
+                      if (!input) {
+                        return;
+                      }
+
+                      const length = input.value.length;
+                      if (typeof input.setSelectionRange === "function") {
+                        input.setSelectionRange(0, length);
+                      }
+                    });
+                  }
                 }}
                 onBlur={() =>
                   setTimeout(() => {

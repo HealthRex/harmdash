@@ -488,6 +488,14 @@
     "harm": ""
   },
   {
+    "combinationId": "Gemini 2.5 Pro + Commercial Model::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "Gemini 2.5 Pro + Commercial Model",
+    "model": "Gemini 2.5 Pro + Commercial Model",
+    "team": "2-Agent Teams",
+    "condition": "Advisor + Guardian",
+    "harm": ""
+  },
+  {
     "combinationId": "Gemini 2.5 Pro + DeepSeek R1::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
     "displayLabel": "Gemini 2.5 Pro + DeepSeek R1",
     "model": "Gemini 2.5 Pro + DeepSeek R1",
@@ -768,6 +776,14 @@
     "harm": ""
   },
   {
+    "combinationId": "GPT-5 + Commercial Model::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "GPT-5 + Commercial Model",
+    "model": "GPT-5 + Commercial Model",
+    "team": "2-Agent Teams",
+    "condition": "Advisor + Guardian",
+    "harm": ""
+  },
+  {
     "combinationId": "GPT-5 + DeepSeek R1::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
     "displayLabel": "GPT-5 + DeepSeek R1",
     "model": "GPT-5 + DeepSeek R1",
@@ -1016,6 +1032,14 @@
     "harm": ""
   },
   {
+    "combinationId": "Llama 4 Maverick + Commercial Model::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "Llama 4 Maverick + Commercial Model",
+    "model": "Llama 4 Maverick + Commercial Model",
+    "team": "2-Agent Teams",
+    "condition": "Advisor + Guardian",
+    "harm": ""
+  },
+  {
     "combinationId": "Llama 4 Maverick + DeepSeek R1::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
     "displayLabel": "Llama 4 Maverick + DeepSeek R1",
     "model": "Llama 4 Maverick + DeepSeek R1",
@@ -1248,12 +1272,12 @@
     "harm": ""
   },
   {
-    "combinationId": "No Intervention::Solo Models::Control::None::AllHarm::AllCases::Unanimous",
+    "combinationId": "No Intervention::Solo Models::Control::::AllHarm::AllCases::Unanimous",
     "displayLabel": "No Intervention",
     "model": "No Intervention",
     "team": "Solo Models",
     "condition": "Control",
-    "harm": "None"
+    "harm": ""
   },
   {
     "combinationId": "o1::Solo Models::Advisor::::AllHarm::AllCases::Unanimous",

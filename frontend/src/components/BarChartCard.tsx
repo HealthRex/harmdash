@@ -469,10 +469,13 @@ export function BarChartCard({
         event.dataTransfer.effectAllowed = "move";
         event.dataTransfer.setData("text/plain", type);
         const currentTarget = event.currentTarget as HTMLElement;
-        const highlightSurface = currentTarget.closest<HTMLButtonElement>(
+        const buttonElement = currentTarget.closest<HTMLButtonElement>(
           "button[data-combination-id]"
-        )?.querySelector<HTMLElement>("[data-highlight-surface='true']");
-        const referenceElement = highlightSurface ?? currentTarget;
+        );
+        const highlightSurface = buttonElement?.querySelector<HTMLElement>(
+          "[data-highlight-surface='true']"
+        );
+        const referenceElement = buttonElement ?? highlightSurface ?? currentTarget;
         const rect = referenceElement.getBoundingClientRect();
         const pointerPosition =
           Number.isFinite(event.clientX) && Number.isFinite(event.clientY)
@@ -980,12 +983,35 @@ export function BarChartCard({
         data-combination-id={row.combinationId}
         aria-pressed={isSelected}
         onClick={() => handleRowClick(row)}
+        onPointerDown={(event) => {
+          if (!activeHighlightType) {
+            return;
+          }
+          const target = event.target as HTMLElement | null;
+          if (target?.closest("[data-highlight-handle='true']")) {
+            return;
+          }
+          handleHighlightPointerDown(event, activeHighlightType);
+        }}
+        draggable={activeHighlightType ? true : undefined}
+        onDragStart={(event) => {
+          if (!activeHighlightType || !highlightColor) {
+            return;
+          }
+          const target = event.target as HTMLElement | null;
+          if (target?.closest("[data-highlight-handle='true']")) {
+            return;
+          }
+          handleHighlightDragStart(event, activeHighlightType, highlightColor);
+        }}
+        onDragEnd={handleHighlightDragEnd}
         className={clsx(
           "relative group grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-2xl border border-transparent bg-white/0 px-2 py-1.5 text-left transition-[background-color,border-color,box-shadow,opacity] duration-[550ms] ease-[cubic-bezier(0.33,1,0.68,1)]",
           isSelected
             ? "border-2 bg-gradient-to-r from-white via-slate-50 to-white shadow-sm"
             : "hover:border-slate-200 hover:bg-slate-50/70",
-          isDropTarget ? "border-dashed" : undefined
+          isDropTarget ? "border-dashed" : undefined,
+          activeHighlightType ? "cursor-grab" : undefined
         )}
         style={buttonStyle}
         onDragEnter={(event) => {

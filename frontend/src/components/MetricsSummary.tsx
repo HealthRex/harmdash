@@ -20,7 +20,7 @@ export function MetricsSummary({ dataset }: MetricsSummaryProps) {
           First, Do NOHARM: Interactive AI Benchmark Leaderboard
         </h2>
         <p className="text-sm text-slate-600">
-          Analyze how leading AI models perform in the NOHARM medical AI benchmark. Select a metric to visualize rankings, compare trade-offs, and inspect the full metric profile.
+          Visualize how leading AI models perform in the NOHARM medical AI benchmark.
         </p>
       </div>
       <dl className="grid w-full gap-3 text-sm sm:w-auto sm:grid-cols-3 sm:gap-6">

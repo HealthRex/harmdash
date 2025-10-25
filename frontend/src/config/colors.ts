@@ -1,6 +1,6 @@
 export const TEAM_COLORS: Record<string, string> = {
   "Solo Model": "#7C3AED",
-  "Solo Models": "#7C3AED",
+  "Solo Models": "#5865F2",
   "1 Agent": "#7C3AED",
   "2-Agent Team": "#0284C7",
   "2-Agent Teams": "#0284C7",
@@ -14,8 +14,8 @@ export const TEAM_COLORS: Record<string, string> = {
 
 export const CONDITION_COLORS: Record<string, string> = {
   Control: "#4C1D95",
-  Human: "#7C3AED",
-  Advisor: "#C4B5FD",
+  Human: "#4C1D95",
+  Advisor: "#3D4BF2",
   "Advisor + Guardian": "#0369A1",
   "Advisor + Steward": "#38BDF8",
   "Advisor + Guardian + Guardian": "#166534",
