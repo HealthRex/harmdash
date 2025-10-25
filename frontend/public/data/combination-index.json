@@ -152,6 +152,14 @@
     "harm": ""
   },
   {
+    "combinationId": "DeepSeek R1 + Commercial Model::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "DeepSeek R1 + Commercial Model",
+    "model": "DeepSeek R1 + Commercial Model",
+    "team": "2-Agent Teams",
+    "condition": "Advisor + Guardian",
+    "harm": ""
+  },
+  {
     "combinationId": "DeepSeek R1 + DeepSeek R1::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
     "displayLabel": "DeepSeek R1 + DeepSeek R1",
     "model": "DeepSeek R1 + DeepSeek R1",
@@ -413,6 +421,14 @@
     "model": "Gemini 2.5 Flash",
     "team": "Solo Models",
     "condition": "Advisor",
+    "harm": ""
+  },
+  {
+    "combinationId": "Gemini 2.5 Flash + Commercial Model::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "Gemini 2.5 Flash + Commercial Model",
+    "model": "Gemini 2.5 Flash + Commercial Model",
+    "team": "2-Agent Teams",
+    "condition": "Advisor + Guardian",
     "harm": ""
   },
   {
@@ -1376,11 +1392,11 @@
     "harm": ""
   },
   {
-    "combinationId": "Random Intervention::Solo Models::Control::None::AllHarm::AllCases::Unanimous",
+    "combinationId": "Random Intervention::Solo Models::Control::::AllHarm::AllCases::Unanimous",
     "displayLabel": "Random Intervention",
     "model": "Random Intervention",
     "team": "Solo Models",
     "condition": "Control",
-    "harm": "None"
+    "harm": ""
   }
 ]

@@ -68,6 +68,7 @@ const TEAM_DISPLAY_PRIORITIES: Record<string, number> = {
   "3 agent teams": 2
 };
 const DEFAULT_PROFILE_METRIC_ID = "nnh_cumulative";
+const DEFAULT_PRIMARY_MODEL_RANK = 5;
 
 function toggleWithMinimumSelected(
   current: string[],
@@ -368,7 +369,8 @@ export function Dashboard({ dataset }: DashboardProps) {
 
     const bestRows = sortRowsForMetric(nnhRows, true);
 
-    const bestRow = bestRows[0] ?? null;
+    const bestRowIndex = Math.max(0, DEFAULT_PRIMARY_MODEL_RANK - 1);
+    const bestRow = bestRows[bestRowIndex] ?? bestRows[0] ?? null;
     const humanRow = bestRows.find(
       (row) => (row.model ?? "").trim().toLowerCase() === "human"
     );
