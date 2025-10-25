@@ -378,7 +378,11 @@ export function BarChartCard({
   );
 
   const ensureDragPreviewElement = useCallback(
-    (width: number, height: number, color: string) => {
+    (
+      rect: DOMRect,
+      color: string,
+      pointerPosition?: { x: number; y: number } | null
+    ) => {
       if (typeof document === "undefined") {
         return null;
       }
@@ -394,12 +398,62 @@ export function BarChartCard({
         dragPreviewRef.current = preview;
         document.body.appendChild(preview);
       }
-      preview.style.width = `${Math.max(width, 24)}px`;
-      preview.style.height = `${Math.max(height, 12)}px`;
-      preview.style.borderRadius = "6px";
-      preview.style.background = applyAlpha(color, 0.18);
-      preview.style.boxShadow = `inset 0 0 0 2px ${color}40`;
-      return preview;
+
+      let inner = preview.firstChild as HTMLDivElement | null;
+      if (!inner) {
+        inner = document.createElement("div");
+        inner.style.position = "absolute";
+        inner.style.pointerEvents = "none";
+        inner.style.borderRadius = "6px";
+        preview.appendChild(inner);
+      }
+
+      const pointerX =
+        pointerPosition && Number.isFinite(pointerPosition.x)
+          ? pointerPosition.x
+          : rect.left + rect.width / 2;
+      const pointerY =
+        pointerPosition && Number.isFinite(pointerPosition.y)
+          ? pointerPosition.y
+          : rect.top + rect.height / 2;
+
+      const leftDelta = Math.max(0, rect.left - pointerX);
+      const rightDelta = Math.max(0, pointerX - rect.right);
+      const topDelta = Math.max(0, rect.top - pointerY);
+      const bottomDelta = Math.max(0, pointerY - rect.bottom);
+
+      const totalWidth = Math.max(rect.width + leftDelta + rightDelta, 24);
+      const totalHeight = Math.max(rect.height + topDelta + bottomDelta, 12);
+
+      preview.style.width = `${totalWidth}px`;
+      preview.style.height = `${totalHeight}px`;
+      preview.style.background = "transparent";
+      preview.style.borderRadius = "0";
+      preview.style.boxShadow = "none";
+
+      inner.style.left = `${leftDelta}px`;
+      inner.style.top = `${topDelta}px`;
+      inner.style.width = `${Math.max(rect.width, 1)}px`;
+      inner.style.height = `${Math.max(rect.height, 1)}px`;
+      inner.style.borderRadius = "6px";
+      inner.style.background = applyAlpha(color, 0.18);
+      inner.style.boxShadow = `inset 0 0 0 2px ${color}40`;
+
+      const clamp = (value: number, min: number, max: number) =>
+        Math.min(Math.max(value, min), max);
+
+      const offsetX = clamp(
+        pointerX + leftDelta - rect.left,
+        0,
+        totalWidth
+      );
+      const offsetY = clamp(
+        pointerY + topDelta - rect.top,
+        0,
+        totalHeight
+      );
+
+      return { preview, offsetX, offsetY };
     },
     []
   );
@@ -420,13 +474,18 @@ export function BarChartCard({
         )?.querySelector<HTMLElement>("[data-highlight-surface='true']");
         const referenceElement = highlightSurface ?? currentTarget;
         const rect = referenceElement.getBoundingClientRect();
-        const preview = ensureDragPreviewElement(rect.width, rect.height, color);
-        if (preview) {
-          event.dataTransfer.setDragImage(
-            preview,
-            rect.width / 2,
-            rect.height / 2
-          );
+        const pointerPosition =
+          Number.isFinite(event.clientX) && Number.isFinite(event.clientY)
+            ? { x: event.clientX, y: event.clientY }
+            : null;
+        const previewInfo = ensureDragPreviewElement(
+          rect,
+          color,
+          pointerPosition
+        );
+        if (previewInfo) {
+          const { preview, offsetX, offsetY } = previewInfo;
+          event.dataTransfer.setDragImage(preview, offsetX, offsetY);
         }
       }
       setDraggedHighlight(type);
@@ -865,7 +924,7 @@ export function BarChartCard({
     }
 
     const renderConfidenceVisual = () => {
-      if (!showConfidence || !hasCi || range <= 0) {
+      if (!hasCi || range <= 0) {
         return null;
       }
       const ciHalf = row.ci ?? 0;
@@ -886,6 +945,8 @@ export function BarChartCard({
         return null;
       }
 
+      const isConfidenceVisible = showConfidence;
+
       return (
         <div
           aria-hidden
@@ -896,7 +957,12 @@ export function BarChartCard({
             background: `linear-gradient(to right, ${applyAlpha(
               barColor,
               0.12
-            )}, ${applyAlpha(barColor, 0.3)})`
+            )}, ${applyAlpha(barColor, 0.3)})`,
+            opacity: isConfidenceVisible ? 1 : 0,
+            transform: isConfidenceVisible ? "scaleY(1)" : "scaleY(0.6)",
+            transition:
+              "opacity 280ms ease, transform 280ms cubic-bezier(0.4, 0, 0.2, 1)",
+            transformOrigin: "center"
           }}
         />
       );
