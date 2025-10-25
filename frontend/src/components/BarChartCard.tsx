@@ -347,6 +347,7 @@ export function BarChartCard({
     { pointerId: number; type: "primary" | "comparison" }
       | null
   >(null);
+  const dragPreviewRef = useRef<HTMLDivElement | null>(null);
 
   const rowById = useMemo(() => {
     const map = new Map<string, DataRow>();
@@ -376,17 +377,62 @@ export function BarChartCard({
     []
   );
 
+  const ensureDragPreviewElement = useCallback(
+    (width: number, height: number, color: string) => {
+      if (typeof document === "undefined") {
+        return null;
+      }
+      let preview = dragPreviewRef.current;
+      if (!preview) {
+        preview = document.createElement("div");
+        preview.setAttribute("aria-hidden", "true");
+        preview.style.pointerEvents = "none";
+        preview.style.position = "absolute";
+        preview.style.top = "-1000px";
+        preview.style.left = "-1000px";
+        preview.style.zIndex = "-1";
+        dragPreviewRef.current = preview;
+        document.body.appendChild(preview);
+      }
+      preview.style.width = `${Math.max(width, 24)}px`;
+      preview.style.height = `${Math.max(height, 12)}px`;
+      preview.style.borderRadius = "6px";
+      preview.style.background = applyAlpha(color, 0.18);
+      preview.style.boxShadow = `inset 0 0 0 2px ${color}40`;
+      return preview;
+    },
+    []
+  );
+
   const handleHighlightDragStart = useCallback(
-    (event: ReactDragEvent<HTMLElement>, type: "primary" | "comparison") => {
+    (
+      event: ReactDragEvent<HTMLElement>,
+      type: "primary" | "comparison",
+      color: string
+    ) => {
       event.stopPropagation();
       if (event.dataTransfer) {
         event.dataTransfer.effectAllowed = "move";
         event.dataTransfer.setData("text/plain", type);
+        const currentTarget = event.currentTarget as HTMLElement;
+        const highlightSurface = currentTarget.closest<HTMLButtonElement>(
+          "button[data-combination-id]"
+        )?.querySelector<HTMLElement>("[data-highlight-surface='true']");
+        const referenceElement = highlightSurface ?? currentTarget;
+        const rect = referenceElement.getBoundingClientRect();
+        const preview = ensureDragPreviewElement(rect.width, rect.height, color);
+        if (preview) {
+          event.dataTransfer.setDragImage(
+            preview,
+            rect.width / 2,
+            rect.height / 2
+          );
+        }
       }
       setDraggedHighlight(type);
       setShowDragHint(false);
     },
-    []
+    [ensureDragPreviewElement]
   );
 
   const handleHighlightDragEnd = useCallback(() => {
@@ -419,6 +465,19 @@ export function BarChartCard({
     },
     []
   );
+
+  useEffect(() => {
+    return () => {
+      if (typeof document === "undefined") {
+        return;
+      }
+      const preview = dragPreviewRef.current;
+      if (preview?.parentNode) {
+        preview.parentNode.removeChild(preview);
+        dragPreviewRef.current = null;
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (!showDragHint || typeof window === "undefined") {
@@ -777,6 +836,11 @@ export function BarChartCard({
       highlightHandles.push("comparison");
     }
     const hasHandles = highlightHandles.length > 0;
+    const activeHighlightType = isPrimarySelected
+      ? "primary"
+      : isComparisonSelected
+      ? "comparison"
+      : null;
     const isDropTarget =
       dropTargetId === row.combinationId && draggedHighlight !== null;
     const dropTargetColor =
@@ -907,11 +971,12 @@ export function BarChartCard({
                 key={type}
                 aria-hidden="true"
                 draggable
+                data-highlight-handle="true"
                 onPointerDown={(event) =>
                   handleHighlightPointerDown(event, type)
                 }
                 onDragStart={(event) =>
-                  handleHighlightDragStart(event, type)
+                  handleHighlightDragStart(event, type, highlightColor!)
                 }
                 onDragEnd={handleHighlightDragEnd}
                 onClick={(event) => {
@@ -970,7 +1035,30 @@ export function BarChartCard({
           {highlightColor ? (
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 rounded-[6px]"
+              data-highlight-surface="true"
+              draggable={activeHighlightType ? true : undefined}
+              onPointerDown={(event) => {
+                if (!activeHighlightType) {
+                  return;
+                }
+                handleHighlightPointerDown(event, activeHighlightType);
+              }}
+              onDragStart={(event) => {
+                if (!activeHighlightType) {
+                  return;
+                }
+                handleHighlightDragStart(
+                  event,
+                  activeHighlightType,
+                  highlightColor
+                );
+              }}
+              onDragEnd={handleHighlightDragEnd}
+              onClick={(event) => {
+                event.preventDefault();
+                event.stopPropagation();
+              }}
+              className="absolute inset-0 cursor-grab rounded-[6px]"
               style={{
                 boxShadow: `inset 0 0 0 2px ${highlightColor}40`
               }}
