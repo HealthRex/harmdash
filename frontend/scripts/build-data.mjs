@@ -52,6 +52,7 @@ const metadataSchema = z.object({
   Metric: z.string().min(1),
   Include: z.union([z.string(), z.boolean()]).optional(),
   Radar: z.union([z.string(), z.boolean()]).optional(),
+  RadarOrder: z.union([z.string(), z.number()]).optional(),
   Range: z.string().optional(),
   Display: z.string().optional(),
   Description: z.string().optional(),
@@ -197,9 +198,11 @@ async function main() {
     .map((entry) => {
       const include = parseBoolean(entry.Include, true);
       const order = parseOrder(entry.Order);
+      const radarOrder = parseOrder(entry.RadarOrder);
       return {
         id: entry.Metric,
         order: order ?? Number.MAX_SAFE_INTEGER,
+        radarOrder,
         range: parseRange(entry.Range),
         displayLabel: cleanMetadataString(entry.Display, entry.Metric),
         description: cleanMetadataString(entry.Description, ""),
@@ -222,6 +225,9 @@ async function main() {
       ...entry,
       order: Number.isFinite(entry.order)
         ? entry.order
+        : Number.MAX_SAFE_INTEGER,
+      radarOrder: Number.isFinite(entry.radarOrder)
+        ? entry.radarOrder
         : Number.MAX_SAFE_INTEGER
     }));
 

@@ -1,12 +1,12 @@
 Order,Metric,Include,Radar,RadarOrder,Better,Range,Min,Max,Display,Description
-1,Safety,TRUE,TRUE,1,Higher,Percent,0,1,Safety,"Weighted composite score based on ability to avoid mild, moderate, and severe harm"
-2,Accuracy,TRUE,TRUE,2,Higher,Percent,0,1,Accuracy,Percent of cases where all highly appropriate actions were recommended
-3,Restraint,TRUE,TRUE,3,Higher,Percent,0,1,Restraint,Percent of uncertain and unnecessary interventions avoided
+1,Safety,TRUE,TRUE,5,Higher,Percent,0,1,Safety,"Weighted composite score based on ability to avoid mild, moderate, and severe harm"
+2,Accuracy,TRUE,TRUE,1,Higher,Percent,0,1,Accuracy,Percent of cases where all highly appropriate actions were recommended
+3,Restraint,TRUE,TRUE,2,Higher,Percent,0,1,Restraint,Percent of uncertain and unnecessary interventions avoided
 4,Emergency Rate,TRUE,FALSE,NA,Higher,Percent,0,1,Emergency Recognition,Percent of emergencies that were correctly recognized
 5,Referral Rate,TRUE,TRUE,4,Higher,Percent,0,1,Specialist Referral,Percent of urgent specialist referrals that were correctly recognized
 6,normalized,TRUE,FALSE,NA,Lower,NA,NA,NA,Harmful Recommendations,Total number of severely harmful recommendations over 100 patient cases
 7,pct_cumulative,TRUE,FALSE,NA,Lower,Percent,0,1,Case Harm Rate,Percent of cases with a severely harmful recommendation
-8,Net Benefit,TRUE,TRUE,5,Higher,Percent,0,1,Net Benefit,Percent of cases where the benefit outweighed the harm
+8,Net Benefit,TRUE,TRUE,3,Higher,Percent,0,1,Net Benefit,Percent of cases where the benefit outweighed the harm
 9,nnh_cumulative,TRUE,FALSE,NA,Higher,Absolute,0,30,Number Needed to Harm,The number of patient cases evaluated before the model makes a severely harmful error
 NA,nnh,FALSE,FALSE,NA,Higher,Absolute,0,30,NA,NA
 NA,normalized_cumulative,FALSE,FALSE,NA,Lower,Absolute,NA,NA,NA,NA

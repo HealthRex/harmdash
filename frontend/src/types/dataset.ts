@@ -24,6 +24,7 @@ export interface DataRow {
 export interface MetricMetadata {
   id: string;
   order: number;
+  radarOrder: number;
   range: "percent" | "absolute";
   displayLabel: string;
   description: string;

@@ -262,28 +262,18 @@ export function ModelInfoDrawer({
       return null;
     }
 
-    const desiredOrder = [
-      "Accuracy",
-      "Restraint",
-      "Emergency Rate",
-      "Referral Rate",
-      "Safety"
-    ];
-
-    const orderPriority = new Map(desiredOrder.map((id, index) => [id, index]));
-
     const points = rawPoints
       .map((point, index) => ({ point, index }))
       .sort((a, b) => {
-        const aPriority = orderPriority.has(a.point.meta.id)
-          ? orderPriority.get(a.point.meta.id) ?? 0
-          : desiredOrder.length + a.index;
-        const bPriority = orderPriority.has(b.point.meta.id)
-          ? orderPriority.get(b.point.meta.id) ?? 0
-          : desiredOrder.length + b.index;
+        const aOrder = Number.isFinite(a.point.meta.radarOrder)
+          ? a.point.meta.radarOrder
+          : Number.MAX_SAFE_INTEGER;
+        const bOrder = Number.isFinite(b.point.meta.radarOrder)
+          ? b.point.meta.radarOrder
+          : Number.MAX_SAFE_INTEGER;
 
-        if (aPriority !== bPriority) {
-          return aPriority - bPriority;
+        if (aOrder !== bOrder) {
+          return aOrder - bOrder;
         }
 
         return a.index - b.index;
