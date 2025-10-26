@@ -128,6 +128,22 @@
     "harm": ""
   },
   {
+    "combinationId": "Claude Sonnet 4.5 + Commercial Model::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "Claude Sonnet 4.5 + Commercial Model",
+    "model": "Claude Sonnet 4.5 + Commercial Model",
+    "team": "2-Agent Teams",
+    "condition": "Advisor + Guardian",
+    "harm": ""
+  },
+  {
+    "combinationId": "Claude Sonnet 4.5 + Gemini 2.5 Pro::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "Claude Sonnet 4.5 + Gemini 2.5 Pro",
+    "model": "Claude Sonnet 4.5 + Gemini 2.5 Pro",
+    "team": "2-Agent Teams",
+    "condition": "Advisor + Guardian",
+    "harm": ""
+  },
+  {
     "combinationId": "Commercial Model::Solo Models::Advisor::::AllHarm::AllCases::Unanimous",
     "displayLabel": "Commercial Model",
     "model": "Commercial Model",

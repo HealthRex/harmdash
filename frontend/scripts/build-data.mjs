@@ -238,7 +238,7 @@ async function main() {
     .filter((row) => {
       if (
         ["Accuracy", "Safety"].includes(row.Metric) &&
-        ["Random Intervention", "No Intervention"].includes(row.Model)
+        ["No Intervention"].includes(row.Model)
       ) {
         return false;
       }
