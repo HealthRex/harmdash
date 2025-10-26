@@ -24,6 +24,7 @@ interface DashboardProps {
 }
 
 const DEFAULT_X_METRIC_ID = "Safety";
+const DEFAULT_Y_METRIC_ID = "Accuracy";
 
 function resolvePreferredMetricId(
   metricIds: string[],
@@ -90,6 +91,10 @@ export function Dashboard({ dataset }: DashboardProps) {
   const metricIds = useMemo(() => metrics.map((meta) => meta.id), [metrics]);
   const preferredXMetricId = useMemo(
     () => resolvePreferredMetricId(metricIds, DEFAULT_X_METRIC_ID),
+    [metricIds]
+  );
+  const preferredYMetricId = useMemo(
+    () => resolvePreferredMetricId(metricIds, DEFAULT_Y_METRIC_ID),
     [metricIds]
   );
   const metadataMap = useMemo(
@@ -168,9 +173,16 @@ export function Dashboard({ dataset }: DashboardProps) {
     const preferred = resolvePreferredMetricId(metricIds, DEFAULT_X_METRIC_ID);
     return preferred ?? metricIds[0] ?? "";
   });
-  const [yMetricId, setYMetricId] = useState<string>(
-    () => metricIds[1] ?? metricIds[0] ?? ""
-  );
+  const [yMetricId, setYMetricId] = useState<string>(() => {
+    const preferred = resolvePreferredMetricId(metricIds, DEFAULT_Y_METRIC_ID);
+    if (preferred) {
+      return preferred;
+    }
+    if (metricIds.length > 1) {
+      return metricIds[1];
+    }
+    return metricIds[0] ?? "";
+  });
   const [selectedTeams, setSelectedTeams] = useState<string[]>(() =>
     teamGroups.map((group) => group.team)
   );
@@ -471,9 +483,12 @@ export function Dashboard({ dataset }: DashboardProps) {
       if (metricIds.includes(prev)) {
         return prev;
       }
+      if (preferredYMetricId) {
+        return preferredYMetricId;
+      }
       return metricIds[1] ?? metricIds[0];
     });
-  }, [metricIds, preferredXMetricId]);
+  }, [metricIds, preferredXMetricId, preferredYMetricId]);
 
   const ensureMetricExists = useCallback(
     (metricId: string, preferred?: string) => {
@@ -490,7 +505,7 @@ export function Dashboard({ dataset }: DashboardProps) {
 
   const safeBarMetric = ensureMetricExists(barMetricId);
   const safeXMetric = ensureMetricExists(xMetricId, preferredXMetricId);
-  const safeYMetric = ensureMetricExists(yMetricId);
+  const safeYMetric = ensureMetricExists(yMetricId, preferredYMetricId);
 
   const normalizeSearch = useCallback((value: string) => value.trim().toLowerCase(), []);
 

@@ -192,6 +192,14 @@
     "harm": ""
   },
   {
+    "combinationId": "DeepSeek R1 + Gemini 2.0 Flash + Commercial Model::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "DeepSeek R1 + Gemini 2.0 Flash + Commercial Model",
+    "model": "DeepSeek R1 + Gemini 2.0 Flash + Commercial Model",
+    "team": "3-Agent Teams",
+    "condition": "Advisor + Guardian + Guardian",
+    "harm": ""
+  },
+  {
     "combinationId": "DeepSeek R1 + Gemini 2.5 Flash::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
     "displayLabel": "DeepSeek R1 + Gemini 2.5 Flash",
     "model": "DeepSeek R1 + Gemini 2.5 Flash",
@@ -309,6 +317,14 @@
     "model": "Gemini 2.0 Flash + Claude Sonnet 3.7 + Claude Sonnet 3.7",
     "team": "3-Agent Teams",
     "condition": "Advisor + Guardian + Steward",
+    "harm": ""
+  },
+  {
+    "combinationId": "Gemini 2.0 Flash + Claude Sonnet 3.7 + Commercial Model::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "Gemini 2.0 Flash + Claude Sonnet 3.7 + Commercial Model",
+    "model": "Gemini 2.0 Flash + Claude Sonnet 3.7 + Commercial Model",
+    "team": "3-Agent Teams",
+    "condition": "Advisor + Guardian + Guardian",
     "harm": ""
   },
   {
@@ -573,6 +589,14 @@
     "model": "Gemini 2.5 Pro + GPT-5 mini",
     "team": "2-Agent Teams",
     "condition": "Advisor + Guardian",
+    "harm": ""
+  },
+  {
+    "combinationId": "Gemini 2.5 Pro + GPT-5 mini + Commercial Model::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "Gemini 2.5 Pro + GPT-5 mini + Commercial Model",
+    "model": "Gemini 2.5 Pro + GPT-5 mini + Commercial Model",
+    "team": "3-Agent Teams",
+    "condition": "Advisor + Guardian + Guardian",
     "harm": ""
   },
   {
@@ -1181,6 +1205,14 @@
     "model": "Llama 4 Scout + Gemini 2.5 Pro",
     "team": "2-Agent Teams",
     "condition": "Advisor + Guardian",
+    "harm": ""
+  },
+  {
+    "combinationId": "Llama 4 Scout + Gemini 2.5 Pro + Commercial Model::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "Llama 4 Scout + Gemini 2.5 Pro + Commercial Model",
+    "model": "Llama 4 Scout + Gemini 2.5 Pro + Commercial Model",
+    "team": "3-Agent Teams",
+    "condition": "Advisor + Guardian + Guardian",
     "harm": ""
   },
   {

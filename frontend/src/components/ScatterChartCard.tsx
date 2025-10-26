@@ -86,6 +86,18 @@ function resolveAxisRange(
   return [rangeMin, rangeMax];
 }
 
+const HUMAN_MODEL_KEY = "human";
+
+function isHumanEntry(entry: CombinationEntry) {
+  const model = (entry.model ?? "").trim().toLowerCase();
+  if (model === HUMAN_MODEL_KEY) {
+    return true;
+  }
+
+  const label = (entry.displayLabel ?? "").trim().toLowerCase();
+  return label === HUMAN_MODEL_KEY;
+}
+
 interface ScatterChartCardProps {
   combinations: CombinationEntry[];
   xMetricId: string;
@@ -151,14 +163,24 @@ export function ScatterChartCard({
     const highlighted = new Set([highlightedCombinationId ?? ""]);
     const traces: PlotData[] = [];
 
-    sortedTeams.forEach(([team, entries]) => {
+    const createTrace = (
+      traceName: string,
+      entries: CombinationEntry[],
+      colorKey: string,
+      legendGroup: string,
+      legendRank?: number
+    ) => {
+      if (entries.length === 0) {
+        return null;
+      }
+
       const rawX = entries.map((entry) => entry.metrics[xMetricId]?.mean ?? 0);
       const rawY = entries.map((entry) => entry.metrics[yMetricId]?.mean ?? 0);
 
       const x = rawX.map((value) => (xIsPercentMetric ? value * 100 : value));
       const y = rawY.map((value) => (yIsPercentMetric ? value * 100 : value));
 
-      const color = TEAM_COLORS[team] ?? TEAM_COLORS.default;
+      const color = TEAM_COLORS[colorKey] ?? TEAM_COLORS.default;
       const marker = {
         size: entries.map((entry) =>
           sizeFromTrials(entry.metrics[xMetricId], entry.metrics[yMetricId])
@@ -249,10 +271,10 @@ export function ScatterChartCard({
           }
         : undefined;
 
-      traces.push({
+      const trace = {
         type: "scattergl",
         mode: "markers",
-        name: team,
+        name: traceName,
         x,
         y,
         text: entries.map((entry) => entry.displayLabel || entry.model),
@@ -261,8 +283,40 @@ export function ScatterChartCard({
         marker,
         error_x: errorX,
         error_y: errorY,
-        customdata: entries.map((entry) => entry.combinationId)
-      } as PlotData);
+        customdata: entries.map((entry) => entry.combinationId),
+        legendgroup: legendGroup,
+        legendrank: legendRank
+      } as PlotData;
+
+      traces.push(trace);
+      return trace;
+    };
+
+    sortedTeams.forEach(([team, entries]) => {
+      const humanEntries: CombinationEntry[] = [];
+      const otherEntries: CombinationEntry[] = [];
+
+      entries.forEach((entry) => {
+        if (isHumanEntry(entry)) {
+          humanEntries.push(entry);
+        } else {
+          otherEntries.push(entry);
+        }
+      });
+
+      const legendGroup = team || "default-team";
+
+      createTrace(team, otherEntries, team, legendGroup, getLegendPriority(team));
+
+      if (humanEntries.length > 0) {
+        createTrace(
+          "Human Physicians",
+          humanEntries,
+          "Human",
+          legendGroup,
+          Number.MAX_SAFE_INTEGER
+        );
+      }
     });
 
     return traces;
@@ -388,8 +442,8 @@ export function ScatterChartCard({
       },
       legend: {
         orientation: "h",
-        x: 0.5,
-        xanchor: "center",
+        x: 0,
+        xanchor: "left",
         y: 1.12,
         yanchor: "bottom",
         traceorder: "normal"

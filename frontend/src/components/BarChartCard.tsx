@@ -341,12 +341,12 @@ export function BarChartCard({
   const [draggedHighlight, setDraggedHighlight] = useState<
     "primary" | "comparison" | null
   >(null);
-  const [showDragHint, setShowDragHint] = useState(true);
   const [dropTargetId, setDropTargetId] = useState<string | null>(null);
   const [touchDragState, setTouchDragState] = useState<
     { pointerId: number; type: "primary" | "comparison" }
       | null
   >(null);
+  const [showDragHint, setShowDragHint] = useState(true);
   const dragPreviewRef = useRef<HTMLDivElement | null>(null);
 
   const rowById = useMemo(() => {
@@ -472,10 +472,7 @@ export function BarChartCard({
         const buttonElement = currentTarget.closest<HTMLButtonElement>(
           "button[data-combination-id]"
         );
-        const highlightSurface = buttonElement?.querySelector<HTMLElement>(
-          "[data-highlight-surface='true']"
-        );
-        const referenceElement = buttonElement ?? highlightSurface ?? currentTarget;
+        const referenceElement = buttonElement ?? currentTarget;
         const rect = referenceElement.getBoundingClientRect();
         const pointerPosition =
           Number.isFinite(event.clientX) && Number.isFinite(event.clientY)
@@ -890,14 +887,6 @@ export function BarChartCard({
       ? `CI: ± ${formatMetricValue(row.ci, { metadata: meta })}`
       : "CI: NA";
     const textColor = getTextColor(barColor);
-    const highlightHandles: Array<"primary" | "comparison"> = [];
-    if (isPrimarySelected) {
-      highlightHandles.push("primary");
-    }
-    if (isComparisonSelected) {
-      highlightHandles.push("comparison");
-    }
-    const hasHandles = highlightHandles.length > 0;
     const activeHighlightType = isPrimarySelected
       ? "primary"
       : isComparisonSelected
@@ -1006,7 +995,7 @@ export function BarChartCard({
         }}
         onDragEnd={handleHighlightDragEnd}
         className={clsx(
-          "relative group grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-2xl border border-transparent bg-white/0 px-2 py-1.5 text-left transition-[background-color,border-color,box-shadow,opacity] duration-[550ms] ease-[cubic-bezier(0.33,1,0.68,1)]",
+          "relative group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-2xl border border-transparent bg-white/0 px-2 py-1.5 text-left transition-[background-color,border-color,box-shadow,opacity] duration-[550ms] ease-[cubic-bezier(0.33,1,0.68,1)]",
           isSelected
             ? "border-2 bg-gradient-to-r from-white via-slate-50 to-white shadow-sm"
             : "hover:border-slate-200 hover:bg-slate-50/70",
@@ -1056,59 +1045,6 @@ export function BarChartCard({
           handleHighlightDragEnd();
         }}
       >
-        <div className="flex w-7 flex-col items-center justify-center gap-1">
-          {hasHandles ? (
-            highlightHandles.map((type) => (
-              <span
-                key={type}
-                aria-hidden="true"
-                draggable
-                data-highlight-handle="true"
-                onPointerDown={(event) =>
-                  handleHighlightPointerDown(event, type)
-                }
-                onDragStart={(event) =>
-                  handleHighlightDragStart(event, type, highlightColor!)
-                }
-                onDragEnd={handleHighlightDragEnd}
-                onClick={(event) => {
-                  event.preventDefault();
-                  event.stopPropagation();
-                }}
-                className={clsx(
-                  "group/handle relative flex h-5 w-5 cursor-grab items-center justify-center rounded-full border-2 bg-white text-[0px] shadow-sm transition-colors duration-200",
-                  type === "primary"
-                    ? "border-sky-300 hover:border-sky-400"
-                    : "border-amber-300 hover:border-amber-400"
-                )}
-                title={
-                  type === "primary"
-                    ? "Drag to choose the primary highlight"
-                    : "Drag to choose the comparison highlight"
-                }
-                >
-                  <span
-                    className="h-2.5 w-2.5 rounded-full"
-                    style={{
-                      backgroundColor:
-                        type === "primary"
-                          ? PRIMARY_SELECTION_COLOR
-                          : COMPARISON_SELECTION_COLOR
-                    }}
-                  />
-                  {showDragHint ? (
-                    <span
-                      className="pointer-events-none absolute left-1/2 top-full z-10 mt-1 -translate-x-1/2 whitespace-nowrap rounded-full bg-slate-900/95 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-white opacity-100 shadow-lg transition-opacity duration-200 group-hover/handle:opacity-100 group-focus-visible/handle:opacity-100"
-                    >
-                      Drag and drop
-                    </span>
-                  ) : null}
-                </span>
-            ))
-          ) : (
-            <span aria-hidden="true" className="h-5 w-5" />
-          )}
-        </div>
         <div className="relative h-8 w-full overflow-hidden rounded-[6px]">
           <div className="absolute inset-0 rounded-[6px] bg-slate-200" />
           {renderConfidenceVisual()}
@@ -1124,38 +1060,6 @@ export function BarChartCard({
               backgroundColor: barColor
             }}
           />
-          {highlightColor ? (
-            <div
-              aria-hidden
-              data-highlight-surface="true"
-              draggable={activeHighlightType ? true : undefined}
-              onPointerDown={(event) => {
-                if (!activeHighlightType) {
-                  return;
-                }
-                handleHighlightPointerDown(event, activeHighlightType);
-              }}
-              onDragStart={(event) => {
-                if (!activeHighlightType) {
-                  return;
-                }
-                handleHighlightDragStart(
-                  event,
-                  activeHighlightType,
-                  highlightColor
-                );
-              }}
-              onDragEnd={handleHighlightDragEnd}
-              onClick={(event) => {
-                event.preventDefault();
-                event.stopPropagation();
-              }}
-              className="absolute inset-0 cursor-grab rounded-[6px]"
-              style={{
-                boxShadow: `inset 0 0 0 2px ${highlightColor}40`
-              }}
-            />
-          ) : null}
           <span
             className="absolute left-4 top-1/2 -translate-y-1/2 truncate text-sm font-medium"
             style={{ color: textColor }}
@@ -1170,6 +1074,14 @@ export function BarChartCard({
           </span>
           <span className="text-xs text-slate-500">{ciLabel}</span>
         </div>
+        {showDragHint && activeHighlightType ? (
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/2 top-full z-10 mt-1 -translate-x-1/2 whitespace-nowrap rounded-full bg-slate-900/95 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-white opacity-100 shadow-lg transition-opacity duration-200"
+          >
+            Drag and drop
+          </span>
+        ) : null}
       </button>
     );
   };
