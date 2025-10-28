@@ -880,11 +880,12 @@ export function BarChartCard({
     const barColor = getDefaultBarColor(row);
     const displayLabel = row.displayLabel || row.model;
     const formattedValue = formatMetricValue(row.mean, {
-      metadata: meta
+      metadata: meta,
+      digits: 1
     });
     const hasCi = row.ci !== null && row.ci !== undefined && row.ci !== 0;
     const ciLabel = hasCi
-      ? `CI: ± ${formatMetricValue(row.ci, { metadata: meta })}`
+      ? `CI: ± ${formatMetricValue(row.ci, { metadata: meta, digits: 1 })}`
       : "CI: NA";
     const textColor = getTextColor(barColor);
     const activeHighlightType = isPrimarySelected

@@ -128,14 +128,6 @@
     "harm": ""
   },
   {
-    "combinationId": "Claude Sonnet 4.5 + Commercial Model::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
-    "displayLabel": "Claude Sonnet 4.5 + Commercial Model",
-    "model": "Claude Sonnet 4.5 + Commercial Model",
-    "team": "2-Agent Teams",
-    "condition": "Advisor + Guardian",
-    "harm": ""
-  },
-  {
     "combinationId": "Claude Sonnet 4.5 + Gemini 2.5 Pro::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
     "displayLabel": "Claude Sonnet 4.5 + Gemini 2.5 Pro",
     "model": "Claude Sonnet 4.5 + Gemini 2.5 Pro",
@@ -144,11 +136,11 @@
     "harm": ""
   },
   {
-    "combinationId": "Commercial Model::Solo Models::Advisor::::AllHarm::AllCases::Unanimous",
-    "displayLabel": "Commercial Model",
-    "model": "Commercial Model",
-    "team": "Solo Models",
-    "condition": "Advisor",
+    "combinationId": "Claude Sonnet 4.5 + LiSA::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "Claude Sonnet 4.5 + LiSA",
+    "model": "Claude Sonnet 4.5 + LiSA",
+    "team": "2-Agent Teams",
+    "condition": "Advisor + Guardian",
     "harm": ""
   },
   {
@@ -163,14 +155,6 @@
     "combinationId": "DeepSeek R1 + Claude Sonnet 3.7::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
     "displayLabel": "DeepSeek R1 + Claude Sonnet 3.7",
     "model": "DeepSeek R1 + Claude Sonnet 3.7",
-    "team": "2-Agent Teams",
-    "condition": "Advisor + Guardian",
-    "harm": ""
-  },
-  {
-    "combinationId": "DeepSeek R1 + Commercial Model::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
-    "displayLabel": "DeepSeek R1 + Commercial Model",
-    "model": "DeepSeek R1 + Commercial Model",
     "team": "2-Agent Teams",
     "condition": "Advisor + Guardian",
     "harm": ""
@@ -208,9 +192,9 @@
     "harm": ""
   },
   {
-    "combinationId": "DeepSeek R1 + Gemini 2.0 Flash + Commercial Model::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
-    "displayLabel": "DeepSeek R1 + Gemini 2.0 Flash + Commercial Model",
-    "model": "DeepSeek R1 + Gemini 2.0 Flash + Commercial Model",
+    "combinationId": "DeepSeek R1 + Gemini 2.0 Flash + LiSA::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "DeepSeek R1 + Gemini 2.0 Flash + LiSA",
+    "model": "DeepSeek R1 + Gemini 2.0 Flash + LiSA",
     "team": "3-Agent Teams",
     "condition": "Advisor + Guardian + Guardian",
     "harm": ""
@@ -280,6 +264,14 @@
     "harm": ""
   },
   {
+    "combinationId": "DeepSeek R1 + LiSA::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "DeepSeek R1 + LiSA",
+    "model": "DeepSeek R1 + LiSA",
+    "team": "2-Agent Teams",
+    "condition": "Advisor + Guardian",
+    "harm": ""
+  },
+  {
     "combinationId": "DeepSeek R1 + Llama 4 Maverick::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
     "displayLabel": "DeepSeek R1 + Llama 4 Maverick",
     "model": "DeepSeek R1 + Llama 4 Maverick",
@@ -336,14 +328,6 @@
     "harm": ""
   },
   {
-    "combinationId": "Gemini 2.0 Flash + Claude Sonnet 3.7 + Commercial Model::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
-    "displayLabel": "Gemini 2.0 Flash + Claude Sonnet 3.7 + Commercial Model",
-    "model": "Gemini 2.0 Flash + Claude Sonnet 3.7 + Commercial Model",
-    "team": "3-Agent Teams",
-    "condition": "Advisor + Guardian + Guardian",
-    "harm": ""
-  },
-  {
     "combinationId": "Gemini 2.0 Flash + Claude Sonnet 3.7 + Gemini 2.5 Pro::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
     "displayLabel": "Gemini 2.0 Flash + Claude Sonnet 3.7 + Gemini 2.5 Pro",
     "model": "Gemini 2.0 Flash + Claude Sonnet 3.7 + Gemini 2.5 Pro",
@@ -355,6 +339,14 @@
     "combinationId": "Gemini 2.0 Flash + Claude Sonnet 3.7 + GPT-5::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
     "displayLabel": "Gemini 2.0 Flash + Claude Sonnet 3.7 + GPT-5",
     "model": "Gemini 2.0 Flash + Claude Sonnet 3.7 + GPT-5",
+    "team": "3-Agent Teams",
+    "condition": "Advisor + Guardian + Guardian",
+    "harm": ""
+  },
+  {
+    "combinationId": "Gemini 2.0 Flash + Claude Sonnet 3.7 + LiSA::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "Gemini 2.0 Flash + Claude Sonnet 3.7 + LiSA",
+    "model": "Gemini 2.0 Flash + Claude Sonnet 3.7 + LiSA",
     "team": "3-Agent Teams",
     "condition": "Advisor + Guardian + Guardian",
     "harm": ""
@@ -456,14 +448,6 @@
     "harm": ""
   },
   {
-    "combinationId": "Gemini 2.5 Flash + Commercial Model::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
-    "displayLabel": "Gemini 2.5 Flash + Commercial Model",
-    "model": "Gemini 2.5 Flash + Commercial Model",
-    "team": "2-Agent Teams",
-    "condition": "Advisor + Guardian",
-    "harm": ""
-  },
-  {
     "combinationId": "Gemini 2.5 Flash + DeepSeek R1::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
     "displayLabel": "Gemini 2.5 Flash + DeepSeek R1",
     "model": "Gemini 2.5 Flash + DeepSeek R1",
@@ -475,6 +459,14 @@
     "combinationId": "Gemini 2.5 Flash + GPT-5 mini::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
     "displayLabel": "Gemini 2.5 Flash + GPT-5 mini",
     "model": "Gemini 2.5 Flash + GPT-5 mini",
+    "team": "2-Agent Teams",
+    "condition": "Advisor + Guardian",
+    "harm": ""
+  },
+  {
+    "combinationId": "Gemini 2.5 Flash + LiSA::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "Gemini 2.5 Flash + LiSA",
+    "model": "Gemini 2.5 Flash + LiSA",
     "team": "2-Agent Teams",
     "condition": "Advisor + Guardian",
     "harm": ""
@@ -517,14 +509,6 @@
     "model": "Gemini 2.5 Pro",
     "team": "Solo Models",
     "condition": "Advisor",
-    "harm": ""
-  },
-  {
-    "combinationId": "Gemini 2.5 Pro + Commercial Model::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
-    "displayLabel": "Gemini 2.5 Pro + Commercial Model",
-    "model": "Gemini 2.5 Pro + Commercial Model",
-    "team": "2-Agent Teams",
-    "condition": "Advisor + Guardian",
     "harm": ""
   },
   {
@@ -608,14 +592,6 @@
     "harm": ""
   },
   {
-    "combinationId": "Gemini 2.5 Pro + GPT-5 mini + Commercial Model::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
-    "displayLabel": "Gemini 2.5 Pro + GPT-5 mini + Commercial Model",
-    "model": "Gemini 2.5 Pro + GPT-5 mini + Commercial Model",
-    "team": "3-Agent Teams",
-    "condition": "Advisor + Guardian + Guardian",
-    "harm": ""
-  },
-  {
     "combinationId": "Gemini 2.5 Pro + GPT-5 mini + Gemini 2.5 Pro::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
     "displayLabel": "Gemini 2.5 Pro + GPT-5 mini + Gemini 2.5 Pro",
     "model": "Gemini 2.5 Pro + GPT-5 mini + Gemini 2.5 Pro",
@@ -629,6 +605,22 @@
     "model": "Gemini 2.5 Pro + GPT-5 mini + GPT-5",
     "team": "3-Agent Teams",
     "condition": "Advisor + Guardian + Guardian",
+    "harm": ""
+  },
+  {
+    "combinationId": "Gemini 2.5 Pro + GPT-5 mini + LiSA::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "Gemini 2.5 Pro + GPT-5 mini + LiSA",
+    "model": "Gemini 2.5 Pro + GPT-5 mini + LiSA",
+    "team": "3-Agent Teams",
+    "condition": "Advisor + Guardian + Guardian",
+    "harm": ""
+  },
+  {
+    "combinationId": "Gemini 2.5 Pro + LiSA::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "Gemini 2.5 Pro + LiSA",
+    "model": "Gemini 2.5 Pro + LiSA",
+    "team": "2-Agent Teams",
+    "condition": "Advisor + Guardian",
     "harm": ""
   },
   {
@@ -816,14 +808,6 @@
     "harm": ""
   },
   {
-    "combinationId": "GPT-5 + Commercial Model::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
-    "displayLabel": "GPT-5 + Commercial Model",
-    "model": "GPT-5 + Commercial Model",
-    "team": "2-Agent Teams",
-    "condition": "Advisor + Guardian",
-    "harm": ""
-  },
-  {
     "combinationId": "GPT-5 + DeepSeek R1::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
     "displayLabel": "GPT-5 + DeepSeek R1",
     "model": "GPT-5 + DeepSeek R1",
@@ -891,6 +875,14 @@
     "combinationId": "GPT-5 + GPT-5 mini::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
     "displayLabel": "GPT-5 + GPT-5 mini",
     "model": "GPT-5 + GPT-5 mini",
+    "team": "2-Agent Teams",
+    "condition": "Advisor + Guardian",
+    "harm": ""
+  },
+  {
+    "combinationId": "GPT-5 + LiSA::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "GPT-5 + LiSA",
+    "model": "GPT-5 + LiSA",
     "team": "2-Agent Teams",
     "condition": "Advisor + Guardian",
     "harm": ""
@@ -1048,6 +1040,14 @@
     "harm": ""
   },
   {
+    "combinationId": "LiSA::Solo Models::Advisor::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "LiSA",
+    "model": "LiSA",
+    "team": "Solo Models",
+    "condition": "Advisor",
+    "harm": ""
+  },
+  {
     "combinationId": "Llama 3.3 70b::Solo Models::Advisor::::AllHarm::AllCases::Unanimous",
     "displayLabel": "Llama 3.3 70b",
     "model": "Llama 3.3 70b",
@@ -1067,14 +1067,6 @@
     "combinationId": "Llama 4 Maverick + Claude Sonnet 3.7::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
     "displayLabel": "Llama 4 Maverick + Claude Sonnet 3.7",
     "model": "Llama 4 Maverick + Claude Sonnet 3.7",
-    "team": "2-Agent Teams",
-    "condition": "Advisor + Guardian",
-    "harm": ""
-  },
-  {
-    "combinationId": "Llama 4 Maverick + Commercial Model::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
-    "displayLabel": "Llama 4 Maverick + Commercial Model",
-    "model": "Llama 4 Maverick + Commercial Model",
     "team": "2-Agent Teams",
     "condition": "Advisor + Guardian",
     "harm": ""
@@ -1139,6 +1131,14 @@
     "combinationId": "Llama 4 Maverick + GPT-5 mini::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
     "displayLabel": "Llama 4 Maverick + GPT-5 mini",
     "model": "Llama 4 Maverick + GPT-5 mini",
+    "team": "2-Agent Teams",
+    "condition": "Advisor + Guardian",
+    "harm": ""
+  },
+  {
+    "combinationId": "Llama 4 Maverick + LiSA::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "Llama 4 Maverick + LiSA",
+    "model": "Llama 4 Maverick + LiSA",
     "team": "2-Agent Teams",
     "condition": "Advisor + Guardian",
     "harm": ""
@@ -1224,14 +1224,6 @@
     "harm": ""
   },
   {
-    "combinationId": "Llama 4 Scout + Gemini 2.5 Pro + Commercial Model::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
-    "displayLabel": "Llama 4 Scout + Gemini 2.5 Pro + Commercial Model",
-    "model": "Llama 4 Scout + Gemini 2.5 Pro + Commercial Model",
-    "team": "3-Agent Teams",
-    "condition": "Advisor + Guardian + Guardian",
-    "harm": ""
-  },
-  {
     "combinationId": "Llama 4 Scout + Gemini 2.5 Pro + DeepSeek R1::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
     "displayLabel": "Llama 4 Scout + Gemini 2.5 Pro + DeepSeek R1",
     "model": "Llama 4 Scout + Gemini 2.5 Pro + DeepSeek R1",
@@ -1251,6 +1243,14 @@
     "combinationId": "Llama 4 Scout + Gemini 2.5 Pro + GPT-5::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
     "displayLabel": "Llama 4 Scout + Gemini 2.5 Pro + GPT-5",
     "model": "Llama 4 Scout + Gemini 2.5 Pro + GPT-5",
+    "team": "3-Agent Teams",
+    "condition": "Advisor + Guardian + Guardian",
+    "harm": ""
+  },
+  {
+    "combinationId": "Llama 4 Scout + Gemini 2.5 Pro + LiSA::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "Llama 4 Scout + Gemini 2.5 Pro + LiSA",
+    "model": "Llama 4 Scout + Gemini 2.5 Pro + LiSA",
     "team": "3-Agent Teams",
     "condition": "Advisor + Guardian + Guardian",
     "harm": ""
@@ -1309,14 +1309,6 @@
     "model": "Llama 4 Scout + o3 mini",
     "team": "2-Agent Teams",
     "condition": "Advisor + Guardian",
-    "harm": ""
-  },
-  {
-    "combinationId": "Consensus::Solo Models::Advisor::::AllHarm::AllCases::Unanimous",
-    "displayLabel": "LLM Consensus",
-    "model": "Consensus",
-    "team": "Solo Models",
-    "condition": "Advisor",
     "harm": ""
   },
   {

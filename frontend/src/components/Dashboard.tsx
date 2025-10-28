@@ -205,7 +205,7 @@ export function Dashboard({ dataset }: DashboardProps) {
     const snappedMax = Math.max(5, Math.ceil(maxTrials / 5) * 5);
     return { min: 1, max: snappedMax };
   }, [dataset.rows]);
-  const [minTrials, setMinTrials] = useState<number>(5);
+  const [minTrials, setMinTrials] = useState<number>(3);
   const [selection, setSelection] = useState<CombinationEntry | null>(null);
   const [comparisonSelection, setComparisonSelection] =
     useState<CombinationEntry | null>(null);

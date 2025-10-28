@@ -161,7 +161,8 @@ export function ScatterChartCard({
 
   const data: PlotData[] = useMemo(() => {
     const highlighted = new Set([highlightedCombinationId ?? ""]);
-    const traces: PlotData[] = [];
+    const nonHumanTraces: PlotData[] = [];
+    const humanTraces: PlotData[] = [];
 
     const createTrace = (
       traceName: string,
@@ -288,7 +289,6 @@ export function ScatterChartCard({
         legendrank: legendRank
       } as PlotData;
 
-      traces.push(trace);
       return trace;
     };
 
@@ -306,20 +306,32 @@ export function ScatterChartCard({
 
       const legendGroup = team || "default-team";
 
-      createTrace(team, otherEntries, team, legendGroup, getLegendPriority(team));
+      const otherTrace = createTrace(
+        team,
+        otherEntries,
+        team,
+        legendGroup,
+        getLegendPriority(team)
+      );
+      if (otherTrace) {
+        nonHumanTraces.push(otherTrace);
+      }
 
       if (humanEntries.length > 0) {
-        createTrace(
+        const humanTrace = createTrace(
           "Human Physicians",
           humanEntries,
           "Human",
           legendGroup,
           Number.MAX_SAFE_INTEGER
         );
+        if (humanTrace) {
+          humanTraces.push(humanTrace);
+        }
       }
     });
 
-    return traces;
+    return [...nonHumanTraces, ...humanTraces];
   }, [
     sortedTeams,
     highlightedCombinationId,
