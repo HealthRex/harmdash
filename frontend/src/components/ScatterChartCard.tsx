@@ -164,6 +164,19 @@ export function ScatterChartCard({
     const nonHumanTraces: PlotData[] = [];
     const humanTraces: PlotData[] = [];
 
+    const totalPoints = filtered.reduce(
+      (sum, entry) => {
+        const xValue = entry.metrics[xMetricId]?.mean;
+        const yValue = entry.metrics[yMetricId]?.mean;
+        return xValue !== undefined && xValue !== null && yValue !== undefined && yValue !== null
+          ? sum + 1
+          : sum;
+      },
+      0
+    );
+
+    const traceType: PlotData["type"] = totalPoints > 200 ? "scattergl" : "scatter";
+
     const createTrace = (
       traceName: string,
       entries: CombinationEntry[],
@@ -273,7 +286,7 @@ export function ScatterChartCard({
         : undefined;
 
       const trace = {
-        type: "scattergl",
+        type: traceType,
         mode: "markers",
         name: traceName,
         x,
@@ -333,6 +346,7 @@ export function ScatterChartCard({
 
     return [...nonHumanTraces, ...humanTraces];
   }, [
+    filtered,
     sortedTeams,
     highlightedCombinationId,
     xMetricId,
