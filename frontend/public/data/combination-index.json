@@ -456,6 +456,22 @@
     "harm": ""
   },
   {
+    "combinationId": "Gemini 2.5 Flash + Gemini 2.5 Flash::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "Gemini 2.5 Flash + Gemini 2.5 Flash",
+    "model": "Gemini 2.5 Flash + Gemini 2.5 Flash",
+    "team": "2-Agent Teams",
+    "condition": "Advisor + Guardian",
+    "harm": ""
+  },
+  {
+    "combinationId": "Gemini 2.5 Flash + Gemini 2.5 Flash + Gemini 2.5 Flash::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "Gemini 2.5 Flash + Gemini 2.5 Flash + Gemini 2.5 Flash",
+    "model": "Gemini 2.5 Flash + Gemini 2.5 Flash + Gemini 2.5 Flash",
+    "team": "3-Agent Teams",
+    "condition": "Advisor + Guardian + Guardian",
+    "harm": ""
+  },
+  {
     "combinationId": "Gemini 2.5 Flash + GPT-5 mini::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Unanimous",
     "displayLabel": "Gemini 2.5 Flash + GPT-5 mini",
     "model": "Gemini 2.5 Flash + GPT-5 mini",
@@ -533,6 +549,14 @@
     "model": "Gemini 2.5 Pro + Gemini 2.5 Pro",
     "team": "2-Agent Teams",
     "condition": "Advisor + Guardian",
+    "harm": ""
+  },
+  {
+    "combinationId": "Gemini 2.5 Pro + Gemini 2.5 Pro + Gemini 2.5 Pro::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "Gemini 2.5 Pro + Gemini 2.5 Pro + Gemini 2.5 Pro",
+    "model": "Gemini 2.5 Pro + Gemini 2.5 Pro + Gemini 2.5 Pro",
+    "team": "3-Agent Teams",
+    "condition": "Advisor + Guardian + Guardian",
     "harm": ""
   },
   {
@@ -869,6 +893,14 @@
     "model": "GPT-5 + GPT-5",
     "team": "2-Agent Teams",
     "condition": "Advisor + Guardian",
+    "harm": ""
+  },
+  {
+    "combinationId": "GPT-5 + GPT-5 + GPT-5::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "GPT-5 + GPT-5 + GPT-5",
+    "model": "GPT-5 + GPT-5 + GPT-5",
+    "team": "3-Agent Teams",
+    "condition": "Advisor + Guardian + Guardian",
     "harm": ""
   },
   {
