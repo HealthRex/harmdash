@@ -86,6 +86,20 @@ function toggleWithMinimumSelected(
   return [...current, value];
 }
 
+const normalizeCombinationValue = (value: string | null | undefined): string =>
+  (value ?? "").trim().toLowerCase();
+
+const matchesDifficulty = (
+  grading: string | null | undefined,
+  difficulty: "Unanimous" | "Majority"
+): boolean => {
+  const normalized = (grading ?? "").trim().toLowerCase();
+  if (difficulty === "Unanimous") {
+    return normalized === "unanimous" || normalized === "";
+  }
+  return normalized === "majority";
+};
+
 export function Dashboard({ dataset }: DashboardProps) {
   const metrics = useMemo(() => dataset.metadata, [dataset.metadata]);
   const metricIds = useMemo(() => metrics.map((meta) => meta.id), [metrics]);
@@ -104,6 +118,16 @@ export function Dashboard({ dataset }: DashboardProps) {
   const allCombinations = useMemo(
     () => groupRowsByCombination(dataset.rows),
     [dataset.rows]
+  );
+  const [difficulty, setDifficulty] = useState<"Unanimous" | "Majority">(
+    "Unanimous"
+  );
+  const difficultyCombinations = useMemo(
+    () =>
+      allCombinations.filter((entry) =>
+        matchesDifficulty(entry.grading, difficulty)
+      ),
+    [allCombinations, difficulty]
   );
 
   const { teamGroups, alwaysOnConditions } = useMemo(() => {
@@ -342,18 +366,26 @@ export function Dashboard({ dataset }: DashboardProps) {
         }
         return allowed.has(conditionValue);
       })();
+      const gradingMatch = matchesDifficulty(row.grading, difficulty);
       const trials = row.trials ?? 0;
       const modelValue = (row.model ?? "").trim().toLowerCase();
       const isHumanModel = modelValue === "human";
       const trialsMatch = isHumanModel ? true : trials >= minTrials;
-      return harmMatch && teamMatch && conditionMatch && trialsMatch;
+      return (
+        harmMatch &&
+        teamMatch &&
+        conditionMatch &&
+        trialsMatch &&
+        gradingMatch
+      );
     });
   }, [
     dataset.rows,
     selectedTeams,
     teamConditionLookup,
     alwaysOnConditionSet,
-    minTrials
+    minTrials,
+    difficulty
   ]);
 
   const combinations = useMemo(
@@ -512,6 +544,43 @@ export function Dashboard({ dataset }: DashboardProps) {
   const normalizedSearch = normalizeSearch(modelSearch);
   const normalizedComparisonSearch = normalizeSearch(comparisonSearch);
 
+  const findEntryForDifficulty = useCallback(
+    (entry: CombinationEntry | null, target: "Unanimous" | "Majority") => {
+      if (!entry) {
+        return null;
+      }
+
+      if (matchesDifficulty(entry.grading, target)) {
+        return entry;
+      }
+
+      const targetModel = normalizeCombinationValue(entry.model);
+      const targetTeam = normalizeCombinationValue(entry.team);
+      const targetCondition = normalizeCombinationValue(entry.condition);
+      const targetHarm = normalizeCombinationValue(entry.harm);
+      const targetType = normalizeCombinationValue(entry.type);
+      const targetCases = normalizeCombinationValue(entry.cases);
+
+      return (
+        allCombinations.find((candidate) => {
+          if (!matchesDifficulty(candidate.grading, target)) {
+            return false;
+          }
+
+          return (
+            normalizeCombinationValue(candidate.model) === targetModel &&
+            normalizeCombinationValue(candidate.team) === targetTeam &&
+            normalizeCombinationValue(candidate.condition) === targetCondition &&
+            normalizeCombinationValue(candidate.harm) === targetHarm &&
+            normalizeCombinationValue(candidate.type) === targetType &&
+            normalizeCombinationValue(candidate.cases) === targetCases
+          );
+        }) ?? null
+      );
+    },
+    [allCombinations]
+  );
+
   const buildSuggestions = useCallback(
     (normalized: string) => {
       if (!normalized) {
@@ -522,7 +591,7 @@ export function Dashboard({ dataset }: DashboardProps) {
       const boundaryRegex = new RegExp(`\\b${escaped}`);
       const candidates = new Map<string, SuggestionCandidate>();
 
-      allCombinations.forEach((entry, index) => {
+      difficultyCombinations.forEach((entry, index) => {
         const label = (entry.displayLabel || entry.model || "").trim();
         if (!label) {
           return;
@@ -604,7 +673,7 @@ export function Dashboard({ dataset }: DashboardProps) {
         .slice(0, 8)
         .map((candidate) => candidate.entry);
     },
-    [allCombinations]
+    [difficultyCombinations]
   );
 
   const modelSuggestions = useMemo(
@@ -863,6 +932,36 @@ export function Dashboard({ dataset }: DashboardProps) {
     setMinTrials(value);
   };
 
+  const handleDifficultyChange = (value: "Unanimous" | "Majority") => {
+    if (value === difficulty) {
+      return;
+    }
+
+    const nextSelection = findEntryForDifficulty(selection, value);
+    const currentSelectionId = selection?.combinationId ?? null;
+    const nextSelectionId = nextSelection?.combinationId ?? null;
+
+    if (nextSelectionId !== currentSelectionId) {
+      searchSelectionRef.current = true;
+      setSelection(nextSelection);
+      setModelSearch(nextSelection ? nextSelection.displayLabel || nextSelection.model || "" : "");
+    }
+
+    const nextComparison = findEntryForDifficulty(comparisonSelection, value);
+    const currentComparisonId = comparisonSelection?.combinationId ?? null;
+    const nextComparisonId = nextComparison?.combinationId ?? null;
+
+    if (nextComparisonId !== currentComparisonId) {
+      comparisonSearchSelectionRef.current = true;
+      setComparisonSelection(nextComparison);
+      setComparisonSearch(
+        nextComparison ? nextComparison.displayLabel || nextComparison.model || "" : ""
+      );
+    }
+
+    setDifficulty(value);
+  };
+
   return (
     <div className="flex flex-col gap-8 pb-12">
       <MetricsSummary dataset={dataset} />
@@ -901,9 +1000,13 @@ export function Dashboard({ dataset }: DashboardProps) {
           onComparisonSearchChange={setComparisonSearch}
           comparisonSuggestions={comparisonSuggestions}
           onSuggestionSelect={(entry) => {
-            const match = allCombinations.find(
-              (candidate) => candidate.combinationId === entry.combinationId
-            );
+            const match =
+              difficultyCombinations.find(
+                (candidate) => candidate.combinationId === entry.combinationId
+              ) ??
+              allCombinations.find(
+                (candidate) => candidate.combinationId === entry.combinationId
+              );
             if (match) {
               searchSelectionRef.current = true;
               setSelection(match);
@@ -911,9 +1014,13 @@ export function Dashboard({ dataset }: DashboardProps) {
             }
           }}
           onComparisonSuggestionSelect={(entry) => {
-            const match = allCombinations.find(
-              (candidate) => candidate.combinationId === entry.combinationId
-            );
+            const match =
+              difficultyCombinations.find(
+                (candidate) => candidate.combinationId === entry.combinationId
+              ) ??
+              allCombinations.find(
+                (candidate) => candidate.combinationId === entry.combinationId
+              );
             if (match) {
               comparisonSearchSelectionRef.current = true;
               setComparisonSelection(match);
@@ -924,6 +1031,8 @@ export function Dashboard({ dataset }: DashboardProps) {
           minTrials={minTrials}
           minTrialsRange={trialsRange}
           onMinTrialsChange={handleMinTrialsChange}
+          difficulty={difficulty}
+          onDifficultyChange={handleDifficultyChange}
         />
       </div>
       <ScatterChartCard

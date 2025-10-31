@@ -45,6 +45,8 @@ interface ModelInfoDrawerProps {
   minTrials: number;
   minTrialsRange: { min: number; max: number };
   onMinTrialsChange: (value: number) => void;
+  difficulty: "Unanimous" | "Majority";
+  onDifficultyChange: (value: "Unanimous" | "Majority") => void;
 }
 
 function computeNormalizedMetricValue(
@@ -93,7 +95,9 @@ export function ModelInfoDrawer({
   onActiveTargetChange,
   minTrials,
   minTrialsRange,
-  onMinTrialsChange
+  onMinTrialsChange,
+  difficulty,
+  onDifficultyChange
 }: ModelInfoDrawerProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [isComparisonFocused, setIsComparisonFocused] = useState(false);
@@ -874,6 +878,35 @@ export function ModelInfoDrawer({
             Interact with the charts or use the search boxes to surface up to two models for comparison.
           </div>
         )}
+      </div>
+      <div className="flex flex-col gap-2 border-t border-slate-200 pt-4">
+        <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+          Difficulty
+        </span>
+        <div className="flex items-center gap-2">
+          {[
+            { value: "Unanimous" as const, label: "Normal" },
+            { value: "Majority" as const, label: "Hard" }
+          ].map((option) => {
+            const isActive = difficulty === option.value;
+            return (
+              <button
+                key={option.value}
+                type="button"
+                onClick={() => onDifficultyChange(option.value)}
+                className={clsx(
+                  "flex-1 rounded-lg border px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+                  isActive
+                    ? "border-brand-500 bg-brand-500 text-white focus-visible:ring-brand-500"
+                    : "border-slate-300 bg-white text-slate-600 hover:border-brand-300 focus-visible:ring-brand-500"
+                )}
+                aria-pressed={isActive}
+              >
+                {option.label}
+              </button>
+            );
+          })}
+        </div>
       </div>
       <div className="flex flex-col gap-2 border-t border-slate-200 pt-4">
         <label
