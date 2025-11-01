@@ -69,8 +69,9 @@ const TEAM_DISPLAY_PRIORITIES: Record<string, number> = {
   "3 agent team": 2,
   "3 agent teams": 2
 };
-const DEFAULT_PROFILE_METRIC_ID = "nnh_cumulative";
-const DEFAULT_PRIMARY_MODEL_RANK = 5;
+const DEFAULT_RANKING_METRIC_ID = DEFAULT_X_METRIC_ID;
+const FALLBACK_RANKING_METRIC_ID = "nnh_cumulative";
+const DEFAULT_PRIMARY_MODEL_RANK = 1;
 
 function toggleWithMinimumSelected(
   current: string[],
@@ -103,6 +104,57 @@ const matchesDifficulty = (
     return normalized === "unanimous" || normalized === "";
   }
   return normalized === "majority";
+};
+
+const SOLO_TEAM_IDENTIFIERS = new Set([
+  "solo",
+  "solo model",
+  "solo models",
+  "solo team",
+  "solo teams",
+  "1 agent",
+  "1 agents",
+  "1-agent team",
+  "1-agent teams",
+  "1 agent team",
+  "1 agent teams"
+]);
+
+const isSoloTeamLabel = (value: string): boolean => {
+  const normalized = value.trim().toLowerCase();
+  if (!normalized) {
+    return false;
+  }
+
+  if (SOLO_TEAM_IDENTIFIERS.has(normalized)) {
+    return true;
+  }
+
+  if (normalized.includes("solo")) {
+    return true;
+  }
+
+  if (normalized.includes("1-agent") || normalized.includes("1 agent")) {
+    return true;
+  }
+
+  return false;
+};
+
+const determineDefaultTeams = (
+  groups: { team: string; label: string }[]
+): string[] => {
+  const soloTeams = groups
+    .filter(
+      (group) => isSoloTeamLabel(group.team) || isSoloTeamLabel(group.label)
+    )
+    .map((group) => group.team);
+
+  if (soloTeams.length > 0) {
+    return soloTeams;
+  }
+
+  return groups.map((group) => group.team);
 };
 
 export function Dashboard({ dataset }: DashboardProps) {
@@ -213,7 +265,7 @@ export function Dashboard({ dataset }: DashboardProps) {
     return metricIds[0] ?? "";
   });
   const [selectedTeams, setSelectedTeams] = useState<string[]>(() =>
-    teamGroups.map((group) => group.team)
+    determineDefaultTeams(teamGroups)
   );
   const [selectedTeamConditions, setSelectedTeamConditions] = useState<
     Record<string, string[]>
@@ -266,7 +318,10 @@ export function Dashboard({ dataset }: DashboardProps) {
       if (valid.length === prev.length && valid.length !== 0) {
         return prev;
       }
-      return valid.length ? valid : teamGroups.map((group) => group.team);
+      if (valid.length) {
+        return valid;
+      }
+      return determineDefaultTeams(teamGroups);
     });
 
     setSelectedTeamConditions((prev) => {
@@ -410,20 +465,42 @@ export function Dashboard({ dataset }: DashboardProps) {
       return;
     }
 
-    const nnhRows = pickRowsForMetric(
-      filteredRows,
-      DEFAULT_PROFILE_METRIC_ID
-    ).filter((row) => row.mean !== null && Number.isFinite(row.mean));
+    const rankingMetricCandidates = [
+      resolvePreferredMetricId(metricIds, DEFAULT_RANKING_METRIC_ID),
+      preferredXMetricId,
+      metricIds[0],
+      resolvePreferredMetricId(metricIds, FALLBACK_RANKING_METRIC_ID)
+    ]
+      .filter((candidate): candidate is string => Boolean(candidate))
+      .filter((candidate, index, array) => array.indexOf(candidate) === index);
 
-    if (nnhRows.length === 0) {
+    let rankingMetricId: string | null = null;
+    let rankingRows: DataRow[] = [];
+    let higherIsBetter = true;
+
+    for (const candidate of rankingMetricCandidates) {
+      const rows = pickRowsForMetric(filteredRows, candidate).filter(
+        (row) => row.mean !== null && Number.isFinite(row.mean)
+      );
+      if (rows.length === 0) {
+        continue;
+      }
+      rankingMetricId = candidate;
+      rankingRows = rows;
+      higherIsBetter =
+        metadataMap.get(candidate)?.betterDirection !== "lower";
+      break;
+    }
+
+    if (!rankingMetricId || rankingRows.length === 0) {
       return;
     }
 
-    const bestRows = sortRowsForMetric(nnhRows, true);
+    const bestRows = sortRowsForMetric(rankingRows, higherIsBetter);
 
     const bestRowIndex = Math.max(0, DEFAULT_PRIMARY_MODEL_RANK - 1);
     const bestRow = bestRows[bestRowIndex] ?? bestRows[0] ?? null;
-    const humanRow = bestRows.find(
+    const humanRow = rankingRows.find(
       (row) => (row.model ?? "").trim().toLowerCase() === "human"
     );
 
@@ -475,7 +552,10 @@ export function Dashboard({ dataset }: DashboardProps) {
     combinations,
     allCombinations,
     selection,
-    comparisonSelection
+    comparisonSelection,
+    metricIds,
+    metadataMap,
+    preferredXMetricId
   ]);
 
   useEffect(() => {
