@@ -26,6 +26,15 @@ const numericFields = [
 ];
 
 const nullableStringFields = ["Format", "Cases", "Grading", "Type", "Label"];
+const GENERAL_HARM_MARKERS = new Set([
+  "",
+  "all",
+  "all harm",
+  "all-harm",
+  "any",
+  "general",
+  "overall"
+]);
 
 const metricsSchema = z.object({
   Model: z.string().min(1),
@@ -81,6 +90,20 @@ function cleanString(value) {
     return null;
   }
   return trimmed;
+}
+
+function normalizeHarmScope(value) {
+  const cleaned = cleanString(value);
+  if (!cleaned) {
+    return "";
+  }
+
+  const normalized = cleaned.toLowerCase();
+  if (GENERAL_HARM_MARKERS.has(normalized)) {
+    return "";
+  }
+
+  return cleaned;
 }
 
 function sanitizeLabel(raw) {
@@ -257,7 +280,7 @@ async function main() {
 
       enriched.Team = cleanString(row.Team) ?? "";
       enriched.Condition = cleanString(row.Condition) ?? "";
-      enriched.Harm = cleanString(row.Harm) ?? "";
+      enriched.Harm = normalizeHarmScope(row.Harm);
 
       const parsed = metricsSchema.parse({
         ...enriched,

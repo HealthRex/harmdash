@@ -177,6 +177,61 @@ describe("groupRowsByCombination", () => {
     );
     expect(severeEntry?.metrics.Accuracy?.mean).toBe(85);
   });
+
+  it("treats descriptive harm labels like 'All' as harm-agnostic", () => {
+    const rows: DataRow[] = [
+      {
+        model: "Model C",
+        team: "Team B",
+        condition: "Advisor",
+        harm: "All",
+        metric: "Accuracy",
+        trials: 8,
+        mean: 75,
+        sd: null,
+        se: null,
+        ci: null,
+        order1: null,
+        order2: null,
+        format: null,
+        cases: "AllCases",
+        grading: "Majority",
+        type: "AllHarm",
+        label: null,
+        displayLabel: "Model C",
+        combinationId:
+          "Model C::Team B::Advisor::All::AllHarm::AllCases::Majority"
+      },
+      {
+        model: "Model C",
+        team: "Team B",
+        condition: "Advisor",
+        harm: "Severe",
+        metric: "nnh",
+        trials: 8,
+        mean: 4.2,
+        sd: null,
+        se: null,
+        ci: null,
+        order1: null,
+        order2: null,
+        format: null,
+        cases: "AllCases",
+        grading: "Majority",
+        type: "AllHarm",
+        label: null,
+        displayLabel: "Model C",
+        combinationId:
+          "Model C::Team B::Advisor::Severe::AllHarm::AllCases::Majority"
+      }
+    ];
+
+    const grouped = groupRowsByCombination(rows);
+    const severeEntry = grouped.find(
+      (entry) => entry.harm === "Severe" && entry.condition === "Advisor"
+    );
+    expect(severeEntry?.metrics.Accuracy?.mean).toBe(75);
+  });
 });
 
 describe("combination base key helpers", () => {

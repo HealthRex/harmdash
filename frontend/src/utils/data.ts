@@ -17,6 +17,38 @@ const DIGIT_OVERRIDES: Record<
   nnh_cumulative: { absolute: 1 }
 };
 
+const GENERAL_HARM_MARKERS = new Set([
+  "",
+  "all",
+  "all harm",
+  "all-harm",
+  "any",
+  "general",
+  "na",
+  "n/a",
+  "overall"
+]);
+
+export function normalizeHarmValue(
+  value: string | null | undefined
+): string {
+  const trimmed = (value ?? "").trim();
+  if (!trimmed) {
+    return "";
+  }
+  const normalized = trimmed.toLowerCase();
+  if (GENERAL_HARM_MARKERS.has(normalized)) {
+    return "";
+  }
+  return trimmed;
+}
+
+export function isSpecificHarmValue(
+  value: string | null | undefined
+): boolean {
+  return normalizeHarmValue(value) !== "";
+}
+
 export function groupRowsByCombination(
   rows: DataRow[]
 ): CombinationEntry[] {
@@ -35,6 +67,7 @@ export function groupRowsByCombination(
     ].join("::");
 
   rows.forEach((row) => {
+    const normalizedHarm = normalizeHarmValue(row.harm);
     const existing = map.get(row.combinationId);
     let entry: CombinationEntry;
     if (existing) {
@@ -46,7 +79,7 @@ export function groupRowsByCombination(
         model: row.model,
         team: row.team,
         condition: row.condition,
-        harm: row.harm,
+        harm: normalizedHarm,
         cases: row.cases,
         grading: row.grading,
         type: row.type,
@@ -69,7 +102,7 @@ export function groupRowsByCombination(
     }
 
     const general = generalMetrics.get(baseKey);
-    if (!row.harm) {
+    if (!isSpecificHarmValue(row.harm)) {
       const updatedGeneral = general ?? {};
       updatedGeneral[row.metric] = row;
       generalMetrics.set(baseKey, updatedGeneral);

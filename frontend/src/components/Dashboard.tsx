@@ -14,6 +14,7 @@ import type {
 import { CONDITION_COLORS, TEAM_COLORS } from "@/config/colors";
 import {
   groupRowsByCombination,
+  normalizeHarmValue,
   pickRowsForMetric,
   sortRowsForMetric
 } from "@/utils/data";
@@ -88,6 +89,10 @@ function toggleWithMinimumSelected(
 
 const normalizeCombinationValue = (value: string | null | undefined): string =>
   (value ?? "").trim().toLowerCase();
+
+const normalizeHarmForComparison = (
+  value: string | null | undefined
+): string => normalizeHarmValue(value).toLowerCase();
 
 const matchesDifficulty = (
   grading: string | null | undefined,
@@ -348,8 +353,11 @@ export function Dashboard({ dataset }: DashboardProps) {
 
   const filteredRows = useMemo(() => {
     return dataset.rows.filter((row) => {
-      const isHarmScopedMetric = row.harm && row.harm !== "NA";
-      const harmMatch = !isHarmScopedMetric ? true : row.harm === "Severe";
+      const harmValue = normalizeHarmValue(row.harm);
+      const isHarmScopedMetric = harmValue !== "";
+      const harmMatch = !isHarmScopedMetric
+        ? true
+        : harmValue.toLowerCase() === "severe";
       const teamValue = (row.team ?? "").trim();
       const teamMatch =
         selectedTeams.length === 0
@@ -557,7 +565,7 @@ export function Dashboard({ dataset }: DashboardProps) {
       const targetModel = normalizeCombinationValue(entry.model);
       const targetTeam = normalizeCombinationValue(entry.team);
       const targetCondition = normalizeCombinationValue(entry.condition);
-      const targetHarm = normalizeCombinationValue(entry.harm);
+      const targetHarm = normalizeHarmForComparison(entry.harm);
       const targetType = normalizeCombinationValue(entry.type);
       const targetCases = normalizeCombinationValue(entry.cases);
 
@@ -571,7 +579,7 @@ export function Dashboard({ dataset }: DashboardProps) {
             normalizeCombinationValue(candidate.model) === targetModel &&
             normalizeCombinationValue(candidate.team) === targetTeam &&
             normalizeCombinationValue(candidate.condition) === targetCondition &&
-            normalizeCombinationValue(candidate.harm) === targetHarm &&
+            normalizeHarmForComparison(candidate.harm) === targetHarm &&
             normalizeCombinationValue(candidate.type) === targetType &&
             normalizeCombinationValue(candidate.cases) === targetCases
           );
