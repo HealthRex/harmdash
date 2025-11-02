@@ -26,7 +26,7 @@ export function MetricsSummary({ dataset }: MetricsSummaryProps) {
       <dl className="grid w-full gap-3 text-sm sm:w-auto sm:grid-cols-3 sm:gap-6">
         <div className="rounded-xl bg-white/70 p-3 text-center shadow-sm sm:bg-transparent sm:p-0 sm:shadow-none">
           <dt className="text-xs uppercase tracking-wide text-slate-500">
-            Models
+            Models & Teams
           </dt>
           <dd className="text-2xl font-semibold text-sky-600">
             {summary.totalModels}

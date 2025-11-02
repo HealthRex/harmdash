@@ -1,6 +1,6 @@
 'use client';
 
-import type { CSSProperties } from "react";
+import { useCallback, useEffect, useState, type CSSProperties } from "react";
 import clsx from "clsx";
 import { TEAM_COLORS } from "@/config/colors";
 
@@ -46,7 +46,7 @@ export function TeamFiltersBar({
   onToggleTeamCondition,
   conditionColorMap
 }: TeamFiltersBarProps) {
-  const inferAgentCount = (group: TeamConditionGroup) => {
+  const inferAgentCount = useCallback((group: TeamConditionGroup) => {
     const normalizedLabel = group.label.trim().toLowerCase();
     const normalizedTeam = group.team.trim().toLowerCase();
 
@@ -77,7 +77,40 @@ export function TeamFiltersBar({
     }, 0);
 
     return Math.max(fromConditions, 1);
-  };
+  }, []);
+
+  const [showMultiAgentHighlight, setShowMultiAgentHighlight] = useState(true);
+
+  useEffect(() => {
+    if (!showMultiAgentHighlight) {
+      return;
+    }
+
+    const hasMultiAgentGroup = teamGroups.some(
+      (group) => inferAgentCount(group) >= 2
+    );
+
+    if (!hasMultiAgentGroup) {
+      setShowMultiAgentHighlight(false);
+      return;
+    }
+
+    const multiAgentSelected = teamGroups.some((group) => {
+      if (inferAgentCount(group) < 2) {
+        return false;
+      }
+      return selectedTeams.includes(group.team);
+    });
+
+    if (multiAgentSelected) {
+      setShowMultiAgentHighlight(false);
+    }
+  }, [
+    inferAgentCount,
+    selectedTeams,
+    showMultiAgentHighlight,
+    teamGroups
+  ]);
 
   const getTeamCardSizing = (
     group: TeamConditionGroup,
@@ -143,6 +176,8 @@ export function TeamFiltersBar({
             selectedTeamConditions[group.team].length === 0;
           const teamColor = TEAM_COLORS[group.team] ?? TEAM_COLORS.default;
           const agentCount = inferAgentCount(group);
+          const isMultiAgentGroup = agentCount >= 2;
+          const shouldHighlight = showMultiAgentHighlight && isMultiAgentGroup;
           const normalizedTeam = group.team.trim().toLowerCase();
           const normalizedLabel = group.label.trim().toLowerCase();
           const isSoloModelsGroup =
@@ -158,13 +193,19 @@ export function TeamFiltersBar({
                 "flex w-full flex-col items-center gap-3 rounded-xl border p-4 text-center transition-all duration-[650ms] ease-[cubic-bezier(0.33,1,0.68,1)] sm:w-auto",
                 isSelected
                   ? "border-brand-200 bg-white shadow-sm"
-                  : "border-slate-200 bg-slate-50"
+                  : "border-slate-200 bg-slate-50",
+                shouldHighlight ? "multi-agent-highlight" : null
               )}
               style={getTeamCardSizing(group, agentCount)}
             >
               <button
                 type="button"
-                onClick={() => onToggleTeam(group.team)}
+                onClick={() => {
+                  if (isMultiAgentGroup && showMultiAgentHighlight) {
+                    setShowMultiAgentHighlight(false);
+                  }
+                  onToggleTeam(group.team);
+                }}
                 className={clsx(
                   "mx-auto inline-flex min-w-[160px] max-w-[176px] items-center justify-center rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-[550ms] ease-[cubic-bezier(0.33,1,0.68,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
                   isSelected
@@ -213,11 +254,16 @@ export function TeamFiltersBar({
                         key={condition}
                         type="button"
                         disabled={disabled}
-                        onClick={() =>
-                          syncsWithSoloModels
-                            ? onToggleTeam(group.team)
-                            : onToggleTeamCondition(group.team, condition)
-                        }
+                        onClick={() => {
+                          if (isMultiAgentGroup && showMultiAgentHighlight) {
+                            setShowMultiAgentHighlight(false);
+                          }
+                          if (syncsWithSoloModels) {
+                            onToggleTeam(group.team);
+                          } else {
+                            onToggleTeamCondition(group.team, condition);
+                          }
+                        }}
                         className={clsx(
                           "flex items-center rounded-full border px-2.5 py-1 text-xs font-medium transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2",
                           isActive
