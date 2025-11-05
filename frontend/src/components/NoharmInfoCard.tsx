@@ -46,7 +46,7 @@ export function NoharmInfoCard({ className }: NoharmInfoCardProps) {
           <dt className="text-xs font-semibold uppercase tracking-wide text-slate-500">Contact</dt>
           <dd className="flex flex-col">
             <span>
-              David Wu, MD, PhD ({" "}
+              David Wu, MD, PhD ({""}
               <a
                 href="mailto:dwu@mgh.harvard.edu"
                 className="font-medium text-brand-600 hover:text-brand-700"
@@ -56,12 +56,22 @@ export function NoharmInfoCard({ className }: NoharmInfoCardProps) {
               )
             </span>
             <span>
-              Ethan Goh, MD ({" "}
+              Ethan Goh, MD ({""}
               <a
                 href="mailto:ethangoh@stanford.edu"
                 className="font-medium text-brand-600 hover:text-brand-700"
               >
                 ethangoh@stanford.edu
+              </a>
+              )
+            </span>
+            <span>
+              Jonathan Chen, MD, PhD ({""}
+              <a
+                href="mailto:jonc101@stanford.edu"
+                className="font-medium text-brand-600 hover:text-brand-700"
+              >
+                jonc101@stanford.edu
               </a>
               )
             </span>

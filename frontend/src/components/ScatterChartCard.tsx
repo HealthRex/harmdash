@@ -406,10 +406,12 @@ export function ScatterChartCard({
     return /%/.test(label) ? label : `${label} (%)`;
   }, [yMeta, yMetricId, yIsPercentMetric]);
 
+  const shouldLockAspectRatio = xIsPercentMetric && yIsPercentMetric;
+
   const layout = useMemo<Partial<Layout>>(
     () => ({
       margin: { l: 60, r: 20, t: 80, b: 60 },
-      height: 520,
+      autosize: true,
       paper_bgcolor: "rgba(0,0,0,0)",
       plot_bgcolor: "rgba(0,0,0,0)",
       xaxis: {
@@ -432,6 +434,7 @@ export function ScatterChartCard({
         mirror: true,
         linecolor: "#94a3b8",
         linewidth: 1.5,
+        constrain: shouldLockAspectRatio ? "domain" : undefined,
         tickfont: {
           size: 12,
           family: "Inter, sans-serif",
@@ -458,6 +461,8 @@ export function ScatterChartCard({
         mirror: true,
         linecolor: "#94a3b8",
         linewidth: 1.5,
+        scaleanchor: shouldLockAspectRatio ? "x" : undefined,
+        scaleratio: shouldLockAspectRatio ? 1 : undefined,
         tickfont: {
           size: 12,
           family: "Inter, sans-serif",
@@ -558,7 +563,8 @@ export function ScatterChartCard({
       xAxisRange,
       yAxisRange,
       xAxisTitle,
-      yAxisTitle
+      yAxisTitle,
+      shouldLockAspectRatio
     ]
   );
 

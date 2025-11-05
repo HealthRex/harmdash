@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: harmdash
+    name: noharm
     env: node
     plan: free
     rootDir: frontend
