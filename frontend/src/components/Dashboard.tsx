@@ -5,6 +5,7 @@ import { TeamFiltersBar } from "@/components/FiltersPanel";
 import { MetricsSummary } from "@/components/MetricsSummary";
 import { ModelInfoDrawer as ModelProfileCard } from "@/components/ModelInfoDrawer";
 import { ScatterChartCard } from "@/components/ScatterChartCard";
+import { NoharmInfoCard } from "@/components/NoharmInfoCard";
 import type {
   CombinationEntry,
   DataRow,
@@ -1061,79 +1062,89 @@ export function Dashboard({ dataset }: DashboardProps) {
         onToggleTeamCondition={handleToggleTeamCondition}
         conditionColorMap={conditionColorMap}
       />
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.7fr)_minmax(360px,1fr)]">
-        <BarChartCard
-          rows={filteredRows}
-          metricId={safeBarMetric}
-          onMetricChange={setBarMetricId}
-          onBarClick={handleBarClick}
-          onHighlightAssign={handleHighlightAssign}
-          highlightedCombinationId={selection?.combinationId}
-          comparisonCombinationId={comparisonSelection?.combinationId}
-          metrics={metrics}
-          metadataMap={metadataMap}
-          conditionColorMap={conditionColorMap}
-        />
-        <ModelProfileCard
-          selection={selection}
-          comparison={comparisonSelection}
-          onClear={handleClearSelection}
-          onClearComparison={handleClearComparison}
-          metrics={metrics}
-          className="lg:flex-1"
-          modelQuery={modelSearch}
-          onModelSearchChange={setModelSearch}
-          suggestions={modelSuggestions}
-          comparisonQuery={comparisonSearch}
-          onComparisonSearchChange={setComparisonSearch}
-          comparisonSuggestions={comparisonSuggestions}
-          onSuggestionSelect={(entry) => {
-            const match =
-              difficultyCombinations.find(
-                (candidate) => candidate.combinationId === entry.combinationId
-              ) ??
-              allCombinations.find(
-                (candidate) => candidate.combinationId === entry.combinationId
-              );
-            if (match) {
-              searchSelectionRef.current = true;
-              setSelection(match);
-              setModelSearch(match.displayLabel || match.model || "");
-            }
-          }}
-          onComparisonSuggestionSelect={(entry) => {
-            const match =
-              difficultyCombinations.find(
-                (candidate) => candidate.combinationId === entry.combinationId
-              ) ??
-              allCombinations.find(
-                (candidate) => candidate.combinationId === entry.combinationId
-              );
-            if (match) {
-              comparisonSearchSelectionRef.current = true;
-              setComparisonSelection(match);
-              setComparisonSearch(match.displayLabel || match.model || "");
-            }
-          }}
-          onActiveTargetChange={setActiveSelectionTarget}
-          minTrials={minTrials}
-          minTrialsRange={trialsRange}
-          onMinTrialsChange={handleMinTrialsChange}
-          difficulty={difficulty}
-          onDifficultyChange={handleDifficultyChange}
-        />
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.7fr)_minmax(360px,1fr)] lg:auto-rows-min">
+        <div className="lg:row-start-1 lg:col-start-1">
+          <BarChartCard
+            rows={filteredRows}
+            metricId={safeBarMetric}
+            onMetricChange={setBarMetricId}
+            onBarClick={handleBarClick}
+            onHighlightAssign={handleHighlightAssign}
+            highlightedCombinationId={selection?.combinationId}
+            comparisonCombinationId={comparisonSelection?.combinationId}
+            metrics={metrics}
+            metadataMap={metadataMap}
+            conditionColorMap={conditionColorMap}
+          />
+        </div>
+        <div className="lg:row-start-1 lg:col-start-2">
+          <ModelProfileCard
+            selection={selection}
+            comparison={comparisonSelection}
+            onClear={handleClearSelection}
+            onClearComparison={handleClearComparison}
+            metrics={metrics}
+            className="lg:flex-1"
+            modelQuery={modelSearch}
+            onModelSearchChange={setModelSearch}
+            suggestions={modelSuggestions}
+            comparisonQuery={comparisonSearch}
+            onComparisonSearchChange={setComparisonSearch}
+            comparisonSuggestions={comparisonSuggestions}
+            onSuggestionSelect={(entry) => {
+              const match =
+                difficultyCombinations.find(
+                  (candidate) => candidate.combinationId === entry.combinationId
+                ) ??
+                allCombinations.find(
+                  (candidate) => candidate.combinationId === entry.combinationId
+                );
+              if (match) {
+                searchSelectionRef.current = true;
+                setSelection(match);
+                setModelSearch(match.displayLabel || match.model || "");
+              }
+            }}
+            onComparisonSuggestionSelect={(entry) => {
+              const match =
+                difficultyCombinations.find(
+                  (candidate) => candidate.combinationId === entry.combinationId
+                ) ??
+                allCombinations.find(
+                  (candidate) => candidate.combinationId === entry.combinationId
+                );
+              if (match) {
+                comparisonSearchSelectionRef.current = true;
+                setComparisonSelection(match);
+                setComparisonSearch(match.displayLabel || match.model || "");
+              }
+            }}
+            onActiveTargetChange={setActiveSelectionTarget}
+            minTrials={minTrials}
+            minTrialsRange={trialsRange}
+            onMinTrialsChange={handleMinTrialsChange}
+            difficulty={difficulty}
+            onDifficultyChange={handleDifficultyChange}
+          />
+        </div>
+        <div className="lg:row-start-2 lg:col-start-1">
+          <ScatterChartCard
+            combinations={combinations}
+            xMetricId={safeXMetric}
+            yMetricId={safeYMetric}
+            onXMetricChange={setXMetricId}
+            onYMetricChange={setYMetricId}
+            onPointClick={handlePointClick}
+            highlightedCombinationId={selection?.combinationId}
+            metrics={metrics}
+            metadataMap={metadataMap}
+            className="h-full"
+          />
+        </div>
+        <div className="lg:row-start-2 lg:col-start-2">
+          <NoharmInfoCard className="h-full" />
+        </div>
       </div>
-      <ScatterChartCard
-        combinations={combinations}
-        xMetricId={safeXMetric}
-        yMetricId={safeYMetric}
-        onXMetricChange={setXMetricId}
-        onYMetricChange={setYMetricId}
-        onPointClick={handlePointClick}
-        highlightedCombinationId={selection?.combinationId}
-        metrics={metrics}
-        metadataMap={metadataMap}
-      />
     </div>
   );
 }

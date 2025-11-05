@@ -3,9 +3,10 @@
 import Plot from "@/components/PlotClient";
 import { TEAM_COLORS } from "@/config/colors";
 import type { CombinationEntry, DataRow, MetricMetadata } from "@/types/dataset";
+import { formatMetricValue } from "@/utils/data";
+import clsx from "clsx";
 import type { Layout, PlotData, PlotMouseEvent, Shape } from "plotly.js";
 import { useMemo } from "react";
-import { formatMetricValue } from "@/utils/data";
 
 const LEGEND_PRIORITY_GROUPS: readonly string[][] = [
   ["Solo Models", "Solo Model", "1 Agent"],
@@ -108,6 +109,7 @@ interface ScatterChartCardProps {
   highlightedCombinationId?: string | null;
   metrics: MetricMetadata[];
   metadataMap: Map<string, MetricMetadata>;
+  className?: string;
 }
 
 export function ScatterChartCard({
@@ -119,7 +121,8 @@ export function ScatterChartCard({
   onPointClick,
   highlightedCombinationId,
   metrics,
-  metadataMap
+  metadataMap,
+  className
 }: ScatterChartCardProps) {
   const xMeta = metadataMap.get(xMetricId);
   const yMeta = metadataMap.get(yMetricId);
@@ -573,7 +576,10 @@ export function ScatterChartCard({
   };
 
   return (
-    <section className="mx-auto flex w-full max-w-[50%] flex-col gap-4 rounded-2xl bg-white p-6 shadow-lg shadow-slate-200">
+    <section className={clsx(
+      "flex w-full flex-col gap-4 rounded-2xl bg-white p-6 shadow-lg shadow-slate-200",
+      className
+    )}>
       <header className="flex flex-col gap-1">
         <div>
           <h2 className="text-lg font-semibold text-slate-900">
