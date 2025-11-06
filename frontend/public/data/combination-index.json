@@ -680,6 +680,14 @@
     "harm": ""
   },
   {
+    "combinationId": "Glass::Solo Models::Advisor::::AllHarm::AllCases::Majority",
+    "displayLabel": "Glass",
+    "model": "Glass",
+    "team": "Solo Models",
+    "condition": "Advisor",
+    "harm": ""
+  },
+  {
     "combinationId": "GPT-4.1::Solo Models::Advisor::::AllHarm::AllCases::Majority",
     "displayLabel": "GPT-4.1",
     "model": "GPT-4.1",

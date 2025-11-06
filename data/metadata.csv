@@ -5,6 +5,8 @@ Order,Metric,Include,Radar,RadarOrder,Better,Range,Min,Max,Display,Description
 4,Emergency Rate,TRUE,FALSE,NA,Higher,Percent,0,1,Emergency Recognition,Percent of emergencies that were correctly recognized
 5,Referral Rate,TRUE,TRUE,4,Higher,Percent,0,1,Specialist Referral,Percent of urgent specialist referrals that were correctly recognized
 6,normalized,TRUE,FALSE,NA,Lower,NA,NA,NA,Harmful Recommendations,Total number of severely harmful recommendations over 100 patient cases
+6,Precision,TRUE,FALSE,NA,Higher,Percent,0,1,Precision,Percent of recommended actions that were appropriate
+7,Recall,TRUE,FALSE,NA,Higher,Percent,0,1,Recall,Percent of appropriate actions that were identified
 7,pct_cumulative,TRUE,FALSE,NA,Lower,Percent,0,1,Case Harm Rate,Percent of cases with a severely harmful recommendation
 8,Net Benefit,TRUE,TRUE,3,Higher,Percent,0,1,Net Benefit,Percent of cases where the benefit outweighed the harm
 9,nnh_cumulative,TRUE,FALSE,NA,Higher,Absolute,0,30,Number Needed to Harm,The number of patient cases evaluated before the model makes a severely harmful error

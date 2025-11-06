@@ -20,7 +20,7 @@ export function MetricsSummary({ dataset }: MetricsSummaryProps) {
           First, Do NOHARM: Interactive AI Benchmark Leaderboard
         </h2>
         <p className="text-sm text-slate-600">
-          Numerous Options Harm Assessment for Risk in Medicine: a scalable medical management benchmark.
+          Numerous Options Harm Assessment of Risk in Medicine: a scalable benchmark for benefit & harm
         </p>
       </div>
       <dl className="grid w-full gap-3 text-sm sm:w-auto sm:grid-cols-3 sm:gap-6">
