@@ -58,6 +58,7 @@ type Props = {
 
 const PRIMARY_SELECTION_COLOR = "#0ea5e9";
 const COMPARISON_SELECTION_COLOR = "#f97316";
+const HUMAN_MODEL_KEY = "human";
 
 const getTextColor = (hex: string) => {
   const normalized = hex.replace('#', '');
@@ -184,7 +185,10 @@ export function BarChartCard({
         return;
       }
 
-      if (topIds.has(match.combinationId) || bottomIds.has(match.combinationId)) {
+      if (
+        match.model.trim().toLowerCase() !== HUMAN_MODEL_KEY &&
+        (topIds.has(match.combinationId) || bottomIds.has(match.combinationId))
+      ) {
         return;
       }
 
@@ -202,6 +206,21 @@ export function BarChartCard({
       selectedRows.splice(0, selectedRows.length, ...targetCollection);
       selectedIds.add(match.combinationId);
     });
+
+    const humanRow = filtered.find((row) => {
+      const modelValue = (row.model ?? "").trim().toLowerCase();
+      return modelValue === HUMAN_MODEL_KEY;
+    });
+
+    if (humanRow && !selectedIds.has(humanRow.combinationId)) {
+      const bestRank = bestOrder.get(humanRow.combinationId);
+      const targetCollection =
+        bestRank === undefined
+          ? [...selectedRows, humanRow]
+          : insertInOrder(selectedRows, humanRow, bestOrder);
+      selectedRows.splice(0, selectedRows.length, ...targetCollection);
+      selectedIds.add(humanRow.combinationId);
+    }
 
     const combinedDisplay = [
       ...topWithSelections,
@@ -1144,6 +1163,16 @@ export function BarChartCard({
       );
     }
 
+    const selectedCombinationIds = new Set(
+      target.selectedRows.map((row) => row.combinationId)
+    );
+    const topRowsForDisplay = target.topRows.filter(
+      (row) => !selectedCombinationIds.has(row.combinationId)
+    );
+    const bottomRowsForDisplay = target.bottomRows.filter(
+      (row) => !selectedCombinationIds.has(row.combinationId)
+    );
+
     return (
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
@@ -1154,7 +1183,7 @@ export function BarChartCard({
             {renderConfidenceToggle()}
           </div>
           {renderRowGroup(
-            target.topRows,
+            topRowsForDisplay,
             "No models available for the selected filters.",
             meta,
             { axisMin: target.axisMin, axisMax: target.axisMax },
@@ -1180,7 +1209,7 @@ export function BarChartCard({
             Worst
           </h3>
           {renderRowGroup(
-            target.bottomRows,
+            bottomRowsForDisplay,
             "No bottom performers to display for the selected filters.",
             meta,
             { axisMin: target.axisMin, axisMax: target.axisMax },

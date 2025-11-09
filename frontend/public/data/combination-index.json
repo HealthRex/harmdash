@@ -144,6 +144,22 @@
     "harm": ""
   },
   {
+    "combinationId": "Commercial Model A::Solo Models::Advisor::::AllHarm::AllCases::Majority",
+    "displayLabel": "Commercial Model A",
+    "model": "Commercial Model A",
+    "team": "Solo Models",
+    "condition": "Advisor",
+    "harm": ""
+  },
+  {
+    "combinationId": "Commercial Model B::Solo Models::Advisor::::AllHarm::AllCases::Majority",
+    "displayLabel": "Commercial Model B",
+    "model": "Commercial Model B",
+    "team": "Solo Models",
+    "condition": "Advisor",
+    "harm": ""
+  },
+  {
     "combinationId": "DeepSeek R1::Solo Models::Advisor::::AllHarm::AllCases::Majority",
     "displayLabel": "DeepSeek R1",
     "model": "DeepSeek R1",
@@ -176,6 +192,14 @@
     "harm": ""
   },
   {
+    "combinationId": "DeepSeek R1 + DeepSeek R1 + GPT-5::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Majority",
+    "displayLabel": "DeepSeek R1 + DeepSeek R1 + GPT-5",
+    "model": "DeepSeek R1 + DeepSeek R1 + GPT-5",
+    "team": "3-Agent Teams",
+    "condition": "Advisor + Guardian + Guardian",
+    "harm": ""
+  },
+  {
     "combinationId": "DeepSeek R1 + Gemini 2.0 Flash::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Majority",
     "displayLabel": "DeepSeek R1 + Gemini 2.0 Flash",
     "model": "DeepSeek R1 + Gemini 2.0 Flash",
@@ -187,6 +211,14 @@
     "combinationId": "DeepSeek R1 + Gemini 2.0 Flash + Claude Sonnet 3.7::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Majority",
     "displayLabel": "DeepSeek R1 + Gemini 2.0 Flash + Claude Sonnet 3.7",
     "model": "DeepSeek R1 + Gemini 2.0 Flash + Claude Sonnet 3.7",
+    "team": "3-Agent Teams",
+    "condition": "Advisor + Guardian + Guardian",
+    "harm": ""
+  },
+  {
+    "combinationId": "DeepSeek R1 + Gemini 2.0 Flash + Gemini 2.5 Pro::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Majority",
+    "displayLabel": "DeepSeek R1 + Gemini 2.0 Flash + Gemini 2.5 Pro",
+    "model": "DeepSeek R1 + Gemini 2.0 Flash + Gemini 2.5 Pro",
     "team": "3-Agent Teams",
     "condition": "Advisor + Guardian + Guardian",
     "harm": ""
@@ -472,6 +504,30 @@
     "harm": ""
   },
   {
+    "combinationId": "Gemini 2.5 Flash + Gemini 2.5 Flash + Gemini 2.5 Pro::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Majority",
+    "displayLabel": "Gemini 2.5 Flash + Gemini 2.5 Flash + Gemini 2.5 Pro",
+    "model": "Gemini 2.5 Flash + Gemini 2.5 Flash + Gemini 2.5 Pro",
+    "team": "3-Agent Teams",
+    "condition": "Advisor + Guardian + Guardian",
+    "harm": ""
+  },
+  {
+    "combinationId": "Gemini 2.5 Flash + Gemini 2.5 Pro::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Majority",
+    "displayLabel": "Gemini 2.5 Flash + Gemini 2.5 Pro",
+    "model": "Gemini 2.5 Flash + Gemini 2.5 Pro",
+    "team": "2-Agent Teams",
+    "condition": "Advisor + Guardian",
+    "harm": ""
+  },
+  {
+    "combinationId": "Gemini 2.5 Flash + Gemini 2.5 Pro + Gemini 2.5 Pro::3-Agent Teams::Advisor + Guardian + Guardian::::AllHarm::AllCases::Majority",
+    "displayLabel": "Gemini 2.5 Flash + Gemini 2.5 Pro + Gemini 2.5 Pro",
+    "model": "Gemini 2.5 Flash + Gemini 2.5 Pro + Gemini 2.5 Pro",
+    "team": "3-Agent Teams",
+    "condition": "Advisor + Guardian + Guardian",
+    "harm": ""
+  },
+  {
     "combinationId": "Gemini 2.5 Flash + GPT-5 mini::2-Agent Teams::Advisor + Guardian::::AllHarm::AllCases::Majority",
     "displayLabel": "Gemini 2.5 Flash + GPT-5 mini",
     "model": "Gemini 2.5 Flash + GPT-5 mini",
@@ -677,14 +733,6 @@
     "model": "Gemini 2.5 Pro + o3 mini",
     "team": "2-Agent Teams",
     "condition": "Advisor + Guardian",
-    "harm": ""
-  },
-  {
-    "combinationId": "Glass::Solo Models::Advisor::::AllHarm::AllCases::Majority",
-    "displayLabel": "Glass",
-    "model": "Glass",
-    "team": "Solo Models",
-    "condition": "Advisor",
     "harm": ""
   },
   {
@@ -1073,7 +1121,7 @@
   },
   {
     "combinationId": "Human::Solo Models::Human::::AllHarm::AllCases::Majority",
-    "displayLabel": "Human Physicians",
+    "displayLabel": "Human",
     "model": "Human",
     "team": "Solo Models",
     "condition": "Human",
