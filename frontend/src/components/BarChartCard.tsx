@@ -108,6 +108,12 @@ export function BarChartCard({
       if (bottom.length >= perGroup) {
         break;
       }
+
+      const candidateModel = candidate.model.trim().toLowerCase();
+      if (candidateModel === HUMAN_MODEL_KEY) {
+        continue;
+      }
+
       if (!top.some((row) => row.combinationId === candidate.combinationId)) {
         bottom.push(candidate);
       }
