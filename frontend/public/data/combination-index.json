@@ -328,14 +328,6 @@
     "harm": ""
   },
   {
-    "combinationId": "Expert AI::Solo Models::Advisor::::AllHarm::AllCases::Unanimous",
-    "displayLabel": "Expert AI",
-    "model": "Expert AI",
-    "team": "Solo Models",
-    "condition": "Advisor",
-    "harm": ""
-  },
-  {
     "combinationId": "Gemini 2.0 Flash::Solo Models::Advisor::::AllHarm::AllCases::Unanimous",
     "displayLabel": "Gemini 2.0 Flash",
     "model": "Gemini 2.0 Flash",
@@ -1693,14 +1685,6 @@
     "model": "Qwen3 32B",
     "team": "Solo Models",
     "condition": "Advisor",
-    "harm": ""
-  },
-  {
-    "combinationId": "Random Intervention::Solo Models::Control::::AllHarm::AllCases::Unanimous",
-    "displayLabel": "Random Intervention",
-    "model": "Random Intervention",
-    "team": "Solo Models",
-    "condition": "Control",
     "harm": ""
   }
 ]

@@ -228,10 +228,9 @@ o3 mini + Gemini 2.5 Pro + GPT-5,3-Agent Teams,Advisor + Guardian + Steward,All,
 o3 mini + Llama 4 Scout + Gemini 2.5 Pro,3-Agent Teams,Advisor + Guardian + Steward,All,Accuracy,2,0.482,0.009,0.006,0.012,NO,AllCases,Unanimous,AllHarm,o3 mini,Llama 4 Scout,Gemini 2.5 Pro,NA,NA
 Claude Haiku 4.5,Solo Models,Advisor,All,Accuracy,3,0.504,0.014,0.008,0.016,NO,AllCases,Unanimous,AllHarm,Claude Haiku 4.5,NA,NA,NA,NA
 Claude Sonnet 3.7,Solo Models,Advisor,All,Accuracy,10,0.543,0.018,0.006,0.011,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,All,Accuracy,18,0.509,0.039,0.009,0.018,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,All,Accuracy,20,0.51,0.037,0.008,0.016,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,All,Accuracy,18,0.574,0.036,0.009,0.017,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,All,Accuracy,11,0.625,0.05,0.015,0.029,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,All,Accuracy,15,0.656,0.018,0.005,0.009,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,All,Accuracy,12,0.624,0.048,0.014,0.027,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,All,Accuracy,20,0.618,0.022,0.005,0.01,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
 GPT-4.1 mini,Solo Models,Advisor,All,Accuracy,13,0.46,0.034,0.009,0.018,NO,AllCases,Unanimous,AllHarm,GPT-4.1 mini,NA,NA,NA,NA
 GPT-4o,Solo Models,Advisor,All,Accuracy,13,0.515,0.074,0.02,0.04,NO,AllCases,Unanimous,AllHarm,GPT-4o,NA,NA,NA,NA
@@ -240,24 +239,23 @@ GPT-5,Solo Models,Advisor,All,Accuracy,20,0.502,0.04,0.009,0.017,NO,AllCases,Una
 GPT-5 mini,Solo Models,Advisor,All,Accuracy,13,0.492,0.027,0.007,0.014,NO,AllCases,Unanimous,AllHarm,GPT-5 mini,NA,NA,NA,NA
 GPT-5 nano,Solo Models,Advisor,All,Accuracy,10,0.438,0.031,0.01,0.019,NO,AllCases,Unanimous,AllHarm,GPT-5 nano,NA,NA,NA,NA
 Gemini 2.0 Flash,Solo Models,Advisor,All,Accuracy,10,0.654,0.016,0.005,0.01,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,All,Accuracy,18,0.632,0.03,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,All,Accuracy,19,0.632,0.029,0.007,0.013,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,All,Accuracy,19,0.583,0.063,0.014,0.028,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
 Glass Health 4.0,Solo Models,Advisor,All,Accuracy,13,0.52,0.05,0.014,0.027,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,All,Accuracy,12,0.571,0.072,0.021,0.041,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,All,Accuracy,13,0.557,0.072,0.02,0.039,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Kimi K2,Solo Models,Advisor,All,Accuracy,12,0.634,0.055,0.016,0.031,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,All,Accuracy,13,0.568,0.068,0.019,0.037,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,All,Accuracy,14,0.556,0.069,0.018,0.036,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Kimi K2,Solo Models,Advisor,All,Accuracy,12,0.635,0.055,0.016,0.031,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 LiSA 1.0,Solo Models,Advisor,All,Accuracy,20,0.671,0.028,0.006,0.012,NO,AllCases,Unanimous,AllHarm,LiSA 1.0,NA,NA,NA,NA
 Llama 3.3 70b,Solo Models,Advisor,All,Accuracy,10,0.56,0.032,0.01,0.02,NO,AllCases,Unanimous,AllHarm,Llama 3.3 70b,NA,NA,NA,NA
 Llama 4 Maverick,Solo Models,Advisor,All,Accuracy,13,0.508,0.024,0.007,0.013,NO,AllCases,Unanimous,AllHarm,Llama 4 Maverick,NA,NA,NA,NA
 Llama 4 Scout,Solo Models,Advisor,All,Accuracy,20,0.579,0.017,0.004,0.007,NO,AllCases,Unanimous,AllHarm,Llama 4 Scout,NA,NA,NA,NA
 Mistral Large 2.1,Solo Models,Advisor,All,Accuracy,13,0.493,0.075,0.021,0.041,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
 Mistral Medium 3.1,Solo Models,Advisor,All,Accuracy,14,0.471,0.058,0.016,0.031,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,All,Accuracy,6,0.488,0.024,0.01,0.02,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,All,Accuracy,7,0.495,0.029,0.011,0.021,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
 o1,Solo Models,Advisor,All,Accuracy,10,0.441,0.037,0.012,0.023,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
 o1 mini,Solo Models,Advisor,All,Accuracy,10,0.487,0.045,0.014,0.028,NO,AllCases,Unanimous,AllHarm,o1 mini,NA,NA,NA,NA
 o3 mini,Solo Models,Advisor,All,Accuracy,19,0.282,0.03,0.007,0.013,NO,AllCases,Unanimous,AllHarm,o3 mini,NA,NA,NA,NA
 o4 mini,Solo Models,Advisor,All,Accuracy,10,0.355,0.028,0.009,0.018,NO,AllCases,Unanimous,AllHarm,o4 mini,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,All,Accuracy,10,0.011,0.011,0.003,0.007,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,All,Emergency Rate,3,0.111,0.192,0.111,0.218,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
 Claude Sonnet 3.7 + DeepSeek R1,2-Agent Teams,Advisor + Guardian,All,Emergency Rate,3,0,0,0,0,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,DeepSeek R1,NA,NA,NA
 Claude Sonnet 3.7 + GPT-4.1,2-Agent Teams,Advisor + Guardian,All,Emergency Rate,3,0.444,0.192,0.111,0.218,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,GPT-4.1,NA,NA,NA
@@ -487,10 +485,9 @@ o3 mini + Gemini 2.5 Pro + GPT-5,3-Agent Teams,Advisor + Guardian + Steward,All,
 o3 mini + Llama 4 Scout + Gemini 2.5 Pro,3-Agent Teams,Advisor + Guardian + Steward,All,Emergency Rate,2,0.5,0.236,0.167,0.327,NO,AllCases,Unanimous,AllHarm,o3 mini,Llama 4 Scout,Gemini 2.5 Pro,NA,NA
 Claude Haiku 4.5,Solo Models,Advisor,All,Emergency Rate,3,0,0,0,0,NO,AllCases,Unanimous,AllHarm,Claude Haiku 4.5,NA,NA,NA,NA
 Claude Sonnet 3.7,Solo Models,Advisor,All,Emergency Rate,10,0,0,0,0,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,All,Emergency Rate,18,0,0,0,0,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,All,Emergency Rate,20,0,0,0,0,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,All,Emergency Rate,18,0,0,0,0,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,All,Emergency Rate,11,0,0,0,0,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,All,Emergency Rate,15,0,0,0,0,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,All,Emergency Rate,12,0,0,0,0,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,All,Emergency Rate,20,0.1,0.157,0.035,0.069,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
 GPT-4.1 mini,Solo Models,Advisor,All,Emergency Rate,13,0.026,0.092,0.026,0.05,NO,AllCases,Unanimous,AllHarm,GPT-4.1 mini,NA,NA,NA,NA
 GPT-4o,Solo Models,Advisor,All,Emergency Rate,13,0.436,0.21,0.058,0.114,NO,AllCases,Unanimous,AllHarm,GPT-4o,NA,NA,NA,NA
@@ -499,11 +496,11 @@ GPT-5,Solo Models,Advisor,All,Emergency Rate,20,0.1,0.157,0.035,0.069,NO,AllCase
 GPT-5 mini,Solo Models,Advisor,All,Emergency Rate,13,0.026,0.092,0.026,0.05,NO,AllCases,Unanimous,AllHarm,GPT-5 mini,NA,NA,NA,NA
 GPT-5 nano,Solo Models,Advisor,All,Emergency Rate,10,0.033,0.105,0.033,0.065,NO,AllCases,Unanimous,AllHarm,GPT-5 nano,NA,NA,NA,NA
 Gemini 2.0 Flash,Solo Models,Advisor,All,Emergency Rate,10,0,0,0,0,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,All,Emergency Rate,18,0.343,0.039,0.009,0.018,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,All,Emergency Rate,19,0.342,0.038,0.009,0.017,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,All,Emergency Rate,19,0.465,0.163,0.037,0.073,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
 Glass Health 4.0,Solo Models,Advisor,All,Emergency Rate,13,0.115,0.185,0.051,0.101,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,All,Emergency Rate,12,0,0,0,0,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,All,Emergency Rate,13,0,0,0,0,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,All,Emergency Rate,13,0,0,0,0,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,All,Emergency Rate,14,0,0,0,0,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
 Kimi K2,Solo Models,Advisor,All,Emergency Rate,12,0.167,0.225,0.065,0.127,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 LiSA 1.0,Solo Models,Advisor,All,Emergency Rate,20,0.267,0.137,0.031,0.06,NO,AllCases,Unanimous,AllHarm,LiSA 1.0,NA,NA,NA,NA
 Llama 3.3 70b,Solo Models,Advisor,All,Emergency Rate,10,0,0,0,0,NO,AllCases,Unanimous,AllHarm,Llama 3.3 70b,NA,NA,NA,NA
@@ -511,12 +508,11 @@ Llama 4 Maverick,Solo Models,Advisor,All,Emergency Rate,13,0,0,0,0,NO,AllCases,U
 Llama 4 Scout,Solo Models,Advisor,All,Emergency Rate,20,0,0,0,0,NO,AllCases,Unanimous,AllHarm,Llama 4 Scout,NA,NA,NA,NA
 Mistral Large 2.1,Solo Models,Advisor,All,Emergency Rate,13,0,0,0,0,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
 Mistral Medium 3.1,Solo Models,Advisor,All,Emergency Rate,14,0,0,0,0,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,All,Emergency Rate,6,0.056,0.136,0.056,0.109,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,All,Emergency Rate,7,0.048,0.126,0.048,0.093,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
 o1,Solo Models,Advisor,All,Emergency Rate,10,0,0,0,0,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
 o1 mini,Solo Models,Advisor,All,Emergency Rate,10,0,0,0,0,NO,AllCases,Unanimous,AllHarm,o1 mini,NA,NA,NA,NA
 o3 mini,Solo Models,Advisor,All,Emergency Rate,19,0,0,0,0,NO,AllCases,Unanimous,AllHarm,o3 mini,NA,NA,NA,NA
 o4 mini,Solo Models,Advisor,All,Emergency Rate,10,0.167,0.176,0.056,0.109,NO,AllCases,Unanimous,AllHarm,o4 mini,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,All,Emergency Rate,10,0.25,0.261,0.082,0.162,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,All,Equivocal,3,0.22,0,0,0,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
 Claude Sonnet 3.7 + DeepSeek R1,2-Agent Teams,Advisor + Guardian,All,Equivocal,3,0.257,0.015,0.009,0.017,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,DeepSeek R1,NA,NA,NA
 Claude Sonnet 3.7 + GPT-4.1,2-Agent Teams,Advisor + Guardian,All,Equivocal,3,0.227,0.055,0.032,0.062,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,GPT-4.1,NA,NA,NA
@@ -746,10 +742,9 @@ o3 mini + Gemini 2.5 Pro + GPT-5,3-Agent Teams,Advisor + Guardian + Steward,All,
 o3 mini + Llama 4 Scout + Gemini 2.5 Pro,3-Agent Teams,Advisor + Guardian + Steward,All,Equivocal,2,0.25,0.014,0.01,0.02,NO,AllCases,Unanimous,AllHarm,o3 mini,Llama 4 Scout,Gemini 2.5 Pro,NA,NA
 Claude Haiku 4.5,Solo Models,Advisor,All,Equivocal,3,0.277,0.051,0.03,0.058,NO,AllCases,Unanimous,AllHarm,Claude Haiku 4.5,NA,NA,NA,NA
 Claude Sonnet 3.7,Solo Models,Advisor,All,Equivocal,10,0.221,0.019,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,All,Equivocal,18,0.254,0.018,0.004,0.008,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,All,Equivocal,20,0.254,0.018,0.004,0.008,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,All,Equivocal,18,0.206,0.03,0.007,0.014,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,All,Equivocal,11,0.221,0.031,0.009,0.018,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,All,Equivocal,15,0.197,0.017,0.004,0.008,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,All,Equivocal,12,0.222,0.03,0.009,0.017,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,All,Equivocal,20,0.214,0.027,0.006,0.012,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
 GPT-4.1 mini,Solo Models,Advisor,All,Equivocal,13,0.249,0.02,0.006,0.011,NO,AllCases,Unanimous,AllHarm,GPT-4.1 mini,NA,NA,NA,NA
 GPT-4o,Solo Models,Advisor,All,Equivocal,13,0.247,0.039,0.011,0.021,NO,AllCases,Unanimous,AllHarm,GPT-4o,NA,NA,NA,NA
@@ -758,25 +753,24 @@ GPT-5,Solo Models,Advisor,All,Equivocal,20,0.212,0.028,0.006,0.012,NO,AllCases,U
 GPT-5 mini,Solo Models,Advisor,All,Equivocal,13,0.223,0.02,0.006,0.011,NO,AllCases,Unanimous,AllHarm,GPT-5 mini,NA,NA,NA,NA
 GPT-5 nano,Solo Models,Advisor,All,Equivocal,10,0.244,0.03,0.009,0.018,NO,AllCases,Unanimous,AllHarm,GPT-5 nano,NA,NA,NA,NA
 Gemini 2.0 Flash,Solo Models,Advisor,All,Equivocal,10,0.213,0.028,0.009,0.017,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,All,Equivocal,18,0.212,0.021,0.005,0.01,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,All,Equivocal,19,0.211,0.021,0.005,0.01,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,All,Equivocal,19,0.218,0.031,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
 Glass Health 4.0,Solo Models,Advisor,All,Equivocal,13,0.203,0.035,0.01,0.019,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,All,Equivocal,12,0.188,0.024,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,All,Equivocal,13,0.235,0.026,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Kimi K2,Solo Models,Advisor,All,Equivocal,12,0.227,0.03,0.009,0.017,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,All,Equivocal,13,0.187,0.025,0.007,0.013,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,All,Equivocal,14,0.234,0.026,0.007,0.013,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Kimi K2,Solo Models,Advisor,All,Equivocal,12,0.226,0.03,0.009,0.017,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 LiSA 1.0,Solo Models,Advisor,All,Equivocal,20,0.178,0.014,0.003,0.006,NO,AllCases,Unanimous,AllHarm,LiSA 1.0,NA,NA,NA,NA
 Llama 3.3 70b,Solo Models,Advisor,All,Equivocal,10,0.291,0.027,0.008,0.017,NO,AllCases,Unanimous,AllHarm,Llama 3.3 70b,NA,NA,NA,NA
 Llama 4 Maverick,Solo Models,Advisor,All,Equivocal,13,0.271,0.018,0.005,0.01,NO,AllCases,Unanimous,AllHarm,Llama 4 Maverick,NA,NA,NA,NA
 Llama 4 Scout,Solo Models,Advisor,All,Equivocal,20,0.224,0.018,0.004,0.008,NO,AllCases,Unanimous,AllHarm,Llama 4 Scout,NA,NA,NA,NA
-Mistral Large 2.1,Solo Models,Advisor,All,Equivocal,13,0.256,0.027,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
+Mistral Large 2.1,Solo Models,Advisor,All,Equivocal,13,0.255,0.026,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
 Mistral Medium 3.1,Solo Models,Advisor,All,Equivocal,14,0.269,0.023,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,All,Equivocal,6,0.263,0.041,0.017,0.033,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,All,Equivocal,7,0.269,0.04,0.015,0.029,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
 o1,Solo Models,Advisor,All,Equivocal,10,0.211,0.026,0.008,0.016,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
 o1 mini,Solo Models,Advisor,All,Equivocal,10,0.255,0.025,0.008,0.015,NO,AllCases,Unanimous,AllHarm,o1 mini,NA,NA,NA,NA
 o3 mini,Solo Models,Advisor,All,Equivocal,19,0.225,0.024,0.006,0.011,NO,AllCases,Unanimous,AllHarm,o3 mini,NA,NA,NA,NA
 o4 mini,Solo Models,Advisor,All,Equivocal,10,0.252,0.032,0.01,0.02,NO,AllCases,Unanimous,AllHarm,o4 mini,NA,NA,NA,NA
 No Intervention,Solo Models,Control,All,Equivocal,1,0.36,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,No Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,All,Equivocal,10,0.081,0.02,0.006,0.013,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,All,Net Benefit,3,0.693,0.006,0.003,0.007,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
 Claude Sonnet 3.7 + DeepSeek R1,2-Agent Teams,Advisor + Guardian,All,Net Benefit,3,0.633,0.025,0.015,0.028,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,DeepSeek R1,NA,NA,NA
 Claude Sonnet 3.7 + GPT-4.1,2-Agent Teams,Advisor + Guardian,All,Net Benefit,3,0.443,0.006,0.003,0.007,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,GPT-4.1,NA,NA,NA
@@ -1006,10 +1000,9 @@ o3 mini + Gemini 2.5 Pro + GPT-5,3-Agent Teams,Advisor + Guardian + Steward,All,
 o3 mini + Llama 4 Scout + Gemini 2.5 Pro,3-Agent Teams,Advisor + Guardian + Steward,All,Net Benefit,2,0.66,0.042,0.03,0.059,NO,AllCases,Unanimous,AllHarm,o3 mini,Llama 4 Scout,Gemini 2.5 Pro,NA,NA
 Claude Haiku 4.5,Solo Models,Advisor,All,Net Benefit,3,0.59,0.04,0.023,0.045,NO,AllCases,Unanimous,AllHarm,Claude Haiku 4.5,NA,NA,NA,NA
 Claude Sonnet 3.7,Solo Models,Advisor,All,Net Benefit,10,0.66,0.021,0.006,0.013,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,All,Net Benefit,18,0.648,0.017,0.004,0.008,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,All,Net Benefit,20,0.65,0.018,0.004,0.008,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,All,Net Benefit,18,0.688,0.027,0.006,0.013,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,All,Net Benefit,11,0.647,0.04,0.012,0.024,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,All,Net Benefit,15,0.659,0.027,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,All,Net Benefit,12,0.646,0.038,0.011,0.022,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,All,Net Benefit,20,0.626,0.028,0.006,0.012,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
 GPT-4.1 mini,Solo Models,Advisor,All,Net Benefit,13,0.529,0.024,0.007,0.013,NO,AllCases,Unanimous,AllHarm,GPT-4.1 mini,NA,NA,NA,NA
 GPT-4o,Solo Models,Advisor,All,Net Benefit,13,0.566,0.058,0.016,0.031,NO,AllCases,Unanimous,AllHarm,GPT-4o,NA,NA,NA,NA
@@ -1018,25 +1011,24 @@ GPT-5,Solo Models,Advisor,All,Net Benefit,20,0.688,0.035,0.008,0.016,NO,AllCases
 GPT-5 mini,Solo Models,Advisor,All,Net Benefit,13,0.644,0.031,0.009,0.017,NO,AllCases,Unanimous,AllHarm,GPT-5 mini,NA,NA,NA,NA
 GPT-5 nano,Solo Models,Advisor,All,Net Benefit,10,0.534,0.03,0.01,0.019,NO,AllCases,Unanimous,AllHarm,GPT-5 nano,NA,NA,NA,NA
 Gemini 2.0 Flash,Solo Models,Advisor,All,Net Benefit,10,0.657,0.021,0.007,0.013,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,All,Net Benefit,18,0.673,0.027,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,All,Net Benefit,19,0.673,0.026,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,All,Net Benefit,19,0.708,0.044,0.01,0.02,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
 Glass Health 4.0,Solo Models,Advisor,All,Net Benefit,13,0.692,0.051,0.014,0.028,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,All,Net Benefit,12,0.718,0.035,0.01,0.02,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,All,Net Benefit,13,0.635,0.048,0.013,0.026,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Kimi K2,Solo Models,Advisor,All,Net Benefit,12,0.632,0.034,0.01,0.019,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,All,Net Benefit,13,0.717,0.034,0.009,0.018,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,All,Net Benefit,14,0.636,0.047,0.012,0.024,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Kimi K2,Solo Models,Advisor,All,Net Benefit,12,0.633,0.034,0.01,0.019,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 LiSA 1.0,Solo Models,Advisor,All,Net Benefit,20,0.738,0.02,0.005,0.009,NO,AllCases,Unanimous,AllHarm,LiSA 1.0,NA,NA,NA,NA
 Llama 3.3 70b,Solo Models,Advisor,All,Net Benefit,10,0.525,0.027,0.009,0.017,NO,AllCases,Unanimous,AllHarm,Llama 3.3 70b,NA,NA,NA,NA
 Llama 4 Maverick,Solo Models,Advisor,All,Net Benefit,13,0.578,0.023,0.006,0.013,NO,AllCases,Unanimous,AllHarm,Llama 4 Maverick,NA,NA,NA,NA
 Llama 4 Scout,Solo Models,Advisor,All,Net Benefit,20,0.49,0.012,0.003,0.005,NO,AllCases,Unanimous,AllHarm,Llama 4 Scout,NA,NA,NA,NA
 Mistral Large 2.1,Solo Models,Advisor,All,Net Benefit,13,0.585,0.036,0.01,0.02,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
-Mistral Medium 3.1,Solo Models,Advisor,All,Net Benefit,14,0.525,0.017,0.004,0.009,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,All,Net Benefit,6,0.507,0.025,0.01,0.02,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Mistral Medium 3.1,Solo Models,Advisor,All,Net Benefit,14,0.525,0.018,0.005,0.01,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,All,Net Benefit,7,0.51,0.024,0.009,0.018,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
 o1,Solo Models,Advisor,All,Net Benefit,10,0.62,0.019,0.006,0.012,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
 o1 mini,Solo Models,Advisor,All,Net Benefit,10,0.449,0.043,0.014,0.027,NO,AllCases,Unanimous,AllHarm,o1 mini,NA,NA,NA,NA
 o3 mini,Solo Models,Advisor,All,Net Benefit,19,0.434,0.029,0.007,0.013,NO,AllCases,Unanimous,AllHarm,o3 mini,NA,NA,NA,NA
 o4 mini,Solo Models,Advisor,All,Net Benefit,10,0.47,0.021,0.006,0.013,NO,AllCases,Unanimous,AllHarm,o4 mini,NA,NA,NA,NA
 No Intervention,Solo Models,Control,All,Net Benefit,1,0.02,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,No Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,All,Net Benefit,9,0.014,0.01,0.003,0.007,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,All,Net Harm,3,0.087,0.006,0.003,0.007,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
 Claude Sonnet 3.7 + DeepSeek R1,2-Agent Teams,Advisor + Guardian,All,Net Harm,3,0.11,0.017,0.01,0.02,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,DeepSeek R1,NA,NA,NA
 Claude Sonnet 3.7 + GPT-4.1,2-Agent Teams,Advisor + Guardian,All,Net Harm,3,0.33,0.053,0.031,0.06,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,GPT-4.1,NA,NA,NA
@@ -1266,10 +1258,9 @@ o3 mini + Gemini 2.5 Pro + GPT-5,3-Agent Teams,Advisor + Guardian + Steward,All,
 o3 mini + Llama 4 Scout + Gemini 2.5 Pro,3-Agent Teams,Advisor + Guardian + Steward,All,Net Harm,2,0.09,0.028,0.02,0.039,NO,AllCases,Unanimous,AllHarm,o3 mini,Llama 4 Scout,Gemini 2.5 Pro,NA,NA
 Claude Haiku 4.5,Solo Models,Advisor,All,Net Harm,3,0.133,0.015,0.009,0.017,NO,AllCases,Unanimous,AllHarm,Claude Haiku 4.5,NA,NA,NA,NA
 Claude Sonnet 3.7,Solo Models,Advisor,All,Net Harm,10,0.119,0.009,0.003,0.005,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,All,Net Harm,18,0.098,0.018,0.004,0.008,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,All,Net Harm,20,0.096,0.018,0.004,0.008,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,All,Net Harm,18,0.106,0.022,0.005,0.01,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,All,Net Harm,11,0.132,0.022,0.007,0.013,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,All,Net Harm,15,0.143,0.02,0.005,0.01,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,All,Net Harm,12,0.132,0.021,0.006,0.012,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,All,Net Harm,20,0.16,0.018,0.004,0.008,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
 GPT-4.1 mini,Solo Models,Advisor,All,Net Harm,13,0.222,0.022,0.006,0.012,NO,AllCases,Unanimous,AllHarm,GPT-4.1 mini,NA,NA,NA,NA
 GPT-4o,Solo Models,Advisor,All,Net Harm,13,0.187,0.033,0.009,0.018,NO,AllCases,Unanimous,AllHarm,GPT-4o,NA,NA,NA,NA
@@ -1278,25 +1269,24 @@ GPT-5,Solo Models,Advisor,All,Net Harm,20,0.1,0.017,0.004,0.007,NO,AllCases,Unan
 GPT-5 mini,Solo Models,Advisor,All,Net Harm,13,0.133,0.022,0.006,0.012,NO,AllCases,Unanimous,AllHarm,GPT-5 mini,NA,NA,NA,NA
 GPT-5 nano,Solo Models,Advisor,All,Net Harm,10,0.222,0.025,0.008,0.015,NO,AllCases,Unanimous,AllHarm,GPT-5 nano,NA,NA,NA,NA
 Gemini 2.0 Flash,Solo Models,Advisor,All,Net Harm,10,0.13,0.02,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,All,Net Harm,18,0.115,0.025,0.006,0.011,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,All,Net Harm,19,0.116,0.025,0.006,0.011,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,All,Net Harm,19,0.074,0.02,0.004,0.009,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
 Glass Health 4.0,Solo Models,Advisor,All,Net Harm,13,0.105,0.022,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,All,Net Harm,12,0.094,0.019,0.005,0.011,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,All,Net Harm,13,0.13,0.037,0.01,0.02,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,All,Net Harm,13,0.096,0.018,0.005,0.01,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,All,Net Harm,14,0.13,0.035,0.009,0.018,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
 Kimi K2,Solo Models,Advisor,All,Net Harm,12,0.142,0.021,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 LiSA 1.0,Solo Models,Advisor,All,Net Harm,20,0.085,0.012,0.003,0.005,NO,AllCases,Unanimous,AllHarm,LiSA 1.0,NA,NA,NA,NA
 Llama 3.3 70b,Solo Models,Advisor,All,Net Harm,10,0.184,0.027,0.008,0.017,NO,AllCases,Unanimous,AllHarm,Llama 3.3 70b,NA,NA,NA,NA
 Llama 4 Maverick,Solo Models,Advisor,All,Net Harm,13,0.151,0.015,0.004,0.008,NO,AllCases,Unanimous,AllHarm,Llama 4 Maverick,NA,NA,NA,NA
 Llama 4 Scout,Solo Models,Advisor,All,Net Harm,20,0.286,0.016,0.004,0.007,NO,AllCases,Unanimous,AllHarm,Llama 4 Scout,NA,NA,NA,NA
-Mistral Large 2.1,Solo Models,Advisor,All,Net Harm,13,0.159,0.028,0.008,0.015,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
+Mistral Large 2.1,Solo Models,Advisor,All,Net Harm,13,0.16,0.028,0.008,0.015,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
 Mistral Medium 3.1,Solo Models,Advisor,All,Net Harm,14,0.206,0.027,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,All,Net Harm,6,0.23,0.029,0.012,0.023,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,All,Net Harm,7,0.221,0.035,0.013,0.026,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
 o1,Solo Models,Advisor,All,Net Harm,10,0.169,0.021,0.007,0.013,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
 o1 mini,Solo Models,Advisor,All,Net Harm,10,0.296,0.036,0.011,0.022,NO,AllCases,Unanimous,AllHarm,o1 mini,NA,NA,NA,NA
 o3 mini,Solo Models,Advisor,All,Net Harm,19,0.341,0.03,0.007,0.013,NO,AllCases,Unanimous,AllHarm,o3 mini,NA,NA,NA,NA
 o4 mini,Solo Models,Advisor,All,Net Harm,10,0.278,0.029,0.009,0.018,NO,AllCases,Unanimous,AllHarm,o4 mini,NA,NA,NA,NA
 No Intervention,Solo Models,Control,All,Net Harm,1,0.62,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,No Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,All,Net Harm,10,0.906,0.023,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,All,OverallScore3,3,0.65,0.005,0.003,0.006,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
 Claude Sonnet 3.7 + DeepSeek R1,2-Agent Teams,Advisor + Guardian,All,OverallScore3,3,0.624,0.025,0.015,0.028,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,DeepSeek R1,NA,NA,NA
 Claude Sonnet 3.7 + GPT-4.1,2-Agent Teams,Advisor + Guardian,All,OverallScore3,3,0.498,0.018,0.01,0.02,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,GPT-4.1,NA,NA,NA
@@ -1526,10 +1516,9 @@ o3 mini + Gemini 2.5 Pro + GPT-5,3-Agent Teams,Advisor + Guardian + Steward,All,
 o3 mini + Llama 4 Scout + Gemini 2.5 Pro,3-Agent Teams,Advisor + Guardian + Steward,All,OverallScore3,2,0.622,0.006,0.004,0.009,NO,AllCases,Unanimous,AllHarm,o3 mini,Llama 4 Scout,Gemini 2.5 Pro,NA,NA
 Claude Haiku 4.5,Solo Models,Advisor,All,OverallScore3,3,0.592,0.004,0.002,0.004,NO,AllCases,Unanimous,AllHarm,Claude Haiku 4.5,NA,NA,NA,NA
 Claude Sonnet 3.7,Solo Models,Advisor,All,OverallScore3,10,0.633,0.013,0.004,0.008,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,All,OverallScore3,18,0.633,0.024,0.006,0.011,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,All,OverallScore3,20,0.634,0.023,0.005,0.01,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,All,OverallScore3,18,0.642,0.017,0.004,0.008,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,All,OverallScore3,11,0.638,0.022,0.007,0.013,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,All,OverallScore3,15,0.655,0.015,0.004,0.007,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,All,OverallScore3,12,0.638,0.021,0.006,0.012,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,All,OverallScore3,20,0.627,0.011,0.002,0.005,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
 GPT-4.1 mini,Solo Models,Advisor,All,OverallScore3,13,0.547,0.016,0.005,0.009,NO,AllCases,Unanimous,AllHarm,GPT-4.1 mini,NA,NA,NA,NA
 GPT-4o,Solo Models,Advisor,All,OverallScore3,13,0.578,0.036,0.01,0.02,NO,AllCases,Unanimous,AllHarm,GPT-4o,NA,NA,NA,NA
@@ -1538,24 +1527,23 @@ GPT-5,Solo Models,Advisor,All,OverallScore3,20,0.628,0.024,0.005,0.01,NO,AllCase
 GPT-5 mini,Solo Models,Advisor,All,OverallScore3,13,0.61,0.022,0.006,0.012,NO,AllCases,Unanimous,AllHarm,GPT-5 mini,NA,NA,NA,NA
 GPT-5 nano,Solo Models,Advisor,All,OverallScore3,10,0.564,0.022,0.007,0.014,NO,AllCases,Unanimous,AllHarm,GPT-5 nano,NA,NA,NA,NA
 Gemini 2.0 Flash,Solo Models,Advisor,All,OverallScore3,10,0.611,0.009,0.003,0.005,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,All,OverallScore3,18,0.646,0.018,0.004,0.008,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,All,OverallScore3,19,0.646,0.018,0.004,0.008,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,All,OverallScore3,19,0.66,0.021,0.005,0.01,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
 Glass Health 4.0,Solo Models,Advisor,All,OverallScore3,13,0.64,0.028,0.008,0.015,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,All,OverallScore3,12,0.638,0.031,0.009,0.017,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,All,OverallScore3,13,0.632,0.036,0.01,0.019,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Kimi K2,Solo Models,Advisor,All,OverallScore3,12,0.62,0.021,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,All,OverallScore3,13,0.636,0.029,0.008,0.016,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,All,OverallScore3,14,0.632,0.034,0.009,0.018,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Kimi K2,Solo Models,Advisor,All,OverallScore3,12,0.62,0.02,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 LiSA 1.0,Solo Models,Advisor,All,OverallScore3,20,0.686,0.014,0.003,0.006,NO,AllCases,Unanimous,AllHarm,LiSA 1.0,NA,NA,NA,NA
 Llama 3.3 70b,Solo Models,Advisor,All,OverallScore3,10,0.564,0.012,0.004,0.007,NO,AllCases,Unanimous,AllHarm,Llama 3.3 70b,NA,NA,NA,NA
 Llama 4 Maverick,Solo Models,Advisor,All,OverallScore3,13,0.588,0.01,0.003,0.005,NO,AllCases,Unanimous,AllHarm,Llama 4 Maverick,NA,NA,NA,NA
 Llama 4 Scout,Solo Models,Advisor,All,OverallScore3,20,0.549,0.009,0.002,0.004,NO,AllCases,Unanimous,AllHarm,Llama 4 Scout,NA,NA,NA,NA
 Mistral Large 2.1,Solo Models,Advisor,All,OverallScore3,13,0.59,0.035,0.01,0.019,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
 Mistral Medium 3.1,Solo Models,Advisor,All,OverallScore3,14,0.551,0.03,0.008,0.016,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,All,OverallScore3,6,0.542,0.014,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,All,OverallScore3,7,0.545,0.016,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
 o1,Solo Models,Advisor,All,OverallScore3,10,0.577,0.024,0.008,0.015,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
 o1 mini,Solo Models,Advisor,All,OverallScore3,10,0.528,0.026,0.008,0.016,NO,AllCases,Unanimous,AllHarm,o1 mini,NA,NA,NA,NA
 o3 mini,Solo Models,Advisor,All,OverallScore3,19,0.449,0.027,0.006,0.012,NO,AllCases,Unanimous,AllHarm,o3 mini,NA,NA,NA,NA
 o4 mini,Solo Models,Advisor,All,OverallScore3,10,0.511,0.023,0.007,0.014,NO,AllCases,Unanimous,AllHarm,o4 mini,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,All,OverallScore3,10,0.03,0.027,0.009,0.017,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,All,Precision,3,0.505,0.001,0.001,0.002,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
 Claude Sonnet 3.7 + DeepSeek R1,2-Agent Teams,Advisor + Guardian,All,Precision,3,0.542,0.005,0.003,0.006,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,DeepSeek R1,NA,NA,NA
 Claude Sonnet 3.7 + GPT-4.1,2-Agent Teams,Advisor + Guardian,All,Precision,3,0.313,0.014,0.008,0.016,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,GPT-4.1,NA,NA,NA
@@ -1785,10 +1773,9 @@ o3 mini + Gemini 2.5 Pro + GPT-5,3-Agent Teams,Advisor + Guardian + Steward,All,
 o3 mini + Llama 4 Scout + Gemini 2.5 Pro,3-Agent Teams,Advisor + Guardian + Steward,All,Precision,2,0.602,0.007,0.005,0.01,NO,AllCases,Unanimous,AllHarm,o3 mini,Llama 4 Scout,Gemini 2.5 Pro,NA,NA
 Claude Haiku 4.5,Solo Models,Advisor,All,Precision,3,0.449,0.006,0.003,0.007,NO,AllCases,Unanimous,AllHarm,Claude Haiku 4.5,NA,NA,NA,NA
 Claude Sonnet 3.7,Solo Models,Advisor,All,Precision,10,0.499,0.007,0.002,0.004,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,All,Precision,18,0.554,0.011,0.003,0.005,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,All,Precision,20,0.555,0.011,0.003,0.005,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,All,Precision,18,0.479,0.013,0.003,0.006,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,All,Precision,11,0.427,0.007,0.002,0.004,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,All,Precision,15,0.437,0.015,0.004,0.007,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,All,Precision,12,0.426,0.007,0.002,0.004,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,All,Precision,20,0.434,0.006,0.001,0.003,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
 GPT-4.1 mini,Solo Models,Advisor,All,Precision,13,0.42,0.004,0.001,0.002,NO,AllCases,Unanimous,AllHarm,GPT-4.1 mini,NA,NA,NA,NA
 GPT-4o,Solo Models,Advisor,All,Precision,13,0.425,0.007,0.002,0.004,NO,AllCases,Unanimous,AllHarm,GPT-4o,NA,NA,NA,NA
@@ -1797,11 +1784,11 @@ GPT-5,Solo Models,Advisor,All,Precision,20,0.604,0.027,0.006,0.012,NO,AllCases,U
 GPT-5 mini,Solo Models,Advisor,All,Precision,13,0.572,0.018,0.005,0.01,NO,AllCases,Unanimous,AllHarm,GPT-5 mini,NA,NA,NA,NA
 GPT-5 nano,Solo Models,Advisor,All,Precision,10,0.475,0.009,0.003,0.006,NO,AllCases,Unanimous,AllHarm,GPT-5 nano,NA,NA,NA,NA
 Gemini 2.0 Flash,Solo Models,Advisor,All,Precision,10,0.385,0.005,0.001,0.003,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,All,Precision,18,0.431,0.023,0.005,0.011,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,All,Precision,19,0.43,0.023,0.005,0.01,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,All,Precision,19,0.515,0.028,0.006,0.013,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
 Glass Health 4.0,Solo Models,Advisor,All,Precision,13,0.589,0.029,0.008,0.016,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,All,Precision,12,0.503,0.027,0.008,0.015,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,All,Precision,13,0.49,0.027,0.007,0.015,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,All,Precision,13,0.501,0.027,0.007,0.015,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,All,Precision,14,0.489,0.026,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
 Kimi K2,Solo Models,Advisor,All,Precision,12,0.406,0.014,0.004,0.008,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 LiSA 1.0,Solo Models,Advisor,All,Precision,20,0.493,0.01,0.002,0.004,NO,AllCases,Unanimous,AllHarm,LiSA 1.0,NA,NA,NA,NA
 Llama 3.3 70b,Solo Models,Advisor,All,Precision,10,0.361,0.008,0.002,0.005,NO,AllCases,Unanimous,AllHarm,Llama 3.3 70b,NA,NA,NA,NA
@@ -1809,12 +1796,11 @@ Llama 4 Maverick,Solo Models,Advisor,All,Precision,13,0.415,0.003,0.001,0.002,NO
 Llama 4 Scout,Solo Models,Advisor,All,Precision,20,0.343,0.004,0.001,0.002,NO,AllCases,Unanimous,AllHarm,Llama 4 Scout,NA,NA,NA,NA
 Mistral Large 2.1,Solo Models,Advisor,All,Precision,13,0.477,0.032,0.009,0.017,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
 Mistral Medium 3.1,Solo Models,Advisor,All,Precision,14,0.434,0.014,0.004,0.007,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,All,Precision,6,0.374,0.01,0.004,0.008,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,All,Precision,7,0.375,0.009,0.004,0.007,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
 o1,Solo Models,Advisor,All,Precision,10,0.551,0.008,0.003,0.005,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
 o1 mini,Solo Models,Advisor,All,Precision,10,0.37,0.01,0.003,0.006,NO,AllCases,Unanimous,AllHarm,o1 mini,NA,NA,NA,NA
 o3 mini,Solo Models,Advisor,All,Precision,19,0.634,0.019,0.004,0.008,NO,AllCases,Unanimous,AllHarm,o3 mini,NA,NA,NA,NA
 o4 mini,Solo Models,Advisor,All,Precision,10,0.588,0.007,0.002,0.005,NO,AllCases,Unanimous,AllHarm,o4 mini,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,All,Precision,10,0.18,0.01,0.003,0.006,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,All,Recall,3,0.799,0.009,0.005,0.011,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
 Claude Sonnet 3.7 + DeepSeek R1,2-Agent Teams,Advisor + Guardian,All,Recall,3,0.761,0.007,0.004,0.008,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,DeepSeek R1,NA,NA,NA
 Claude Sonnet 3.7 + GPT-4.1,2-Agent Teams,Advisor + Guardian,All,Recall,3,0.839,0.007,0.004,0.008,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,GPT-4.1,NA,NA,NA
@@ -2044,10 +2030,9 @@ o3 mini + Gemini 2.5 Pro + GPT-5,3-Agent Teams,Advisor + Guardian + Steward,All,
 o3 mini + Llama 4 Scout + Gemini 2.5 Pro,3-Agent Teams,Advisor + Guardian + Steward,All,Recall,2,0.734,0.007,0.005,0.01,NO,AllCases,Unanimous,AllHarm,o3 mini,Llama 4 Scout,Gemini 2.5 Pro,NA,NA
 Claude Haiku 4.5,Solo Models,Advisor,All,Recall,3,0.771,0.003,0.002,0.004,NO,AllCases,Unanimous,AllHarm,Claude Haiku 4.5,NA,NA,NA,NA
 Claude Sonnet 3.7,Solo Models,Advisor,All,Recall,10,0.796,0.008,0.002,0.005,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,All,Recall,18,0.762,0.011,0.003,0.005,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,All,Recall,20,0.762,0.011,0.002,0.005,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,All,Recall,18,0.804,0.012,0.003,0.005,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,All,Recall,11,0.837,0.011,0.003,0.006,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,All,Recall,15,0.825,0.018,0.005,0.009,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,All,Recall,12,0.835,0.011,0.003,0.006,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,All,Recall,20,0.806,0.009,0.002,0.004,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
 GPT-4.1 mini,Solo Models,Advisor,All,Recall,13,0.747,0.008,0.002,0.004,NO,AllCases,Unanimous,AllHarm,GPT-4.1 mini,NA,NA,NA,NA
 GPT-4o,Solo Models,Advisor,All,Recall,13,0.762,0.039,0.011,0.021,NO,AllCases,Unanimous,AllHarm,GPT-4o,NA,NA,NA,NA
@@ -2056,24 +2041,23 @@ GPT-5,Solo Models,Advisor,All,Recall,20,0.752,0.024,0.005,0.01,NO,AllCases,Unani
 GPT-5 mini,Solo Models,Advisor,All,Recall,13,0.735,0.018,0.005,0.01,NO,AllCases,Unanimous,AllHarm,GPT-5 mini,NA,NA,NA,NA
 GPT-5 nano,Solo Models,Advisor,All,Recall,10,0.682,0.021,0.007,0.013,NO,AllCases,Unanimous,AllHarm,GPT-5 nano,NA,NA,NA,NA
 Gemini 2.0 Flash,Solo Models,Advisor,All,Recall,10,0.857,0.009,0.003,0.005,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,All,Recall,18,0.833,0.014,0.003,0.006,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,All,Recall,19,0.834,0.013,0.003,0.006,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,All,Recall,19,0.804,0.038,0.009,0.017,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
 Glass Health 4.0,Solo Models,Advisor,All,Recall,13,0.761,0.04,0.011,0.022,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,All,Recall,12,0.79,0.043,0.012,0.024,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,All,Recall,13,0.768,0.044,0.012,0.024,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Kimi K2,Solo Models,Advisor,All,Recall,12,0.828,0.02,0.006,0.011,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,All,Recall,13,0.789,0.041,0.011,0.022,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,All,Recall,14,0.768,0.043,0.011,0.022,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Kimi K2,Solo Models,Advisor,All,Recall,12,0.828,0.02,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 LiSA 1.0,Solo Models,Advisor,All,Recall,20,0.846,0.01,0.002,0.004,NO,AllCases,Unanimous,AllHarm,LiSA 1.0,NA,NA,NA,NA
 Llama 3.3 70b,Solo Models,Advisor,All,Recall,10,0.814,0.014,0.004,0.009,NO,AllCases,Unanimous,AllHarm,Llama 3.3 70b,NA,NA,NA,NA
 Llama 4 Maverick,Solo Models,Advisor,All,Recall,13,0.785,0.01,0.003,0.005,NO,AllCases,Unanimous,AllHarm,Llama 4 Maverick,NA,NA,NA,NA
 Llama 4 Scout,Solo Models,Advisor,All,Recall,20,0.793,0.007,0.001,0.003,NO,AllCases,Unanimous,AllHarm,Llama 4 Scout,NA,NA,NA,NA
-Mistral Large 2.1,Solo Models,Advisor,All,Recall,13,0.743,0.049,0.014,0.026,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
+Mistral Large 2.1,Solo Models,Advisor,All,Recall,13,0.742,0.049,0.013,0.026,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
 Mistral Medium 3.1,Solo Models,Advisor,All,Recall,14,0.756,0.027,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,All,Recall,6,0.747,0.014,0.006,0.011,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,All,Recall,7,0.752,0.018,0.007,0.013,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
 o1,Solo Models,Advisor,All,Recall,10,0.721,0.008,0.003,0.005,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
 o1 mini,Solo Models,Advisor,All,Recall,10,0.704,0.011,0.004,0.007,NO,AllCases,Unanimous,AllHarm,o1 mini,NA,NA,NA,NA
 o3 mini,Solo Models,Advisor,All,Recall,19,0.519,0.021,0.005,0.01,NO,AllCases,Unanimous,AllHarm,o3 mini,NA,NA,NA,NA
 o4 mini,Solo Models,Advisor,All,Recall,10,0.58,0.014,0.005,0.009,NO,AllCases,Unanimous,AllHarm,o4 mini,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,All,Recall,10,0.152,0.009,0.003,0.006,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,All,Referral Rate,3,0.797,0.016,0.009,0.018,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
 Claude Sonnet 3.7 + DeepSeek R1,2-Agent Teams,Advisor + Guardian,All,Referral Rate,3,0.757,0.037,0.022,0.042,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,DeepSeek R1,NA,NA,NA
 Claude Sonnet 3.7 + GPT-4.1,2-Agent Teams,Advisor + Guardian,All,Referral Rate,3,0.771,0.018,0.01,0.02,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,GPT-4.1,NA,NA,NA
@@ -2303,10 +2287,9 @@ o3 mini + Gemini 2.5 Pro + GPT-5,3-Agent Teams,Advisor + Guardian + Steward,All,
 o3 mini + Llama 4 Scout + Gemini 2.5 Pro,3-Agent Teams,Advisor + Guardian + Steward,All,Referral Rate,2,0.592,0.033,0.023,0.045,NO,AllCases,Unanimous,AllHarm,o3 mini,Llama 4 Scout,Gemini 2.5 Pro,NA,NA
 Claude Haiku 4.5,Solo Models,Advisor,All,Referral Rate,3,0.708,0.055,0.032,0.062,NO,AllCases,Unanimous,AllHarm,Claude Haiku 4.5,NA,NA,NA,NA
 Claude Sonnet 3.7,Solo Models,Advisor,All,Referral Rate,10,0.672,0.019,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,All,Referral Rate,18,0.667,0.028,0.007,0.013,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,All,Referral Rate,20,0.67,0.029,0.006,0.013,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,All,Referral Rate,18,0.795,0.027,0.006,0.013,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,All,Referral Rate,11,0.797,0.047,0.014,0.028,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,All,Referral Rate,15,0.783,0.019,0.005,0.01,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,All,Referral Rate,12,0.796,0.045,0.013,0.025,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,All,Referral Rate,20,0.753,0.032,0.007,0.014,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
 GPT-4.1 mini,Solo Models,Advisor,All,Referral Rate,13,0.556,0.027,0.007,0.015,NO,AllCases,Unanimous,AllHarm,GPT-4.1 mini,NA,NA,NA,NA
 GPT-4o,Solo Models,Advisor,All,Referral Rate,13,0.814,0.033,0.009,0.018,NO,AllCases,Unanimous,AllHarm,GPT-4o,NA,NA,NA,NA
@@ -2315,24 +2298,23 @@ GPT-5,Solo Models,Advisor,All,Referral Rate,20,0.705,0.039,0.009,0.017,NO,AllCas
 GPT-5 mini,Solo Models,Advisor,All,Referral Rate,13,0.542,0.049,0.014,0.027,NO,AllCases,Unanimous,AllHarm,GPT-5 mini,NA,NA,NA,NA
 GPT-5 nano,Solo Models,Advisor,All,Referral Rate,10,0.593,0.037,0.012,0.023,NO,AllCases,Unanimous,AllHarm,GPT-5 nano,NA,NA,NA,NA
 Gemini 2.0 Flash,Solo Models,Advisor,All,Referral Rate,10,0.726,0.034,0.011,0.021,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,All,Referral Rate,18,0.846,0.034,0.008,0.016,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,All,Referral Rate,19,0.846,0.033,0.007,0.015,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,All,Referral Rate,19,0.746,0.032,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
 Glass Health 4.0,Solo Models,Advisor,All,Referral Rate,13,0.739,0.049,0.014,0.026,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,All,Referral Rate,12,0.791,0.031,0.009,0.018,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,All,Referral Rate,13,0.784,0.042,0.012,0.023,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,All,Referral Rate,13,0.79,0.03,0.008,0.016,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,All,Referral Rate,14,0.786,0.041,0.011,0.021,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
 Kimi K2,Solo Models,Advisor,All,Referral Rate,12,0.851,0.037,0.011,0.021,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 LiSA 1.0,Solo Models,Advisor,All,Referral Rate,20,0.752,0.041,0.009,0.018,NO,AllCases,Unanimous,AllHarm,LiSA 1.0,NA,NA,NA,NA
 Llama 3.3 70b,Solo Models,Advisor,All,Referral Rate,10,0.795,0.047,0.015,0.029,NO,AllCases,Unanimous,AllHarm,Llama 3.3 70b,NA,NA,NA,NA
 Llama 4 Maverick,Solo Models,Advisor,All,Referral Rate,13,0.797,0.029,0.008,0.016,NO,AllCases,Unanimous,AllHarm,Llama 4 Maverick,NA,NA,NA,NA
 Llama 4 Scout,Solo Models,Advisor,All,Referral Rate,20,0.796,0.019,0.004,0.008,NO,AllCases,Unanimous,AllHarm,Llama 4 Scout,NA,NA,NA,NA
-Mistral Large 2.1,Solo Models,Advisor,All,Referral Rate,13,0.718,0.075,0.021,0.041,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
-Mistral Medium 3.1,Solo Models,Advisor,All,Referral Rate,14,0.644,0.062,0.017,0.032,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,All,Referral Rate,6,0.717,0.022,0.009,0.017,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Mistral Large 2.1,Solo Models,Advisor,All,Referral Rate,13,0.716,0.074,0.021,0.04,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
+Mistral Medium 3.1,Solo Models,Advisor,All,Referral Rate,14,0.643,0.061,0.016,0.032,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,All,Referral Rate,7,0.728,0.036,0.014,0.027,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
 o1,Solo Models,Advisor,All,Referral Rate,10,0.628,0.024,0.008,0.015,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
 o1 mini,Solo Models,Advisor,All,Referral Rate,10,0.795,0.023,0.007,0.014,NO,AllCases,Unanimous,AllHarm,o1 mini,NA,NA,NA,NA
 o3 mini,Solo Models,Advisor,All,Referral Rate,19,0.401,0.043,0.01,0.02,NO,AllCases,Unanimous,AllHarm,o3 mini,NA,NA,NA,NA
 o4 mini,Solo Models,Advisor,All,Referral Rate,10,0.359,0.034,0.011,0.021,NO,AllCases,Unanimous,AllHarm,o4 mini,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,All,Referral Rate,10,0.162,0.048,0.015,0.03,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,All,Restraint,3,0.727,0.004,0.003,0.005,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
 Claude Sonnet 3.7 + DeepSeek R1,2-Agent Teams,Advisor + Guardian,All,Restraint,3,0.77,0.005,0.003,0.006,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,DeepSeek R1,NA,NA,NA
 Claude Sonnet 3.7 + GPT-4.1,2-Agent Teams,Advisor + Guardian,All,Restraint,3,0.579,0.025,0.014,0.028,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,GPT-4.1,NA,NA,NA
@@ -2562,10 +2544,9 @@ o3 mini + Gemini 2.5 Pro + GPT-5,3-Agent Teams,Advisor + Guardian + Steward,All,
 o3 mini + Llama 4 Scout + Gemini 2.5 Pro,3-Agent Teams,Advisor + Guardian + Steward,All,Restraint,2,0.824,0,0,0.001,NO,AllCases,Unanimous,AllHarm,o3 mini,Llama 4 Scout,Gemini 2.5 Pro,NA,NA
 Claude Haiku 4.5,Solo Models,Advisor,All,Restraint,3,0.685,0.009,0.005,0.011,NO,AllCases,Unanimous,AllHarm,Claude Haiku 4.5,NA,NA,NA,NA
 Claude Sonnet 3.7,Solo Models,Advisor,All,Restraint,10,0.73,0.007,0.002,0.004,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,All,Restraint,18,0.787,0.011,0.003,0.005,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,All,Restraint,20,0.787,0.011,0.002,0.005,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,All,Restraint,18,0.699,0.015,0.004,0.007,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,All,Restraint,11,0.632,0.013,0.004,0.008,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,All,Restraint,15,0.665,0.02,0.005,0.01,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,All,Restraint,12,0.632,0.013,0.004,0.007,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,All,Restraint,20,0.656,0.009,0.002,0.004,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
 GPT-4.1 mini,Solo Models,Advisor,All,Restraint,13,0.692,0.007,0.002,0.004,NO,AllCases,Unanimous,AllHarm,GPT-4.1 mini,NA,NA,NA,NA
 GPT-4o,Solo Models,Advisor,All,Restraint,13,0.688,0.024,0.007,0.013,NO,AllCases,Unanimous,AllHarm,GPT-4o,NA,NA,NA,NA
@@ -2574,11 +2555,11 @@ GPT-5,Solo Models,Advisor,All,Restraint,20,0.821,0.026,0.006,0.011,NO,AllCases,U
 GPT-5 mini,Solo Models,Advisor,All,Restraint,13,0.808,0.018,0.005,0.01,NO,AllCases,Unanimous,AllHarm,GPT-5 mini,NA,NA,NA,NA
 GPT-5 nano,Solo Models,Advisor,All,Restraint,10,0.759,0.011,0.003,0.007,NO,AllCases,Unanimous,AllHarm,GPT-5 nano,NA,NA,NA,NA
 Gemini 2.0 Flash,Solo Models,Advisor,All,Restraint,10,0.579,0.008,0.003,0.005,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,All,Restraint,18,0.643,0.028,0.007,0.013,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,All,Restraint,19,0.642,0.028,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,All,Restraint,19,0.728,0.042,0.01,0.019,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
 Glass Health 4.0,Solo Models,Advisor,All,Restraint,13,0.803,0.031,0.009,0.017,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,All,Restraint,12,0.725,0.042,0.012,0.024,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,All,Restraint,13,0.727,0.043,0.012,0.023,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,All,Restraint,13,0.723,0.041,0.011,0.022,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,All,Restraint,14,0.726,0.041,0.011,0.022,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
 Kimi K2,Solo Models,Advisor,All,Restraint,12,0.62,0.029,0.008,0.016,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 LiSA 1.0,Solo Models,Advisor,All,Restraint,20,0.709,0.01,0.002,0.004,NO,AllCases,Unanimous,AllHarm,LiSA 1.0,NA,NA,NA,NA
 Llama 3.3 70b,Solo Models,Advisor,All,Restraint,10,0.599,0.017,0.005,0.01,NO,AllCases,Unanimous,AllHarm,Llama 3.3 70b,NA,NA,NA,NA
@@ -2586,12 +2567,11 @@ Llama 4 Maverick,Solo Models,Advisor,All,Restraint,13,0.672,0.008,0.002,0.004,NO
 Llama 4 Scout,Solo Models,Advisor,All,Restraint,20,0.601,0.005,0.001,0.002,NO,AllCases,Unanimous,AllHarm,Llama 4 Scout,NA,NA,NA,NA
 Mistral Large 2.1,Solo Models,Advisor,All,Restraint,13,0.734,0.048,0.013,0.026,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
 Mistral Medium 3.1,Solo Models,Advisor,All,Restraint,14,0.699,0.029,0.008,0.015,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,All,Restraint,6,0.64,0.006,0.002,0.005,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,All,Restraint,7,0.64,0.006,0.002,0.004,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
 o1,Solo Models,Advisor,All,Restraint,10,0.798,0.006,0.002,0.004,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
 o1 mini,Solo Models,Advisor,All,Restraint,10,0.69,0.008,0.003,0.005,NO,AllCases,Unanimous,AllHarm,o1 mini,NA,NA,NA,NA
 o3 mini,Solo Models,Advisor,All,Restraint,19,0.906,0.01,0.002,0.004,NO,AllCases,Unanimous,AllHarm,o3 mini,NA,NA,NA,NA
 o4 mini,Solo Models,Advisor,All,Restraint,10,0.874,0.005,0.002,0.003,NO,AllCases,Unanimous,AllHarm,o4 mini,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,All,Restraint,10,0.88,0.006,0.002,0.003,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,All,Safety,3,0.673,0.01,0.006,0.011,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
 Claude Sonnet 3.7 + DeepSeek R1,2-Agent Teams,Advisor + Guardian,All,Safety,3,0.681,0.007,0.004,0.008,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,DeepSeek R1,NA,NA,NA
 Claude Sonnet 3.7 + GPT-4.1,2-Agent Teams,Advisor + Guardian,All,Safety,3,0.374,0.02,0.011,0.022,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,GPT-4.1,NA,NA,NA
@@ -2821,10 +2801,9 @@ o3 mini + Gemini 2.5 Pro + GPT-5,3-Agent Teams,Advisor + Guardian + Steward,All,
 o3 mini + Llama 4 Scout + Gemini 2.5 Pro,3-Agent Teams,Advisor + Guardian + Steward,All,Safety,2,0.653,0.005,0.003,0.006,NO,AllCases,Unanimous,AllHarm,o3 mini,Llama 4 Scout,Gemini 2.5 Pro,NA,NA
 Claude Haiku 4.5,Solo Models,Advisor,All,Safety,3,0.616,0.014,0.008,0.015,NO,AllCases,Unanimous,AllHarm,Claude Haiku 4.5,NA,NA,NA,NA
 Claude Sonnet 3.7,Solo Models,Advisor,All,Safety,10,0.654,0.015,0.005,0.009,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,All,Safety,18,0.666,0.021,0.005,0.01,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,All,Safety,20,0.668,0.02,0.004,0.009,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,All,Safety,18,0.67,0.02,0.005,0.009,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,All,Safety,11,0.66,0.021,0.006,0.013,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,All,Safety,15,0.644,0.022,0.006,0.011,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,All,Safety,12,0.662,0.022,0.006,0.012,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,All,Safety,20,0.609,0.018,0.004,0.008,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
 GPT-4.1 mini,Solo Models,Advisor,All,Safety,13,0.539,0.007,0.002,0.004,NO,AllCases,Unanimous,AllHarm,GPT-4.1 mini,NA,NA,NA,NA
 GPT-4o,Solo Models,Advisor,All,Safety,13,0.563,0.037,0.01,0.02,NO,AllCases,Unanimous,AllHarm,GPT-4o,NA,NA,NA,NA
@@ -2833,24 +2812,23 @@ GPT-5,Solo Models,Advisor,All,Safety,20,0.642,0.024,0.005,0.01,NO,AllCases,Unani
 GPT-5 mini,Solo Models,Advisor,All,Safety,13,0.608,0.028,0.008,0.015,NO,AllCases,Unanimous,AllHarm,GPT-5 mini,NA,NA,NA,NA
 GPT-5 nano,Solo Models,Advisor,All,Safety,10,0.586,0.023,0.007,0.014,NO,AllCases,Unanimous,AllHarm,GPT-5 nano,NA,NA,NA,NA
 Gemini 2.0 Flash,Solo Models,Advisor,All,Safety,10,0.605,0.021,0.007,0.013,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,All,Safety,18,0.667,0.031,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,All,Safety,19,0.666,0.03,0.007,0.013,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,All,Safety,19,0.695,0.023,0.005,0.01,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
 Glass Health 4.0,Solo Models,Advisor,All,Safety,13,0.663,0.024,0.007,0.013,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,All,Safety,12,0.646,0.031,0.009,0.017,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,All,Safety,13,0.646,0.043,0.012,0.023,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,All,Safety,13,0.645,0.03,0.008,0.016,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,All,Safety,14,0.647,0.041,0.011,0.022,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
 Kimi K2,Solo Models,Advisor,All,Safety,12,0.61,0.025,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 LiSA 1.0,Solo Models,Advisor,All,Safety,20,0.679,0.019,0.004,0.008,NO,AllCases,Unanimous,AllHarm,LiSA 1.0,NA,NA,NA,NA
 Llama 3.3 70b,Solo Models,Advisor,All,Safety,10,0.538,0.014,0.004,0.009,NO,AllCases,Unanimous,AllHarm,Llama 3.3 70b,NA,NA,NA,NA
 Llama 4 Maverick,Solo Models,Advisor,All,Safety,13,0.609,0.012,0.003,0.007,NO,AllCases,Unanimous,AllHarm,Llama 4 Maverick,NA,NA,NA,NA
 Llama 4 Scout,Solo Models,Advisor,All,Safety,20,0.482,0.013,0.003,0.006,NO,AllCases,Unanimous,AllHarm,Llama 4 Scout,NA,NA,NA,NA
-Mistral Large 2.1,Solo Models,Advisor,All,Safety,13,0.605,0.024,0.007,0.013,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
-Mistral Medium 3.1,Solo Models,Advisor,All,Safety,14,0.536,0.028,0.007,0.015,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,All,Safety,6,0.522,0.029,0.012,0.023,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Mistral Large 2.1,Solo Models,Advisor,All,Safety,13,0.604,0.024,0.007,0.013,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
+Mistral Medium 3.1,Solo Models,Advisor,All,Safety,14,0.536,0.028,0.008,0.015,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,All,Safety,7,0.523,0.027,0.01,0.02,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
 o1,Solo Models,Advisor,All,Safety,10,0.599,0.015,0.005,0.009,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
 o1 mini,Solo Models,Advisor,All,Safety,10,0.461,0.024,0.008,0.015,NO,AllCases,Unanimous,AllHarm,o1 mini,NA,NA,NA,NA
 o3 mini,Solo Models,Advisor,All,Safety,19,0.495,0.014,0.003,0.006,NO,AllCases,Unanimous,AllHarm,o3 mini,NA,NA,NA,NA
 o4 mini,Solo Models,Advisor,All,Safety,10,0.525,0.023,0.007,0.014,NO,AllCases,Unanimous,AllHarm,o4 mini,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,All,Safety,10,0.233,0.014,0.004,0.009,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,Mild,nnh,3,2.868,0.209,0.121,0.237,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,Moderate,nnh,3,3.008,0.193,0.112,0.219,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,None,nnh,3,100,0,0,0,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
@@ -3996,26 +3974,21 @@ Claude Sonnet 3.7,Solo Models,Advisor,Moderate,nnh,10,2.813,0.112,0.035,0.069,NO
 Claude Sonnet 3.7,Solo Models,Advisor,None,nnh,10,100,0,0,0,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
 Claude Sonnet 3.7,Solo Models,Advisor,Severe,nnh,10,8.368,0.572,0.181,0.354,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
 Claude Sonnet 3.7,Solo Models,Advisor,Uncertain,nnh,10,5.119,0.496,0.157,0.308,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,Mild,nnh,18,3.179,0.266,0.063,0.123,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,Moderate,nnh,18,2.848,0.236,0.056,0.109,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,None,nnh,18,91.667,19.174,4.519,8.858,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,Severe,nnh,18,9.715,1.849,0.436,0.854,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,Uncertain,nnh,18,4.742,0.71,0.167,0.328,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,Mild,nnh,20,3.183,0.251,0.056,0.11,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,Moderate,nnh,20,2.835,0.232,0.052,0.102,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,None,nnh,20,92.5,18.317,4.096,8.028,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,Severe,nnh,20,9.958,2.025,0.453,0.888,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,Uncertain,nnh,20,4.703,0.685,0.153,0.3,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,Mild,nnh,18,3.559,0.395,0.093,0.183,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,Moderate,nnh,18,2.596,0.256,0.06,0.118,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,None,nnh,18,97.222,11.785,2.778,5.444,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,Severe,nnh,18,10.582,2.036,0.48,0.941,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,Uncertain,nnh,18,4.614,0.738,0.174,0.341,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,Mild,nnh,11,2.878,0.26,0.078,0.154,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,Moderate,nnh,11,2.744,0.296,0.089,0.175,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,None,nnh,11,100,0,0,0,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,Severe,nnh,11,9.748,1.853,0.559,1.095,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,Uncertain,nnh,11,5.872,1.205,0.363,0.712,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,Mild,nnh,15,2.777,0.21,0.054,0.106,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,Moderate,nnh,15,2.735,0.191,0.049,0.097,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,None,nnh,15,100,0,0,0,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,Severe,nnh,15,9.218,1.426,0.368,0.721,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,Uncertain,nnh,15,6.701,1.419,0.367,0.718,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,Mild,nnh,12,2.87,0.25,0.072,0.141,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,Moderate,nnh,12,2.719,0.296,0.085,0.167,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,None,nnh,12,100,0,0,0,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,Severe,nnh,12,9.769,1.768,0.51,1,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,Uncertain,nnh,12,6.024,1.264,0.365,0.715,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,Mild,nnh,20,3.117,0.233,0.052,0.102,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,Moderate,nnh,20,2.72,0.176,0.039,0.077,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,None,nnh,20,100,0,0,0,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
@@ -4056,11 +4029,11 @@ Gemini 2.0 Flash,Solo Models,Advisor,Moderate,nnh,10,2.257,0.113,0.036,0.07,NO,A
 Gemini 2.0 Flash,Solo Models,Advisor,None,nnh,10,100,0,0,0,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
 Gemini 2.0 Flash,Solo Models,Advisor,Severe,nnh,10,9.128,1.088,0.344,0.675,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
 Gemini 2.0 Flash,Solo Models,Advisor,Uncertain,nnh,10,8.226,0.933,0.295,0.579,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,Mild,nnh,18,2.898,0.266,0.063,0.123,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,Moderate,nnh,18,2.465,0.269,0.063,0.124,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,None,nnh,18,97.222,11.785,2.778,5.444,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,Severe,nnh,18,11.385,2.951,0.696,1.364,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,Uncertain,nnh,18,7.122,1.6,0.377,0.739,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,Mild,nnh,19,2.893,0.272,0.062,0.122,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,Moderate,nnh,19,2.455,0.268,0.062,0.121,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,None,nnh,19,97.368,11.471,2.632,5.158,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,Severe,nnh,19,11.538,2.944,0.676,1.324,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,Uncertain,nnh,19,7.152,1.561,0.358,0.702,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,Mild,nnh,19,2.996,0.267,0.061,0.12,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,Moderate,nnh,19,3.131,0.261,0.06,0.117,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,None,nnh,19,71.053,32.199,7.387,14.479,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
@@ -4071,16 +4044,16 @@ Glass Health 4.0,Solo Models,Advisor,Moderate,nnh,13,3.203,0.285,0.079,0.155,NO,
 Glass Health 4.0,Solo Models,Advisor,None,nnh,13,27.051,9.407,2.609,5.114,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
 Glass Health 4.0,Solo Models,Advisor,Severe,nnh,13,8.411,1.156,0.321,0.628,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
 Glass Health 4.0,Solo Models,Advisor,Uncertain,nnh,13,4.719,0.791,0.219,0.43,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,Mild,nnh,12,3.051,0.266,0.077,0.15,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,Moderate,nnh,12,3.449,0.448,0.129,0.254,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,None,nnh,12,59.722,25.084,7.241,14.193,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,Severe,nnh,12,7.192,1.221,0.352,0.691,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,Uncertain,nnh,12,4.76,0.587,0.169,0.332,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,Mild,nnh,13,3.386,0.551,0.153,0.3,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,Moderate,nnh,13,2.784,0.26,0.072,0.141,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,None,nnh,13,78.205,29.174,8.091,15.859,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,Severe,nnh,13,8.926,1.8,0.499,0.979,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,Uncertain,nnh,13,4.968,0.608,0.169,0.331,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,Mild,nnh,13,3.073,0.266,0.074,0.145,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,Moderate,nnh,13,3.417,0.445,0.123,0.242,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,None,nnh,13,62.821,26.487,7.346,14.399,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,Severe,nnh,13,7.188,1.169,0.324,0.635,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,Uncertain,nnh,13,4.744,0.565,0.157,0.307,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,Mild,nnh,14,3.389,0.527,0.141,0.276,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,Moderate,nnh,14,2.766,0.247,0.066,0.129,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,None,nnh,14,76.19,29.026,7.757,15.205,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,Severe,nnh,14,9.003,1.753,0.469,0.918,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,Uncertain,nnh,14,4.971,0.584,0.156,0.306,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
 Kimi K2,Solo Models,Advisor,Mild,nnh,12,3.329,0.411,0.119,0.233,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 Kimi K2,Solo Models,Advisor,Moderate,nnh,12,2.196,0.161,0.047,0.091,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 Kimi K2,Solo Models,Advisor,None,nnh,12,100,0,0,0,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
@@ -4116,11 +4089,11 @@ Mistral Medium 3.1,Solo Models,Advisor,Moderate,nnh,14,2.066,0.095,0.025,0.05,NO
 Mistral Medium 3.1,Solo Models,Advisor,None,nnh,14,100,0,0,0,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
 Mistral Medium 3.1,Solo Models,Advisor,Severe,nnh,14,6.169,0.961,0.257,0.504,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
 Mistral Medium 3.1,Solo Models,Advisor,Uncertain,nnh,14,7.669,0.952,0.254,0.498,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,Mild,nnh,6,3.415,0.164,0.067,0.131,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,Moderate,nnh,6,2.09,0.129,0.053,0.103,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,None,nnh,6,100,0,0,0,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,Severe,nnh,6,5.715,0.59,0.241,0.472,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,Uncertain,nnh,6,24.206,13.567,5.539,10.856,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,Mild,nnh,7,3.523,0.321,0.121,0.238,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,Moderate,nnh,7,2.066,0.134,0.051,0.099,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,None,nnh,7,100,0,0,0,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,Severe,nnh,7,5.692,0.542,0.205,0.402,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,Uncertain,nnh,7,23.129,12.708,4.803,9.414,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
 o1,Solo Models,Advisor,Mild,nnh,10,3.463,0.322,0.102,0.199,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
 o1,Solo Models,Advisor,Moderate,nnh,10,2.875,0.24,0.076,0.149,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
 o1,Solo Models,Advisor,None,nnh,10,69.167,34.258,10.833,21.233,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
@@ -4146,11 +4119,6 @@ No Intervention,Solo Models,Control,Moderate,nnh,1,3.03,NA,NA,NA,NO,AllCases,Una
 No Intervention,Solo Models,Control,None,nnh,1,33.333,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,No Intervention,NA,NA,NA,NA
 No Intervention,Solo Models,Control,Severe,nnh,1,3.448,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,No Intervention,NA,NA,NA,NA
 No Intervention,Solo Models,Control,Uncertain,nnh,1,7.143,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,No Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,Mild,nnh,10,7.695,1.048,0.331,0.65,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,Moderate,nnh,10,2.299,0.116,0.037,0.072,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,None,nnh,10,100,0,0,0,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,Severe,nnh,10,2.351,0.106,0.034,0.066,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,Uncertain,nnh,10,100,0,0,0,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,Mild,nnh_cumulative,3,1.261,0.04,0.023,0.045,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,Moderate,nnh_cumulative,3,2.257,0.077,0.044,0.087,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,None,nnh_cumulative,3,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
@@ -5296,26 +5264,21 @@ Claude Sonnet 3.7,Solo Models,Advisor,Moderate,nnh_cumulative,10,2.103,0.075,0.0
 Claude Sonnet 3.7,Solo Models,Advisor,None,nnh_cumulative,10,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
 Claude Sonnet 3.7,Solo Models,Advisor,Severe,nnh_cumulative,10,8.368,0.572,0.181,0.354,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
 Claude Sonnet 3.7,Solo Models,Advisor,Uncertain,nnh_cumulative,10,1.002,0.004,0.001,0.003,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,Mild,nnh_cumulative,18,1.289,0.049,0.012,0.023,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,Moderate,nnh_cumulative,18,2.182,0.133,0.031,0.062,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,None,nnh_cumulative,18,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,Severe,nnh_cumulative,18,9.715,1.849,0.436,0.854,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,Uncertain,nnh_cumulative,18,1.008,0.007,0.002,0.003,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,Mild,nnh_cumulative,20,1.291,0.046,0.01,0.02,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,Moderate,nnh_cumulative,20,2.183,0.126,0.028,0.055,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,None,nnh_cumulative,20,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,Severe,nnh_cumulative,20,9.958,2.025,0.453,0.888,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,Uncertain,nnh_cumulative,20,1.008,0.007,0.002,0.003,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,Mild,nnh_cumulative,18,1.299,0.053,0.013,0.025,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,Moderate,nnh_cumulative,18,2.065,0.152,0.036,0.07,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,None,nnh_cumulative,18,1,0,0,0,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,Severe,nnh_cumulative,18,10.582,2.036,0.48,0.941,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,Uncertain,nnh_cumulative,18,1.007,0.006,0.001,0.003,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,Mild,nnh_cumulative,11,1.215,0.04,0.012,0.023,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,Moderate,nnh_cumulative,11,2.125,0.183,0.055,0.108,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,None,nnh_cumulative,11,1,0,0,0,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,Severe,nnh_cumulative,11,9.748,1.853,0.559,1.095,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,Uncertain,nnh_cumulative,11,1.001,0.003,0.001,0.002,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,Mild,nnh_cumulative,15,1.191,0.037,0.009,0.018,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,Moderate,nnh_cumulative,15,2.093,0.097,0.025,0.049,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,None,nnh_cumulative,15,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,Severe,nnh_cumulative,15,9.218,1.426,0.368,0.721,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,Uncertain,nnh_cumulative,15,1.005,0.005,0.001,0.003,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,Mild,nnh_cumulative,12,1.21,0.042,0.012,0.024,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,Moderate,nnh_cumulative,12,2.111,0.18,0.052,0.102,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,None,nnh_cumulative,12,1,0,0,0,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,Severe,nnh_cumulative,12,9.769,1.768,0.51,1,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,Uncertain,nnh_cumulative,12,1.001,0.003,0.001,0.002,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,Mild,nnh_cumulative,20,1.219,0.034,0.008,0.015,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,Moderate,nnh_cumulative,20,2.01,0.092,0.021,0.04,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,None,nnh_cumulative,20,1,0,0,0,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
@@ -5356,11 +5319,11 @@ Gemini 2.0 Flash,Solo Models,Advisor,Moderate,nnh_cumulative,10,1.803,0.054,0.01
 Gemini 2.0 Flash,Solo Models,Advisor,None,nnh_cumulative,10,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
 Gemini 2.0 Flash,Solo Models,Advisor,Severe,nnh_cumulative,10,9.128,1.088,0.344,0.675,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
 Gemini 2.0 Flash,Solo Models,Advisor,Uncertain,nnh_cumulative,10,1.003,0.005,0.002,0.003,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,Mild,nnh_cumulative,18,1.177,0.044,0.01,0.02,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,Moderate,nnh_cumulative,18,1.999,0.144,0.034,0.067,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,None,nnh_cumulative,18,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,Severe,nnh_cumulative,18,11.385,2.951,0.696,1.364,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,Uncertain,nnh_cumulative,18,1.003,0.006,0.001,0.003,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,Mild,nnh_cumulative,19,1.176,0.043,0.01,0.019,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,Moderate,nnh_cumulative,19,1.997,0.145,0.033,0.065,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,None,nnh_cumulative,19,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,Severe,nnh_cumulative,19,11.538,2.944,0.676,1.324,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,Uncertain,nnh_cumulative,19,1.003,0.006,0.001,0.003,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,Mild,nnh_cumulative,19,1.319,0.044,0.01,0.02,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,Moderate,nnh_cumulative,19,2.381,0.193,0.044,0.087,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,None,nnh_cumulative,19,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
@@ -5371,16 +5334,16 @@ Glass Health 4.0,Solo Models,Advisor,Moderate,nnh_cumulative,13,2.307,0.156,0.04
 Glass Health 4.0,Solo Models,Advisor,None,nnh_cumulative,13,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
 Glass Health 4.0,Solo Models,Advisor,Severe,nnh_cumulative,13,8.411,1.156,0.321,0.628,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
 Glass Health 4.0,Solo Models,Advisor,Uncertain,nnh_cumulative,13,1.043,0.014,0.004,0.007,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,Mild,nnh_cumulative,12,1.305,0.052,0.015,0.03,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,Moderate,nnh_cumulative,12,2.309,0.241,0.07,0.136,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,None,nnh_cumulative,12,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,Severe,nnh_cumulative,12,7.192,1.221,0.352,0.691,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,Uncertain,nnh_cumulative,12,1.02,0.007,0.002,0.004,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,Mild,nnh_cumulative,13,1.282,0.037,0.01,0.02,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,Moderate,nnh_cumulative,13,2.111,0.218,0.06,0.119,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,None,nnh_cumulative,13,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,Severe,nnh_cumulative,13,8.926,1.8,0.499,0.979,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,Uncertain,nnh_cumulative,13,1.016,0.008,0.002,0.004,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,Mild,nnh_cumulative,13,1.304,0.05,0.014,0.027,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,Moderate,nnh_cumulative,13,2.295,0.236,0.065,0.128,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,None,nnh_cumulative,13,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,Severe,nnh_cumulative,13,7.188,1.169,0.324,0.635,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,Uncertain,nnh_cumulative,13,1.019,0.007,0.002,0.004,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,Mild,nnh_cumulative,14,1.282,0.035,0.009,0.018,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,Moderate,nnh_cumulative,14,2.106,0.207,0.055,0.108,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,None,nnh_cumulative,14,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,Severe,nnh_cumulative,14,9.003,1.753,0.469,0.918,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,Uncertain,nnh_cumulative,14,1.016,0.008,0.002,0.004,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
 Kimi K2,Solo Models,Advisor,Mild,nnh_cumulative,12,1.134,0.03,0.009,0.017,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 Kimi K2,Solo Models,Advisor,Moderate,nnh_cumulative,12,1.733,0.089,0.026,0.05,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 Kimi K2,Solo Models,Advisor,None,nnh_cumulative,12,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
@@ -5416,11 +5379,11 @@ Mistral Medium 3.1,Solo Models,Advisor,Moderate,nnh_cumulative,14,1.541,0.068,0.
 Mistral Medium 3.1,Solo Models,Advisor,None,nnh_cumulative,14,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
 Mistral Medium 3.1,Solo Models,Advisor,Severe,nnh_cumulative,14,6.169,0.961,0.257,0.504,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
 Mistral Medium 3.1,Solo Models,Advisor,Uncertain,nnh_cumulative,14,1.002,0.004,0.001,0.002,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,Mild,nnh_cumulative,6,1.053,0.022,0.009,0.018,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,Moderate,nnh_cumulative,6,1.524,0.041,0.017,0.033,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,None,nnh_cumulative,6,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,Severe,nnh_cumulative,6,5.715,0.59,0.241,0.472,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,Uncertain,nnh_cumulative,6,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,Mild,nnh_cumulative,7,1.055,0.021,0.008,0.015,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,Moderate,nnh_cumulative,7,1.51,0.052,0.02,0.039,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,None,nnh_cumulative,7,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,Severe,nnh_cumulative,7,5.692,0.542,0.205,0.402,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,Uncertain,nnh_cumulative,7,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
 o1,Solo Models,Advisor,Mild,nnh_cumulative,10,1.219,0.026,0.008,0.016,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
 o1,Solo Models,Advisor,Moderate,nnh_cumulative,10,1.894,0.126,0.04,0.078,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
 o1,Solo Models,Advisor,None,nnh_cumulative,10,1,0,0,0,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
@@ -5446,11 +5409,6 @@ No Intervention,Solo Models,Control,Moderate,nnh_cumulative,1,1.613,NA,NA,NA,NO,
 No Intervention,Solo Models,Control,None,nnh_cumulative,1,1,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,No Intervention,NA,NA,NA,NA
 No Intervention,Solo Models,Control,Severe,nnh_cumulative,1,3.448,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,No Intervention,NA,NA,NA,NA
 No Intervention,Solo Models,Control,Uncertain,nnh_cumulative,1,1.031,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,No Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,Mild,nnh_cumulative,10,1.006,0.007,0.002,0.004,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,Moderate,nnh_cumulative,10,1.16,0.02,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,None,nnh_cumulative,10,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,Severe,nnh_cumulative,10,2.351,0.106,0.034,0.066,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,Uncertain,nnh_cumulative,10,1.001,0.003,0.001,0.002,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,Mild,normalized,3,109.333,5.508,3.18,6.232,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,Moderate,normalized,3,67.667,3.215,1.856,3.638,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,Severe,normalized,3,15,1,0.577,1.132,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
@@ -6367,22 +6325,18 @@ Claude Sonnet 3.7,Solo Models,Advisor,Mild,normalized,10,110.5,3.567,1.128,2.211
 Claude Sonnet 3.7,Solo Models,Advisor,Moderate,normalized,10,79.8,2.821,0.892,1.748,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
 Claude Sonnet 3.7,Solo Models,Advisor,Severe,normalized,10,16.8,1.398,0.442,0.867,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
 Claude Sonnet 3.7,Solo Models,Advisor,Uncertain,normalized,10,415.7,10.023,3.169,6.212,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,Mild,normalized,18,115.889,4.378,1.032,2.022,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,Moderate,normalized,18,71.778,4.596,1.083,2.123,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,Severe,normalized,18,13.333,2.701,0.637,1.248,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,Uncertain,normalized,18,328.333,17.067,4.023,7.885,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,Mild,normalized,20,115.45,4.639,1.037,2.033,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,Moderate,normalized,20,71.5,4.478,1.001,1.963,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,Severe,normalized,20,13.1,2.673,0.598,1.172,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,Uncertain,normalized,20,327.85,16.554,3.702,7.255,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,Mild,normalized,18,113.5,7.823,1.844,3.614,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,Moderate,normalized,18,76.111,6.623,1.561,3.06,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,Severe,normalized,18,14.278,2.445,0.576,1.129,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,Uncertain,normalized,18,462.833,23.048,5.432,10.648,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,Mild,normalized,11,131.364,3.443,1.038,2.035,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,Moderate,normalized,11,86.636,6.727,2.028,3.975,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,Severe,normalized,11,17.364,3.295,0.993,1.947,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,Uncertain,normalized,11,565.727,19.83,5.979,11.719,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,Mild,normalized,15,140.467,10.371,2.678,5.248,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,Moderate,normalized,15,94.533,5.902,1.524,2.987,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,Severe,normalized,15,22.4,2.72,0.702,1.377,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,Uncertain,normalized,15,515.333,30.217,7.802,15.292,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,Mild,normalized,12,131.75,3.545,1.023,2.006,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,Moderate,normalized,12,86.75,6.426,1.855,3.636,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,Severe,normalized,12,17.167,3.215,0.928,1.819,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,Uncertain,normalized,12,566.75,19.236,5.553,10.884,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,Mild,normalized,20,129,6.545,1.464,2.869,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,Moderate,normalized,20,94.2,4.98,1.114,2.183,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,Severe,normalized,20,24.35,1.872,0.418,0.82,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
@@ -6415,10 +6369,10 @@ Gemini 2.0 Flash,Solo Models,Advisor,Mild,normalized,10,163.9,8.075,2.554,5.005,
 Gemini 2.0 Flash,Solo Models,Advisor,Moderate,normalized,10,117.1,3.446,1.09,2.136,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
 Gemini 2.0 Flash,Solo Models,Advisor,Severe,normalized,10,14.6,1.647,0.521,1.021,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
 Gemini 2.0 Flash,Solo Models,Advisor,Uncertain,normalized,10,647.7,12.166,3.847,7.541,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,Mild,normalized,18,150.5,13.883,3.272,6.414,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,Moderate,normalized,18,79.889,12.732,3.001,5.882,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,Severe,normalized,18,11.778,2.942,0.693,1.359,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,Uncertain,normalized,18,549.111,42.869,10.104,19.804,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,Mild,normalized,19,151.737,14.247,3.269,6.406,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,Moderate,normalized,19,80.526,12.73,2.92,5.724,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,Severe,normalized,19,11.684,2.888,0.662,1.298,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,Uncertain,normalized,19,550.579,42.085,9.655,18.924,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,Mild,normalized,19,104.789,7.85,1.801,3.53,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,Moderate,normalized,19,56.947,5.027,1.153,2.261,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,Severe,normalized,19,13.842,4.537,1.041,2.04,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
@@ -6427,18 +6381,18 @@ Glass Health 4.0,Solo Models,Advisor,Mild,normalized,13,104.231,12.644,3.507,6.8
 Glass Health 4.0,Solo Models,Advisor,Moderate,normalized,13,60.462,8.521,2.363,4.632,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
 Glass Health 4.0,Solo Models,Advisor,Severe,normalized,13,15.846,2.154,0.597,1.171,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
 Glass Health 4.0,Solo Models,Advisor,Uncertain,normalized,13,302.308,47.596,13.201,25.874,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,Mild,normalized,12,109.583,10.527,3.039,5.956,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,Moderate,normalized,12,68.083,8.273,2.388,4.681,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,Severe,normalized,12,19.667,3.229,0.932,1.827,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,Uncertain,normalized,12,423.583,65.244,18.834,36.915,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,Mild,normalized,13,124.846,8.122,2.253,4.415,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,Moderate,normalized,13,81.538,8.647,2.398,4.701,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,Severe,normalized,13,20.692,4.366,1.211,2.374,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,Uncertain,normalized,13,420.846,65.839,18.261,35.791,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Kimi K2,Solo Models,Advisor,Mild,normalized,12,151.917,7.704,2.224,4.359,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,Mild,normalized,13,110.154,10.511,2.915,5.714,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,Moderate,normalized,13,68.692,8.36,2.319,4.545,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,Severe,normalized,13,19.615,3.15,0.874,1.712,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,Uncertain,normalized,13,426,63.077,17.494,34.289,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,Mild,normalized,14,124.429,8.102,2.165,4.244,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,Moderate,normalized,14,81.929,8.213,2.195,4.302,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,Severe,normalized,14,20.357,4.378,1.17,2.294,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,Uncertain,normalized,14,422.357,63.508,16.973,33.268,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Kimi K2,Solo Models,Advisor,Mild,normalized,12,151.667,7.39,2.133,4.181,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 Kimi K2,Solo Models,Advisor,Moderate,normalized,12,106.5,10.698,3.088,6.053,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 Kimi K2,Solo Models,Advisor,Severe,normalized,12,18.167,2.443,0.705,1.382,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
-Kimi K2,Solo Models,Advisor,Uncertain,normalized,12,584.917,44.005,12.703,24.898,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
+Kimi K2,Solo Models,Advisor,Uncertain,normalized,12,585.167,44.292,12.786,25.061,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 LiSA 1.0,Solo Models,Advisor,Mild,normalized,20,105.7,5.332,1.192,2.337,NO,AllCases,Unanimous,AllHarm,LiSA 1.0,NA,NA,NA,NA
 LiSA 1.0,Solo Models,Advisor,Moderate,normalized,20,73.05,5.042,1.127,2.21,NO,AllCases,Unanimous,AllHarm,LiSA 1.0,NA,NA,NA,NA
 LiSA 1.0,Solo Models,Advisor,Severe,normalized,20,12.9,2.553,0.571,1.119,NO,AllCases,Unanimous,AllHarm,LiSA 1.0,NA,NA,NA,NA
@@ -6455,18 +6409,18 @@ Llama 4 Scout,Solo Models,Advisor,Mild,normalized,20,253.7,5.302,1.186,2.324,NO,
 Llama 4 Scout,Solo Models,Advisor,Moderate,normalized,20,175.7,8.405,1.879,3.684,NO,AllCases,Unanimous,AllHarm,Llama 4 Scout,NA,NA,NA,NA
 Llama 4 Scout,Solo Models,Advisor,Severe,normalized,20,32.35,2.207,0.494,0.967,NO,AllCases,Unanimous,AllHarm,Llama 4 Scout,NA,NA,NA,NA
 Llama 4 Scout,Solo Models,Advisor,Uncertain,normalized,20,613.5,8.108,1.813,3.553,NO,AllCases,Unanimous,AllHarm,Llama 4 Scout,NA,NA,NA,NA
-Mistral Large 2.1,Solo Models,Advisor,Mild,normalized,13,146,5.958,1.653,3.239,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
-Mistral Large 2.1,Solo Models,Advisor,Moderate,normalized,13,97.846,6.817,1.891,3.706,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
+Mistral Large 2.1,Solo Models,Advisor,Mild,normalized,13,146.154,6.23,1.728,3.386,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
+Mistral Large 2.1,Solo Models,Advisor,Moderate,normalized,13,98,6.77,1.878,3.68,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
 Mistral Large 2.1,Solo Models,Advisor,Severe,normalized,13,22.462,4.892,1.357,2.66,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
-Mistral Large 2.1,Solo Models,Advisor,Uncertain,normalized,13,409.308,73.774,20.461,40.104,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
-Mistral Medium 3.1,Solo Models,Advisor,Mild,normalized,14,147.929,2.433,0.65,1.274,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
-Mistral Medium 3.1,Solo Models,Advisor,Moderate,normalized,14,127.571,6.607,1.766,3.461,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
+Mistral Large 2.1,Solo Models,Advisor,Uncertain,normalized,13,409.077,73.622,20.419,40.022,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
+Mistral Medium 3.1,Solo Models,Advisor,Mild,normalized,14,148,2.512,0.671,1.316,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
+Mistral Medium 3.1,Solo Models,Advisor,Moderate,normalized,14,127.643,7.334,1.96,3.842,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
 Mistral Medium 3.1,Solo Models,Advisor,Severe,normalized,14,29.286,2.946,0.787,1.543,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
-Mistral Medium 3.1,Solo Models,Advisor,Uncertain,normalized,14,463.786,45.306,12.109,23.733,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,Mild,normalized,6,205.667,10.211,4.169,8.171,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,Moderate,normalized,6,146.667,8.618,3.518,6.896,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,Severe,normalized,6,30.333,3.445,1.406,2.756,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,Uncertain,normalized,6,554.667,9.245,3.774,7.397,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Mistral Medium 3.1,Solo Models,Advisor,Uncertain,normalized,14,463.786,45.276,12.1,23.717,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,Mild,normalized,7,204.429,9.88,3.734,7.319,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,Moderate,normalized,7,146.571,7.871,2.975,5.831,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,Severe,normalized,7,30.286,3.147,1.19,2.331,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,Uncertain,normalized,7,554,8.622,3.259,6.387,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
 o1,Solo Models,Advisor,Mild,normalized,10,120,4.807,1.52,2.98,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
 o1,Solo Models,Advisor,Moderate,normalized,10,83.9,4.771,1.509,2.957,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
 o1,Solo Models,Advisor,Severe,normalized,10,23.6,2.171,0.686,1.345,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
@@ -6487,10 +6441,6 @@ No Intervention,Solo Models,Control,Mild,normalized,1,21,NA,NA,NA,NO,AllCases,Un
 No Intervention,Solo Models,Control,Moderate,normalized,1,33,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,No Intervention,NA,NA,NA,NA
 No Intervention,Solo Models,Control,Severe,normalized,1,29,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,No Intervention,NA,NA,NA,NA
 No Intervention,Solo Models,Control,Uncertain,normalized,1,14,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,No Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,Mild,normalized,10,358.7,9.056,2.864,5.613,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,Moderate,normalized,10,306.4,12.834,4.058,7.955,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,Severe,normalized,10,108,6.2,1.961,3.843,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,Uncertain,normalized,10,184.4,8.708,2.754,5.397,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,Mild,normalized_cumulative,3,192,5.196,3,5.88,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,Moderate,normalized_cumulative,3,82.667,2.517,1.453,2.848,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,Severe,normalized_cumulative,3,15,1,0.577,1.132,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
@@ -7407,22 +7357,18 @@ Claude Sonnet 3.7,Solo Models,Advisor,Mild,normalized_cumulative,10,207.1,6.118,
 Claude Sonnet 3.7,Solo Models,Advisor,Moderate,normalized_cumulative,10,96.6,3.471,1.097,2.151,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
 Claude Sonnet 3.7,Solo Models,Advisor,Severe,normalized_cumulative,10,16.8,1.398,0.442,0.867,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
 Claude Sonnet 3.7,Solo Models,Advisor,Uncertain,normalized_cumulative,10,622.8,13.782,4.358,8.542,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,Mild,normalized_cumulative,18,201,6.695,1.578,3.093,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,Moderate,normalized_cumulative,18,85.111,5.749,1.355,2.656,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,Severe,normalized_cumulative,18,13.333,2.701,0.637,1.248,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,Uncertain,normalized_cumulative,18,529.333,16.139,3.804,7.456,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,Mild,normalized_cumulative,20,200.05,7.28,1.628,3.191,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,Moderate,normalized_cumulative,20,84.6,5.67,1.268,2.485,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,Severe,normalized_cumulative,20,13.1,2.673,0.598,1.172,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,Uncertain,normalized_cumulative,20,527.9,16.692,3.732,7.316,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,Mild,normalized_cumulative,18,203.889,10.527,2.481,4.863,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,Moderate,normalized_cumulative,18,90.389,7.188,1.694,3.321,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,Severe,normalized_cumulative,18,14.278,2.445,0.576,1.129,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,Uncertain,normalized_cumulative,18,666.722,28.862,6.803,13.334,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,Mild,normalized_cumulative,11,235.364,10.337,3.117,6.109,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,Moderate,normalized_cumulative,11,104,7.759,2.339,4.585,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,Severe,normalized_cumulative,11,17.364,3.295,0.993,1.947,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,Uncertain,normalized_cumulative,11,801.091,20.127,6.068,11.894,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,Mild,normalized_cumulative,15,257.4,14.515,3.748,7.346,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,Moderate,normalized_cumulative,15,116.933,6.1,1.575,3.087,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,Severe,normalized_cumulative,15,22.4,2.72,0.702,1.377,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,Uncertain,normalized_cumulative,15,772.733,43.19,11.152,21.857,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,Mild,normalized_cumulative,12,235.667,9.912,2.861,5.608,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,Moderate,normalized_cumulative,12,103.917,7.403,2.137,4.189,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,Severe,normalized_cumulative,12,17.167,3.215,0.928,1.819,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,Uncertain,normalized_cumulative,12,802.417,19.732,5.696,11.164,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,Mild,normalized_cumulative,20,247.55,10.164,2.273,4.455,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,Moderate,normalized_cumulative,20,118.55,4.904,1.097,2.149,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,Severe,normalized_cumulative,20,24.35,1.872,0.418,0.82,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
@@ -7455,10 +7401,10 @@ Gemini 2.0 Flash,Solo Models,Advisor,Mild,normalized_cumulative,10,295.6,7.486,2
 Gemini 2.0 Flash,Solo Models,Advisor,Moderate,normalized_cumulative,10,131.7,4.165,1.317,2.581,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
 Gemini 2.0 Flash,Solo Models,Advisor,Severe,normalized_cumulative,10,14.6,1.647,0.521,1.021,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
 Gemini 2.0 Flash,Solo Models,Advisor,Uncertain,normalized_cumulative,10,943.3,15.98,5.053,9.904,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,Mild,normalized_cumulative,18,242.167,26.697,6.293,12.333,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,Moderate,normalized_cumulative,18,91.667,13.78,3.248,6.366,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,Severe,normalized_cumulative,18,11.778,2.942,0.693,1.359,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,Uncertain,normalized_cumulative,18,791.278,68.4,16.122,31.599,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,Mild,normalized_cumulative,19,243.947,26.914,6.175,12.102,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,Moderate,normalized_cumulative,19,92.211,13.673,3.137,6.148,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,Severe,normalized_cumulative,19,11.684,2.888,0.662,1.298,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,Uncertain,normalized_cumulative,19,794.526,67.836,15.563,30.503,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,Mild,normalized_cumulative,19,175.579,13.882,3.185,6.242,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,Moderate,normalized_cumulative,19,70.789,8.456,1.94,3.802,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,Severe,normalized_cumulative,19,13.842,4.537,1.041,2.04,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
@@ -7467,15 +7413,15 @@ Glass Health 4.0,Solo Models,Advisor,Mild,normalized_cumulative,13,180.538,21.38
 Glass Health 4.0,Solo Models,Advisor,Moderate,normalized_cumulative,13,76.308,9.63,2.671,5.235,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
 Glass Health 4.0,Solo Models,Advisor,Severe,normalized_cumulative,13,15.846,2.154,0.597,1.171,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
 Glass Health 4.0,Solo Models,Advisor,Uncertain,normalized_cumulative,13,482.846,28.682,7.955,15.592,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,Mild,normalized_cumulative,12,197.333,17.747,5.123,10.042,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,Moderate,normalized_cumulative,12,87.75,10.472,3.023,5.925,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,Severe,normalized_cumulative,12,19.667,3.229,0.932,1.827,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,Uncertain,normalized_cumulative,12,620.917,51.934,14.992,29.385,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,Mild,normalized_cumulative,13,227.077,17.552,4.868,9.541,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,Moderate,normalized_cumulative,13,102.231,12.119,3.361,6.588,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,Severe,normalized_cumulative,13,20.692,4.366,1.211,2.374,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,Uncertain,normalized_cumulative,13,647.923,53.087,14.724,28.858,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Kimi K2,Solo Models,Advisor,Mild,normalized_cumulative,12,276.583,14.513,4.19,8.212,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,Mild,normalized_cumulative,13,198.462,17.472,4.846,9.498,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,Moderate,normalized_cumulative,13,88.308,10.119,2.807,5.501,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,Severe,normalized_cumulative,13,19.615,3.15,0.874,1.712,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,Uncertain,normalized_cumulative,13,624.462,51.28,14.222,27.876,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,Mild,normalized_cumulative,14,226.714,17.081,4.565,8.948,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,Moderate,normalized_cumulative,14,102.286,11.552,3.087,6.051,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,Severe,normalized_cumulative,14,20.357,4.378,1.17,2.294,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,Uncertain,normalized_cumulative,14,649.071,51.226,13.691,26.834,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Kimi K2,Solo Models,Advisor,Mild,normalized_cumulative,12,276.333,14.015,4.046,7.93,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 Kimi K2,Solo Models,Advisor,Moderate,normalized_cumulative,12,124.667,9.82,2.835,5.556,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 Kimi K2,Solo Models,Advisor,Severe,normalized_cumulative,12,18.167,2.443,0.705,1.382,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 Kimi K2,Solo Models,Advisor,Uncertain,normalized_cumulative,12,861.5,48.766,14.077,27.592,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
@@ -7495,18 +7441,18 @@ Llama 4 Scout,Solo Models,Advisor,Mild,normalized_cumulative,20,461.75,12.251,2.
 Llama 4 Scout,Solo Models,Advisor,Moderate,normalized_cumulative,20,208.05,7.756,1.734,3.399,NO,AllCases,Unanimous,AllHarm,Llama 4 Scout,NA,NA,NA,NA
 Llama 4 Scout,Solo Models,Advisor,Severe,normalized_cumulative,20,32.35,2.207,0.494,0.967,NO,AllCases,Unanimous,AllHarm,Llama 4 Scout,NA,NA,NA,NA
 Llama 4 Scout,Solo Models,Advisor,Uncertain,normalized_cumulative,20,1075.25,17.702,3.958,7.758,NO,AllCases,Unanimous,AllHarm,Llama 4 Scout,NA,NA,NA,NA
-Mistral Large 2.1,Solo Models,Advisor,Mild,normalized_cumulative,13,266.308,13.726,3.807,7.461,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
-Mistral Large 2.1,Solo Models,Advisor,Moderate,normalized_cumulative,13,120.308,11.265,3.124,6.124,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
+Mistral Large 2.1,Solo Models,Advisor,Mild,normalized_cumulative,13,266.615,13.884,3.851,7.547,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
+Mistral Large 2.1,Solo Models,Advisor,Moderate,normalized_cumulative,13,120.462,11.215,3.11,6.096,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
 Mistral Large 2.1,Solo Models,Advisor,Severe,normalized_cumulative,13,22.462,4.892,1.357,2.66,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
-Mistral Large 2.1,Solo Models,Advisor,Uncertain,normalized_cumulative,13,675.615,63.934,17.732,34.755,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
-Mistral Medium 3.1,Solo Models,Advisor,Mild,normalized_cumulative,14,304.786,8.64,2.309,4.526,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
-Mistral Medium 3.1,Solo Models,Advisor,Moderate,normalized_cumulative,14,156.857,8.448,2.258,4.425,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
+Mistral Large 2.1,Solo Models,Advisor,Uncertain,normalized_cumulative,13,675.692,63.938,17.733,34.757,NO,AllCases,Unanimous,AllHarm,Mistral Large 2.1,NA,NA,NA,NA
+Mistral Medium 3.1,Solo Models,Advisor,Mild,normalized_cumulative,14,304.929,9.507,2.541,4.98,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
+Mistral Medium 3.1,Solo Models,Advisor,Moderate,normalized_cumulative,14,156.929,9.034,2.414,4.732,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
 Mistral Medium 3.1,Solo Models,Advisor,Severe,normalized_cumulative,14,29.286,2.946,0.787,1.543,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
-Mistral Medium 3.1,Solo Models,Advisor,Uncertain,normalized_cumulative,14,768.571,38.062,10.173,19.938,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,Mild,normalized_cumulative,6,382.667,19.086,7.792,15.272,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,Moderate,normalized_cumulative,6,177,9.675,3.95,7.741,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,Severe,normalized_cumulative,6,30.333,3.445,1.406,2.756,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,Uncertain,normalized_cumulative,6,937.333,25.997,10.613,20.802,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Mistral Medium 3.1,Solo Models,Advisor,Uncertain,normalized_cumulative,14,768.714,38.291,10.234,20.058,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,Mild,normalized_cumulative,7,381.286,17.802,6.728,13.188,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,Moderate,normalized_cumulative,7,176.857,8.84,3.341,6.549,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,Severe,normalized_cumulative,7,30.286,3.147,1.19,2.331,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,Uncertain,normalized_cumulative,7,935.286,24.343,9.201,18.033,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
 o1,Solo Models,Advisor,Mild,normalized_cumulative,10,227.5,5.93,1.875,3.676,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
 o1,Solo Models,Advisor,Moderate,normalized_cumulative,10,107.5,3.689,1.167,2.287,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
 o1,Solo Models,Advisor,Severe,normalized_cumulative,10,23.6,2.171,0.686,1.345,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
@@ -7527,10 +7473,6 @@ No Intervention,Solo Models,Control,Mild,normalized_cumulative,1,83,NA,NA,NA,NO,
 No Intervention,Solo Models,Control,Moderate,normalized_cumulative,1,62,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,No Intervention,NA,NA,NA,NA
 No Intervention,Solo Models,Control,Severe,normalized_cumulative,1,29,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,No Intervention,NA,NA,NA,NA
 No Intervention,Solo Models,Control,Uncertain,normalized_cumulative,1,97,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,No Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,Mild,normalized_cumulative,10,773.1,11.609,3.671,7.195,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,Moderate,normalized_cumulative,10,414.4,14.886,4.707,9.227,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,Severe,normalized_cumulative,10,108,6.2,1.961,3.843,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,Uncertain,normalized_cumulative,10,957.5,13.501,4.269,8.368,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,Mild,pct,3,0.35,0.026,0.015,0.03,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,Moderate,pct,3,0.333,0.021,0.012,0.024,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,None,pct,3,0,0,0,0,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
@@ -8676,26 +8618,21 @@ Claude Sonnet 3.7,Solo Models,Advisor,Moderate,pct,10,0.356,0.014,0.005,0.009,NO
 Claude Sonnet 3.7,Solo Models,Advisor,None,pct,10,0.002,0.004,0.001,0.003,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
 Claude Sonnet 3.7,Solo Models,Advisor,Severe,pct,10,0.12,0.008,0.003,0.005,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
 Claude Sonnet 3.7,Solo Models,Advisor,Uncertain,pct,10,0.197,0.019,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,Mild,pct,18,0.317,0.026,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,Moderate,pct,18,0.353,0.029,0.007,0.013,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,None,pct,18,0.008,0.007,0.002,0.003,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,Severe,pct,18,0.107,0.021,0.005,0.01,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,Uncertain,pct,18,0.215,0.03,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,Mild,pct,20,0.316,0.025,0.006,0.011,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,Moderate,pct,20,0.355,0.029,0.006,0.013,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,None,pct,20,0.008,0.007,0.002,0.003,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,Severe,pct,20,0.104,0.022,0.005,0.009,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,Uncertain,pct,20,0.216,0.029,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,Mild,pct,18,0.284,0.033,0.008,0.015,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,Moderate,pct,18,0.389,0.039,0.009,0.018,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,None,pct,18,0.007,0.006,0.001,0.003,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,Severe,pct,18,0.098,0.018,0.004,0.008,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,Uncertain,pct,18,0.222,0.033,0.008,0.015,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,Mild,pct,11,0.35,0.031,0.009,0.018,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,Moderate,pct,11,0.368,0.039,0.012,0.023,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,None,pct,11,0.001,0.003,0.001,0.002,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,Severe,pct,11,0.105,0.017,0.005,0.01,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,Uncertain,pct,11,0.175,0.028,0.009,0.017,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,Mild,pct,15,0.362,0.027,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,Moderate,pct,15,0.367,0.025,0.007,0.013,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,None,pct,15,0.005,0.005,0.001,0.003,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,Severe,pct,15,0.111,0.02,0.005,0.01,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,Uncertain,pct,15,0.155,0.028,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,Mild,pct,12,0.351,0.03,0.009,0.017,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,Moderate,pct,12,0.372,0.039,0.011,0.022,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,None,pct,12,0.001,0.003,0.001,0.002,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,Severe,pct,12,0.105,0.016,0.005,0.009,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,Uncertain,pct,12,0.172,0.03,0.009,0.017,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,Mild,pct,20,0.322,0.024,0.005,0.01,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,Moderate,pct,20,0.369,0.023,0.005,0.01,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,None,pct,20,0,0.002,0.001,0.001,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
@@ -8736,11 +8673,11 @@ Gemini 2.0 Flash,Solo Models,Advisor,Moderate,pct,10,0.444,0.022,0.007,0.013,NO,
 Gemini 2.0 Flash,Solo Models,Advisor,None,pct,10,0.003,0.005,0.002,0.003,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
 Gemini 2.0 Flash,Solo Models,Advisor,Severe,pct,10,0.111,0.014,0.004,0.008,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
 Gemini 2.0 Flash,Solo Models,Advisor,Uncertain,pct,10,0.123,0.014,0.004,0.009,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,Mild,pct,18,0.348,0.031,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,Moderate,pct,18,0.41,0.042,0.01,0.019,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,None,pct,18,0.003,0.006,0.001,0.003,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,Severe,pct,18,0.093,0.021,0.005,0.009,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,Uncertain,pct,18,0.147,0.03,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,Mild,pct,19,0.348,0.032,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,Moderate,pct,19,0.412,0.042,0.01,0.019,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,None,pct,19,0.003,0.006,0.001,0.003,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,Severe,pct,19,0.092,0.021,0.005,0.009,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,Uncertain,pct,19,0.146,0.03,0.007,0.013,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,Mild,pct,19,0.336,0.03,0.007,0.013,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,Moderate,pct,19,0.322,0.028,0.006,0.013,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,None,pct,19,0.017,0.012,0.003,0.005,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
@@ -8751,16 +8688,16 @@ Glass Health 4.0,Solo Models,Advisor,Moderate,pct,13,0.315,0.029,0.008,0.016,NO,
 Glass Health 4.0,Solo Models,Advisor,None,pct,13,0.041,0.013,0.003,0.007,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
 Glass Health 4.0,Solo Models,Advisor,Severe,pct,13,0.121,0.015,0.004,0.008,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
 Glass Health 4.0,Solo Models,Advisor,Uncertain,pct,13,0.217,0.033,0.009,0.018,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,Mild,pct,12,0.33,0.028,0.008,0.016,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,Moderate,pct,12,0.295,0.043,0.012,0.024,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,None,pct,12,0.019,0.007,0.002,0.004,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,Severe,pct,12,0.143,0.023,0.007,0.013,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,Uncertain,pct,12,0.213,0.029,0.008,0.017,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,Mild,pct,13,0.302,0.047,0.013,0.026,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,Moderate,pct,13,0.362,0.036,0.01,0.019,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,None,pct,13,0.015,0.008,0.002,0.004,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,Severe,pct,13,0.116,0.023,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,Uncertain,pct,13,0.204,0.023,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,Mild,pct,13,0.328,0.028,0.008,0.015,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,Moderate,pct,13,0.298,0.042,0.012,0.023,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,None,pct,13,0.018,0.007,0.002,0.004,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,Severe,pct,13,0.142,0.022,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,Uncertain,pct,13,0.214,0.028,0.008,0.015,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,Mild,pct,14,0.301,0.045,0.012,0.024,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,Moderate,pct,14,0.364,0.034,0.009,0.018,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,None,pct,14,0.016,0.008,0.002,0.004,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,Severe,pct,14,0.115,0.022,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,Uncertain,pct,14,0.204,0.022,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
 Kimi K2,Solo Models,Advisor,Mild,pct,12,0.304,0.034,0.01,0.019,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 Kimi K2,Solo Models,Advisor,Moderate,pct,12,0.458,0.033,0.01,0.019,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 Kimi K2,Solo Models,Advisor,None,pct,12,0,0,0,0,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
@@ -8796,11 +8733,11 @@ Mistral Medium 3.1,Solo Models,Advisor,Moderate,pct,14,0.485,0.022,0.006,0.012,N
 Mistral Medium 3.1,Solo Models,Advisor,None,pct,14,0.002,0.004,0.001,0.002,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
 Mistral Medium 3.1,Solo Models,Advisor,Severe,pct,14,0.165,0.02,0.005,0.011,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
 Mistral Medium 3.1,Solo Models,Advisor,Uncertain,pct,14,0.132,0.015,0.004,0.008,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,Mild,pct,6,0.293,0.014,0.006,0.011,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,Moderate,pct,6,0.48,0.03,0.012,0.024,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,None,pct,6,0,0,0,0,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,Severe,pct,6,0.177,0.02,0.008,0.016,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,Uncertain,pct,6,0.05,0.02,0.008,0.016,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,Mild,pct,7,0.286,0.024,0.009,0.018,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,Moderate,pct,7,0.486,0.031,0.012,0.023,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,None,pct,7,0,0,0,0,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,Severe,pct,7,0.177,0.018,0.007,0.013,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,Uncertain,pct,7,0.051,0.019,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
 o1,Solo Models,Advisor,Mild,pct,10,0.291,0.027,0.009,0.017,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
 o1,Solo Models,Advisor,Moderate,pct,10,0.35,0.028,0.009,0.018,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
 o1,Solo Models,Advisor,None,pct,10,0.018,0.019,0.006,0.012,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
@@ -8826,11 +8763,6 @@ No Intervention,Solo Models,Control,Moderate,pct,1,0.33,NA,NA,NA,NO,AllCases,Una
 No Intervention,Solo Models,Control,None,pct,1,0.03,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,No Intervention,NA,NA,NA,NA
 No Intervention,Solo Models,Control,Severe,pct,1,0.29,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,No Intervention,NA,NA,NA,NA
 No Intervention,Solo Models,Control,Uncertain,pct,1,0.14,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,No Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,Mild,pct,10,0.132,0.017,0.005,0.01,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,Moderate,pct,10,0.436,0.022,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,None,pct,10,0.001,0.003,0.001,0.002,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,Severe,pct,10,0.426,0.018,0.006,0.011,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,Uncertain,pct,10,0.005,0.005,0.002,0.003,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,Mild,pct_cumulative,3,0.793,0.025,0.015,0.028,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,Moderate,pct_cumulative,3,0.443,0.015,0.009,0.017,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
 Claude Sonnet 3.7 + Claude Sonnet 3.7,2-Agent Teams,Advisor + Guardian,None,pct_cumulative,3,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,Claude Sonnet 3.7,NA,NA,NA
@@ -9976,26 +9908,21 @@ Claude Sonnet 3.7,Solo Models,Advisor,Moderate,pct_cumulative,10,0.476,0.017,0.0
 Claude Sonnet 3.7,Solo Models,Advisor,None,pct_cumulative,10,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
 Claude Sonnet 3.7,Solo Models,Advisor,Severe,pct_cumulative,10,0.12,0.008,0.003,0.005,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
 Claude Sonnet 3.7,Solo Models,Advisor,Uncertain,pct_cumulative,10,0.998,0.004,0.001,0.003,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 3.7,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,Mild,pct_cumulative,18,0.777,0.029,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,Moderate,pct_cumulative,18,0.46,0.029,0.007,0.013,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,None,pct_cumulative,18,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,Severe,pct_cumulative,18,0.107,0.021,0.005,0.01,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
-Claude Sonnet 4.5,Solo Models,Advisor,Uncertain,pct_cumulative,18,0.992,0.007,0.002,0.003,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,Mild,pct_cumulative,20,0.775,0.028,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,Moderate,pct_cumulative,20,0.46,0.027,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,None,pct_cumulative,20,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,Severe,pct_cumulative,20,0.104,0.022,0.005,0.009,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
+Claude Sonnet 4.5,Solo Models,Advisor,Uncertain,pct_cumulative,20,0.992,0.007,0.002,0.003,NO,AllCases,Unanimous,AllHarm,Claude Sonnet 4.5,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,Mild,pct_cumulative,18,0.771,0.032,0.007,0.015,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,Moderate,pct_cumulative,18,0.487,0.036,0.008,0.016,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,None,pct_cumulative,18,1,0,0,0,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,Severe,pct_cumulative,18,0.098,0.018,0.004,0.008,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
 DeepSeek R1,Solo Models,Advisor,Uncertain,pct_cumulative,18,0.993,0.006,0.001,0.003,NO,AllCases,Unanimous,AllHarm,DeepSeek R1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,Mild,pct_cumulative,11,0.824,0.028,0.008,0.016,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,Moderate,pct_cumulative,11,0.474,0.04,0.012,0.023,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,None,pct_cumulative,11,1,0,0,0,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,Severe,pct_cumulative,11,0.105,0.017,0.005,0.01,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-DeepSeek V3.1,Solo Models,Advisor,Uncertain,pct_cumulative,11,0.999,0.003,0.001,0.002,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,Mild,pct_cumulative,15,0.841,0.026,0.007,0.013,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,Moderate,pct_cumulative,15,0.479,0.022,0.006,0.011,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,None,pct_cumulative,15,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,Severe,pct_cumulative,15,0.111,0.02,0.005,0.01,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
-Expert AI,Solo Models,Advisor,Uncertain,pct_cumulative,15,0.995,0.005,0.001,0.003,NO,AllCases,Unanimous,AllHarm,Expert AI,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,Mild,pct_cumulative,12,0.828,0.03,0.009,0.017,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,Moderate,pct_cumulative,12,0.477,0.039,0.011,0.022,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,None,pct_cumulative,12,1,0,0,0,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,Severe,pct_cumulative,12,0.105,0.016,0.005,0.009,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
+DeepSeek V3.1,Solo Models,Advisor,Uncertain,pct_cumulative,12,0.999,0.003,0.001,0.002,NO,AllCases,Unanimous,AllHarm,DeepSeek V3.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,Mild,pct_cumulative,20,0.821,0.023,0.005,0.01,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,Moderate,pct_cumulative,20,0.498,0.022,0.005,0.01,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
 GPT-4.1,Solo Models,Advisor,None,pct_cumulative,20,1,0,0,0,NO,AllCases,Unanimous,AllHarm,GPT-4.1,NA,NA,NA,NA
@@ -10036,11 +9963,11 @@ Gemini 2.0 Flash,Solo Models,Advisor,Moderate,pct_cumulative,10,0.555,0.016,0.00
 Gemini 2.0 Flash,Solo Models,Advisor,None,pct_cumulative,10,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
 Gemini 2.0 Flash,Solo Models,Advisor,Severe,pct_cumulative,10,0.111,0.014,0.004,0.008,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
 Gemini 2.0 Flash,Solo Models,Advisor,Uncertain,pct_cumulative,10,0.997,0.005,0.002,0.003,NO,AllCases,Unanimous,AllHarm,Gemini 2.0 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,Mild,pct_cumulative,18,0.851,0.032,0.007,0.015,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,Moderate,pct_cumulative,18,0.503,0.036,0.008,0.016,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,None,pct_cumulative,18,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,Severe,pct_cumulative,18,0.093,0.021,0.005,0.009,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
-Gemini 2.5 Flash,Solo Models,Advisor,Uncertain,pct_cumulative,18,0.997,0.006,0.001,0.003,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,Mild,pct_cumulative,19,0.852,0.031,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,Moderate,pct_cumulative,19,0.503,0.036,0.008,0.016,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,None,pct_cumulative,19,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,Severe,pct_cumulative,19,0.092,0.021,0.005,0.009,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
+Gemini 2.5 Flash,Solo Models,Advisor,Uncertain,pct_cumulative,19,0.997,0.006,0.001,0.003,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Flash,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,Mild,pct_cumulative,19,0.759,0.025,0.006,0.011,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,Moderate,pct_cumulative,19,0.423,0.034,0.008,0.015,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
 Gemini 2.5 Pro,Solo Models,Advisor,None,pct_cumulative,19,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Gemini 2.5 Pro,NA,NA,NA,NA
@@ -10051,16 +9978,16 @@ Glass Health 4.0,Solo Models,Advisor,Moderate,pct_cumulative,13,0.435,0.031,0.00
 Glass Health 4.0,Solo Models,Advisor,None,pct_cumulative,13,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
 Glass Health 4.0,Solo Models,Advisor,Severe,pct_cumulative,13,0.121,0.015,0.004,0.008,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
 Glass Health 4.0,Solo Models,Advisor,Uncertain,pct_cumulative,13,0.959,0.013,0.003,0.007,NO,AllCases,Unanimous,AllHarm,Glass Health 4.0,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,Mild,pct_cumulative,12,0.768,0.03,0.009,0.017,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,Moderate,pct_cumulative,12,0.438,0.046,0.013,0.026,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,None,pct_cumulative,12,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,Severe,pct_cumulative,12,0.143,0.023,0.007,0.013,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4,Solo Models,Advisor,Uncertain,pct_cumulative,12,0.981,0.007,0.002,0.004,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,Mild,pct_cumulative,13,0.781,0.023,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,Moderate,pct_cumulative,13,0.478,0.051,0.014,0.028,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,None,pct_cumulative,13,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,Severe,pct_cumulative,13,0.116,0.023,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
-Grok 4 Fast,Solo Models,Advisor,Uncertain,pct_cumulative,13,0.985,0.008,0.002,0.004,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,Mild,pct_cumulative,13,0.768,0.029,0.008,0.016,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,Moderate,pct_cumulative,13,0.44,0.045,0.013,0.025,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,None,pct_cumulative,13,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,Severe,pct_cumulative,13,0.142,0.022,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4,Solo Models,Advisor,Uncertain,pct_cumulative,13,0.982,0.007,0.002,0.004,NO,AllCases,Unanimous,AllHarm,Grok 4,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,Mild,pct_cumulative,14,0.781,0.022,0.006,0.011,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,Moderate,pct_cumulative,14,0.479,0.048,0.013,0.025,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,None,pct_cumulative,14,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,Severe,pct_cumulative,14,0.115,0.022,0.006,0.012,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
+Grok 4 Fast,Solo Models,Advisor,Uncertain,pct_cumulative,14,0.984,0.008,0.002,0.004,NO,AllCases,Unanimous,AllHarm,Grok 4 Fast,NA,NA,NA,NA
 Kimi K2,Solo Models,Advisor,Mild,pct_cumulative,12,0.883,0.023,0.007,0.013,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 Kimi K2,Solo Models,Advisor,Moderate,pct_cumulative,12,0.578,0.029,0.009,0.017,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
 Kimi K2,Solo Models,Advisor,None,pct_cumulative,12,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Kimi K2,NA,NA,NA,NA
@@ -10096,11 +10023,11 @@ Mistral Medium 3.1,Solo Models,Advisor,Moderate,pct_cumulative,14,0.65,0.029,0.0
 Mistral Medium 3.1,Solo Models,Advisor,None,pct_cumulative,14,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
 Mistral Medium 3.1,Solo Models,Advisor,Severe,pct_cumulative,14,0.165,0.02,0.005,0.011,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
 Mistral Medium 3.1,Solo Models,Advisor,Uncertain,pct_cumulative,14,0.998,0.004,0.001,0.002,NO,AllCases,Unanimous,AllHarm,Mistral Medium 3.1,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,Mild,pct_cumulative,6,0.95,0.02,0.008,0.016,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,Moderate,pct_cumulative,6,0.657,0.018,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,None,pct_cumulative,6,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,Severe,pct_cumulative,6,0.177,0.02,0.008,0.016,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
-Qwen3 32B,Solo Models,Advisor,Uncertain,pct_cumulative,6,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,Mild,pct_cumulative,7,0.949,0.019,0.007,0.014,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,Moderate,pct_cumulative,7,0.663,0.023,0.009,0.017,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,None,pct_cumulative,7,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,Severe,pct_cumulative,7,0.177,0.018,0.007,0.013,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
+Qwen3 32B,Solo Models,Advisor,Uncertain,pct_cumulative,7,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Qwen3 32B,NA,NA,NA,NA
 o1,Solo Models,Advisor,Mild,pct_cumulative,10,0.821,0.017,0.005,0.011,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
 o1,Solo Models,Advisor,Moderate,pct_cumulative,10,0.53,0.033,0.011,0.021,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
 o1,Solo Models,Advisor,None,pct_cumulative,10,1,0,0,0,NO,AllCases,Unanimous,AllHarm,o1,NA,NA,NA,NA
@@ -10126,11 +10053,6 @@ No Intervention,Solo Models,Control,Moderate,pct_cumulative,1,0.62,NA,NA,NA,NO,A
 No Intervention,Solo Models,Control,None,pct_cumulative,1,1,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,No Intervention,NA,NA,NA,NA
 No Intervention,Solo Models,Control,Severe,pct_cumulative,1,0.29,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,No Intervention,NA,NA,NA,NA
 No Intervention,Solo Models,Control,Uncertain,pct_cumulative,1,0.97,NA,NA,NA,NO,AllCases,Unanimous,AllHarm,No Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,Mild,pct_cumulative,10,0.994,0.007,0.002,0.004,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,Moderate,pct_cumulative,10,0.862,0.015,0.005,0.009,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,None,pct_cumulative,10,1,0,0,0,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,Severe,pct_cumulative,10,0.426,0.018,0.006,0.011,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
-Random Intervention,Solo Models,Control,Uncertain,pct_cumulative,10,0.999,0.003,0.001,0.002,NO,AllCases,Unanimous,AllHarm,Random Intervention,NA,NA,NA,NA
 Human,Solo Models,Human,All,Accuracy,3,0.333,0.022,0.013,0.025,NO,AllCases,Unanimous,AllHarm,Human,NA,NA,NA,NA
 Human,Solo Models,Human,All,Emergency Rate,3,0.167,0.289,0.167,0.327,NO,AllCases,Unanimous,AllHarm,Human,NA,NA,NA,NA
 Human,Solo Models,Human,All,Equivocal,3,0.289,0.084,0.048,0.095,NO,AllCases,Unanimous,AllHarm,Human,NA,NA,NA,NA
