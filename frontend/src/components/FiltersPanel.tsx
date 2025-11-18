@@ -238,14 +238,15 @@ export function TeamFiltersBar({
                   {group.conditions.map((condition) => {
                     const normalizedCondition = condition.trim().toLowerCase();
                     const syncsWithSoloModels =
-                      isSoloModelsGroup && normalizedCondition === "advisor";
+                      isSoloModelsGroup &&
+                      normalizedCondition === "advisor" &&
+                      group.conditions.length === 1;
                     const isActive = syncsWithSoloModels
                       ? isSelected
                       : selectedConditionsForTeam.includes(condition);
                     const disabled = syncsWithSoloModels
                       ? false
-                      : (!isSelected && !hasClearedConditions) ||
-                        group.conditions.length <= 1;
+                      : !isSelected && !hasClearedConditions;
                     const color =
                       conditionColorMap.get(condition) ?? teamColor;
 

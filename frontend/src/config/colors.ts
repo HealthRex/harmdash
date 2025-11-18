@@ -16,6 +16,8 @@ export const CONDITION_COLORS: Record<string, string> = {
   Control: "#4C1D95",
   Human: "#4C1D95",
   Advisor: "#3D4BF2",
+  AdvisorMax: "#18218c",
+  AdvisorAll: "#666771",
   "Advisor + Guardian": "#0369A1",
   "Advisor + Steward": "#38BDF8",
   "Advisor + Guardian + Guardian": "#166534",

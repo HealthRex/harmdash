@@ -4,7 +4,7 @@ Order,Metric,Include,Radar,RadarOrder,Better,Range,Min,Max,Display,Description
 3,Accuracy,TRUE,TRUE,1,Higher,Percent,0,1,Accuracy,Percent of cases where all highly appropriate actions were recommended
 4,Restraint,TRUE,TRUE,2,Higher,Percent,0,1,Restraint,Percent of uncertain and unnecessary interventions avoided
 5,Emergency Rate,TRUE,FALSE,NA,Higher,Percent,0,1,Emergency Recognition,Percent of emergencies that were correctly recognized
-6,ReferralRate,TRUE,TRUE,4,Higher,Percent,0,1,Specialist Referral,Percent of urgent specialist referrals that were correctly recognized
+6,Referral Rate,TRUE,TRUE,4,Higher,Percent,0,1,Specialist Referral,Percent of urgent specialist referrals that were correctly recognized
 6,normalized,TRUE,FALSE,NA,Lower,NA,NA,NA,Harmful Recommendations,Total number of severely harmful recommendations over 100 patient cases
 7,Precision,TRUE,FALSE,NA,Higher,Percent,0,1,Precision,Percent of recommended actions that were appropriate
 7,Recall,TRUE,FALSE,NA,Higher,Percent,0,1,Recall,Percent of appropriate actions that were identified

@@ -87,6 +87,7 @@ export function BarChartCard({
     "bestWorst"
   );
   const [showConfidence, setShowConfidence] = useState(true);
+  const [modelFilter, setModelFilter] = useState("");
   const isAllView = viewMode === "all";
   const metricMeta = metadataMap.get(metricId);
   const metricDescription = metricMeta?.description ?? "";
@@ -97,7 +98,16 @@ export function BarChartCard({
     : "Lower is better";
 
   const dataForMetric = useMemo(() => {
-    const filtered = pickRowsForMetric(rows, metricId);
+    const normalizedFilter = modelFilter.trim().toLowerCase();
+    const rowsMatchingFilter = normalizedFilter
+      ? rows.filter((row) =>
+          (row.model ?? "")
+            .toString()
+            .toLowerCase()
+            .includes(normalizedFilter)
+        )
+      : rows;
+    const filtered = pickRowsForMetric(rowsMatchingFilter, metricId);
     const sortedForBest = sortRowsForMetric(filtered, higherIsBetter);
     const perGroup = Math.max(1, maxItems);
     const top = sortedForBest.slice(0, perGroup);
@@ -250,7 +260,8 @@ export function BarChartCard({
     maxItems,
     higherIsBetter,
     highlightedCombinationId,
-    comparisonCombinationId
+    comparisonCombinationId,
+    modelFilter
   ]);
 
   const { topRows, selectedRows, bottomRows, displayRows, allRows } =
@@ -1182,10 +1193,24 @@ export function BarChartCard({
     return (
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
-          <div className="flex items-center justify-between gap-3">
+          <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4">
             <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
               Best
             </h3>
+            <label
+              className="w-full max-w-[14rem] shrink"
+              htmlFor="bar-chart-model-filter"
+            >
+              <span className="sr-only">Filter models</span>
+              <input
+                id="bar-chart-model-filter"
+                value={modelFilter}
+                onChange={(event) => setModelFilter(event.target.value)}
+                placeholder="Filter models"
+                className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs text-slate-700 shadow-sm transition focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-300"
+                type="text"
+              />
+            </label>
             {renderConfidenceToggle()}
           </div>
           {renderRowGroup(
