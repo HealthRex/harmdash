@@ -11,7 +11,8 @@ body {
 }
 
 a {
-  @apply text-brand-600 underline;
+  @apply text-brand-600;
+
 }
 
 button:focus-visible,

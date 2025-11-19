@@ -5,7 +5,7 @@ export default async function HomePage() {
   const dataset = await getDataset();
 
   return (
-    <main className="mx-auto flex max-w-6xl flex-col gap-8 px-4 pb-16 pt-8 md:px-8 lg:px-0">
+    <main className="">
       <Dashboard dataset={dataset} />
     </main>
   );
