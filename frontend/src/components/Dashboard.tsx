@@ -6,12 +6,6 @@ import { MetricsSummary } from "@/components/MetricsSummary";
 import { ModelInfoDrawer as ModelProfileCard } from "@/components/ModelInfoDrawer";
 import { ScatterChartCard } from "@/components/ScatterChartCard";
 import { NoharmInfoCard } from "@/components/NoharmInfoCard";
-import SimpleSidebar from "@/components/SimpleSidebar";
-import MobileHeader from "@/components/MobileHeader";
-import Footer from "@/components/Footer";
-import { useIsMobile } from "@/hooks/use-mobile";
-import Image from "next/image";
-
 import type {
   CombinationEntry,
   DataRow,
@@ -1057,110 +1051,8 @@ export function Dashboard({ dataset }: DashboardProps) {
     setDifficulty(value);
   };
 
-  const [mounted, setMounted] = useState(false);
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const isMobile = useIsMobile();
-  const [selectedModel1, setSelectedModel1] = useState("o4 mini");
-  const [selectedModel2, setSelectedModel2] = useState("Gemini 2.5 Flash");
-
-  useEffect(() => {
-    setMounted(true);
-    window.scrollTo(0, 0);
-    if (isMobile) {
-      setIsCollapsed(true);
-    }
-  }, [isMobile]);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      if (isMobile && !isCollapsed) {
-        document.body.style.overflow = "hidden";
-      } else {
-        document.body.style.overflow = "unset";
-      }
-
-      return () => {
-        document.body.style.overflow = "unset";
-      };
-    }
-  }, [isMobile, isCollapsed]);
-
   return (
-     <div className="flex">
-        <SimpleSidebar
-          isCollapsed={isCollapsed}
-          setIsCollapsed={setIsCollapsed}
-        />
-        <div
-          className={`flex-1 transition-all duration-300 ${
-            isMobile ? "ml-0" : isCollapsed ? "ml-16" : "ml-48"
-          }`}
-        >
-          <MobileHeader
-            isCollapsed={isCollapsed}
-            setIsCollapsed={setIsCollapsed}
-          />
-
-          {/* Hero Section */}
-          <div
-            className={`relative flex flex-col items-center bg-white text-center ${
-              isMobile
-                ? "px-4 pt-20 pb-16 mt-14"
-                : "py-16 px-8"
-            }`}
-          >
-            <div className="max-w-6xl mx-auto w-full">
-              <h1
-                className={`text-[2rem] md:text-5xl lg:text-[3.75rem] tracking-[-0.5px] font-semibold mb-6 ${
-                  isMobile ? "leading-[1.3]" : ""
-                }`}
-              >
-                {isMobile ? (
-                  <>Advancing Healthcare AI through open science research</>
-                ) : (
-                  <>
-                    Advancing Healthcare AI
-                    <br />
-                    through open science research
-                  </>
-                )}
-              </h1>
-
-              <p className="text-md md:text-[1.125rem] lg:text-[1.4rem] font-normal max-w-[42rem] mx-auto leading-[1.4] text-gray-400 mb-12">
-                ARISE brings together researchers across institutions at the intersection of medicine, technology, and real-world impact.
-              </p>
-
-              {/* Hero Image */}
-              <div className="w-full max-w-[972px] mx-auto mb-16">
-                <div className="relative w-full" style={{ paddingBottom: `${(475 / 972) * 100}%` }}>
-                  <Image
-                    src="/benchmarks-hero.png"
-                    alt="Benchmarks Hero"
-                    fill
-                    className="object-cover rounded-lg"
-                    priority
-                  />
-                </div>
-              </div>
-
-              {/* NOHARM Section */}
-              <div className="max-w-4xl mx-auto">
-                <div className="inline-block mb-6">
-                  <span className="bg-gray-100 text-gray-700 text-sm font-medium px-3 py-1 rounded-full">
-                    New
-                  </span>
-                </div>
-
-                <h2 className="text-[2rem] md:text-4xl lg:text-6xl font-normal mb-6 tracking-[-0.5px]">
-                  NOHARM: Interactive AI Benchmark Leaderboard
-                </h2>
-
-                <p className="text-md md:text-[1rem] lg:text-[1.15rem] text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-                  We&apos;re introducing NOHARM - an interactive AI Benchmark Leaderboard that measures model performance on economically valuable, real-world tasks across 44 occupations.
-                </p>
-              </div>
-            </div>
-                        <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 pb-12">
       <MetricsSummary dataset={dataset} />
       <TeamFiltersBar
         teamGroups={teamGroups}
@@ -1254,10 +1146,5 @@ export function Dashboard({ dataset }: DashboardProps) {
         </div>
       </div>
     </div>
-          </div>
-          <Footer />
-        </div>
-      </div>
-   
   );
 }

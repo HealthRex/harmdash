@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@radix-ui/react-tooltip": "^1.2.8",
-    "tailwind-merge": "^3.4.0"
-  }
-}
