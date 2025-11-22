@@ -80,6 +80,7 @@ export function TeamFiltersBar({
   }, []);
 
   const [showMultiAgentHighlight, setShowMultiAgentHighlight] = useState(true);
+  const [showTeamInfo, setShowTeamInfo] = useState(false);
 
   useEffect(() => {
     if (!showMultiAgentHighlight) {
@@ -161,10 +162,36 @@ export function TeamFiltersBar({
 
   return (
     <section className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-md shadow-slate-200 transition-all duration-[600ms] ease-[cubic-bezier(0.33,1,0.68,1)]">
-      <header>
+      <header className="flex items-start justify-between gap-3">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
           TEAM CONFIGURATION
         </h2>
+        <div
+          className="relative"
+          onMouseLeave={() => {
+            setShowTeamInfo(false);
+          }}
+        >
+          <button
+            type="button"
+            onClick={() => {
+              setShowTeamInfo((previous) => !previous);
+            }}
+            onBlur={() => {
+              setShowTeamInfo(false);
+            }}
+            className="flex h-6 w-6 items-center justify-center rounded-full border border-slate-300 bg-white text-[11px] font-semibold text-slate-500 shadow-sm transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-1"
+            aria-label="Team configuration info"
+            aria-pressed={showTeamInfo}
+          >
+            i
+          </button>
+          {showTeamInfo ? (
+            <div className="absolute right-0 z-10 mt-2 w-80 rounded-lg border border-slate-200 bg-white p-3 text-xs font-medium text-slate-600 shadow-lg">
+              View performance of multi-agent teams, where one model reviews and edits the output of other models in a Guardian or Stewardship role
+            </div>
+          ) : null}
+        </div>
       </header>
       <div className="flex flex-wrap items-stretch justify-center gap-4 md:gap-6">
         {teamGroups.map((group) => {

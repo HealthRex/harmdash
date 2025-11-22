@@ -1,6 +1,7 @@
 'use client';
 
 import { TEAM_COLORS } from "@/config/colors";
+import { HUMAN_DISPLAY_LABEL, isHumanLabel } from "@/config/humans";
 import type { DataRow, MetricMetadata } from "@/types/dataset";
 import {
   pickRowsForMetric,
@@ -58,8 +59,6 @@ type Props = {
 
 const PRIMARY_SELECTION_COLOR = "#0ea5e9";
 const COMPARISON_SELECTION_COLOR = "#f97316";
-const HUMAN_MODEL_KEY = "human";
-
 const getTextColor = (hex: string) => {
   const normalized = hex.replace('#', '');
   const bigint = parseInt(normalized, 16);
@@ -119,8 +118,8 @@ export function BarChartCard({
         break;
       }
 
-      const candidateModel = candidate.model.trim().toLowerCase();
-      if (candidateModel === HUMAN_MODEL_KEY) {
+      const candidateModel = candidate.model.trim();
+      if (isHumanLabel(candidateModel)) {
         continue;
       }
 
@@ -202,7 +201,7 @@ export function BarChartCard({
       }
 
       if (
-        match.model.trim().toLowerCase() !== HUMAN_MODEL_KEY &&
+        !isHumanLabel(match.model) &&
         (topIds.has(match.combinationId) || bottomIds.has(match.combinationId))
       ) {
         return;
@@ -224,8 +223,8 @@ export function BarChartCard({
     });
 
     const humanRow = filtered.find((row) => {
-      const modelValue = (row.model ?? "").trim().toLowerCase();
-      return modelValue === HUMAN_MODEL_KEY;
+      const modelValue = (row.model ?? "").trim();
+      return isHumanLabel(modelValue);
     });
 
     if (humanRow && !selectedIds.has(humanRow.combinationId)) {

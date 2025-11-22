@@ -2,6 +2,7 @@
 
 import Plot from "@/components/PlotClient";
 import { TEAM_COLORS } from "@/config/colors";
+import { HUMAN_DISPLAY_LABEL, isHumanLabel } from "@/config/humans";
 import type { CombinationEntry, DataRow, MetricMetadata } from "@/types/dataset";
 import { formatMetricValue } from "@/utils/data";
 import clsx from "clsx";
@@ -87,16 +88,14 @@ function resolveAxisRange(
   return [rangeMin, rangeMax];
 }
 
-const HUMAN_MODEL_KEY = "human";
-
 function isHumanEntry(entry: CombinationEntry) {
-  const model = (entry.model ?? "").trim().toLowerCase();
-  if (model === HUMAN_MODEL_KEY) {
+  const model = (entry.model ?? "").trim();
+  if (isHumanLabel(model)) {
     return true;
   }
 
-  const label = (entry.displayLabel ?? "").trim().toLowerCase();
-  return label === HUMAN_MODEL_KEY;
+  const label = (entry.displayLabel ?? "").trim();
+  return isHumanLabel(label);
 }
 
 interface ScatterChartCardProps {
@@ -335,9 +334,9 @@ export function ScatterChartCard({
 
       if (humanEntries.length > 0) {
         const humanTrace = createTrace(
-          "Human Physicians",
+          HUMAN_DISPLAY_LABEL,
           humanEntries,
-          "Human",
+          HUMAN_DISPLAY_LABEL,
           legendGroup,
           Number.MAX_SAFE_INTEGER
         );

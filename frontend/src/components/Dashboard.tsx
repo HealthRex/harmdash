@@ -13,6 +13,7 @@ import type {
   MetricMetadata
 } from "@/types/dataset";
 import { CONDITION_COLORS, TEAM_COLORS } from "@/config/colors";
+import { HUMAN_DISPLAY_LABEL, isHumanLabel } from "@/config/humans";
 import {
   groupRowsByCombination,
   normalizeHarmValue,
@@ -48,7 +49,11 @@ function findMetricIdByDisplayLabel(
   )?.id;
 }
 
-const ALWAYS_ON_CONDITION_NAMES = new Set(["human", "control"]);
+const ALWAYS_ON_CONDITION_NAMES = new Set([
+  "human",
+  HUMAN_DISPLAY_LABEL.toLowerCase(),
+  "control"
+]);
 
 const escapeRegExp = (value: string): string =>
   value.replace(/[-/\^$*+?.()|[\]{}]/g, "\\$&");
@@ -450,8 +455,8 @@ export function Dashboard({ dataset }: DashboardProps) {
       })();
       const gradingMatch = matchesDifficulty(row.grading, difficulty);
       const trials = row.trials ?? 0;
-      const modelValue = (row.model ?? "").trim().toLowerCase();
-      const isHumanModel = modelValue === "human";
+      const modelValue = (row.model ?? "").trim();
+      const isHumanModel = isHumanLabel(modelValue);
       const trialsMatch = isHumanModel ? true : trials >= minTrials;
       return (
         harmMatch &&
@@ -519,9 +524,7 @@ export function Dashboard({ dataset }: DashboardProps) {
 
     const bestRowIndex = Math.max(0, DEFAULT_PRIMARY_MODEL_RANK - 1);
     const bestRow = bestRows[bestRowIndex] ?? bestRows[0] ?? null;
-    const humanRow = rankingRows.find(
-      (row) => (row.model ?? "").trim().toLowerCase() === "human"
-    );
+    const humanRow = rankingRows.find((row) => isHumanLabel(row.model));
 
     const findEntryByCombinationId = (combinationId: string) =>
       combinations.find((entry) => entry.combinationId === combinationId) ??
@@ -545,12 +548,8 @@ export function Dashboard({ dataset }: DashboardProps) {
         return findEntryByCombinationId(row.combinationId);
       }
       return (
-        combinations.find(
-          (entry) => entry.model.trim().toLowerCase() === "human"
-        ) ??
-        allCombinations.find(
-          (entry) => entry.model.trim().toLowerCase() === "human"
-        ) ??
+        combinations.find((entry) => isHumanLabel(entry.model)) ??
+        allCombinations.find((entry) => isHumanLabel(entry.model)) ??
         null
       );
     };
