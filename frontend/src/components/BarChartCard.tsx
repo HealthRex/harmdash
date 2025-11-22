@@ -1160,10 +1160,24 @@ export function BarChartCard({
     if (target.viewMode === "all") {
       return (
         <div className="flex flex-col gap-3">
-          <div className="flex items-center justify-between gap-3">
+          <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4">
             <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
               All Models
             </h3>
+            <label
+              className="w-full max-w-[14rem] shrink"
+              htmlFor="bar-chart-model-filter"
+            >
+              <span className="sr-only">Filter models</span>
+              <input
+                id="bar-chart-model-filter"
+                value={modelFilter}
+                onChange={(event) => setModelFilter(event.target.value)}
+                placeholder="Filter models"
+                className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs text-slate-700 shadow-sm transition focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-300"
+                type="text"
+              />
+            </label>
             {renderConfidenceToggle()}
           </div>
           <div className="flex flex-col gap-2">
@@ -1294,7 +1308,7 @@ export function BarChartCard({
               Models
             </h2>
             <p className="text-sm text-slate-500">
-              Compare model performance on a variety of metrics.
+              Compare model performance on a variety of metrics
             </p>
           </div>
           <div className="flex min-w-[12rem] flex-col items-end gap-2">

@@ -906,7 +906,7 @@ export function ModelInfoDrawer({
               i
             </button>
             {showDifficultyInfo ? (
-              <div className="absolute left-0 z-10 mt-2 w-96 rounded-lg border border-slate-200 bg-white p-3 text-xs font-medium text-slate-600 shadow-lg">
+              <div className="absolute left-1/2 bottom-full z-10 mb-2 w-[26rem] -translate-x-1/2 rounded-lg border border-slate-200 bg-white p-3 text-xs font-medium text-slate-600 shadow-lg">
                 In Normal Mode, a strict threshold is applied for determining harm severity, where experts must unanimously agree
                 that an action is severely harmful. In Hard Mode, only a majority consensus is required, which lowers the
                 threshold for designating errors are severely harmful.

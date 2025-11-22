@@ -585,10 +585,10 @@ export function ScatterChartCard({
             Metric Explorer
           </h2>
           <p className="text-sm text-slate-500">
-            Compare model performance across two metrics.
+            Analyze model performance across two metrics
           </p>
         </div>
-        <p className="text-xs text-slate-500">Hover for more details.</p>
+        <p className="text-xs text-slate-500">Hover for model details</p>
       </header>
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
