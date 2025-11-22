@@ -38,6 +38,16 @@ function resolvePreferredMetricId(
   );
 }
 
+function findMetricIdByDisplayLabel(
+  metrics: MetricMetadata[],
+  displayLabel: string
+): string | undefined {
+  const normalizedLabel = displayLabel.trim().toLowerCase();
+  return metrics.find(
+    (meta) => meta.displayLabel.trim().toLowerCase() === normalizedLabel
+  )?.id;
+}
+
 const ALWAYS_ON_CONDITION_NAMES = new Set(["human", "control"]);
 
 const escapeRegExp = (value: string): string =>
@@ -70,7 +80,8 @@ const TEAM_DISPLAY_PRIORITIES: Record<string, number> = {
   "3 agent team": 2,
   "3 agent teams": 2
 };
-const DEFAULT_RANKING_METRIC_ID = DEFAULT_X_METRIC_ID;
+const DEFAULT_RANKING_METRIC_ID = "OverallScore3";
+const DEFAULT_RANKING_METRIC_LABEL = "Overall Score";
 const FALLBACK_RANKING_METRIC_ID = "nnh_cumulative";
 const DEFAULT_PRIMARY_MODEL_RANK = 1;
 
@@ -168,6 +179,13 @@ export function Dashboard({ dataset }: DashboardProps) {
   const preferredYMetricId = useMemo(
     () => resolvePreferredMetricId(metricIds, DEFAULT_Y_METRIC_ID),
     [metricIds]
+  );
+  const preferredRankingMetricId = useMemo(
+    () =>
+      findMetricIdByDisplayLabel(metrics, DEFAULT_RANKING_METRIC_LABEL) ??
+      resolvePreferredMetricId(metricIds, DEFAULT_RANKING_METRIC_ID) ??
+      resolvePreferredMetricId(metricIds, FALLBACK_RANKING_METRIC_ID),
+    [metrics, metricIds]
   );
   const metadataMap = useMemo(
     () => new Map<string, MetricMetadata>(metrics.map((meta) => [meta.id, meta])),
@@ -467,10 +485,10 @@ export function Dashboard({ dataset }: DashboardProps) {
     }
 
     const rankingMetricCandidates = [
-      resolvePreferredMetricId(metricIds, DEFAULT_RANKING_METRIC_ID),
+      preferredRankingMetricId,
+      resolvePreferredMetricId(metricIds, FALLBACK_RANKING_METRIC_ID),
       preferredXMetricId,
-      metricIds[0],
-      resolvePreferredMetricId(metricIds, FALLBACK_RANKING_METRIC_ID)
+      metricIds[0]
     ]
       .filter((candidate): candidate is string => Boolean(candidate))
       .filter((candidate, index, array) => array.indexOf(candidate) === index);
@@ -556,7 +574,8 @@ export function Dashboard({ dataset }: DashboardProps) {
     comparisonSelection,
     metricIds,
     metadataMap,
-    preferredXMetricId
+    preferredXMetricId,
+    preferredRankingMetricId
   ]);
 
   useEffect(() => {
