@@ -3,7 +3,7 @@
 import Plot from "@/components/PlotClient";
 import { TEAM_COLORS } from "@/config/colors";
 import { HUMAN_DISPLAY_LABEL, isHumanLabel } from "@/config/humans";
-import type { CombinationEntry, DataRow, MetricMetadata } from "@/types/dataset";
+import type { CombinationEntry, MetricMetadata } from "@/types/dataset";
 import { formatMetricValue } from "@/utils/data";
 import clsx from "clsx";
 import type { Layout, PlotData, PlotMouseEvent, Shape } from "plotly.js";
@@ -28,11 +28,7 @@ function getLegendPriority(label: string): number {
   return LEGEND_PRIORITY_MAP.get(normalized) ?? LEGEND_PRIORITY_GROUPS.length;
 }
 
-function sizeFromTrials(a: DataRow | undefined, b: DataRow | undefined) {
-  const trials = Math.max(a?.trials ?? 0, b?.trials ?? 0);
-  if (trials <= 0) return 10;
-  return Math.min(28, 10 + Math.log2(trials + 1) * 4);
-}
+const MARKER_SIZE = 20;
 
 function resolveAxisRange(
   values: number[],
@@ -198,9 +194,7 @@ export function ScatterChartCard({
 
       const color = TEAM_COLORS[colorKey] ?? TEAM_COLORS.default;
       const marker = {
-        size: entries.map((entry) =>
-          sizeFromTrials(entry.metrics[xMetricId], entry.metrics[yMetricId])
-        ),
+        size: MARKER_SIZE,
         color,
         opacity: entries.map((entry) =>
           highlightedCombinationId
@@ -591,12 +585,10 @@ export function ScatterChartCard({
             Metric Explorer
           </h2>
           <p className="text-sm text-slate-500">
-            Compare model performance across two metrics. 
+            Compare model performance across two metrics.
           </p>
         </div>
-        <p className="text-xs text-slate-500">
-          Hover for more details. Size approximates number of trials.
-        </p>
+        <p className="text-xs text-slate-500">Hover for more details.</p>
       </header>
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

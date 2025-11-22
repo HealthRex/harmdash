@@ -117,6 +117,7 @@ export function ModelInfoDrawer({
     trimmedComparisonQuery !== "" &&
     comparisonSuggestions.length > 0;
   const minAllowed = Math.max(minTrialsRange.min, 1);
+  const [showDifficultyInfo, setShowDifficultyInfo] = useState(false);
 
   const clampTrials = useCallback(
     (value: number) => {
@@ -880,9 +881,39 @@ export function ModelInfoDrawer({
         )}
       </div>
       <div className="flex flex-col gap-2 border-t border-slate-200 pt-4">
-        <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-          Difficulty
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+            Difficulty
+          </span>
+          <div
+            className="relative"
+            onMouseLeave={() => {
+              setShowDifficultyInfo(false);
+            }}
+          >
+            <button
+              type="button"
+              onClick={() => {
+                setShowDifficultyInfo((previous) => !previous);
+              }}
+              onBlur={() => {
+                setShowDifficultyInfo(false);
+              }}
+              className="flex h-5 w-5 items-center justify-center rounded-full border border-slate-300 bg-white text-[10px] font-semibold text-slate-500 shadow-sm transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-1"
+              aria-label="Difficulty info"
+              aria-pressed={showDifficultyInfo}
+            >
+              i
+            </button>
+            {showDifficultyInfo ? (
+              <div className="absolute left-0 z-10 mt-2 w-96 rounded-lg border border-slate-200 bg-white p-3 text-xs font-medium text-slate-600 shadow-lg">
+                In Normal Mode, a strict threshold is applied for determining harm severity, where experts must unanimously agree
+                that an action is severely harmful. In Hard Mode, only a majority consensus is required, which lowers the
+                threshold for designating errors are severely harmful.
+              </div>
+            ) : null}
+          </div>
+        </div>
         <div className="flex items-center gap-2">
           {[
             { value: "Unanimous" as const, label: "Normal" },
