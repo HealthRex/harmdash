@@ -211,24 +211,6 @@ export function ModelInfoDrawer({
     });
   }, []);
 
-  const handleClearAll = useCallback(() => {
-    onClear();
-    onClearComparison();
-    onModelSearchChange("");
-    onComparisonSearchChange("");
-    setIsFocused(false);
-    setIsComparisonFocused(false);
-    setPrimaryHighlightIndex(-1);
-    setComparisonHighlightIndex(-1);
-    onActiveTargetChange(null);
-  }, [
-    onClear,
-    onClearComparison,
-    onModelSearchChange,
-    onComparisonSearchChange,
-    onActiveTargetChange
-  ]);
-
   const radarData = useMemo(() => {
     if (!selection && !comparison) {
       return null;
@@ -551,18 +533,6 @@ export function ModelInfoDrawer({
               {description}
             </p>
           </div>
-          {(selection ||
-            comparison ||
-            modelQuery.trim() ||
-            comparisonQuery.trim()) ? (
-            <button
-              type="button"
-              onClick={handleClearAll}
-              className="self-start rounded-full border border-slate-200 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600 transition hover:border-brand-400 hover:text-brand-600"
-            >
-              Clear
-            </button>
-          ) : null}
         </div>
       </header>
       <div className="flex flex-1 flex-col gap-3">
