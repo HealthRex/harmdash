@@ -300,17 +300,6 @@ export function Dashboard({ dataset }: DashboardProps) {
     });
     return initial;
   });
-  const trialsRange = useMemo(() => {
-    let maxTrials = 0;
-    dataset.rows.forEach((row) => {
-      if (row.trials !== null && row.trials !== undefined) {
-        maxTrials = Math.max(maxTrials, row.trials);
-      }
-    });
-    const snappedMax = Math.max(5, Math.ceil(maxTrials / 5) * 5);
-    return { min: 1, max: snappedMax };
-  }, [dataset.rows]);
-  const [minTrials, setMinTrials] = useState<number>(3);
   const [selection, setSelection] = useState<CombinationEntry | null>(null);
   const [comparisonSelection, setComparisonSelection] =
     useState<CombinationEntry | null>(null);
@@ -321,12 +310,6 @@ export function Dashboard({ dataset }: DashboardProps) {
   const searchSelectionRef = useRef(false);
   const comparisonSearchSelectionRef = useRef(false);
   const hasInitializedDefaultsRef = useRef(false);
-
-  useEffect(() => {
-    if (minTrials > trialsRange.max) {
-      setMinTrials(trialsRange.max);
-    }
-  }, [minTrials, trialsRange.max]);
 
   useEffect(() => {
     if (teamGroups.length === 0) {
@@ -454,15 +437,10 @@ export function Dashboard({ dataset }: DashboardProps) {
         return allowed.has(conditionValue);
       })();
       const gradingMatch = matchesDifficulty(row.grading, difficulty);
-      const trials = row.trials ?? 0;
-      const modelValue = (row.model ?? "").trim();
-      const isHumanModel = isHumanLabel(modelValue);
-      const trialsMatch = isHumanModel ? true : trials >= minTrials;
       return (
         harmMatch &&
         teamMatch &&
         conditionMatch &&
-        trialsMatch &&
         gradingMatch
       );
     });
@@ -471,7 +449,6 @@ export function Dashboard({ dataset }: DashboardProps) {
     selectedTeams,
     teamConditionLookup,
     alwaysOnConditionSet,
-    minTrials,
     difficulty
   ]);
 
@@ -1035,10 +1012,6 @@ export function Dashboard({ dataset }: DashboardProps) {
     ]
   );
 
-  const handleMinTrialsChange = (value: number) => {
-    setMinTrials(value);
-  };
-
   const handleDifficultyChange = (value: "Unanimous" | "Majority") => {
     if (value === difficulty) {
       return;
@@ -1138,9 +1111,6 @@ export function Dashboard({ dataset }: DashboardProps) {
               }
             }}
             onActiveTargetChange={setActiveSelectionTarget}
-            minTrials={minTrials}
-            minTrialsRange={trialsRange}
-            onMinTrialsChange={handleMinTrialsChange}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
           />

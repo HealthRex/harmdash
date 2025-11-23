@@ -219,10 +219,6 @@ export function ScatterChartCard({
         const xCi = entry.metrics[xMetricId]?.ci ?? null;
         const yCi = entry.metrics[yMetricId]?.ci ?? null;
         const condition = entry.condition || "NA";
-        const trials = Math.max(
-          entry.metrics[xMetricId]?.trials ?? 0,
-          entry.metrics[yMetricId]?.trials ?? 0
-        );
         const modelName = entry.displayLabel || entry.model || "Unknown Model";
 
         const formatAxisValue = (
@@ -256,8 +252,7 @@ export function ScatterChartCard({
           `<b>${modelName}</b>`,
           `Prompt: ${condition}`,
           formatMetricLine(xMeta?.displayLabel ?? xMetricId, xValue, xCi, xMeta),
-          formatMetricLine(yMeta?.displayLabel ?? yMetricId, yValue, yCi, yMeta),
-          `Trials: ${trials || "NA"}`
+          formatMetricLine(yMeta?.displayLabel ?? yMetricId, yValue, yCi, yMeta)
         ].filter(Boolean);
 
         return lines.join("<br>");

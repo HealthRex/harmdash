@@ -1004,7 +1004,11 @@ export function BarChartCard({
             </button>
             <button
               type="button"
-              onClick={() => setSelectedModels(filteredModelOptions)}
+              onClick={() =>
+                setSelectedModels((previous) => [
+                  ...new Set([...previous, ...filteredModelOptions]),
+                ])
+              }
               className="rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-brand-700 transition hover:border-brand-300 hover:bg-brand-100"
               disabled={!filteredModelOptions.length}
             >
