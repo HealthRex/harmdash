@@ -13,6 +13,7 @@ import type {
   MetricMetadata
 } from "@/types/dataset";
 import { CONDITION_COLORS, TEAM_COLORS } from "@/config/colors";
+import { HUMAN_DISPLAY_LABEL, isHumanLabel } from "@/config/humans";
 import {
   groupRowsByCombination,
   normalizeHarmValue,
@@ -38,7 +39,21 @@ function resolvePreferredMetricId(
   );
 }
 
-const ALWAYS_ON_CONDITION_NAMES = new Set(["human", "control"]);
+function findMetricIdByDisplayLabel(
+  metrics: MetricMetadata[],
+  displayLabel: string
+): string | undefined {
+  const normalizedLabel = displayLabel.trim().toLowerCase();
+  return metrics.find(
+    (meta) => meta.displayLabel.trim().toLowerCase() === normalizedLabel
+  )?.id;
+}
+
+const ALWAYS_ON_CONDITION_NAMES = new Set([
+  "human",
+  HUMAN_DISPLAY_LABEL.toLowerCase(),
+  "control"
+]);
 
 const escapeRegExp = (value: string): string =>
   value.replace(/[-/\^$*+?.()|[\]{}]/g, "\\$&");
@@ -70,7 +85,8 @@ const TEAM_DISPLAY_PRIORITIES: Record<string, number> = {
   "3 agent team": 2,
   "3 agent teams": 2
 };
-const DEFAULT_RANKING_METRIC_ID = DEFAULT_X_METRIC_ID;
+const DEFAULT_RANKING_METRIC_ID = "OverallScore3";
+const DEFAULT_RANKING_METRIC_LABEL = "Overall Score";
 const FALLBACK_RANKING_METRIC_ID = "nnh_cumulative";
 const DEFAULT_PRIMARY_MODEL_RANK = 1;
 
@@ -168,6 +184,13 @@ export function Dashboard({ dataset }: DashboardProps) {
   const preferredYMetricId = useMemo(
     () => resolvePreferredMetricId(metricIds, DEFAULT_Y_METRIC_ID),
     [metricIds]
+  );
+  const preferredRankingMetricId = useMemo(
+    () =>
+      findMetricIdByDisplayLabel(metrics, DEFAULT_RANKING_METRIC_LABEL) ??
+      resolvePreferredMetricId(metricIds, DEFAULT_RANKING_METRIC_ID) ??
+      resolvePreferredMetricId(metricIds, FALLBACK_RANKING_METRIC_ID),
+    [metrics, metricIds]
   );
   const metadataMap = useMemo(
     () => new Map<string, MetricMetadata>(metrics.map((meta) => [meta.id, meta])),
@@ -277,17 +300,6 @@ export function Dashboard({ dataset }: DashboardProps) {
     });
     return initial;
   });
-  const trialsRange = useMemo(() => {
-    let maxTrials = 0;
-    dataset.rows.forEach((row) => {
-      if (row.trials !== null && row.trials !== undefined) {
-        maxTrials = Math.max(maxTrials, row.trials);
-      }
-    });
-    const snappedMax = Math.max(5, Math.ceil(maxTrials / 5) * 5);
-    return { min: 1, max: snappedMax };
-  }, [dataset.rows]);
-  const [minTrials, setMinTrials] = useState<number>(3);
   const [selection, setSelection] = useState<CombinationEntry | null>(null);
   const [comparisonSelection, setComparisonSelection] =
     useState<CombinationEntry | null>(null);
@@ -298,12 +310,6 @@ export function Dashboard({ dataset }: DashboardProps) {
   const searchSelectionRef = useRef(false);
   const comparisonSearchSelectionRef = useRef(false);
   const hasInitializedDefaultsRef = useRef(false);
-
-  useEffect(() => {
-    if (minTrials > trialsRange.max) {
-      setMinTrials(trialsRange.max);
-    }
-  }, [minTrials, trialsRange.max]);
 
   useEffect(() => {
     if (teamGroups.length === 0) {
@@ -431,15 +437,10 @@ export function Dashboard({ dataset }: DashboardProps) {
         return allowed.has(conditionValue);
       })();
       const gradingMatch = matchesDifficulty(row.grading, difficulty);
-      const trials = row.trials ?? 0;
-      const modelValue = (row.model ?? "").trim().toLowerCase();
-      const isHumanModel = modelValue === "human";
-      const trialsMatch = isHumanModel ? true : trials >= minTrials;
       return (
         harmMatch &&
         teamMatch &&
         conditionMatch &&
-        trialsMatch &&
         gradingMatch
       );
     });
@@ -448,7 +449,6 @@ export function Dashboard({ dataset }: DashboardProps) {
     selectedTeams,
     teamConditionLookup,
     alwaysOnConditionSet,
-    minTrials,
     difficulty
   ]);
 
@@ -467,10 +467,10 @@ export function Dashboard({ dataset }: DashboardProps) {
     }
 
     const rankingMetricCandidates = [
-      resolvePreferredMetricId(metricIds, DEFAULT_RANKING_METRIC_ID),
+      preferredRankingMetricId,
+      resolvePreferredMetricId(metricIds, FALLBACK_RANKING_METRIC_ID),
       preferredXMetricId,
-      metricIds[0],
-      resolvePreferredMetricId(metricIds, FALLBACK_RANKING_METRIC_ID)
+      metricIds[0]
     ]
       .filter((candidate): candidate is string => Boolean(candidate))
       .filter((candidate, index, array) => array.indexOf(candidate) === index);
@@ -501,9 +501,7 @@ export function Dashboard({ dataset }: DashboardProps) {
 
     const bestRowIndex = Math.max(0, DEFAULT_PRIMARY_MODEL_RANK - 1);
     const bestRow = bestRows[bestRowIndex] ?? bestRows[0] ?? null;
-    const humanRow = rankingRows.find(
-      (row) => (row.model ?? "").trim().toLowerCase() === "human"
-    );
+    const humanRow = rankingRows.find((row) => isHumanLabel(row.model));
 
     const findEntryByCombinationId = (combinationId: string) =>
       combinations.find((entry) => entry.combinationId === combinationId) ??
@@ -527,12 +525,8 @@ export function Dashboard({ dataset }: DashboardProps) {
         return findEntryByCombinationId(row.combinationId);
       }
       return (
-        combinations.find(
-          (entry) => entry.model.trim().toLowerCase() === "human"
-        ) ??
-        allCombinations.find(
-          (entry) => entry.model.trim().toLowerCase() === "human"
-        ) ??
+        combinations.find((entry) => isHumanLabel(entry.model)) ??
+        allCombinations.find((entry) => isHumanLabel(entry.model)) ??
         null
       );
     };
@@ -556,7 +550,8 @@ export function Dashboard({ dataset }: DashboardProps) {
     comparisonSelection,
     metricIds,
     metadataMap,
-    preferredXMetricId
+    preferredXMetricId,
+    preferredRankingMetricId
   ]);
 
   useEffect(() => {
@@ -1017,10 +1012,6 @@ export function Dashboard({ dataset }: DashboardProps) {
     ]
   );
 
-  const handleMinTrialsChange = (value: number) => {
-    setMinTrials(value);
-  };
-
   const handleDifficultyChange = (value: "Unanimous" | "Majority") => {
     if (value === difficulty) {
       return;
@@ -1120,9 +1111,6 @@ export function Dashboard({ dataset }: DashboardProps) {
               }
             }}
             onActiveTargetChange={setActiveSelectionTarget}
-            minTrials={minTrials}
-            minTrialsRange={trialsRange}
-            onMinTrialsChange={handleMinTrialsChange}
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
           />

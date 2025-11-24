@@ -2,7 +2,8 @@
 
 import Plot from "@/components/PlotClient";
 import { TEAM_COLORS } from "@/config/colors";
-import type { CombinationEntry, DataRow, MetricMetadata } from "@/types/dataset";
+import { HUMAN_DISPLAY_LABEL, isHumanLabel } from "@/config/humans";
+import type { CombinationEntry, MetricMetadata } from "@/types/dataset";
 import { formatMetricValue } from "@/utils/data";
 import clsx from "clsx";
 import type { Layout, PlotData, PlotMouseEvent, Shape } from "plotly.js";
@@ -27,11 +28,7 @@ function getLegendPriority(label: string): number {
   return LEGEND_PRIORITY_MAP.get(normalized) ?? LEGEND_PRIORITY_GROUPS.length;
 }
 
-function sizeFromTrials(a: DataRow | undefined, b: DataRow | undefined) {
-  const trials = Math.max(a?.trials ?? 0, b?.trials ?? 0);
-  if (trials <= 0) return 10;
-  return Math.min(28, 10 + Math.log2(trials + 1) * 4);
-}
+const MARKER_SIZE = 20;
 
 function resolveAxisRange(
   values: number[],
@@ -87,16 +84,14 @@ function resolveAxisRange(
   return [rangeMin, rangeMax];
 }
 
-const HUMAN_MODEL_KEY = "human";
-
 function isHumanEntry(entry: CombinationEntry) {
-  const model = (entry.model ?? "").trim().toLowerCase();
-  if (model === HUMAN_MODEL_KEY) {
+  const model = (entry.model ?? "").trim();
+  if (isHumanLabel(model)) {
     return true;
   }
 
-  const label = (entry.displayLabel ?? "").trim().toLowerCase();
-  return label === HUMAN_MODEL_KEY;
+  const label = (entry.displayLabel ?? "").trim();
+  return isHumanLabel(label);
 }
 
 interface ScatterChartCardProps {
@@ -199,9 +194,7 @@ export function ScatterChartCard({
 
       const color = TEAM_COLORS[colorKey] ?? TEAM_COLORS.default;
       const marker = {
-        size: entries.map((entry) =>
-          sizeFromTrials(entry.metrics[xMetricId], entry.metrics[yMetricId])
-        ),
+        size: MARKER_SIZE,
         color,
         opacity: entries.map((entry) =>
           highlightedCombinationId
@@ -226,10 +219,6 @@ export function ScatterChartCard({
         const xCi = entry.metrics[xMetricId]?.ci ?? null;
         const yCi = entry.metrics[yMetricId]?.ci ?? null;
         const condition = entry.condition || "NA";
-        const trials = Math.max(
-          entry.metrics[xMetricId]?.trials ?? 0,
-          entry.metrics[yMetricId]?.trials ?? 0
-        );
         const modelName = entry.displayLabel || entry.model || "Unknown Model";
 
         const formatAxisValue = (
@@ -263,8 +252,7 @@ export function ScatterChartCard({
           `<b>${modelName}</b>`,
           `Prompt: ${condition}`,
           formatMetricLine(xMeta?.displayLabel ?? xMetricId, xValue, xCi, xMeta),
-          formatMetricLine(yMeta?.displayLabel ?? yMetricId, yValue, yCi, yMeta),
-          `Trials: ${trials || "NA"}`
+          formatMetricLine(yMeta?.displayLabel ?? yMetricId, yValue, yCi, yMeta)
         ].filter(Boolean);
 
         return lines.join("<br>");
@@ -335,9 +323,9 @@ export function ScatterChartCard({
 
       if (humanEntries.length > 0) {
         const humanTrace = createTrace(
-          "Human Physicians",
+          HUMAN_DISPLAY_LABEL,
           humanEntries,
-          "Human",
+          HUMAN_DISPLAY_LABEL,
           legendGroup,
           Number.MAX_SAFE_INTEGER
         );
@@ -592,12 +580,10 @@ export function ScatterChartCard({
             Metric Explorer
           </h2>
           <p className="text-sm text-slate-500">
-            Compare model performance across two metrics. 
+            Analyze model performance across two metrics
           </p>
         </div>
-        <p className="text-xs text-slate-500">
-          Hover for more details. Size approximates number of trials.
-        </p>
+        <p className="text-xs text-slate-500">Hover for model details</p>
       </header>
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

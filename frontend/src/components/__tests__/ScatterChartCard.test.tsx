@@ -118,8 +118,8 @@ describe("ScatterChartCard trace selection", () => {
       buildEntry(1),
       {
         ...buildEntry(2),
-        model: "Human",
-        displayLabel: "Human Physicians"
+        model: "Human Generalist Physicians",
+        displayLabel: "Human Generalist Physicians"
       }
     ];
 
@@ -163,7 +163,7 @@ describe("ScatterChartCard trace selection", () => {
     const plotArgs = mockPlot.mock.calls.at(-1)?.[0];
     expect(plotArgs).toBeDefined();
     const nonHumanTrace = (plotArgs.data as any[]).find(
-      (trace) => trace.name !== "Human Physicians"
+      (trace) => trace.name !== "Human Generalist Physicians"
     );
     expect(nonHumanTrace?.type).toBe("scattergl");
   });

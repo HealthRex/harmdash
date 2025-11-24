@@ -1,6 +1,7 @@
 'use client';
 
 import { TEAM_COLORS } from "@/config/colors";
+import { HUMAN_DISPLAY_LABEL, isHumanLabel } from "@/config/humans";
 import type { DataRow, MetricMetadata } from "@/types/dataset";
 import {
   pickRowsForMetric,
@@ -58,8 +59,6 @@ type Props = {
 
 const PRIMARY_SELECTION_COLOR = "#0ea5e9";
 const COMPARISON_SELECTION_COLOR = "#f97316";
-const HUMAN_MODEL_KEY = "human";
-
 const getTextColor = (hex: string) => {
   const normalized = hex.replace('#', '');
   const bigint = parseInt(normalized, 16);
@@ -87,24 +86,85 @@ export function BarChartCard({
     "bestWorst"
   );
   const [showConfidence, setShowConfidence] = useState(true);
-  const [modelFilter, setModelFilter] = useState("");
+  const [selectedModels, setSelectedModels] = useState<string[]>([]);
+  const [isModelDropdownOpen, setIsModelDropdownOpen] = useState(false);
+  const [modelSearchTerm, setModelSearchTerm] = useState("");
   const isAllView = viewMode === "all";
   const metricMeta = metadataMap.get(metricId);
   const metricDescription = metricMeta?.description ?? "";
   const isPercentMetric = metricMeta?.range === "percent";
   const higherIsBetter = metricMeta?.betterDirection !== "lower";
+  const modelDropdownRef = useRef<HTMLDivElement | null>(null);
+  const modelSearchInputRef = useRef<HTMLInputElement | null>(null);
+
+  const modelOptions = useMemo(() => {
+    const uniqueModels = new Set<string>();
+    rows.forEach((row) => {
+      const model = (row.model ?? "").toString().trim();
+      if (model) {
+        uniqueModels.add(model);
+      }
+    });
+    return Array.from(uniqueModels).sort((a, b) => a.localeCompare(b));
+  }, [rows]);
+
+  const modelOptionSet = useMemo(() => new Set(modelOptions), [modelOptions]);
+
+  useEffect(() => {
+    setSelectedModels((previous) =>
+      previous.filter((model) => modelOptionSet.has(model))
+    );
+  }, [modelOptionSet]);
+
+  const filteredModelOptions = useMemo(() => {
+    const normalizedSearch = modelSearchTerm.trim().toLowerCase();
+    if (!normalizedSearch) {
+      return modelOptions;
+    }
+
+    return modelOptions.filter((model) =>
+      model.toLowerCase().includes(normalizedSearch)
+    );
+  }, [modelOptions, modelSearchTerm]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        modelDropdownRef.current &&
+        event.target instanceof Node &&
+        !modelDropdownRef.current.contains(event.target)
+      ) {
+        setIsModelDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isModelDropdownOpen) {
+      return;
+    }
+
+    modelSearchInputRef.current?.focus();
+    modelSearchInputRef.current?.select();
+  }, [isModelDropdownOpen]);
   const betterDirectionLabel = higherIsBetter
     ? "Higher is better"
     : "Lower is better";
 
   const dataForMetric = useMemo(() => {
-    const normalizedFilter = modelFilter.trim().toLowerCase();
-    const rowsMatchingFilter = normalizedFilter
+    const normalizedSelection = new Set(
+      selectedModels.map((model) => model.trim().toLowerCase())
+    );
+
+    const rowsMatchingFilter = normalizedSelection.size
       ? rows.filter((row) =>
-          (row.model ?? "")
-            .toString()
-            .toLowerCase()
-            .includes(normalizedFilter)
+          normalizedSelection.has((row.model ?? "").toString().toLowerCase())
         )
       : rows;
     const filtered = pickRowsForMetric(rowsMatchingFilter, metricId);
@@ -119,8 +179,8 @@ export function BarChartCard({
         break;
       }
 
-      const candidateModel = candidate.model.trim().toLowerCase();
-      if (candidateModel === HUMAN_MODEL_KEY) {
+      const candidateModel = candidate.model.trim();
+      if (isHumanLabel(candidateModel)) {
         continue;
       }
 
@@ -202,7 +262,7 @@ export function BarChartCard({
       }
 
       if (
-        match.model.trim().toLowerCase() !== HUMAN_MODEL_KEY &&
+        !isHumanLabel(match.model) &&
         (topIds.has(match.combinationId) || bottomIds.has(match.combinationId))
       ) {
         return;
@@ -224,8 +284,8 @@ export function BarChartCard({
     });
 
     const humanRow = filtered.find((row) => {
-      const modelValue = (row.model ?? "").trim().toLowerCase();
-      return modelValue === HUMAN_MODEL_KEY;
+      const modelValue = (row.model ?? "").trim();
+      return isHumanLabel(modelValue);
     });
 
     if (humanRow && !selectedIds.has(humanRow.combinationId)) {
@@ -261,7 +321,7 @@ export function BarChartCard({
     higherIsBetter,
     highlightedCombinationId,
     comparisonCombinationId,
-    modelFilter
+    selectedModels
   ]);
 
   const { topRows, selectedRows, bottomRows, displayRows, allRows } =
@@ -857,6 +917,109 @@ export function BarChartCard({
     setShowConfidence((current) => !current);
   };
 
+  const toggleModelSelection = useCallback((model: string) => {
+    setSelectedModels((previous) =>
+      previous.includes(model)
+        ? previous.filter((entry) => entry !== model)
+        : [...previous, model]
+    );
+  }, []);
+
+  const handleClearModelSelection = useCallback(() => {
+    setSelectedModels([]);
+    setModelSearchTerm("");
+  }, []);
+
+  const renderModelFilterDropdown = () => (
+    <div
+      className="relative w-[10rem] shrink-0 sm:w-[10.5rem]"
+      ref={modelDropdownRef}
+    >
+      <button
+        type="button"
+        onClick={() => setIsModelDropdownOpen((open) => !open)}
+        aria-haspopup="listbox"
+        aria-expanded={isModelDropdownOpen}
+        className="flex w-full items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white px-3 py-2 text-left text-xs font-semibold tracking-wide text-slate-600 shadow-sm transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 focus-visible:ring-offset-1"
+      >
+        <span className="text-[11px] uppercase text-slate-600">Filter models</span>
+        <span aria-hidden="true" className="text-slate-500">
+          {isModelDropdownOpen ? "▲" : "▼"}
+        </span>
+      </button>
+      {isModelDropdownOpen ? (
+        <div className="absolute right-0 z-30 mt-2 w-[23rem] rounded-xl border border-slate-200 bg-white p-3 shadow-lg">
+          <label className="mb-2 block text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+            Search
+            <input
+              ref={modelSearchInputRef}
+              type="search"
+              value={modelSearchTerm}
+              onChange={(event) => setModelSearchTerm(event.target.value)}
+              placeholder="Search models"
+              className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-sm text-slate-700 shadow-sm transition focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-300"
+            />
+          </label>
+          <div className="max-h-64 overflow-y-auto rounded-md border border-slate-100">
+            {filteredModelOptions.length ? (
+              <ul className="divide-y divide-slate-100">
+                {filteredModelOptions.map((model) => {
+                  const isChecked = selectedModels.includes(model);
+                  return (
+                    <li key={model}>
+                      <button
+                        type="button"
+                        role="checkbox"
+                        aria-checked={isChecked}
+                        onClick={() => toggleModelSelection(model)}
+                        className="flex w-full items-center gap-3 px-3 py-2 text-left transition hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 focus-visible:ring-offset-2"
+                      >
+                        <input
+                          type="checkbox"
+                          className="pointer-events-none h-4 w-4 rounded border-slate-300 text-brand-600"
+                          tabIndex={-1}
+                          readOnly
+                          checked={isChecked}
+                          aria-hidden="true"
+                        />
+                        <span className="flex-1 text-sm text-slate-700">{model}</span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : (
+              <p className="px-3 py-4 text-xs text-slate-500">
+                No models match your search.
+              </p>
+            )}
+          </div>
+          <div className="mt-3 flex items-center justify-between gap-2 text-xs font-semibold uppercase tracking-wide">
+            <button
+              type="button"
+              onClick={handleClearModelSelection}
+              className="rounded-full border border-slate-200 px-3 py-1 text-slate-600 transition hover:border-brand-300 hover:text-brand-600"
+            >
+              Clear
+            </button>
+            <button
+              type="button"
+              onClick={() =>
+                setSelectedModels((previous) => [
+                  ...new Set([...previous, ...filteredModelOptions]),
+                ])
+              }
+              className="rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-brand-700 transition hover:border-brand-300 hover:bg-brand-100"
+              disabled={!filteredModelOptions.length}
+            >
+              Select all
+            </button>
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+
   const renderConfidenceToggle = () => (
     <button
       type="button"
@@ -1161,10 +1324,11 @@ export function BarChartCard({
     if (target.viewMode === "all") {
       return (
         <div className="flex flex-col gap-3">
-          <div className="flex items-center justify-between gap-3">
+          <div className="flex flex-wrap items-center gap-3 sm:grid sm:grid-cols-[1fr_auto_auto] sm:items-center sm:gap-4">
             <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
               All Models
             </h3>
+            {renderModelFilterDropdown()}
             {renderConfidenceToggle()}
           </div>
           <div className="flex flex-col gap-2">
@@ -1193,24 +1357,11 @@ export function BarChartCard({
     return (
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
-          <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4">
+          <div className="flex flex-wrap items-center gap-3 sm:grid sm:grid-cols-[1fr_auto_auto] sm:items-center sm:gap-4">
             <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
               Best
             </h3>
-            <label
-              className="w-full max-w-[14rem] shrink"
-              htmlFor="bar-chart-model-filter"
-            >
-              <span className="sr-only">Filter models</span>
-              <input
-                id="bar-chart-model-filter"
-                value={modelFilter}
-                onChange={(event) => setModelFilter(event.target.value)}
-                placeholder="Filter models"
-                className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs text-slate-700 shadow-sm transition focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-300"
-                type="text"
-              />
-            </label>
+            {renderModelFilterDropdown()}
             {renderConfidenceToggle()}
           </div>
           {renderRowGroup(
@@ -1295,7 +1446,7 @@ export function BarChartCard({
               Models
             </h2>
             <p className="text-sm text-slate-500">
-              Compare model performance on a variety of metrics.
+              Compare model performance on a variety of metrics
             </p>
           </div>
           <div className="flex min-w-[12rem] flex-col items-end gap-2">

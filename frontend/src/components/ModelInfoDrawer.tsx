@@ -42,9 +42,6 @@ interface ModelInfoDrawerProps {
   onSuggestionSelect: (entry: CombinationEntry) => void;
   onComparisonSuggestionSelect: (entry: CombinationEntry) => void;
   onActiveTargetChange: (target: "primary" | "comparison" | null) => void;
-  minTrials: number;
-  minTrialsRange: { min: number; max: number };
-  onMinTrialsChange: (value: number) => void;
   difficulty: "Unanimous" | "Majority";
   onDifficultyChange: (value: "Unanimous" | "Majority") => void;
 }
@@ -93,9 +90,6 @@ export function ModelInfoDrawer({
   onSuggestionSelect,
   onComparisonSuggestionSelect,
   onActiveTargetChange,
-  minTrials,
-  minTrialsRange,
-  onMinTrialsChange,
   difficulty,
   onDifficultyChange
 }: ModelInfoDrawerProps) {
@@ -116,15 +110,7 @@ export function ModelInfoDrawer({
     isComparisonFocused &&
     trimmedComparisonQuery !== "" &&
     comparisonSuggestions.length > 0;
-  const minAllowed = Math.max(minTrialsRange.min, 1);
-
-  const clampTrials = useCallback(
-    (value: number) => {
-      const numeric = Number.isFinite(value) ? Math.round(value) : minAllowed;
-      return Math.min(Math.max(numeric, minAllowed), minTrialsRange.max);
-    },
-    [minAllowed, minTrialsRange.max]
-  );
+  const [showDifficultyInfo, setShowDifficultyInfo] = useState(false);
 
   useEffect(() => {
     if (!showSuggestions) {
@@ -209,24 +195,6 @@ export function ModelInfoDrawer({
       }
     });
   }, []);
-
-  const handleClearAll = useCallback(() => {
-    onClear();
-    onClearComparison();
-    onModelSearchChange("");
-    onComparisonSearchChange("");
-    setIsFocused(false);
-    setIsComparisonFocused(false);
-    setPrimaryHighlightIndex(-1);
-    setComparisonHighlightIndex(-1);
-    onActiveTargetChange(null);
-  }, [
-    onClear,
-    onClearComparison,
-    onModelSearchChange,
-    onComparisonSearchChange,
-    onActiveTargetChange
-  ]);
 
   const radarData = useMemo(() => {
     if (!selection && !comparison) {
@@ -550,18 +518,6 @@ export function ModelInfoDrawer({
               {description}
             </p>
           </div>
-          {(selection ||
-            comparison ||
-            modelQuery.trim() ||
-            comparisonQuery.trim()) ? (
-            <button
-              type="button"
-              onClick={handleClearAll}
-              className="self-start rounded-full border border-slate-200 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600 transition hover:border-brand-400 hover:text-brand-600"
-            >
-              Clear
-            </button>
-          ) : null}
         </div>
       </header>
       <div className="flex flex-1 flex-col gap-3">
@@ -880,9 +836,39 @@ export function ModelInfoDrawer({
         )}
       </div>
       <div className="flex flex-col gap-2 border-t border-slate-200 pt-4">
-        <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-          Difficulty
-        </span>
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+            Difficulty
+          </span>
+          <div
+            className="relative"
+            onMouseLeave={() => {
+              setShowDifficultyInfo(false);
+            }}
+          >
+            <button
+              type="button"
+              onClick={() => {
+                setShowDifficultyInfo((previous) => !previous);
+              }}
+              onBlur={() => {
+                setShowDifficultyInfo(false);
+              }}
+              className="flex h-5 w-5 items-center justify-center rounded-full border border-slate-300 bg-white text-[10px] font-semibold text-slate-500 shadow-sm transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-1"
+              aria-label="Difficulty info"
+              aria-pressed={showDifficultyInfo}
+            >
+              i
+            </button>
+            {showDifficultyInfo ? (
+              <div className="absolute left-1/2 bottom-full z-10 mb-2 w-[26rem] -translate-x-1/2 rounded-lg border border-slate-200 bg-white p-3 text-xs font-medium text-slate-600 shadow-lg">
+                In Normal Mode, a strict threshold is applied for determining harm severity, where experts must unanimously agree
+                that an action is severely harmful. In Hard Mode, only a majority consensus is required, which lowers the
+                threshold for designating errors are severely harmful.
+              </div>
+            ) : null}
+          </div>
+        </div>
         <div className="flex items-center gap-2">
           {[
             { value: "Unanimous" as const, label: "Normal" },
@@ -906,38 +892,6 @@ export function ModelInfoDrawer({
               </button>
             );
           })}
-        </div>
-      </div>
-      <div className="flex flex-col gap-2 border-t border-slate-200 pt-4">
-        <label
-          className="text-xs font-semibold uppercase tracking-wide text-slate-500"
-          htmlFor="min-trials-slider"
-        >
-          Minimum trials
-        </label>
-        <div className="flex items-center gap-3">
-          <input
-            id="min-trials-slider"
-            type="range"
-            min={minAllowed}
-            max={minTrialsRange.max}
-            step={1}
-            value={minTrials}
-            onChange={(event) =>
-              onMinTrialsChange(clampTrials(Number(event.target.value)))
-            }
-            className="flex-1 accent-brand-600"
-          />
-          <input
-            type="number"
-            min={minAllowed}
-            max={minTrialsRange.max}
-            value={minTrials}
-            onChange={(event) =>
-              onMinTrialsChange(clampTrials(Number(event.target.value)))
-            }
-            className="w-16 rounded-md border border-slate-300 px-2 py-1 text-xs text-slate-600 shadow-sm"
-          />
         </div>
       </div>
     </aside>
