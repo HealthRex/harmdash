@@ -30,6 +30,46 @@ function getLegendPriority(label: string): number {
 
 const MARKER_SIZE = 20;
 
+function calculatePearsonCorrelation(
+  pairs: { x: number; y: number }[]
+): number | null {
+  if (pairs.length < 2) {
+    return null;
+  }
+
+  const validPairs = pairs.filter(
+    (pair) => Number.isFinite(pair.x) && Number.isFinite(pair.y)
+  );
+
+  if (validPairs.length < 2) {
+    return null;
+  }
+
+  const sumX = validPairs.reduce((total, pair) => total + pair.x, 0);
+  const sumY = validPairs.reduce((total, pair) => total + pair.y, 0);
+  const meanX = sumX / validPairs.length;
+  const meanY = sumY / validPairs.length;
+
+  let numerator = 0;
+  let denominatorX = 0;
+  let denominatorY = 0;
+
+  validPairs.forEach(({ x, y }) => {
+    const deltaX = x - meanX;
+    const deltaY = y - meanY;
+    numerator += deltaX * deltaY;
+    denominatorX += deltaX * deltaX;
+    denominatorY += deltaY * deltaY;
+  });
+
+  const denominator = Math.sqrt(denominatorX * denominatorY);
+  if (denominator === 0) {
+    return null;
+  }
+
+  return numerator / denominator;
+}
+
 function resolveAxisRange(
   values: number[],
   meta: MetricMetadata | undefined,
@@ -378,6 +418,36 @@ export function ScatterChartCard({
     [yDisplayValues, yMeta, yIsPercentMetric]
   );
 
+  const displayPairs = useMemo(
+    () =>
+      filtered
+        .map((entry) => {
+          const rawX = entry.metrics[xMetricId]?.mean;
+          const rawY = entry.metrics[yMetricId]?.mean;
+          if (rawX === null || rawX === undefined || rawY === null || rawY === undefined) {
+            return null;
+          }
+
+          const x = xIsPercentMetric ? rawX * 100 : rawX;
+          const y = yIsPercentMetric ? rawY * 100 : rawY;
+          return { x, y };
+        })
+        .filter((pair): pair is { x: number; y: number } => pair !== null),
+    [filtered, xIsPercentMetric, xMetricId, yIsPercentMetric, yMetricId]
+  );
+
+  const pearsonCorrelation = useMemo(
+    () => calculatePearsonCorrelation(displayPairs),
+    [displayPairs]
+  );
+
+  const correlationLabel = useMemo(() => {
+    if (pearsonCorrelation === null) {
+      return null;
+    }
+    return `Pearson's r = ${pearsonCorrelation.toFixed(2)}`;
+  }, [pearsonCorrelation]);
+
   const xAxisTitle = useMemo(() => {
     const label = xMeta?.displayLabel ?? xMetricId;
     if (!xIsPercentMetric) {
@@ -462,6 +532,26 @@ export function ScatterChartCard({
         family: "Inter, sans-serif",
         color: "#0f172a"
       },
+      annotations: correlationLabel
+        ? [
+            {
+              text: `<b>${correlationLabel}</b>`,
+              xref: "paper",
+              yref: "paper",
+              x: 0.08,
+              y: 0.08,
+              showarrow: false,
+              align: "left",
+              xanchor: "left",
+              yanchor: "bottom",
+              font: {
+                size: 14,
+                family: "Inter, sans-serif",
+                color: "#0f172a"
+              }
+            }
+          ]
+        : undefined,
       legend: {
         orientation: "h",
         x: 0,
@@ -552,7 +642,8 @@ export function ScatterChartCard({
       yAxisRange,
       xAxisTitle,
       yAxisTitle,
-      shouldLockAspectRatio
+      shouldLockAspectRatio,
+      correlationLabel
     ]
   );
 

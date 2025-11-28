@@ -167,4 +167,33 @@ describe("ScatterChartCard trace selection", () => {
     );
     expect(nonHumanTrace?.type).toBe("scattergl");
   });
+
+  it("adds a Pearson correlation annotation to the plot", () => {
+    const combinations: CombinationEntry[] = [
+      buildEntry(0),
+      buildEntry(1),
+      buildEntry(2)
+    ];
+
+    render(
+      <ScatterChartCard
+        combinations={combinations}
+        xMetricId="Safety"
+        yMetricId="Accuracy"
+        onXMetricChange={() => {}}
+        onYMetricChange={() => {}}
+        metrics={metrics}
+        metadataMap={metadataMap}
+      />
+    );
+
+    const plotArgs = mockPlot.mock.calls.at(-1)?.[0];
+    expect(plotArgs).toBeDefined();
+    const annotation = plotArgs.layout.annotations?.[0];
+    expect(annotation?.text).toBe("<b>r = 1.00</b>");
+    expect(annotation?.x).toBeCloseTo(0.08);
+    expect(annotation?.y).toBeCloseTo(0.08);
+    expect(annotation?.xanchor).toBe("left");
+    expect(annotation?.yanchor).toBe("bottom");
+  });
 });
