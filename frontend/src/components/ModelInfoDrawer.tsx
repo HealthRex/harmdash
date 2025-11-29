@@ -42,8 +42,6 @@ interface ModelInfoDrawerProps {
   onSuggestionSelect: (entry: CombinationEntry) => void;
   onComparisonSuggestionSelect: (entry: CombinationEntry) => void;
   onActiveTargetChange: (target: "primary" | "comparison" | null) => void;
-  difficulty: "Unanimous" | "Majority";
-  onDifficultyChange: (value: "Unanimous" | "Majority") => void;
 }
 
 function computeNormalizedMetricValue(
@@ -89,9 +87,7 @@ export function ModelInfoDrawer({
   comparisonSuggestions,
   onSuggestionSelect,
   onComparisonSuggestionSelect,
-  onActiveTargetChange,
-  difficulty,
-  onDifficultyChange
+  onActiveTargetChange
 }: ModelInfoDrawerProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [isComparisonFocused, setIsComparisonFocused] = useState(false);
@@ -110,7 +106,6 @@ export function ModelInfoDrawer({
     isComparisonFocused &&
     trimmedComparisonQuery !== "" &&
     comparisonSuggestions.length > 0;
-  const [showDifficultyInfo, setShowDifficultyInfo] = useState(false);
 
   useEffect(() => {
     if (!showSuggestions) {
@@ -834,65 +829,6 @@ export function ModelInfoDrawer({
             Interact with the charts or use the search boxes to surface up to two models for comparison.
           </div>
         )}
-      </div>
-      <div className="flex flex-col gap-2 border-t border-slate-200 pt-4">
-        <div className="flex items-center gap-2">
-          <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-            Difficulty
-          </span>
-          <div
-            className="relative"
-            onMouseLeave={() => {
-              setShowDifficultyInfo(false);
-            }}
-          >
-            <button
-              type="button"
-              onClick={() => {
-                setShowDifficultyInfo((previous) => !previous);
-              }}
-              onBlur={() => {
-                setShowDifficultyInfo(false);
-              }}
-              className="flex h-5 w-5 items-center justify-center rounded-full border border-slate-300 bg-white text-[10px] font-semibold text-slate-500 shadow-sm transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-1"
-              aria-label="Difficulty info"
-              aria-pressed={showDifficultyInfo}
-            >
-              i
-            </button>
-            {showDifficultyInfo ? (
-              <div className="absolute left-1/2 bottom-full z-10 mb-2 w-[26rem] -translate-x-1/2 rounded-lg border border-slate-200 bg-white p-3 text-xs font-medium text-slate-600 shadow-lg">
-                In Normal Mode, a strict threshold is applied for determining harm severity, where experts must unanimously agree
-                that an action is severely harmful. In Hard Mode, only a majority consensus is required, which lowers the
-                threshold for designating errors are severely harmful.
-              </div>
-            ) : null}
-          </div>
-        </div>
-        <div className="flex items-center gap-2">
-          {[
-            { value: "Unanimous" as const, label: "Normal" },
-            { value: "Majority" as const, label: "Hard" }
-          ].map((option) => {
-            const isActive = difficulty === option.value;
-            return (
-              <button
-                key={option.value}
-                type="button"
-                onClick={() => onDifficultyChange(option.value)}
-                className={clsx(
-                  "flex-1 rounded-lg border px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-                  isActive
-                    ? "border-brand-500 bg-brand-500 text-white focus-visible:ring-brand-500"
-                    : "border-slate-300 bg-white text-slate-600 hover:border-brand-300 focus-visible:ring-brand-500"
-                )}
-                aria-pressed={isActive}
-              >
-                {option.label}
-              </button>
-            );
-          })}
-        </div>
       </div>
     </aside>
   );

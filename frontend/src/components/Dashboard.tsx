@@ -200,15 +200,10 @@ export function Dashboard({ dataset }: DashboardProps) {
     () => groupRowsByCombination(dataset.rows),
     [dataset.rows]
   );
-  const [difficulty, setDifficulty] = useState<"Unanimous" | "Majority">(
-    "Unanimous"
-  );
-  const difficultyCombinations = useMemo(
+  const unanimousCombinations = useMemo(
     () =>
-      allCombinations.filter((entry) =>
-        matchesDifficulty(entry.grading, difficulty)
-      ),
-    [allCombinations, difficulty]
+      allCombinations.filter((entry) => matchesDifficulty(entry.grading, "Unanimous")),
+    [allCombinations]
   );
 
   const { teamGroups, alwaysOnConditions } = useMemo(() => {
@@ -436,7 +431,7 @@ export function Dashboard({ dataset }: DashboardProps) {
         }
         return allowed.has(conditionValue);
       })();
-      const gradingMatch = matchesDifficulty(row.grading, difficulty);
+      const gradingMatch = matchesDifficulty(row.grading, "Unanimous");
       return (
         harmMatch &&
         teamMatch &&
@@ -448,8 +443,7 @@ export function Dashboard({ dataset }: DashboardProps) {
     dataset.rows,
     selectedTeams,
     teamConditionLookup,
-    alwaysOnConditionSet,
-    difficulty
+    alwaysOnConditionSet
   ]);
 
   const combinations = useMemo(
@@ -628,43 +622,6 @@ export function Dashboard({ dataset }: DashboardProps) {
   const normalizedSearch = normalizeSearch(modelSearch);
   const normalizedComparisonSearch = normalizeSearch(comparisonSearch);
 
-  const findEntryForDifficulty = useCallback(
-    (entry: CombinationEntry | null, target: "Unanimous" | "Majority") => {
-      if (!entry) {
-        return null;
-      }
-
-      if (matchesDifficulty(entry.grading, target)) {
-        return entry;
-      }
-
-      const targetModel = normalizeCombinationValue(entry.model);
-      const targetTeam = normalizeCombinationValue(entry.team);
-      const targetCondition = normalizeCombinationValue(entry.condition);
-      const targetHarm = normalizeHarmForComparison(entry.harm);
-      const targetType = normalizeCombinationValue(entry.type);
-      const targetCases = normalizeCombinationValue(entry.cases);
-
-      return (
-        allCombinations.find((candidate) => {
-          if (!matchesDifficulty(candidate.grading, target)) {
-            return false;
-          }
-
-          return (
-            normalizeCombinationValue(candidate.model) === targetModel &&
-            normalizeCombinationValue(candidate.team) === targetTeam &&
-            normalizeCombinationValue(candidate.condition) === targetCondition &&
-            normalizeHarmForComparison(candidate.harm) === targetHarm &&
-            normalizeCombinationValue(candidate.type) === targetType &&
-            normalizeCombinationValue(candidate.cases) === targetCases
-          );
-        }) ?? null
-      );
-    },
-    [allCombinations]
-  );
-
   const buildSuggestions = useCallback(
     (normalized: string) => {
       if (!normalized) {
@@ -675,7 +632,7 @@ export function Dashboard({ dataset }: DashboardProps) {
       const boundaryRegex = new RegExp(`\\b${escaped}`);
       const candidates = new Map<string, SuggestionCandidate>();
 
-      difficultyCombinations.forEach((entry, index) => {
+      unanimousCombinations.forEach((entry, index) => {
         const label = (entry.displayLabel || entry.model || "").trim();
         if (!label) {
           return;
@@ -757,7 +714,7 @@ export function Dashboard({ dataset }: DashboardProps) {
         .slice(0, 8)
         .map((candidate) => candidate.entry);
     },
-    [difficultyCombinations]
+    [unanimousCombinations]
   );
 
   const modelSuggestions = useMemo(
@@ -1012,36 +969,6 @@ export function Dashboard({ dataset }: DashboardProps) {
     ]
   );
 
-  const handleDifficultyChange = (value: "Unanimous" | "Majority") => {
-    if (value === difficulty) {
-      return;
-    }
-
-    const nextSelection = findEntryForDifficulty(selection, value);
-    const currentSelectionId = selection?.combinationId ?? null;
-    const nextSelectionId = nextSelection?.combinationId ?? null;
-
-    if (nextSelectionId !== currentSelectionId) {
-      searchSelectionRef.current = true;
-      setSelection(nextSelection);
-      setModelSearch(nextSelection ? nextSelection.displayLabel || nextSelection.model || "" : "");
-    }
-
-    const nextComparison = findEntryForDifficulty(comparisonSelection, value);
-    const currentComparisonId = comparisonSelection?.combinationId ?? null;
-    const nextComparisonId = nextComparison?.combinationId ?? null;
-
-    if (nextComparisonId !== currentComparisonId) {
-      comparisonSearchSelectionRef.current = true;
-      setComparisonSelection(nextComparison);
-      setComparisonSearch(
-        nextComparison ? nextComparison.displayLabel || nextComparison.model || "" : ""
-      );
-    }
-
-    setDifficulty(value);
-  };
-
   return (
     <div className="flex flex-col gap-8 pb-12">
       <MetricsSummary dataset={dataset} />
@@ -1084,7 +1011,7 @@ export function Dashboard({ dataset }: DashboardProps) {
             comparisonSuggestions={comparisonSuggestions}
             onSuggestionSelect={(entry) => {
               const match =
-                difficultyCombinations.find(
+                unanimousCombinations.find(
                   (candidate) => candidate.combinationId === entry.combinationId
                 ) ??
                 allCombinations.find(
@@ -1098,7 +1025,7 @@ export function Dashboard({ dataset }: DashboardProps) {
             }}
             onComparisonSuggestionSelect={(entry) => {
               const match =
-                difficultyCombinations.find(
+                unanimousCombinations.find(
                   (candidate) => candidate.combinationId === entry.combinationId
                 ) ??
                 allCombinations.find(
@@ -1111,8 +1038,6 @@ export function Dashboard({ dataset }: DashboardProps) {
               }
             }}
             onActiveTargetChange={setActiveSelectionTarget}
-            difficulty={difficulty}
-            onDifficultyChange={handleDifficultyChange}
           />
         </div>
         <div className="lg:row-start-2 lg:col-start-1">
