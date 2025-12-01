@@ -25,7 +25,14 @@ const numericFields = [
   "order2"
 ];
 
-const nullableStringFields = ["Format", "Cases", "Grading", "Type", "Label"];
+const nullableStringFields = [
+  "Format",
+  "Cases",
+  "Grading",
+  "Type",
+  "Label",
+  "Provider"
+];
 const GENERAL_HARM_MARKERS = new Set([
   "",
   "all",
@@ -53,7 +60,8 @@ const metricsSchema = z.object({
   Cases: z.string().nullable().optional().default(null),
   Grading: z.string().nullable().optional().default(null),
   Type: z.string().nullable().optional().default(null),
-  Label: z.string().nullable().optional().default(null)
+  Label: z.string().nullable().optional().default(null),
+  Provider: z.string().nullable().optional().default(null)
 });
 
 const metadataSchema = z.object({
@@ -310,6 +318,7 @@ async function main() {
         cases: parsed.Cases,
         grading: parsed.Grading,
         type: parsed.Type,
+        provider: parsed.Provider ?? "",
         label: parsed.Label,
         displayLabel,
         combinationId: getCombinationId(parsed),

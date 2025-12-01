@@ -15,6 +15,7 @@ export interface DataRow {
   cases: string | null;
   grading: string | null;
   type: string | null;
+  provider: string;
   label: string | null;
   displayLabel: string;
   combinationId: string;
