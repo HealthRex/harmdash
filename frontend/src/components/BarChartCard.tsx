@@ -89,6 +89,14 @@ export function BarChartCard({
   const [selectedModels, setSelectedModels] = useState<string[]>([]);
   const [isModelDropdownOpen, setIsModelDropdownOpen] = useState(false);
   const [modelSearchTerm, setModelSearchTerm] = useState("");
+  const [hoverTooltip, setHoverTooltip] = useState<
+    | {
+        combinationId: string;
+        x: number;
+        y: number;
+      }
+    | null
+  >(null);
   const isAllView = viewMode === "all";
   const metricMeta = metadataMap.get(metricId);
   const metricDescription = metricMeta?.description ?? "";
@@ -1050,6 +1058,23 @@ export function BarChartCard({
     [comparisonCombinationId]
   );
 
+  const clampTooltipPosition = useCallback(
+    (
+      element: HTMLButtonElement,
+      coords?: { clientX: number; clientY: number }
+    ) => {
+      const rect = element.getBoundingClientRect();
+      const fallbackX = rect.width / 2;
+      const fallbackY = rect.height / 2;
+      const rawX = coords ? coords.clientX - rect.left : fallbackX;
+      const rawY = coords ? coords.clientY - rect.top : fallbackY;
+      const x = Math.min(Math.max(rawX, 12), rect.width - 12);
+      const y = Math.min(Math.max(rawY, 8), rect.height - 8);
+      return { x, y };
+    },
+    []
+  );
+
   const renderRowButton = (
     row: DataRow,
     meta: MetricMetadata | undefined,
@@ -1087,6 +1112,8 @@ export function BarChartCard({
       ? `CI: ± ${formatMetricValue(row.ci, { metadata: meta, digits: 1 })}`
       : "CI: NA";
     const textColor = getTextColor(barColor);
+    const organizationLabel =
+      row.provider?.trim() || "Organization not specified";
     const activeHighlightType = isPrimarySelected
       ? "primary"
       : isComparisonSelected
@@ -1098,6 +1125,8 @@ export function BarChartCard({
       draggedHighlight === "comparison"
         ? COMPARISON_SELECTION_COLOR
         : PRIMARY_SELECTION_COLOR;
+
+    const showTooltip = hoverTooltip?.combinationId === row.combinationId;
 
     const buttonStyle: CSSProperties = {};
     const boxShadows: string[] = [];
@@ -1194,6 +1223,26 @@ export function BarChartCard({
           handleHighlightDragStart(event, activeHighlightType, highlightColor);
         }}
         onDragEnd={handleHighlightDragEnd}
+        onPointerMove={(event) => {
+          const element = event.currentTarget;
+          const { x, y } = clampTooltipPosition(element, event);
+          setHoverTooltip({ combinationId: row.combinationId, x, y });
+        }}
+        onPointerLeave={() => {
+          setHoverTooltip((current) =>
+            current?.combinationId === row.combinationId ? null : current
+          );
+        }}
+        onFocus={(event) => {
+          const element = event.currentTarget;
+          const { x, y } = clampTooltipPosition(element);
+          setHoverTooltip({ combinationId: row.combinationId, x, y });
+        }}
+        onBlur={() => {
+          setHoverTooltip((current) =>
+            current?.combinationId === row.combinationId ? null : current
+          );
+        }}
         className={clsx(
           "relative group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-2xl border border-transparent bg-white/0 px-2 py-1.5 text-left transition-[background-color,border-color,box-shadow,opacity] duration-[550ms] ease-[cubic-bezier(0.33,1,0.68,1)]",
           isSelected
@@ -1245,6 +1294,26 @@ export function BarChartCard({
           handleHighlightDragEnd();
         }}
       >
+        {showTooltip ? (
+          <div
+            className="pointer-events-none absolute z-20 flex opacity-100 transition-opacity duration-200 ease-out"
+            style={{
+              left: hoverTooltip.x,
+              top: hoverTooltip.y,
+              transform: "translate(-50%, -115%)"
+            }}
+          >
+            <div className="rounded-xl bg-slate-900/95 px-3 py-2 text-xs text-white shadow-xl backdrop-blur-sm">
+              <div className="text-[10px] font-semibold uppercase tracking-wide text-slate-200">
+                Organization
+              </div>
+              <div className="text-sm font-semibold text-white">
+                {organizationLabel}
+              </div>
+            </div>
+          </div>
+        ) : null}
+        <span className="sr-only">Organization: {organizationLabel}</span>
         <div className="relative h-8 w-full overflow-hidden rounded-[6px]">
           <div className="absolute inset-0 rounded-[6px] bg-slate-200" />
           {renderConfidenceVisual()}

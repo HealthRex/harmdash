@@ -26,8 +26,8 @@ interface DashboardProps {
   dataset: DatasetArtifact;
 }
 
-const DEFAULT_X_METRIC_ID = "Safety";
-const DEFAULT_Y_METRIC_ID = "Accuracy";
+const DEFAULT_X_METRIC_ID = "Completeness";
+const DEFAULT_Y_METRIC_ID = "Safety";
 
 function resolvePreferredMetricId(
   metricIds: string[],

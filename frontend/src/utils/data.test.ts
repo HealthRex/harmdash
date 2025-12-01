@@ -85,6 +85,7 @@ describe("groupRowsByCombination", () => {
       cases: "HumanCases",
       grading: "Unanimous",
       type: "AllHarm",
+      provider: "Org A",
       label: null,
       displayLabel: "Model A",
       combinationId:
@@ -107,6 +108,7 @@ describe("groupRowsByCombination", () => {
       cases: "HumanCases",
       grading: "Unanimous",
       type: "AllHarm",
+      provider: "Org A",
       label: null,
       displayLabel: "Model A",
       combinationId:
@@ -141,6 +143,7 @@ describe("groupRowsByCombination", () => {
         cases: "AllCases",
         grading: "Unanimous",
         type: "AllHarm",
+        provider: "Org B",
         label: null,
         displayLabel: "Model B",
         combinationId:
@@ -163,6 +166,7 @@ describe("groupRowsByCombination", () => {
         cases: "AllCases",
         grading: "Unanimous",
         type: "AllHarm",
+        provider: "Org B",
         label: null,
         displayLabel: "Model B",
         combinationId:
@@ -197,6 +201,7 @@ describe("groupRowsByCombination", () => {
         cases: "AllCases",
         grading: "Majority",
         type: "AllHarm",
+        provider: "Org C",
         label: null,
         displayLabel: "Model C",
         combinationId:
@@ -219,6 +224,7 @@ describe("groupRowsByCombination", () => {
         cases: "AllCases",
         grading: "Majority",
         type: "AllHarm",
+        provider: "Org C",
         label: null,
         displayLabel: "Model C",
         combinationId:
@@ -263,6 +269,7 @@ describe("combination base key helpers", () => {
       cases: "AllCases",
       grading: "Unanimous",
       type: "AllHarm",
+      provider: "Org Z",
       label: null,
       displayLabel: "Model Z",
       combinationId:
