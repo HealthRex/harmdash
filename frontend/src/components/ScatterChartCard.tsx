@@ -7,7 +7,7 @@ import type { CombinationEntry, MetricMetadata } from "@/types/dataset";
 import { formatMetricValue } from "@/utils/data";
 import clsx from "clsx";
 import type { Layout, PlotData, PlotMouseEvent, Shape } from "plotly.js";
-import { useMemo } from "react";
+import { useMemo, useState, useRef, useEffect } from "react";
 
 const LEGEND_PRIORITY_GROUPS: readonly string[][] = [
   ["Solo Models", "Solo Model", "1 Agent"],
@@ -660,6 +660,27 @@ export function ScatterChartCard({
     }
   };
 
+  const [isChartActive, setIsChartActive] = useState(false);
+  const chartContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isChartActive) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        chartContainerRef.current &&
+        !chartContainerRef.current.contains(event.target as Node)
+      ) {
+        setIsChartActive(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isChartActive]);
+
   return (
     <section className={clsx(
       "flex w-full flex-col gap-4 rounded-2xl bg-[#f4f4f5] p-6",
@@ -707,19 +728,35 @@ export function ScatterChartCard({
             </select>
           </label>
         </div>
-        <div className="h-[480px] w-full overflow-hidden">
-          <Plot
-            data={data}
-            layout={layout}
-            config={{
-              displayModeBar: false,
-              responsive: true,
-              scrollZoom: true
-            }}
-            style={{ width: "100%", height: "100%" }}
-            onClick={handleClick}
-            useResizeHandler
-          />
+        <div
+          ref={chartContainerRef}
+          className="relative h-[480px] w-full overflow-hidden"
+        >
+          {!isChartActive && (
+            <button
+              type="button"
+              onClick={() => setIsChartActive(true)}
+              className="absolute inset-0 z-10 flex cursor-pointer items-center justify-center bg-white/20 pb-24 backdrop-blur-[0.5px]"
+            >
+              <span className="rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-slate-600 shadow-md">
+                Click to interact with chart
+              </span>
+            </button>
+          )}
+          <div style={{ pointerEvents: isChartActive ? "auto" : "none" }}>
+            <Plot
+              data={data}
+              layout={layout}
+              config={{
+                displayModeBar: false,
+                responsive: true,
+                scrollZoom: true
+              }}
+              style={{ width: "100%", height: "100%" }}
+              onClick={handleClick}
+              useResizeHandler
+            />
+          </div>
         </div>
       </div>
     </section>
