@@ -80,7 +80,6 @@ export function TeamFiltersBar({
   }, []);
 
   const [showMultiAgentHighlight, setShowMultiAgentHighlight] = useState(true);
-  const [showTeamInfo, setShowTeamInfo] = useState(false);
 
   useEffect(() => {
     if (!showMultiAgentHighlight) {
@@ -161,41 +160,13 @@ export function TeamFiltersBar({
   };
 
   return (
-    <section className="flex flex-col gap-4 rounded-xl bg-white p-5 transition-all duration-[600ms] ease-[cubic-bezier(0.33,1,0.68,1)]">
-      <header className="flex items-center gap-2">
-        <div className="flex items-center gap-2">
-          <h2 className="text-[11px] font-semibold uppercase tracking-[0.15em] text-neutral-500">
-            TEAM CONFIGURATION
-          </h2>
-          <div
-            className="relative"
-            onMouseLeave={() => {
-              setShowTeamInfo(false);
-            }}
-          >
-            <button
-              type="button"
-              onClick={() => {
-                setShowTeamInfo((previous) => !previous);
-              }}
-              onBlur={() => {
-                setShowTeamInfo(false);
-              }}
-              className="flex h-6 w-6 items-center justify-center rounded-full border border-neutral-300 bg-white text-[11px] font-semibold text-neutral-600 shadow-sm transition-colors hover:bg-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-1"
-              aria-label="Team configuration info"
-              aria-pressed={showTeamInfo}
-            >
-              i
-            </button>
-            {showTeamInfo ? (
-              <div className="absolute left-1/2 bottom-full z-10 mb-2 w-96 -translate-x-1/2 rounded-lg border border-neutral-200 bg-white p-3 text-xs font-medium text-neutral-600 shadow-lg">
-                View performance of multi-agent teams, where one model reviews and edits the output of other models in a Guardian or Stewardship role
-              </div>
-            ) : null}
-          </div>
-        </div>
+    <section className="flex flex-col gap-4 rounded-xl bg-white p-5">
+      <header>
+        <h2 className="text-[11px] font-semibold uppercase tracking-[0.15em] text-neutral-500">
+          TEAM CONFIGURATION
+        </h2>
       </header>
-      <div className="flex flex-wrap items-stretch justify-start gap-3">
+      <div className="flex flex-wrap items-stretch justify-center gap-4 md:gap-6">
         {teamGroups.map((group) => {
           const isSelected = selectedTeams.includes(group.team);
           const selectedConditionsForTeam =
@@ -219,10 +190,10 @@ export function TeamFiltersBar({
             <div
               key={group.team || "unspecified-team"}
               className={clsx(
-                "flex w-full flex-col items-center gap-3 rounded-lg border p-3.5 text-center transition-all duration-[650ms] ease-[cubic-bezier(0.33,1,0.68,1)] sm:w-auto",
+                "flex w-full flex-col items-center gap-3 rounded-lg border p-4 text-center transition-all sm:w-auto",
                 isSelected
-                  ? "border-neutral-300 bg-white"
-                  : "border-neutral-200 bg-[#fafbfc]",
+                  ? "border-neutral-200 bg-white"
+                  : "border-neutral-200 bg-neutral-50",
                 shouldHighlight ? "multi-agent-highlight" : null
               )}
               style={getTeamCardSizing(group, agentCount)}
@@ -236,36 +207,48 @@ export function TeamFiltersBar({
                   onToggleTeam(group.team);
                 }}
                 className={clsx(
-                  "mx-auto inline-flex min-w-[140px] max-w-[176px] items-center justify-center rounded-md px-4 py-2 text-[13px] font-medium transition-all duration-[550ms] ease-[cubic-bezier(0.33,1,0.68,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+                  "mx-auto inline-flex min-w-[160px] max-w-[176px] items-center justify-center gap-1.5 rounded-full px-4 py-2 text-[13px] font-medium transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
                   isSelected
                     ? "bg-[#0c0d10] text-white focus-visible:ring-neutral-800"
-                    : "bg-neutral-100 text-neutral-700 hover:bg-neutral-200 focus-visible:ring-neutral-400"
+                    : "border border-neutral-300 bg-white text-neutral-700 hover:bg-neutral-50 focus-visible:ring-neutral-400"
                 )}
                 style={{ width: "min(100%, 176px)" }}
               >
+                {isSelected && (
+                  <svg
+                    className="h-3.5 w-3.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2.5}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                )}
                 <span className="truncate">{group.label}</span>
               </button>
               {group.conditions.length ? (
                 <div
                   className={clsx(
-                    "flex flex-wrap justify-center gap-1.5 transition-all duration-500 ease-out",
+                    "flex flex-wrap justify-center gap-2 transition-all",
                     isSelected ? "" : "opacity-50"
                   )}
                 >
                   {group.conditions.map((condition) => {
                     const normalizedCondition = condition.trim().toLowerCase();
                     const syncsWithSoloModels =
-                      isSoloModelsGroup &&
-                      normalizedCondition === "advisor" &&
-                      group.conditions.length === 1;
+                      isSoloModelsGroup && normalizedCondition === "advisor";
                     const isActive = syncsWithSoloModels
                       ? isSelected
                       : selectedConditionsForTeam.includes(condition);
                     const disabled = syncsWithSoloModels
                       ? false
-                      : !isSelected && !hasClearedConditions;
-                    const color =
-                      conditionColorMap.get(condition) ?? teamColor;
+                      : (!isSelected && !hasClearedConditions) ||
+                        group.conditions.length <= 1;
 
                     return (
                       <button
@@ -283,22 +266,30 @@ export function TeamFiltersBar({
                           }
                         }}
                         className={clsx(
-                          "flex items-center rounded-md px-2.5 py-1.5 text-[12px] font-medium transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2",
+                          "flex items-center gap-1 rounded-full px-2.5 py-1 text-[12px] font-medium transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2",
                           isActive
                             ? "bg-[#0c0d10] text-white"
-                            : "bg-neutral-100 text-neutral-700 hover:bg-neutral-200",
+                            : "border border-neutral-300 bg-white text-neutral-700 hover:bg-neutral-50",
                           disabled
-                            ? "cursor-not-allowed opacity-50 hover:bg-neutral-100"
+                            ? "cursor-not-allowed opacity-50"
                             : null
                         )}
-                        style={
-                          isActive
-                            ? undefined
-                            : {
-                                color
-                              }
-                        }
                       >
+                        {isActive && (
+                          <svg
+                            className="h-3 w-3"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={2.5}
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                        )}
                         <span className="truncate">{condition}</span>
                       </button>
                     );
