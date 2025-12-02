@@ -160,9 +160,9 @@ export function TeamFiltersBar({
   };
 
   return (
-    <section className="flex flex-col gap-4 rounded-xl bg-white p-5">
+    <section className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-md shadow-slate-200 transition-all duration-[600ms] ease-[cubic-bezier(0.33,1,0.68,1)]">
       <header>
-        <h2 className="text-[11px] font-semibold uppercase tracking-[0.15em] text-neutral-500">
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
           TEAM CONFIGURATION
         </h2>
       </header>
@@ -190,11 +190,11 @@ export function TeamFiltersBar({
             <div
               key={group.team || "unspecified-team"}
               className={clsx(
-                "flex w-full flex-col items-center gap-3 rounded-lg border p-4 text-center transition-all sm:w-auto",
+                "flex w-full flex-col items-center gap-3 rounded-xl border p-4 text-center transition-all duration-[650ms] ease-[cubic-bezier(0.33,1,0.68,1)] sm:w-auto",
                 isSelected
-                  ? "border-neutral-200 bg-white"
-                  : "border-neutral-200 bg-neutral-50",
-                null
+                  ? "border-brand-200 bg-white shadow-sm"
+                  : "border-slate-200 bg-slate-50",
+                shouldHighlight ? "multi-agent-highlight" : null
               )}
               style={getTeamCardSizing(group, agentCount)}
             >
@@ -207,35 +207,32 @@ export function TeamFiltersBar({
                   onToggleTeam(group.team);
                 }}
                 className={clsx(
-                  "mx-auto inline-flex min-w-[160px] max-w-[176px] items-center justify-center gap-1.5 rounded-full px-4 py-2 text-[13px] font-medium transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+                  "mx-auto inline-flex min-w-[160px] max-w-[176px] items-center justify-center rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-[550ms] ease-[cubic-bezier(0.33,1,0.68,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
                   isSelected
-                    ? "bg-[#0c0d10] text-white focus-visible:ring-neutral-800"
-                    : "border border-neutral-300 bg-white text-neutral-700 hover:bg-neutral-50 focus-visible:ring-neutral-400"
+                    ? "text-white shadow-sm focus-visible:ring-brand-500"
+                    : "bg-white text-slate-600 hover:border-brand-200 focus-visible:ring-brand-500"
                 )}
-                style={{ width: "min(100%, 176px)" }}
+                style={
+                  isSelected
+                    ? {
+                        backgroundColor: teamColor,
+                        borderColor: teamColor,
+                        width: "min(100%, 176px)"
+                      }
+                    : {
+                        borderColor: teamColor,
+                        color: teamColor,
+                        width: "min(100%, 176px)"
+                      }
+                }
               >
-                {isSelected && (
-                  <svg
-                    className="h-3.5 w-3.5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2.5}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                )}
                 <span className="truncate">{group.label}</span>
               </button>
               {group.conditions.length ? (
                 <div
                   className={clsx(
-                    "flex flex-wrap justify-center gap-2 transition-all",
-                    isSelected ? "" : "opacity-50"
+                    "flex flex-wrap justify-center gap-2 transition-all duration-500 ease-out",
+                    isSelected ? "" : "opacity-60"
                   )}
                 >
                   {group.conditions.map((condition) => {
@@ -249,6 +246,8 @@ export function TeamFiltersBar({
                       ? false
                       : (!isSelected && !hasClearedConditions) ||
                         group.conditions.length <= 1;
+                    const color =
+                      conditionColorMap.get(condition) ?? teamColor;
 
                     return (
                       <button
@@ -266,37 +265,34 @@ export function TeamFiltersBar({
                           }
                         }}
                         className={clsx(
-                          "flex items-center gap-1 rounded-full px-2.5 py-1 text-[12px] font-medium transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2",
+                          "flex items-center rounded-full border px-2.5 py-1 text-xs font-medium transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2",
                           isActive
-                            ? "bg-[#0c0d10] text-white"
-                            : "border border-neutral-300 bg-white text-neutral-700 hover:bg-neutral-50",
+                            ? "text-white shadow-sm"
+                            : "bg-white opacity-80 hover:opacity-100",
                           disabled
-                            ? "cursor-not-allowed opacity-50"
+                            ? "cursor-not-allowed opacity-60 hover:border-slate-200"
                             : null
                         )}
+                        style={
+                          isActive
+                            ? {
+                                backgroundColor: color,
+                                borderColor: color
+                              }
+                            : {
+                                backgroundColor: "#ffffff",
+                                borderColor: color,
+                                color
+                              }
+                        }
                       >
-                        {isActive && (
-                          <svg
-                            className="h-3 w-3"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth={2.5}
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
-                        )}
                         <span className="truncate">{condition}</span>
                       </button>
                     );
                   })}
                 </div>
               ) : (
-                <p className="text-xs text-neutral-500">
+                <p className="text-xs text-slate-500">
                   No additional configurations.
                 </p>
               )}

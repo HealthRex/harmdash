@@ -1259,14 +1259,14 @@ export function BarChartCard({
           );
         }}
         className={clsx(
-          "relative group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-2xl border-2 bg-white/0 px-2 py-1.5 text-left transition-[background-color,border-color,box-shadow,opacity] duration-[550ms] ease-[cubic-bezier(0.33,1,0.68,1)]",
+          "relative group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-2xl border border-transparent bg-white/0 px-2 py-1.5 text-left transition-[background-color,border-color,box-shadow,opacity] duration-[550ms] ease-[cubic-bezier(0.33,1,0.68,1)]",
           isSelected
-            ? "bg-gradient-to-r from-white via-slate-50 to-white shadow-sm"
-            : "hover:bg-slate-50/70",
+            ? "border-2 bg-gradient-to-r from-white via-slate-50 to-white shadow-sm"
+            : "hover:border-slate-200 hover:bg-slate-50/70",
           isDropTarget ? "border-dashed" : undefined,
           activeHighlightType ? "cursor-grab" : undefined
         )}
-        style={{ ...buttonStyle, borderColor: applyAlpha(barColor, 0.4) }}
+        style={buttonStyle}
         onDragEnter={(event) => {
           if (!draggedHighlight) {
             return;
@@ -1332,7 +1332,7 @@ export function BarChartCard({
         <div className="relative h-10 w-full overflow-hidden rounded-[12px]">
           <div
             className="absolute inset-0 rounded-[12px]"
-            style={{ background: applyAlpha(barColor, 0.15) }}
+            style={{ background: "#e9ebf2" }}
           />
           {renderConfidenceVisual()}
           <div
