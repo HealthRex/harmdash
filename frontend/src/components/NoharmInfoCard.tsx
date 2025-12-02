@@ -27,13 +27,24 @@ export function NoharmInfoCard({ className }: NoharmInfoCardProps) {
             NOHARM is a specialist-validated medical benchmark to evaluate the accuracy and safety of
             AI-generated medical recommendations, grounded in real medical cases. The current version covers 10
             specialties over 100 cases, and includes 12,747 specialist annotations on beneficial and
-            harmful medical actions. This project is led and supported by the ARISE AI Research Network, based
+            harmful medical actions that can be taken in the 100 cases. This project is led and supported by the ARISE AI Research Network, based
             at Stanford and Harvard.
           </dd>
         </div>
         <div className="flex flex-col gap-1">
           <dt className="text-xs font-semibold uppercase tracking-wide text-slate-500">Study</dt>
-          <dd>For details, see our study.</dd>
+          <dd>
+            For details, see{" "}
+            <a
+              href="https://arxiv.org/abs/2512.01241"
+              className="font-medium text-brand-600 hover:text-brand-700"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              our study
+            </a>
+            .
+          </dd>
         </div>
         <div className="flex flex-col gap-1">
           <dt className="text-xs font-semibold uppercase tracking-wide text-slate-500">Submissions</dt>
