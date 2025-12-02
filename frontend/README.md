@@ -47,6 +47,5 @@ Ensure the CSV in `data/data_summary_subset.csv` ships with the deployment. If y
   - `BarChartCard` renders inline model labels (wrapping long agent blends), value annotations, and 95% confidence intervals using the `ci` column.
   - `ScatterChartCard` provides two-metric exploration with lasso/click support and the same CI data.
   - `ModelInfoDrawer` surfaces full metric breakdowns for the selected model/condition.
-  - `MetricsSummary` highlights corpus stats.
 
 Add additional cards (tables, timelines, etc.) by extending the `Dashboard` layout grid.

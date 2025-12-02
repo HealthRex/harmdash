@@ -686,51 +686,53 @@ export function ScatterChartCard({
       "flex w-full flex-col gap-4 rounded-2xl bg-[#f4f4f5] p-6",
       className
     )}>
-      <header className="flex flex-col gap-1">
-        <div>
-          <h2 className="text-lg font-semibold text-slate-900">
-            Metric Explorer
-          </h2>
-          <p className="text-sm text-slate-500">
-            Analyze model performance across two metrics
-          </p>
+      <header className="flex flex-col gap-2">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h2 className="text-lg font-semibold text-slate-900">
+              Metric Explorer
+            </h2>
+            <p className="text-sm text-slate-500">
+              Analyze model performance across two metrics
+            </p>
+          </div>
+          <div className="flex flex-row items-center gap-4">
+            <label className="flex flex-col gap-1 text-xs font-medium text-slate-600">
+              Y Metric
+              <select
+                value={yMetricId}
+                onChange={(event) => onYMetricChange(event.target.value)}
+                className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm transition hover:border-brand-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
+              >
+                {metrics.map((option) => (
+                  <option key={option.id} value={option.id}>
+                    {option.displayLabel}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="flex flex-col gap-1 text-xs font-medium text-slate-600">
+              X Metric
+              <select
+                value={xMetricId}
+                onChange={(event) => onXMetricChange(event.target.value)}
+                className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm transition hover:border-brand-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
+              >
+                {metrics.map((option) => (
+                  <option key={option.id} value={option.id}>
+                    {option.displayLabel}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
         </div>
         <p className="text-xs text-slate-500">Hover for model details</p>
       </header>
       <div className="flex flex-col gap-4">
-        <div className="flex flex-row items-center gap-4">
-          <label className="flex flex-col gap-1 text-xs font-medium text-slate-600">
-            Y Metric
-            <select
-              value={yMetricId}
-              onChange={(event) => onYMetricChange(event.target.value)}
-              className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm transition hover:border-brand-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
-            >
-              {metrics.map((option) => (
-                <option key={option.id} value={option.id}>
-                  {option.displayLabel}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="flex flex-col gap-1 text-xs font-medium text-slate-600">
-            X Metric
-            <select
-              value={xMetricId}
-              onChange={(event) => onXMetricChange(event.target.value)}
-              className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm transition hover:border-brand-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
-            >
-              {metrics.map((option) => (
-                <option key={option.id} value={option.id}>
-                  {option.displayLabel}
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
         <div
           ref={chartContainerRef}
-          className="relative aspect-square w-full overflow-hidden"
+          className="relative aspect-square w-full min-h-[520px] overflow-hidden"
         >
           {!isChartActive && (
             <button

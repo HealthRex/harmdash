@@ -1,9 +1,7 @@
 'use client';
 
-import { AboutSection } from "@/components/AboutSection";
 import { BarChartCard } from "@/components/BarChartCard";
 import { TeamFiltersBar } from "@/components/FiltersPanel";
-import { MetricsSummary } from "@/components/MetricsSummary";
 import { ModelInfoDrawer as ModelProfileCard } from "@/components/ModelInfoDrawer";
 import { PageHeader } from "@/components/PageHeader";
 import { ScatterChartCard } from "@/components/ScatterChartCard";
@@ -975,7 +973,6 @@ export function Dashboard({ dataset }: DashboardProps) {
   return (
     <div className="flex flex-col gap-8 pb-12">
       <PageHeader />
-      <MetricsSummary dataset={dataset} />
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-6 lg:grid lg:grid-cols-[minmax(0,1.7fr)_minmax(360px,1fr)] lg:items-start lg:gap-6">
           <BarChartCard
@@ -1058,7 +1055,6 @@ export function Dashboard({ dataset }: DashboardProps) {
           <NoharmInfoCard />
         </div>
       </div>
-      <AboutSection />
       <StudyAuthorsCard />
     </div>
   );

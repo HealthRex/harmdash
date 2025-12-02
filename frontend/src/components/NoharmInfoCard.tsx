@@ -53,18 +53,20 @@ export function NoharmInfoCard({ className }: NoharmInfoCardProps) {
             are interested benchmarking your model and inclusion in the leaderboard.
           </dd>
         </div>
-        <div className="flex flex-col gap-1">
-          <dt className="text-xs font-semibold uppercase tracking-wide text-slate-500">Contact</dt>
-          <dd>
-            For questions about NOHARM or benchmarking your model, reach out to {""}
+        <div className="flex flex-col gap-2.5">
+          <h2 className="text-[13px] font-semibold uppercase tracking-wide text-[#0c0d10]">
+            Contact
+          </h2>
+          <p className="text-[14px] leading-[1.65] text-neutral-700">
             <a
-              href="mailto:dwu@mgh.harvard.edu"
-              className="font-medium text-brand-600 hover:text-brand-700"
+              href="https://forms.gle/MD94gF5Ro8wo7N8y7"
+              className="font-medium text-blue-600 hover:text-blue-700"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              dwu@mgh.harvard.edu
+              Reach out to our team.
             </a>
-            .
-          </dd>
+          </p>
         </div>
       </dl>
     </section>
