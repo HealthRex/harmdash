@@ -43,20 +43,26 @@ export function AboutSection() {
           <h2 className="text-[13px] font-semibold uppercase tracking-wide text-[#0c0d10]">
             Contact
           </h2>
-          <ul className="flex list-none flex-col gap-1.5 text-[14px] leading-[1.65] text-neutral-700">
-            <li>
-              David Wu, MD, PhD{" "}
-              <a
-                href="mailto:dwu@mgh.harvard.edu"
-                className="font-medium text-blue-600 hover:text-blue-700"
-              >
-                dwu@mgh.harvard.edu
-              </a>
-            </li>
-            <li>Adam Rodman, MD</li>
-            <li>Jonathan Chen, MD, PhD</li>
-            <li>Ethan Goh, MD</li>
-          </ul>
+          <p className="text-[14px] leading-[1.65] text-neutral-700">
+            <a
+              href="https://forms.gle/9Aiaf2NvEnGfm9ue6"
+              className="font-medium text-blue-600 hover:text-blue-700"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Reach out to our team.
+            </a>
+          </p>
+        </div>
+      </div>
+      <div className="md:col-span-2">
+        <div className="flex flex-col gap-2.5">
+          <h2 className="text-[13px] font-semibold uppercase tracking-wide text-[#0c0d10]">
+            Study Authors
+          </h2>
+          <p className="text-[14px] leading-[1.65] text-neutral-700">
+            David Wu, Fateme Nateghi Haredasht, Saloni Kumar Maharaj, Priyank Jain, Jessica Tran, Matthew Gwiazdon, Arjun Rustagi, Jenelle Jindal, Jacob M. Koshy, Vinay Kadiyala, Anup Agarwal, Bassman Tappuni, Brianna French, Sirus Jesudasen, Christopher V. Cosgriff, Rebanta Chakraborty, Jillian Caldwell, Susan Ziolkowski, David J. Iberri, Robert Diep, Rahul S. Dalal, Kira L. Newman, Kristin Galetta, J. Carl Pallais, Nancy Wei, Kathleen M. Buchheit, David I. Hong, Ernest Y. Lee, Allen Shih, Vartan Pahalyants, Tamara B. Kaplan, Vishnu Ravi, Sarita Khemani, April S. Liang, Daniel Shirvani, Advait Patil, Nicholas Marshall, Kanav Chopra, Joel Koh, Adi Badhwar, Liam G. McCoy, David J. H. Wu, Yingjie Weng, Sumant Ranji, Kevin Schulman, Nigam H. Shah, Jason Hom, Arnold Milstein, Adam Rodman, Jonathan H. Chen, Ethan Goh
+          </p>
         </div>
       </div>
     </section>
