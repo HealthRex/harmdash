@@ -43,20 +43,16 @@ export function AboutSection() {
           <h2 className="text-[13px] font-semibold uppercase tracking-wide text-[#0c0d10]">
             Contact
           </h2>
-          <ul className="flex list-none flex-col gap-1.5 text-[14px] leading-[1.65] text-neutral-700">
-            <li>
-              David Wu, MD, PhD{" "}
-              <a
-                href="mailto:dwu@mgh.harvard.edu"
-                className="font-medium text-blue-600 hover:text-blue-700"
-              >
-                dwu@mgh.harvard.edu
-              </a>
-            </li>
-            <li>Adam Rodman, MD</li>
-            <li>Jonathan Chen, MD, PhD</li>
-            <li>Ethan Goh, MD</li>
-          </ul>
+          <p className="text-[14px] leading-[1.65] text-neutral-700">
+            <a
+              href="https://forms.gle/9Aiaf2NvEnGfm9ue6"
+              className="font-medium text-blue-600 hover:text-blue-700"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Reach out to our team.
+            </a>
+          </p>
         </div>
       </div>
       <div className="md:col-span-2">
