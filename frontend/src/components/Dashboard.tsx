@@ -1052,6 +1052,7 @@ export function Dashboard({ dataset }: DashboardProps) {
             onToggleTeam={handleToggleTeam}
             onToggleTeamCondition={handleToggleTeamCondition}
             conditionColorMap={conditionColorMap}
+            className="lg:-mt-4"
           />
         </div>
       </div>
