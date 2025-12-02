@@ -2,7 +2,7 @@
 
 export function AboutSection() {
   return (
-    <section className="mt-12 grid gap-10 rounded-xl bg-white px-6 py-6 md:grid-cols-[1.3fr_1fr] md:px-8">
+    <section className="mt-12 grid gap-10 rounded-xl bg-[#f4f4f5] px-6 py-6 md:grid-cols-[1.3fr_1fr] md:px-8">
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-2.5">
           <h2 className="text-[13px] font-semibold uppercase tracking-wide text-[#0c0d10]">

@@ -1511,7 +1511,7 @@ export function BarChartCard({
   );
 
   return (
-    <section className="flex flex-col gap-5 rounded-3xl border border-neutral-200 bg-white/90 p-6 shadow-sm backdrop-blur transition-all duration-[600ms] ease-[cubic-bezier(0.33,1,0.68,1)]">
+    <section className="flex flex-col gap-5 rounded-3xl bg-[#f4f4f5] p-6 transition-all duration-[600ms] ease-[cubic-bezier(0.33,1,0.68,1)]">
       <header className="flex flex-wrap items-start justify-between gap-4">
         <div className="flex flex-col gap-1">
           <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-neutral-500">

@@ -662,7 +662,7 @@ export function ScatterChartCard({
 
   return (
     <section className={clsx(
-      "flex w-full flex-col gap-4 rounded-2xl bg-white p-6 shadow-lg shadow-slate-200",
+      "flex w-full flex-col gap-4 rounded-2xl bg-[#f4f4f5] p-6",
       className
     )}>
       <header className="flex flex-col gap-1">
