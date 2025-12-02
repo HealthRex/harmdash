@@ -1,12 +1,21 @@
-## Harmdash
+# NOHARM Leaderboard
 
-This repository hosts the Harmdash project: an interactive dashboard that benchmarks harm-related outcomes in medical AI recommendation systems.
+Introducing MAST, our vision for a suite of realistic clinical benchmarks to evaluate real-world performance of medical AI systems.
 
-- `data/` — Source CSVs with benchmark summaries.
-- `frontend/` — Next.js dashboard (see `frontend/README.md` for usage).
-- `render.yaml` — Render.com blueprint for deploying the dashboard.
+**First, Do NOHARM** is the foundational benchmark of the MAST suite, and establishes a new framework to assess clinical safety and accuracy in AI-generated medical recommendations.
 
-### Quickstart
+## About This Dashboard
+
+This interactive dashboard visualizes performance metrics from the NOHARM benchmark, comparing solo AI models and multi-agent teams across various medical conditions and harm scenarios.
+
+## Project Structure
+
+- `data/` — Source CSV files with benchmark results
+- `frontend/` — Next.js dashboard application
+- `.github/workflows/` — CI/CD automation
+- `render.yaml` — Deployment configuration
+
+## Quick Start
 
 ```bash
 cd frontend
@@ -14,5 +23,18 @@ npm install
 npm run dev
 ```
 
-The dev script rebuilds the JSON artifact from `data/data_summary_subset.csv` and launches the interactive dashboard at `http://localhost:3000`.
-- Bar and scatter visuals share a cohesive palette: deep navy, lilac indigo, warm coral, emerald, muted gold, and violet accents to distinguish conditions and roles.
+Visit `http://localhost:3000` to explore the dashboard. The dev script automatically rebuilds data from `data/metrics.csv`.
+
+## Features
+
+- **Scatter Charts** - Compare models across any two metrics with confidence intervals
+- **Top/Bottom Performers** - Bar charts ranking models by selected metrics
+- **Model Search** - Find and compare specific models or agent combinations
+- **Flexible Filtering** - Filter by team size, conditions, harm types, and case scope
+- **Radar Profiles** - Multi-dimensional performance visualization
+
+## Documentation
+
+- `AGENTS.md` — Comprehensive architecture and development guide
+- `frontend/README.md` — Frontend-specific documentation
+- `PLANNING.md` — Architecture planning notes
