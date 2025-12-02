@@ -1518,7 +1518,20 @@ export function BarChartCard({
             Performance
           </p>
           <h2 className="text-xl font-semibold text-[#0c0d10]">
-            Best and Worst Models
+            <button
+              type="button"
+              onClick={toggleViewMode}
+              aria-pressed={isAllView}
+              className="rounded px-1 text-neutral-600 underline decoration-dashed underline-offset-4 transition-colors hover:text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-500/40"
+              title={
+                isAllView
+                  ? "Show only the best and worst performers"
+                  : "Show all models"
+              }
+            >
+              {isAllView ? "All" : "Best and Worst"}
+            </button>{" "}
+            Models
           </h2>
           <p className="text-sm text-neutral-500">
             Compare model performance on a variety of metrics.
