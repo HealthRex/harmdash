@@ -6,3 +6,4 @@ Advisor + Guardian,TRUE
 Advisor + Steward,FALSE
 Advisor + Guardian + Guardian,TRUE
 Advisor + Guardian + Steward,FALSE
+Human,TRUE

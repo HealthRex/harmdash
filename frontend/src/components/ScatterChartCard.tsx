@@ -730,7 +730,7 @@ export function ScatterChartCard({
         </div>
         <div
           ref={chartContainerRef}
-          className="relative h-[480px] w-full overflow-hidden"
+          className="relative aspect-square w-full overflow-hidden"
         >
           {!isChartActive && (
             <button

@@ -975,8 +975,8 @@ export function Dashboard({ dataset }: DashboardProps) {
     <div className="flex flex-col gap-8 pb-12">
       <PageHeader />
       <MetricsSummary dataset={dataset} />
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.7fr)_minmax(360px,1fr)]">
-        <div>
+      <div className="flex flex-col gap-6 lg:grid lg:grid-cols-[minmax(0,1.7fr)_minmax(360px,1fr)] lg:items-start lg:gap-6">
+        <div className="flex flex-col gap-6">
           <BarChartCard
             rows={filteredRows}
             metricId={safeBarMetric}
@@ -988,6 +988,17 @@ export function Dashboard({ dataset }: DashboardProps) {
             metrics={metrics}
             metadataMap={metadataMap}
             conditionColorMap={conditionColorMap}
+          />
+          <ScatterChartCard
+            combinations={combinations}
+            xMetricId={safeXMetric}
+            yMetricId={safeYMetric}
+            onXMetricChange={setXMetricId}
+            onYMetricChange={setYMetricId}
+            onPointClick={handlePointClick}
+            highlightedCombinationId={selection?.combinationId}
+            metrics={metrics}
+            metadataMap={metadataMap}
           />
         </div>
         <div className="flex flex-col gap-6">
@@ -1043,22 +1054,6 @@ export function Dashboard({ dataset }: DashboardProps) {
             conditionColorMap={conditionColorMap}
           />
         </div>
-      </div>
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.7fr)_minmax(360px,1fr)]">
-        <div>
-          <ScatterChartCard
-            combinations={combinations}
-            xMetricId={safeXMetric}
-            yMetricId={safeYMetric}
-            onXMetricChange={setXMetricId}
-            onYMetricChange={setYMetricId}
-            onPointClick={handlePointClick}
-            highlightedCombinationId={selection?.combinationId}
-            metrics={metrics}
-            metadataMap={metadataMap}
-          />
-        </div>
-        <div className="hidden lg:block" />
       </div>
       <AboutSection />
     </div>
