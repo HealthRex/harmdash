@@ -10,7 +10,7 @@ export function NoharmInfoCard({ className }: NoharmInfoCardProps) {
   return (
     <section
       className={clsx(
-        "flex flex-col gap-5 rounded-2xl bg-white p-5 text-sm text-slate-600 shadow-lg shadow-slate-200",
+        "flex flex-col gap-5 rounded-2xl bg-[#f4f4f5] p-5 text-sm text-slate-600",
         className
       )}
     >

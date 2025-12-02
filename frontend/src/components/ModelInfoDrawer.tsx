@@ -498,7 +498,7 @@ export function ModelInfoDrawer({
   return (
     <aside
       className={clsx(
-        "flex w-full max-w-full flex-col gap-4 rounded-2xl border border-neutral-200 bg-white/90 p-6 shadow-sm backdrop-blur transition",
+        "flex w-full max-w-full flex-col gap-4 rounded-2xl bg-[#f4f4f5] p-6 transition",
         selection ? "opacity-100" : "opacity-75",
         className
       )}

@@ -11,13 +11,13 @@ export function MetricsSummary({ dataset }: MetricsSummaryProps) {
   const summary = getDatasetSummary(dataset);
 
   return (
-    <section className="flex flex-col gap-6 rounded-xl bg-white px-6 py-6 md:flex-row md:items-center md:justify-between">
+    <section className="flex flex-col gap-6 rounded-xl bg-[#f4f4f5] px-6 py-6 md:flex-row md:items-center md:justify-between">
       <div className="flex flex-col gap-2">
         <h2 className="text-[15px] font-medium text-[#0c0d10]">
-          Do NOHARM: Interactive AI Benchmark Leaderboard
+          First, Do NOHARM AI Benchmark & Leaderboard
         </h2>
         <p className="text-[14px] text-neutral-600">
-          Visualize how leading AI models perform in the NOHARM medical AI benchmark.
+          Numerous Options Harm Assessment of Risk in Medicine: a benchmark for medical benefit & harm
         </p>
       </div>
       <dl className="grid grid-cols-3 gap-8 text-center">

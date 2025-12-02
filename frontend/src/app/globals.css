@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  background: #fafbfc;
+  background: #ffffff;
   color: #0c0d10;
   font-feature-settings: "ss01" on, "ss02" on, "tnum" on;
   -webkit-font-smoothing: antialiased;
