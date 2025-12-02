@@ -1259,14 +1259,14 @@ export function BarChartCard({
           );
         }}
         className={clsx(
-          "relative group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-2xl border border-transparent bg-white/0 px-2 py-1.5 text-left transition-[background-color,border-color,box-shadow,opacity] duration-[550ms] ease-[cubic-bezier(0.33,1,0.68,1)]",
+          "relative group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-2xl border-2 bg-white/0 px-2 py-1.5 text-left transition-[background-color,border-color,box-shadow,opacity] duration-[550ms] ease-[cubic-bezier(0.33,1,0.68,1)]",
           isSelected
-            ? "border-2 bg-gradient-to-r from-white via-slate-50 to-white shadow-sm"
-            : "hover:border-slate-200 hover:bg-slate-50/70",
+            ? "bg-gradient-to-r from-white via-slate-50 to-white shadow-sm"
+            : "hover:bg-slate-50/70",
           isDropTarget ? "border-dashed" : undefined,
           activeHighlightType ? "cursor-grab" : undefined
         )}
-        style={buttonStyle}
+        style={{ ...buttonStyle, borderColor: applyAlpha(barColor, 0.4) }}
         onDragEnter={(event) => {
           if (!draggedHighlight) {
             return;
@@ -1332,7 +1332,7 @@ export function BarChartCard({
         <div className="relative h-10 w-full overflow-hidden rounded-[12px]">
           <div
             className="absolute inset-0 rounded-[12px]"
-            style={{ background: "#e9ebf2" }}
+            style={{ background: applyAlpha(barColor, 0.15) }}
           />
           {renderConfidenceVisual()}
           <div
@@ -1522,7 +1522,7 @@ export function BarChartCard({
               type="button"
               onClick={toggleViewMode}
               aria-pressed={isAllView}
-              className="rounded px-1 text-neutral-600 underline decoration-dashed underline-offset-4 transition-colors hover:text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-500/40"
+              className="rounded pr-1 text-neutral-600 underline decoration-dashed underline-offset-4 transition-colors hover:text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-500/40"
               title={
                 isAllView
                   ? "Show only the best and worst performers"

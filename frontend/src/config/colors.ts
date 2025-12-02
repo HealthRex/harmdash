@@ -1,15 +1,15 @@
 import { HUMAN_DISPLAY_LABEL } from "./humans";
 
 export const TEAM_COLORS: Record<string, string> = {
-  "Solo Model": "#7C3AED",
-  "Solo Models": "#5865F2",
-  "1 Agent": "#7C3AED",
-  "2-Agent Team": "#0284C7",
-  "2-Agent Teams": "#0284C7",
-  "2 Agents": "#0284C7",
-  "3-Agent Team": "#16A34A",
-  "3-Agent Teams": "#16A34A",
-  "3 Agents": "#16A34A",
+  "Solo Model": "#14B8A6",
+  "Solo Models": "#14B8A6",
+  "1 Agent": "#14B8A6",
+  "2-Agent Team": "#22C55E",
+  "2-Agent Teams": "#22C55E",
+  "2 Agents": "#22C55E",
+  "3-Agent Team": "#6366F1",
+  "3-Agent Teams": "#6366F1",
+  "3 Agents": "#6366F1",
   Human: "#F59E0B",
   [HUMAN_DISPLAY_LABEL]: "#F59E0B",
   default: "#0F172A"
