@@ -1044,6 +1044,17 @@ export function Dashboard({ dataset }: DashboardProps) {
           />
         </div>
       </div>
+      <ScatterChartCard
+        combinations={combinations}
+        xMetricId={safeXMetric}
+        yMetricId={safeYMetric}
+        onXMetricChange={setXMetricId}
+        onYMetricChange={setYMetricId}
+        onPointClick={handlePointClick}
+        highlightedCombinationId={selection?.combinationId}
+        metrics={metrics}
+        metadataMap={metadataMap}
+      />
       <AboutSection />
     </div>
   );
