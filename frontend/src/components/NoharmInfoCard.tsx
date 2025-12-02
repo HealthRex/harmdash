@@ -55,25 +55,15 @@ export function NoharmInfoCard({ className }: NoharmInfoCardProps) {
         </div>
         <div className="flex flex-col gap-1">
           <dt className="text-xs font-semibold uppercase tracking-wide text-slate-500">Contact</dt>
-          <dd className="flex flex-col">
-            <span>
-              David Wu, MD, PhD {""}
-              <a
-                href="mailto:dwu@mgh.harvard.edu"
-                className="font-medium text-brand-600 hover:text-brand-700"
-              >
-                dwu@mgh.harvard.edu
-              </a>
-            </span>
-            <span>
-              Adam Rodman, MD
-            </span>            
-            <span>
-              Jonathan Chen, MD, PhD
-            </span>
-            <span>
-              Ethan Goh, MD
-            </span>
+          <dd>
+            For questions about NOHARM or benchmarking your model, reach out to {""}
+            <a
+              href="mailto:dwu@mgh.harvard.edu"
+              className="font-medium text-brand-600 hover:text-brand-700"
+            >
+              dwu@mgh.harvard.edu
+            </a>
+            .
           </dd>
         </div>
       </dl>
