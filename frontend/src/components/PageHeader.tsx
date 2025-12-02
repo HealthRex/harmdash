@@ -22,12 +22,12 @@ export function PageHeader() {
           Read the paper
         </a>
         <a
-          href="https://evals.arise-ai.org"
+          href="https://arise-ai.org"
           target="_blank"
           rel="noopener noreferrer"
           className="rounded-full bg-[#0c0d10] px-6 py-2.5 text-[15px] font-medium text-white transition-all hover:bg-[#1a1b1f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0c0d10]/60"
         >
-          Visit evals.arise-ai.org
+          Visit arise-ai.org
         </a>
       </div>
     </header>
