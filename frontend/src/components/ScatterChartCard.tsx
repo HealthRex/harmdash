@@ -488,6 +488,18 @@ export function ScatterChartCard({
           callbacks: {
             title: (items: TooltipItem<"scatter">[]) => (items[0]?.raw as ScatterPoint)?.label ?? "",
             label: (context: TooltipItem<"scatter">) => {
+              // Chart.js can surface multiple tooltip contexts for the same point when
+              // markers overlap. Only render content for the first item to avoid
+              // duplicated lines in the tooltip.
+              const primary = (context as any).chart.tooltip?.dataPoints?.[0];
+              const isPrimaryPoint =
+                primary?.dataIndex === context.dataIndex &&
+                primary?.datasetIndex === context.datasetIndex;
+
+              if (!isPrimaryPoint) {
+                return [];
+              }
+
               const point = context.raw as ScatterPoint;
               return point.tooltipLines;
             }
@@ -575,10 +587,10 @@ export function ScatterChartCard({
 
   return (
     <section className={clsx(
-      "flex w-full flex-col gap-4 rounded-2xl bg-[#f4f4f5] p-6",
+      "flex w-full flex-col gap-4 rounded-2xl bg-[#f4f4f5] p-6 h-[650px]",
       className
     )}>
-      <header className="flex flex-col gap-2">
+      <header className="flex flex-col gap-2 flex-shrink-0">
         <div className="flex items-start justify-between gap-4">
           <div>
             <h2 className="text-lg font-semibold text-slate-900">
@@ -621,16 +633,16 @@ export function ScatterChartCard({
         </div>
         <p className="text-xs text-slate-500">Hover for model details</p>
       </header>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 flex-1 min-h-0">
         <div
           ref={chartContainerRef}
-          className="relative w-full h-[400px] overflow-hidden"
+          className="relative w-full flex-1 overflow-hidden"
         >
           <Scatter
             ref={chartRef}
             data={chartData}
             options={chartOptions}
-            className="h-[400px] w-full"
+            className="h-full w-full"
             onClick={handleClick}
           />
         </div>
