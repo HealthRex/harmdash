@@ -194,7 +194,7 @@ export function TeamFiltersBar({
                 isSelected
                   ? "border-neutral-200 bg-white"
                   : "border-neutral-200 bg-neutral-50",
-                shouldHighlight ? "multi-agent-highlight" : null
+                null
               )}
               style={getTeamCardSizing(group, agentCount)}
             >

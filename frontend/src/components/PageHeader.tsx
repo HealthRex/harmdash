@@ -8,10 +8,10 @@ export function PageHeader() {
           NOHARM
         </span>
         <h1 className="max-w-4xl text-[52px] font-normal leading-[1.1] tracking-[-0.02em] text-[#0c0d10]">
-          Measuring the performance of AI models on realistic clinical tasks
+          MAST: Medical AI Superintelligence Test
         </h1>
         <p className="max-w-2xl text-[17px] font-normal leading-relaxed text-neutral-600">
-          Introducing NOHARM, a specialist-validated benchmark towards deploying clinically accurate and safe models.
+          Introducing MAST, our vision for a suite of clinically realistic benchmarks to evaluate performance of healthcare AI systems. First, do NOHARM, a new framework towards clinical safety in LLM systems
         </p>
       </div>
       <div className="flex flex-wrap items-center justify-center gap-3">
