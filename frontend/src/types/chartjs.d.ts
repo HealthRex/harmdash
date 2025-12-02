@@ -5,14 +5,25 @@ declare module "chart.js" {
     y: number;
   }
 
+  export interface ScriptableContext<TType extends ChartType = ChartType> {
+    active: boolean;
+    chart: Chart;
+    dataIndex: number;
+    datasetIndex: number;
+    parsed: unknown;
+    raw: unknown;
+  }
+
+  export type Scriptable<T, TContext> = T | ((ctx: TContext) => T);
+
   export interface ChartDataset<TType extends ChartType = ChartType, TData = ScatterDataPoint[]> {
     label?: string;
     data: TData;
     order?: number;
-    backgroundColor?: unknown;
-    borderColor?: unknown;
-    pointRadius?: unknown;
-    pointBorderWidth?: unknown;
+    backgroundColor?: Scriptable<string, ScriptableContext<TType>>;
+    borderColor?: string;
+    pointRadius?: Scriptable<number, ScriptableContext<TType>>;
+    pointBorderWidth?: Scriptable<number, ScriptableContext<TType>>;
   }
 
   export interface ChartData<TType extends ChartType = ChartType, TData = ScatterDataPoint[]> {

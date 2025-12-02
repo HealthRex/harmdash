@@ -15,10 +15,11 @@ import {
   Tooltip,
   type ChartData,
   type ChartOptions,
+  type ScriptableContext,
   type TooltipItem
 } from "chart.js";
 import clsx from "clsx";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef } from "react";
 import { Scatter } from "react-chartjs-2";
 
 ChartJS.register(LinearScale, PointElement, Tooltip, Legend, Title);
@@ -388,7 +389,7 @@ export function ScatterChartCard({
           label: traceName,
           data,
           order: legendRank,
-          backgroundColor: (context) => {
+          backgroundColor: (context: ScriptableContext<'scatter'>) => {
             const point = context.raw as ScatterPoint;
             const color = TEAM_COLORS[colorKey] ?? TEAM_COLORS.default;
             const opacity = highlightedCombinationId
@@ -399,7 +400,7 @@ export function ScatterChartCard({
             return hexToRgba(color, opacity);
           },
           borderColor: "#0f172a",
-          pointRadius: (context) => {
+          pointRadius: (context: ScriptableContext<'scatter'>) => {
             const point = context.raw as ScatterPoint;
             if (
               highlightedCombinationId &&
@@ -409,7 +410,7 @@ export function ScatterChartCard({
             }
             return MARKER_RADIUS;
           },
-          pointBorderWidth: (context) => {
+          pointBorderWidth: (context: ScriptableContext<'scatter'>) => {
             const point = context.raw as ScatterPoint;
             return highlightedCombinationId && highlighted.has(point.combinationId)
               ? 2
@@ -485,7 +486,7 @@ export function ScatterChartCard({
             },
         tooltip: {
           callbacks: {
-            title: (items) => items[0]?.raw?.label ?? "",
+            title: (items: TooltipItem<"scatter">[]) => (items[0]?.raw as ScatterPoint)?.label ?? "",
             label: (context: TooltipItem<"scatter">) => {
               const point = context.raw as ScatterPoint;
               return point.tooltipLines;
@@ -503,7 +504,7 @@ export function ScatterChartCard({
           min: xAxisRange?.[0],
           max: xAxisRange?.[1],
           ticks: {
-            callback: (value) =>
+            callback: (value: number | string) =>
               xIsPercentMetric ? `${value as number}%` : `${value as number}`,
             color: "#0f172a",
             font: { size: 12, family: "Inter, sans-serif" }
@@ -520,7 +521,7 @@ export function ScatterChartCard({
           min: yAxisRange?.[0],
           max: yAxisRange?.[1],
           ticks: {
-            callback: (value) =>
+            callback: (value: number | string) =>
               yIsPercentMetric ? `${value as number}%` : `${value as number}`,
             color: "#0f172a",
             font: { size: 12, family: "Inter, sans-serif" }
@@ -570,26 +571,7 @@ export function ScatterChartCard({
     }
   };
 
-  const [isChartActive, setIsChartActive] = useState(false);
   const chartContainerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!isChartActive) return;
-
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        chartContainerRef.current &&
-        !chartContainerRef.current.contains(event.target as Node)
-      ) {
-        setIsChartActive(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isChartActive]);
 
   return (
     <section className={clsx(
@@ -644,26 +626,13 @@ export function ScatterChartCard({
           ref={chartContainerRef}
           className="relative w-full h-[400px] overflow-hidden"
         >
-          {!isChartActive && (
-            <button
-              type="button"
-              onClick={() => setIsChartActive(true)}
-              className="absolute inset-0 z-10 flex cursor-pointer items-center justify-center bg-white/20 pb-24 backdrop-blur-[0.5px]"
-            >
-              <span className="rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-slate-600 shadow-md">
-                Click to interact with chart
-              </span>
-            </button>
-          )}
-          <div style={{ pointerEvents: isChartActive ? "auto" : "none" }}>
-            <Scatter
-              ref={chartRef}
-              data={chartData}
-              options={chartOptions}
-              className="h-[400px] w-full"
-              onClick={handleClick}
-            />
-          </div>
+          <Scatter
+            ref={chartRef}
+            data={chartData}
+            options={chartOptions}
+            className="h-[400px] w-full"
+            onClick={handleClick}
+          />
         </div>
       </div>
     </section>
