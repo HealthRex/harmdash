@@ -36,6 +36,7 @@ interface TeamFiltersBarProps {
   onToggleTeam: (team: string) => void;
   onToggleTeamCondition: (team: string, condition: string) => void;
   conditionColorMap: Map<string, string>;
+  className?: string;
 }
 
 export function TeamFiltersBar({
@@ -44,7 +45,8 @@ export function TeamFiltersBar({
   selectedTeamConditions,
   onToggleTeam,
   onToggleTeamCondition,
-  conditionColorMap
+  conditionColorMap,
+  className
 }: TeamFiltersBarProps) {
   const inferAgentCount = useCallback((group: TeamConditionGroup) => {
     const normalizedLabel = group.label.trim().toLowerCase();
@@ -161,7 +163,12 @@ export function TeamFiltersBar({
   };
 
   return (
-    <section className="flex flex-col gap-2.5 rounded-2xl bg-[#f4f4f5] p-3 transition-all duration-[600ms] ease-[cubic-bezier(0.33,1,0.68,1)]">
+    <section
+      className={clsx(
+        "flex flex-col gap-2.5 rounded-2xl bg-[#f4f4f5] p-3 transition-all duration-[600ms] ease-[cubic-bezier(0.33,1,0.68,1)]",
+        className
+      )}
+    >
       <header className="flex items-center gap-2">
         <div className="flex items-center gap-2">
           <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">

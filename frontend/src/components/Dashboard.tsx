@@ -1,13 +1,12 @@
 'use client';
 
-import { AboutSection } from "@/components/AboutSection";
 import { BarChartCard } from "@/components/BarChartCard";
 import { TeamFiltersBar } from "@/components/FiltersPanel";
-import { MetricsSummary } from "@/components/MetricsSummary";
 import { ModelInfoDrawer as ModelProfileCard } from "@/components/ModelInfoDrawer";
 import { PageHeader } from "@/components/PageHeader";
 import { ScatterChartCard } from "@/components/ScatterChartCard";
 import { NoharmInfoCard } from "@/components/NoharmInfoCard";
+import { StudyAuthorsCard } from "@/components/StudyAuthorsCard";
 import type {
   CombinationEntry,
   DataRow,
@@ -974,9 +973,8 @@ export function Dashboard({ dataset }: DashboardProps) {
   return (
     <div className="flex flex-col gap-8 pb-12">
       <PageHeader />
-      <MetricsSummary dataset={dataset} />
-      <div className="flex flex-col gap-6 lg:grid lg:grid-cols-[minmax(0,1.7fr)_minmax(360px,1fr)] lg:items-start lg:gap-6">
-        <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 lg:grid lg:grid-cols-[minmax(0,1.7fr)_minmax(360px,1fr)] lg:items-start lg:gap-6">
           <BarChartCard
             rows={filteredRows}
             metricId={safeBarMetric}
@@ -989,6 +987,60 @@ export function Dashboard({ dataset }: DashboardProps) {
             metadataMap={metadataMap}
             conditionColorMap={conditionColorMap}
           />
+          <div className="flex flex-col gap-6">
+            <ModelProfileCard
+              selection={selection}
+              comparison={comparisonSelection}
+              onClear={handleClearSelection}
+              onClearComparison={handleClearComparison}
+              metrics={metrics}
+              modelQuery={modelSearch}
+              onModelSearchChange={setModelSearch}
+              suggestions={modelSuggestions}
+              comparisonQuery={comparisonSearch}
+              onComparisonSearchChange={setComparisonSearch}
+              comparisonSuggestions={comparisonSuggestions}
+              onSuggestionSelect={(entry) => {
+                const match =
+                  unanimousCombinations.find(
+                    (candidate) => candidate.combinationId === entry.combinationId
+                  ) ??
+                  allCombinations.find(
+                    (candidate) => candidate.combinationId === entry.combinationId
+                  );
+                if (match) {
+                  searchSelectionRef.current = true;
+                  setSelection(match);
+                  setModelSearch(match.displayLabel || match.model || "");
+                }
+              }}
+              onComparisonSuggestionSelect={(entry) => {
+                const match =
+                  unanimousCombinations.find(
+                    (candidate) => candidate.combinationId === entry.combinationId
+                  ) ??
+                  allCombinations.find(
+                    (candidate) => candidate.combinationId === entry.combinationId
+                  );
+                if (match) {
+                  comparisonSearchSelectionRef.current = true;
+                  setComparisonSelection(match);
+                  setComparisonSearch(match.displayLabel || match.model || "");
+                }
+              }}
+              onActiveTargetChange={setActiveSelectionTarget}
+            />
+            <TeamFiltersBar
+              teamGroups={teamGroups}
+              selectedTeams={selectedTeams}
+              selectedTeamConditions={selectedTeamConditions}
+              onToggleTeam={handleToggleTeam}
+              onToggleTeamCondition={handleToggleTeamCondition}
+              conditionColorMap={conditionColorMap}
+            />
+          </div>
+        </div>
+        <div className="flex flex-col gap-6 lg:grid lg:grid-cols-[minmax(0,1.7fr)_minmax(360px,1fr)] lg:items-start lg:gap-6">
           <ScatterChartCard
             combinations={combinations}
             xMetricId={safeXMetric}
@@ -1000,62 +1052,10 @@ export function Dashboard({ dataset }: DashboardProps) {
             metrics={metrics}
             metadataMap={metadataMap}
           />
-        </div>
-        <div className="flex flex-col gap-6">
-          <ModelProfileCard
-            selection={selection}
-            comparison={comparisonSelection}
-            onClear={handleClearSelection}
-            onClearComparison={handleClearComparison}
-            metrics={metrics}
-            className="lg:flex-1"
-            modelQuery={modelSearch}
-            onModelSearchChange={setModelSearch}
-            suggestions={modelSuggestions}
-            comparisonQuery={comparisonSearch}
-            onComparisonSearchChange={setComparisonSearch}
-            comparisonSuggestions={comparisonSuggestions}
-            onSuggestionSelect={(entry) => {
-              const match =
-                unanimousCombinations.find(
-                  (candidate) => candidate.combinationId === entry.combinationId
-                ) ??
-                allCombinations.find(
-                  (candidate) => candidate.combinationId === entry.combinationId
-                );
-              if (match) {
-                searchSelectionRef.current = true;
-                setSelection(match);
-                setModelSearch(match.displayLabel || match.model || "");
-              }
-            }}
-            onComparisonSuggestionSelect={(entry) => {
-              const match =
-                unanimousCombinations.find(
-                  (candidate) => candidate.combinationId === entry.combinationId
-                ) ??
-                allCombinations.find(
-                  (candidate) => candidate.combinationId === entry.combinationId
-                );
-              if (match) {
-                comparisonSearchSelectionRef.current = true;
-                setComparisonSelection(match);
-                setComparisonSearch(match.displayLabel || match.model || "");
-              }
-            }}
-            onActiveTargetChange={setActiveSelectionTarget}
-          />
-          <TeamFiltersBar
-            teamGroups={teamGroups}
-            selectedTeams={selectedTeams}
-            selectedTeamConditions={selectedTeamConditions}
-            onToggleTeam={handleToggleTeam}
-            onToggleTeamCondition={handleToggleTeamCondition}
-            conditionColorMap={conditionColorMap}
-          />
+          <NoharmInfoCard />
         </div>
       </div>
-      <AboutSection />
+      <StudyAuthorsCard />
     </div>
   );
 }
