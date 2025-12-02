@@ -9,27 +9,28 @@ export function AboutSection() {
             About
           </h2>
           <p className="text-[14px] leading-[1.65] text-neutral-700">
-            NOHARM is a specialist-validated medical management benchmark to evaluate the accuracy and safety of AI-generated medical recommendations on cases to doctors. The current version covers 10 specialties over 100 cases, and includes 12,747 specialist annotations on beneficial and harmful actions. This project is led and supported by the ARISE AI Research Network, based at Stanford and Harvard.
+            NOHARM is a specialist-validated medical benchmark to evaluate the accuracy and safety of AI-generated medical recommendations, grounded in real medical cases. The current version covers 10 specialties over 100 cases, and includes 12,747 specialist annotations on beneficial and harmful medical actions that can be taken in the 100 cases. This project is led and supported by the ARISE AI Research Network, based at Stanford and Harvard.
           </p>
         </div>
-        <div className="flex flex-col gap-2.5">
-          <h2 className="text-[13px] font-semibold uppercase tracking-wide text-[#0c0d10]">
-            Attribution
-          </h2>
-          <p className="text-[14px] leading-[1.65] text-neutral-700">
-            This LLM leaderboard displays the latest public benchmark performance for SOTA model versions released after April 2024. The data comes from model providers as well as independently run evaluations by Vellum or the open-source community. We feature results from non-saturated benchmarks, excluding outdated benchmarks (e.g. MMLU). If you want to evaluate these models on your use-cases, get in touch.
-          </p>
-        </div>
-      </div>
-      <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-2.5">
           <h2 className="text-[13px] font-semibold uppercase tracking-wide text-[#0c0d10]">
             Study
           </h2>
           <p className="text-[14px] leading-[1.65] text-neutral-700">
-            Please see a detailed manuscript on our study here. (Insert link here)
+            For details, see{" "}
+            <a
+              href="https://arxiv.org/abs/2512.01241"
+              className="font-medium text-blue-600 hover:text-blue-700"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              our study
+            </a>
+            .
           </p>
         </div>
+      </div>
+      <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-2.5">
           <h2 className="text-[13px] font-semibold uppercase tracking-wide text-[#0c0d10]">
             Submissions
@@ -43,8 +44,18 @@ export function AboutSection() {
             Contact
           </h2>
           <ul className="flex list-none flex-col gap-1.5 text-[14px] leading-[1.65] text-neutral-700">
-            <li>• David Wu, MD, PhD (dwu@mgh.harvard.edu)</li>
-            <li>• Ethan Goh, MD (ethangoh@stanford.edu)</li>
+            <li>
+              David Wu, MD, PhD{" "}
+              <a
+                href="mailto:dwu@mgh.harvard.edu"
+                className="font-medium text-blue-600 hover:text-blue-700"
+              >
+                dwu@mgh.harvard.edu
+              </a>
+            </li>
+            <li>Adam Rodman, MD</li>
+            <li>Jonathan Chen, MD, PhD</li>
+            <li>Ethan Goh, MD</li>
           </ul>
         </div>
       </div>
