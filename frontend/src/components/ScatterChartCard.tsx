@@ -445,7 +445,8 @@ export function ScatterChartCard({
     if (pearsonCorrelation === null) {
       return null;
     }
-    return `Pearson's r = ${pearsonCorrelation.toFixed(2)}`;
+    const rSquared = pearsonCorrelation ** 2;
+    return `Pearson's R = ${pearsonCorrelation.toFixed(2)}, R<sup>2</sup> = ${rSquared.toFixed(2)}`;
   }, [pearsonCorrelation]);
 
   const xAxisTitle = useMemo(() => {
@@ -469,6 +470,17 @@ export function ScatterChartCard({
   const layout = useMemo<Partial<Layout>>(
     () => ({
       margin: { l: 60, r: 20, t: 40, b: 120 },
+      title: correlationLabel ? {
+        text: `<i>${correlationLabel}</i>`,
+        x: 0.5,
+        xanchor: 'center',
+        yanchor: 'bottom',
+        font: {
+          size: 14,
+          family: "Inter, sans-serif",
+          color: "#0f172a"
+        }
+      } : undefined,
       autosize: true,
       paper_bgcolor: "rgba(0,0,0,0)",
       plot_bgcolor: "rgba(0,0,0,0)",
@@ -532,26 +544,7 @@ export function ScatterChartCard({
         family: "Inter, sans-serif",
         color: "#0f172a"
       },
-      annotations: correlationLabel
-        ? [
-            {
-              text: `<b>${correlationLabel}</b>`,
-              xref: "paper",
-              yref: "paper",
-              x: 0.08,
-              y: 0.08,
-              showarrow: false,
-              align: "left",
-              xanchor: "left",
-              yanchor: "bottom",
-              font: {
-                size: 14,
-                family: "Inter, sans-serif",
-                color: "#0f172a"
-              }
-            }
-          ]
-        : undefined,
+
       legend: {
         orientation: "h",
         x: 0.5,
@@ -693,7 +686,7 @@ export function ScatterChartCard({
               Metric Explorer
             </h2>
             <p className="text-sm text-slate-500">
-              Analyze model performance across two metrics
+              Analyze multiple metrics
             </p>
           </div>
           <div className="flex flex-row items-center gap-4">
@@ -732,7 +725,7 @@ export function ScatterChartCard({
       <div className="flex flex-col gap-4">
         <div
           ref={chartContainerRef}
-          className="relative aspect-square w-full min-h-[520px] overflow-hidden"
+          className="relative w-full h-[400px] overflow-hidden"
         >
           {!isChartActive && (
             <button

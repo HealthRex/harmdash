@@ -2,8 +2,8 @@
 
 export function PageHeader() {
   return (
-    <header className="flex flex-col items-center gap-8 pb-8 pt-6 text-center">
-      <div className="flex flex-col items-center gap-6">
+    <header className="flex flex-col items-center gap-5 pb-8 pt-6 text-center">
+      <div className="flex flex-col items-center gap-5">
         <span className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500">
           NOHARM
         </span>
@@ -14,7 +14,7 @@ export function PageHeader() {
           Introducing MAST, our vision for a suite of realistic clinical benchmarks to evaluate real-world performance of medical AI systems. 
         </p>
         <p className="max-w-3xl text-[18px] font-normal leading-relaxed text-neutral-600">
-  <strong>First, Do NOHARM</strong> is the foundational benchmark of the MAST suite, and introduces a new framework to assess clinical safety and accuracy in AI-generated medical recommendations.
+  <strong>First, Do NOHARM</strong> is the foundational benchmark of the MAST suite, and establishes a new framework to assess clinical safety and accuracy in AI-generated medical recommendations.
 </p>
       </div>
       <div className="flex flex-wrap items-center justify-center gap-3">
@@ -24,7 +24,7 @@ export function PageHeader() {
           rel="noopener noreferrer"
           className="rounded-full border border-neutral-300 bg-white px-6 py-2.5 text-[15px] font-medium text-[#0c0d10] transition-all hover:bg-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400"
         >
-          Read the paper
+          Read the study
         </a>
         <a
           href="https://arise-ai.org"

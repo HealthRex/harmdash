@@ -165,7 +165,7 @@ export function TeamFiltersBar({
   return (
     <section
       className={clsx(
-        "flex flex-col gap-2.5 rounded-2xl bg-[#f4f4f5] p-3 transition-all duration-[600ms] ease-[cubic-bezier(0.33,1,0.68,1)]",
+        "flex flex-col gap-2.5 rounded-2xl bg-[#f4f4f5] p-3 min-h-[280px] transition-all duration-[600ms] ease-[cubic-bezier(0.33,1,0.68,1)]",
         className
       )}
     >

@@ -971,7 +971,7 @@ export function Dashboard({ dataset }: DashboardProps) {
   );
 
   return (
-    <div className="flex flex-col gap-8 pb-12">
+    <div className="flex flex-col gap-1 pb-12">
       <PageHeader />
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-6 lg:grid lg:grid-cols-[minmax(0,1.7fr)_minmax(360px,1fr)] lg:items-start lg:gap-6">
@@ -987,7 +987,7 @@ export function Dashboard({ dataset }: DashboardProps) {
             metadataMap={metadataMap}
             conditionColorMap={conditionColorMap}
           />
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col h-full justify-between">
             <ModelProfileCard
               selection={selection}
               comparison={comparisonSelection}
