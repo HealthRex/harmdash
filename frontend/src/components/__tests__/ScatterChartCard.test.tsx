@@ -1,20 +1,10 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import type { CombinationEntry, MetricMetadata } from "@/types/dataset";
 import { ScatterChartCard } from "../ScatterChartCard";
-import { vi, beforeEach, describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 
 (globalThis as unknown as { React: typeof React }).React = React;
-
-const mockPlot = vi.fn();
-
-vi.mock("@/components/PlotClient", () => ({
-  __esModule: true,
-  default: (props: any) => {
-    mockPlot(props);
-    return <div data-testid="mock-plot" />;
-  }
-}));
 
 const baseMetricMeta: MetricMetadata = {
   id: "Accuracy",
@@ -102,17 +92,13 @@ function buildEntry(index: number, team = "Solo Models"): CombinationEntry {
 }
 
 describe("ScatterChartCard trace selection", () => {
-  beforeEach(() => {
-    mockPlot.mockClear();
-  });
-
   const metrics = [safetyMeta, accuracyMeta];
   const metadataMap = new Map<string, MetricMetadata>([
     ["Safety", safetyMeta],
     ["Accuracy", accuracyMeta]
   ]);
 
-  it("uses scatter traces when the dataset is small", () => {
+  it("groups entries by team and adds a human dataset", () => {
     const combinations: CombinationEntry[] = [
       buildEntry(0),
       buildEntry(1),
@@ -135,40 +121,16 @@ describe("ScatterChartCard trace selection", () => {
       />
     );
 
-    const plotArgs = mockPlot.mock.calls.at(-1)?.[0];
-    expect(plotArgs).toBeDefined();
-    expect(plotArgs.data).toSatisfy((data: any[]) =>
-      data.every((trace) => trace.type === "scatter")
-    );
+    const chart = screen.getByTestId("chartjs-stub");
+    const datasets = JSON.parse(chart.getAttribute("data-datasets") ?? "[]");
+    const labels = datasets.map((dataset: any) => dataset.label);
+    expect(labels).toContain("Solo Models");
+    expect(labels).toContain("Human Generalist Physicians");
+    const soloDataset = datasets.find((dataset: any) => dataset.label === "Solo Models");
+    expect(soloDataset?.data).toHaveLength(2);
   });
 
-  it("switches to scattergl when there are many points", () => {
-    const combinations: CombinationEntry[] = [];
-    for (let index = 0; index < 220; index += 1) {
-      combinations.push(buildEntry(index, "2-Agent Teams"));
-    }
-
-    render(
-      <ScatterChartCard
-        combinations={combinations}
-        xMetricId="Safety"
-        yMetricId="Accuracy"
-        onXMetricChange={() => {}}
-        onYMetricChange={() => {}}
-        metrics={metrics}
-        metadataMap={metadataMap}
-      />
-    );
-
-    const plotArgs = mockPlot.mock.calls.at(-1)?.[0];
-    expect(plotArgs).toBeDefined();
-    const nonHumanTrace = (plotArgs.data as any[]).find(
-      (trace) => trace.name !== "Human Generalist Physicians"
-    );
-    expect(nonHumanTrace?.type).toBe("scattergl");
-  });
-
-  it("adds a Pearson correlation annotation to the plot", () => {
+  it("adds a Pearson correlation title to the chart", () => {
     const combinations: CombinationEntry[] = [
       buildEntry(0),
       buildEntry(1),
@@ -187,13 +149,51 @@ describe("ScatterChartCard trace selection", () => {
       />
     );
 
-    const plotArgs = mockPlot.mock.calls.at(-1)?.[0];
-    expect(plotArgs).toBeDefined();
-    const annotation = plotArgs.layout.annotations?.[0];
-    expect(annotation?.text).toBe("<b>r = 1.00</b>");
-    expect(annotation?.x).toBeCloseTo(0.08);
-    expect(annotation?.y).toBeCloseTo(0.08);
-    expect(annotation?.xanchor).toBe("left");
-    expect(annotation?.yanchor).toBe("bottom");
+    const chart = screen.getByTestId("chartjs-stub");
+    const options = JSON.parse(chart.getAttribute("data-options") ?? "{}");
+    expect(options.plugins?.title?.text).toContain("Pearson's R = 1.00");
+  });
+
+  it("scales percent metrics to percentages", () => {
+    const percentMetric: MetricMetadata = {
+      ...baseMetricMeta,
+      id: "Percent",
+      displayLabel: "Percent",
+      range: "percent"
+    };
+
+    const percentEntry: CombinationEntry = {
+      ...buildEntry(0),
+      metrics: {
+        ...buildEntry(0).metrics,
+        Percent: {
+          ...buildEntry(0).metrics.Accuracy!,
+          metric: "Percent",
+          mean: 0.52
+        }
+      }
+    };
+
+    const percentMap = new Map<string, MetricMetadata>([
+      ["Percent", percentMetric],
+      ["Accuracy", accuracyMeta]
+    ]);
+
+    render(
+      <ScatterChartCard
+        combinations={[percentEntry]}
+        xMetricId="Percent"
+        yMetricId="Accuracy"
+        onXMetricChange={() => {}}
+        onYMetricChange={() => {}}
+        metrics={[percentMetric, accuracyMeta]}
+        metadataMap={percentMap}
+      />
+    );
+
+    const chart = screen.getByTestId("chartjs-stub");
+    const datasets = JSON.parse(chart.getAttribute("data-datasets") ?? "[]");
+    const point = datasets[0].data[0];
+    expect(point.x).toBeCloseTo(52);
   });
 });

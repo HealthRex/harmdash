@@ -1,13 +1,27 @@
 'use client';
 
-import Plot from "@/components/PlotClient";
 import { TEAM_COLORS } from "@/config/colors";
 import { HUMAN_DISPLAY_LABEL, isHumanLabel } from "@/config/humans";
 import type { CombinationEntry, MetricMetadata } from "@/types/dataset";
 import { formatMetricValue } from "@/utils/data";
+import {
+  Chart as ChartJS,
+  Legend,
+  LegendItem,
+  LinearScale,
+  PointElement,
+  ScatterDataPoint,
+  Title,
+  Tooltip,
+  type ChartData,
+  type ChartOptions,
+  type TooltipItem
+} from "chart.js";
 import clsx from "clsx";
-import type { Layout, PlotData, PlotMouseEvent, Shape } from "plotly.js";
-import { useMemo, useState, useRef, useEffect } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Scatter } from "react-chartjs-2";
+
+ChartJS.register(LinearScale, PointElement, Tooltip, Legend, Title);
 
 const LEGEND_PRIORITY_GROUPS: readonly string[][] = [
   ["Solo Models", "Solo Model", "1 Agent"],
@@ -28,7 +42,22 @@ function getLegendPriority(label: string): number {
   return LEGEND_PRIORITY_MAP.get(normalized) ?? LEGEND_PRIORITY_GROUPS.length;
 }
 
-const MARKER_SIZE = 10;
+const MARKER_RADIUS = 5;
+
+function hexToRgba(hex: string, opacity: number): string {
+  const normalized = hex.replace("#", "");
+  const isShort = normalized.length === 3;
+  const components = isShort
+    ? normalized.split("").map((char) => char + char)
+    : normalized.match(/.{2}/g);
+
+  if (!components || components.length < 3) {
+    return hex;
+  }
+
+  const [r, g, b] = components.map((value) => parseInt(value, 16));
+  return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+}
 
 function calculatePearsonCorrelation(
   pairs: { x: number; y: number }[]
@@ -147,6 +176,13 @@ interface ScatterChartCardProps {
   className?: string;
 }
 
+type ScatterPoint = ScatterDataPoint & {
+  combinationId: string;
+  label: string;
+  tooltipLines: string[];
+  colorKey: string;
+};
+
 export function ScatterChartCard({
   combinations,
   xMetricId,
@@ -196,197 +232,6 @@ export function ScatterChartCard({
       return a[0].localeCompare(b[0]);
     });
   }, [teamGroups]);
-
-  const data: PlotData[] = useMemo(() => {
-    const highlighted = new Set([highlightedCombinationId ?? ""]);
-    const nonHumanTraces: PlotData[] = [];
-    const humanTraces: PlotData[] = [];
-
-    const totalPoints = filtered.reduce(
-      (sum, entry) => {
-        const xValue = entry.metrics[xMetricId]?.mean;
-        const yValue = entry.metrics[yMetricId]?.mean;
-        return xValue !== undefined && xValue !== null && yValue !== undefined && yValue !== null
-          ? sum + 1
-          : sum;
-      },
-      0
-    );
-
-    const traceType: PlotData["type"] = totalPoints > 200 ? "scattergl" : "scatter";
-
-    const createTrace = (
-      traceName: string,
-      entries: CombinationEntry[],
-      colorKey: string,
-      legendGroup: string,
-      legendRank?: number
-    ) => {
-      if (entries.length === 0) {
-        return null;
-      }
-
-      const rawX = entries.map((entry) => entry.metrics[xMetricId]?.mean ?? 0);
-      const rawY = entries.map((entry) => entry.metrics[yMetricId]?.mean ?? 0);
-
-      const x = rawX.map((value) => (xIsPercentMetric ? value * 100 : value));
-      const y = rawY.map((value) => (yIsPercentMetric ? value * 100 : value));
-
-      const color = TEAM_COLORS[colorKey] ?? TEAM_COLORS.default;
-      const marker = {
-        size: MARKER_SIZE,
-        color,
-        opacity: entries.map((entry) =>
-          highlightedCombinationId
-            ? highlighted.has(entry.combinationId)
-              ? 0.95
-              : 0.4
-            : 0.85
-        ),
-        line: {
-          width: entries.map((entry) =>
-            highlightedCombinationId && highlighted.has(entry.combinationId)
-              ? 2
-              : 0
-          ),
-          color: "#0f172a"
-        }
-      };
-
-      const hoverTexts = entries.map((entry) => {
-        const xValue = entry.metrics[xMetricId]?.mean ?? null;
-        const yValue = entry.metrics[yMetricId]?.mean ?? null;
-        const xCi = entry.metrics[xMetricId]?.ci ?? null;
-        const yCi = entry.metrics[yMetricId]?.ci ?? null;
-        const condition = entry.condition || "NA";
-        const modelName = entry.displayLabel || entry.model || "Unknown Model";
-
-        const formatAxisValue = (
-          value: number | null,
-          meta: MetricMetadata | undefined
-        ) => {
-          if (value === null) return "NA";
-          return formatMetricValue(value, { metadata: meta });
-        };
-
-        const formatMetricLine = (
-          label: string,
-          value: number | null,
-          ci: number | null,
-          meta: MetricMetadata | undefined
-        ) => {
-          const formattedValue = formatAxisValue(value, meta);
-          if (formattedValue === "NA") {
-            return `${label}: NA`;
-          }
-
-          if (ci === null || ci === 0) {
-            return `${label}: ${formattedValue}`;
-          }
-
-          const formattedCi = formatMetricValue(ci, { metadata: meta });
-          return `${label}: ${formattedValue} ± ${formattedCi}`;
-        };
-
-        const lines = [
-          `<b>${modelName}</b>`,
-          `Prompt: ${condition}`,
-          formatMetricLine(xMeta?.displayLabel ?? xMetricId, xValue, xCi, xMeta),
-          formatMetricLine(yMeta?.displayLabel ?? yMetricId, yValue, yCi, yMeta)
-        ].filter(Boolean);
-
-        return lines.join("<br>");
-      });
-
-      const xErrorRaw = entries.map((entry) => entry.metrics[xMetricId]?.ci ?? 0);
-      const yErrorRaw = entries.map((entry) => entry.metrics[yMetricId]?.ci ?? 0);
-
-      const errorX = xErrorRaw.some((value) => value && value > 0)
-        ? {
-            type: "data",
-            array: xErrorRaw.map((value) => (xIsPercentMetric ? value * 100 : value)),
-            visible: true
-          }
-        : undefined;
-      const errorY = yErrorRaw.some((value) => value && value > 0)
-        ? {
-            type: "data",
-            array: yErrorRaw.map((value) => (yIsPercentMetric ? value * 100 : value)),
-            visible: true
-          }
-        : undefined;
-
-      const trace = {
-        type: traceType,
-        mode: "markers",
-        name: traceName,
-        x,
-        y,
-        text: entries.map((entry) => entry.displayLabel || entry.model),
-        hoverinfo: "text",
-        hovertext: hoverTexts,
-        marker,
-        error_x: errorX,
-        error_y: errorY,
-        customdata: entries.map((entry) => entry.combinationId),
-        legendgroup: legendGroup,
-        legendrank: legendRank
-      } as PlotData;
-
-      return trace;
-    };
-
-    sortedTeams.forEach(([team, entries]) => {
-      const humanEntries: CombinationEntry[] = [];
-      const otherEntries: CombinationEntry[] = [];
-
-      entries.forEach((entry) => {
-        if (isHumanEntry(entry)) {
-          humanEntries.push(entry);
-        } else {
-          otherEntries.push(entry);
-        }
-      });
-
-      const legendGroup = team || "default-team";
-
-      const otherTrace = createTrace(
-        team,
-        otherEntries,
-        team,
-        legendGroup,
-        getLegendPriority(team)
-      );
-      if (otherTrace) {
-        nonHumanTraces.push(otherTrace);
-      }
-
-      if (humanEntries.length > 0) {
-        const humanTrace = createTrace(
-          HUMAN_DISPLAY_LABEL,
-          humanEntries,
-          HUMAN_DISPLAY_LABEL,
-          legendGroup,
-          Number.MAX_SAFE_INTEGER
-        );
-        if (humanTrace) {
-          humanTraces.push(humanTrace);
-        }
-      }
-    });
-
-    return [...nonHumanTraces, ...humanTraces];
-  }, [
-    filtered,
-    sortedTeams,
-    highlightedCombinationId,
-    xMetricId,
-    yMetricId,
-    xIsPercentMetric,
-    yIsPercentMetric,
-    xMeta,
-    yMeta
-  ]);
 
   const xDisplayValues = useMemo(() => {
     return filtered
@@ -446,7 +291,7 @@ export function ScatterChartCard({
       return null;
     }
     const rSquared = pearsonCorrelation ** 2;
-    return `Pearson's R = ${pearsonCorrelation.toFixed(2)}, R<sup>2</sup> = ${rSquared.toFixed(2)}`;
+    return `Pearson's R = ${pearsonCorrelation.toFixed(2)}, R² = ${rSquared.toFixed(2)}`;
   }, [pearsonCorrelation]);
 
   const xAxisTitle = useMemo(() => {
@@ -465,189 +310,261 @@ export function ScatterChartCard({
     return /%/.test(label) ? label : `${label} (%)`;
   }, [yMeta, yMetricId, yIsPercentMetric]);
 
-  const shouldLockAspectRatio = false;
+  const highlighted = useMemo(
+    () => new Set([highlightedCombinationId ?? ""]),
+    [highlightedCombinationId]
+  );
 
-  const layout = useMemo<Partial<Layout>>(
-    () => ({
-      margin: { l: 60, r: 20, t: 40, b: 120 },
-      title: correlationLabel ? {
-        text: `<i>${correlationLabel}</i>`,
-        x: 0.5,
-        xanchor: 'center',
-        yanchor: 'bottom',
-        font: {
-          size: 14,
-          family: "Inter, sans-serif",
-          color: "#0f172a"
-        }
-      } : undefined,
-      autosize: true,
-      paper_bgcolor: "rgba(0,0,0,0)",
-      plot_bgcolor: "rgba(0,0,0,0)",
-      xaxis: {
-        title: {
-          text: `<b>${xAxisTitle}</b>`,
-          font: {
-            size: 16,
-            family: "Inter, sans-serif"
-          }
-        },
-        range: xAxisRange,
-        tickformat: xIsPercentMetric ? ".0f" : undefined,
-        ticksuffix: xIsPercentMetric ? "%" : undefined,
-        automargin: true,
-        zeroline: false,
-        gridcolor: "#e2e8f0",
-        zerolinecolor: "#94a3b8",
-        zerolinewidth: 1.5,
-        showline: true,
-        mirror: true,
-        linecolor: "#94a3b8",
-        linewidth: 1.5,
-        constrain: shouldLockAspectRatio ? "domain" : undefined,
-        tickfont: {
-          size: 12,
-          family: "Inter, sans-serif",
-          color: "#0f172a"
-        }
-      },
-      yaxis: {
-        title: {
-          text: `<b>${yAxisTitle}</b>`,
-          font: {
-            size: 16,
-            family: "Inter, sans-serif"
-          }
-        },
-        range: yAxisRange,
-        tickformat: yIsPercentMetric ? ".0f" : undefined,
-        ticksuffix: yIsPercentMetric ? "%" : undefined,
-        automargin: true,
-        zeroline: false,
-        gridcolor: "#e2e8f0",
-        zerolinecolor: "#94a3b8",
-        zerolinewidth: 1.5,
-        showline: true,
-        mirror: true,
-        linecolor: "#94a3b8",
-        linewidth: 1.5,
-        scaleanchor: shouldLockAspectRatio ? "x" : undefined,
-        scaleratio: shouldLockAspectRatio ? 1 : undefined,
-        tickfont: {
-          size: 12,
-          family: "Inter, sans-serif",
-          color: "#0f172a"
-        }
-      },
-      hovermode: "closest",
-      font: {
-        family: "Inter, sans-serif",
-        color: "#0f172a"
-      },
+  const chartData = useMemo<ChartData<"scatter", ScatterPoint[]>>(
+    () => {
+      const datasets: ChartData<"scatter", ScatterPoint[]>["datasets"] = [];
 
-      legend: {
-        orientation: "h",
-        x: 0.5,
-        xanchor: "center",
-        y: -0.25,
-        yanchor: "top",
-        traceorder: "normal"
-      },
-      shapes: (() => {
-        const shapes: Partial<Shape>[] = [];
-        if (!xAxisRange || (xAxisRange[0] <= 0 && xAxisRange[1] >= 0)) {
-          shapes.push({
-            type: "line",
-            x0: 0,
-            x1: 0,
-            y0: yAxisRange ? yAxisRange[0] : 0,
-            y1: yAxisRange ? yAxisRange[1] : 0,
-            line: {
-              color: "#cbd5f5",
-              width: 1,
-              dash: "dot"
+      const createDataset = (
+        traceName: string,
+        entries: CombinationEntry[],
+        colorKey: string,
+        legendRank?: number
+      ) => {
+        if (entries.length === 0) {
+          return;
+        }
+
+        const data: ScatterPoint[] = entries.map((entry) => {
+          const rawX = entry.metrics[xMetricId]?.mean ?? 0;
+          const rawY = entry.metrics[yMetricId]?.mean ?? 0;
+          const x = xIsPercentMetric ? rawX * 100 : rawX;
+          const y = yIsPercentMetric ? rawY * 100 : rawY;
+          const xValue = entry.metrics[xMetricId]?.mean ?? null;
+          const yValue = entry.metrics[yMetricId]?.mean ?? null;
+          const xCi = entry.metrics[xMetricId]?.ci ?? null;
+          const yCi = entry.metrics[yMetricId]?.ci ?? null;
+          const modelName = entry.displayLabel || entry.model || "Unknown Model";
+          const condition = entry.condition || "NA";
+
+          const formatAxisValue = (
+            value: number | null,
+            meta: MetricMetadata | undefined
+          ) => {
+            if (value === null) return "NA";
+            return formatMetricValue(value, { metadata: meta });
+          };
+
+          const formatMetricLine = (
+            label: string,
+            value: number | null,
+            ci: number | null,
+            meta: MetricMetadata | undefined
+          ) => {
+            const formattedValue = formatAxisValue(value, meta);
+            if (formattedValue === "NA") {
+              return `${label}: NA`;
             }
-          });
-        }
-        if (!yAxisRange || (yAxisRange[0] <= 0 && yAxisRange[1] >= 0)) {
-          shapes.push({
-            type: "line",
-            x0: xAxisRange ? xAxisRange[0] : 0,
-            x1: xAxisRange ? xAxisRange[1] : 0,
-            y0: 0,
-            y1: 0,
-            line: {
-              color: "#cbd5f5",
-              width: 1,
-              dash: "dot"
+
+            if (ci === null || ci === 0) {
+              return `${label}: ${formattedValue}`;
             }
-          });
-        }
-        const addPercentLine = (value: number) => {
-          const x100Visible =
-            value >= (xAxisRange ? xAxisRange[0] : Number.NEGATIVE_INFINITY) &&
-            value <= (xAxisRange ? xAxisRange[1] : Number.POSITIVE_INFINITY);
-          if (x100Visible) {
-            shapes.push({
-              type: "line",
-              x0: value,
-              x1: value,
-              y0: yAxisRange ? yAxisRange[0] : 0,
-              y1: yAxisRange ? yAxisRange[1] : 0,
-              line: {
-                color: "#38bdf8",
-                width: 1,
-                dash: "dash"
-              }
-            });
+
+            const formattedCi = formatMetricValue(ci, { metadata: meta });
+            return `${label}: ${formattedValue} ± ${formattedCi}`;
+          };
+
+          const tooltipLines = [
+            `Prompt: ${condition}`,
+            formatMetricLine(xMeta?.displayLabel ?? xMetricId, xValue, xCi, xMeta),
+            formatMetricLine(yMeta?.displayLabel ?? yMetricId, yValue, yCi, yMeta)
+          ].filter(Boolean);
+
+          return {
+            x,
+            y,
+            combinationId: entry.combinationId,
+            label: modelName,
+            tooltipLines,
+            colorKey
+          } satisfies ScatterPoint;
+        });
+
+        datasets.push({
+          label: traceName,
+          data,
+          order: legendRank,
+          backgroundColor: (context) => {
+            const point = context.raw as ScatterPoint;
+            const color = TEAM_COLORS[colorKey] ?? TEAM_COLORS.default;
+            const opacity = highlightedCombinationId
+              ? highlighted.has(point.combinationId)
+                ? 0.95
+                : 0.4
+              : 0.85;
+            return hexToRgba(color, opacity);
+          },
+          borderColor: "#0f172a",
+          pointRadius: (context) => {
+            const point = context.raw as ScatterPoint;
+            if (
+              highlightedCombinationId &&
+              highlighted.has(point.combinationId)
+            ) {
+              return MARKER_RADIUS + 1.5;
+            }
+            return MARKER_RADIUS;
+          },
+          pointBorderWidth: (context) => {
+            const point = context.raw as ScatterPoint;
+            return highlightedCombinationId && highlighted.has(point.combinationId)
+              ? 2
+              : 0;
           }
+        });
+      };
 
-          const y100Visible =
-            value >= (yAxisRange ? yAxisRange[0] : Number.NEGATIVE_INFINITY) &&
-            value <= (yAxisRange ? yAxisRange[1] : Number.POSITIVE_INFINITY);
-          if (y100Visible) {
-            shapes.push({
-              type: "line",
-              x0: xAxisRange ? xAxisRange[0] : 0,
-              x1: xAxisRange ? xAxisRange[1] : 0,
-              y0: value,
-              y1: value,
-              line: {
-                color: "#38bdf8",
-                width: 1,
-                dash: "dash"
-              }
-            });
+      sortedTeams.forEach(([team, entries]) => {
+        const humanEntries: CombinationEntry[] = [];
+        const otherEntries: CombinationEntry[] = [];
+
+        entries.forEach((entry) => {
+          if (isHumanEntry(entry)) {
+            humanEntries.push(entry);
+          } else {
+            otherEntries.push(entry);
           }
-        };
+        });
 
-        if (xIsPercentMetric || yIsPercentMetric) {
-          addPercentLine(100);
+        createDataset(team, otherEntries, team, getLegendPriority(team));
+
+        if (humanEntries.length > 0) {
+          createDataset(
+            HUMAN_DISPLAY_LABEL,
+            humanEntries,
+            HUMAN_DISPLAY_LABEL,
+            Number.MAX_SAFE_INTEGER
+          );
         }
+      });
 
-        return shapes;
-      })()
-    }),
+      return {
+        datasets
+      } satisfies ChartData<"scatter", ScatterPoint[]>;
+    },
     [
+      highlighted,
+      highlightedCombinationId,
+      sortedTeams,
       xIsPercentMetric,
+      xMetricId,
+      xMeta,
       yIsPercentMetric,
-      xAxisRange,
-      yAxisRange,
-      xAxisTitle,
-      yAxisTitle,
-      shouldLockAspectRatio,
-      correlationLabel
+      yMetricId,
+      yMeta
     ]
   );
 
-  const handleClick = (event: PlotMouseEvent) => {
-    if (!onPointClick) return;
-    const point = event.points?.[0];
-    if (!point) return;
-    const combinationId = point.customdata as string;
-    const entry = filtered.find(
-      (candidate) => candidate.combinationId === combinationId
+  const chartOptions = useMemo<ChartOptions<"scatter">>(
+    () => ({
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          labels: {
+            usePointStyle: true,
+            sort: (a: LegendItem, b: LegendItem) => {
+              const aPriority = getLegendPriority(a.text);
+              const bPriority = getLegendPriority(b.text);
+              return aPriority - bPriority || a.text.localeCompare(b.text);
+            }
+          }
+        },
+        title: correlationLabel
+          ? {
+              display: true,
+              text: correlationLabel,
+              font: { size: 14, family: "Inter, sans-serif" }
+            }
+          : {
+              display: false
+            },
+        tooltip: {
+          callbacks: {
+            title: (items) => items[0]?.raw?.label ?? "",
+            label: (context: TooltipItem<"scatter">) => {
+              const point = context.raw as ScatterPoint;
+              return point.tooltipLines;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: xAxisTitle,
+            font: { size: 16, family: "Inter, sans-serif" }
+          },
+          min: xAxisRange?.[0],
+          max: xAxisRange?.[1],
+          ticks: {
+            callback: (value) =>
+              xIsPercentMetric ? `${value as number}%` : `${value as number}`,
+            color: "#0f172a",
+            font: { size: 12, family: "Inter, sans-serif" }
+          },
+          grid: { color: "#e2e8f0" },
+          border: { color: "#94a3b8" }
+        },
+        y: {
+          title: {
+            display: true,
+            text: yAxisTitle,
+            font: { size: 16, family: "Inter, sans-serif" }
+          },
+          min: yAxisRange?.[0],
+          max: yAxisRange?.[1],
+          ticks: {
+            callback: (value) =>
+              yIsPercentMetric ? `${value as number}%` : `${value as number}`,
+            color: "#0f172a",
+            font: { size: 12, family: "Inter, sans-serif" }
+          },
+          grid: { color: "#e2e8f0" },
+          border: { color: "#94a3b8" }
+        }
+      }
+    }),
+    [
+      correlationLabel,
+      xAxisRange,
+      xAxisTitle,
+      xIsPercentMetric,
+      yAxisRange,
+      yAxisTitle,
+      yIsPercentMetric
+    ]
+  );
+
+  const chartRef = useRef<ChartJS<"scatter"> | null>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLCanvasElement>) => {
+    if (!onPointClick || !chartRef.current) return;
+
+    const elements = chartRef.current.getElementsAtEventForMode(
+      event.nativeEvent,
+      "nearest",
+      { intersect: true },
+      true
     );
+
+    if (!elements.length) return;
+
+    const { datasetIndex, index } = elements[0];
+    const dataset = chartData.datasets[datasetIndex];
+    const point = dataset?.data[index] as ScatterPoint | undefined;
+
+    if (!point) return;
+
+    const entry = filtered.find(
+      (candidate) => candidate.combinationId === point.combinationId
+    );
+
     if (entry) {
       onPointClick(entry);
     }
@@ -739,17 +656,12 @@ export function ScatterChartCard({
             </button>
           )}
           <div style={{ pointerEvents: isChartActive ? "auto" : "none" }}>
-            <Plot
-              data={data}
-              layout={layout}
-              config={{
-                displayModeBar: false,
-                responsive: true,
-                scrollZoom: true
-              }}
-              style={{ width: "100%", height: "100%" }}
+            <Scatter
+              ref={chartRef}
+              data={chartData}
+              options={chartOptions}
+              className="h-[400px] w-full"
               onClick={handleClick}
-              useResizeHandler
             />
           </div>
         </div>

@@ -8,7 +8,13 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "@": new URL("./src", import.meta.url).pathname
+      "@": new URL("./src", import.meta.url).pathname,
+      "chart.js": new URL("./src/test-utils/chartjs-mock.ts", import.meta.url)
+        .pathname,
+      "react-chartjs-2": new URL(
+        "./src/test-utils/react-chartjs-2-mock.tsx",
+        import.meta.url
+      ).pathname
     }
   }
 });

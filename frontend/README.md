@@ -40,7 +40,7 @@ Ensure the CSV in `data/data_summary_subset.csv` ships with the deployment. If y
 
 - The preprocessing script (`scripts/build-data.mjs`) normalizes numeric fields, collapses HTML labels, removes baseline baselines (`Random Intervention`, `No Intervention`) from Accuracy/Safety, and groups records by model/condition for faster lookups.
 - Configurable metric metadata lives in `src/config/metrics.ts`. Adjust labels, formatting, or directionality as the benchmark evolves.
-- Visuals use `react-plotly.js` with dynamic imports to keep the bundle lean and SSR-friendly.
+- Visuals use `react-chartjs-2` for scatter plots and `react-plotly.js` (via dynamic imports) for the remaining charts to keep the bundle lean and SSR-friendly.
 - Component structure:
   - `Dashboard` orchestrates state.
   - `FiltersPanel` toggles harm severity (defaulting to severe cases), agent roles, condition scopes, and enforces a minimum trials threshold (default ≥5).
