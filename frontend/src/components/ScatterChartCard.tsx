@@ -693,7 +693,7 @@ export function ScatterChartCard({
               Metric Explorer
             </h2>
             <p className="text-sm text-slate-500">
-              Analyze model performance across two metrics
+              Analyze multiple metrics
             </p>
           </div>
           <div className="flex flex-row items-center gap-4">

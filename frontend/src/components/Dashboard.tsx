@@ -987,7 +987,7 @@ export function Dashboard({ dataset }: DashboardProps) {
             metadataMap={metadataMap}
             conditionColorMap={conditionColorMap}
           />
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
             <ModelProfileCard
               selection={selection}
               comparison={comparisonSelection}
