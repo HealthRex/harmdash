@@ -11,6 +11,7 @@ const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, "..");
 const METRICS_CSV_PATH = path.resolve(ROOT, "..", "data", "metrics.csv");
 const METADATA_CSV_PATH = path.resolve(ROOT, "..", "data", "metadata.csv");
+const CONDITIONS_CSV_PATH = path.resolve(ROOT, "..", "data", "conditions.csv");
 const OUTPUT_DIR = path.resolve(ROOT, "public", "data");
 const OUTPUT_PATH = path.join(OUTPUT_DIR, "ai-harm-summary.json");
 const INDEX_PATH = path.join(OUTPUT_DIR, "combination-index.json");
@@ -76,6 +77,11 @@ const metadataSchema = z.object({
   Better: z.string().optional(),
   Min: z.union([z.string(), z.number()]).optional(),
   Max: z.union([z.string(), z.number()]).optional()
+});
+
+const conditionsSchema = z.object({
+  Condition: z.string().min(1),
+  Include: z.union([z.string(), z.boolean()]).optional()
 });
 
 function parseNumber(value) {
@@ -219,10 +225,19 @@ async function loadCsv(filePath) {
 }
 
 async function main() {
-  const [rawMetricRows, rawMetadataRows] = await Promise.all([
+  const [rawMetricRows, rawMetadataRows, rawConditionRows] = await Promise.all([
     loadCsv(METRICS_CSV_PATH),
-    loadCsv(METADATA_CSV_PATH)
+    loadCsv(METADATA_CSV_PATH),
+    loadCsv(CONDITIONS_CSV_PATH)
   ]);
+
+  const includedConditions = new Set(
+    rawConditionRows
+      .map((row) => conditionsSchema.parse(row))
+      .filter((entry) => parseBoolean(entry.Include, false))
+      .map((entry) => cleanString(entry.Condition))
+      .filter(Boolean)
+  );
 
   const metadata = rawMetadataRows
     .map((row) => metadataSchema.parse(row))
@@ -266,6 +281,13 @@ async function main() {
 
   const normalizedRows = rawMetricRows
     .filter((row) => includedMetricIds.has(row.Metric))
+    .filter((row) => {
+      const condition = cleanString(row.Condition) ?? "";
+      if (!condition || includedConditions.size === 0) {
+        return true;
+      }
+      return includedConditions.has(condition);
+    })
     .filter((row) => {
       if (
         ["Accuracy", "Safety"].includes(row.Metric) &&

@@ -975,16 +975,8 @@ export function Dashboard({ dataset }: DashboardProps) {
     <div className="flex flex-col gap-8 pb-12">
       <PageHeader />
       <MetricsSummary dataset={dataset} />
-      <TeamFiltersBar
-        teamGroups={teamGroups}
-        selectedTeams={selectedTeams}
-        selectedTeamConditions={selectedTeamConditions}
-        onToggleTeam={handleToggleTeam}
-        onToggleTeamCondition={handleToggleTeamCondition}
-        conditionColorMap={conditionColorMap}
-      />
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.7fr)_minmax(360px,1fr)]">
-        <div>
+      <div className="flex flex-col gap-6 lg:grid lg:grid-cols-[minmax(0,1.7fr)_minmax(360px,1fr)] lg:items-start lg:gap-6">
+        <div className="flex flex-col gap-6">
           <BarChartCard
             rows={filteredRows}
             metricId={safeBarMetric}
@@ -997,8 +989,19 @@ export function Dashboard({ dataset }: DashboardProps) {
             metadataMap={metadataMap}
             conditionColorMap={conditionColorMap}
           />
+          <ScatterChartCard
+            combinations={combinations}
+            xMetricId={safeXMetric}
+            yMetricId={safeYMetric}
+            onXMetricChange={setXMetricId}
+            onYMetricChange={setYMetricId}
+            onPointClick={handlePointClick}
+            highlightedCombinationId={selection?.combinationId}
+            metrics={metrics}
+            metadataMap={metadataMap}
+          />
         </div>
-        <div>
+        <div className="flex flex-col gap-6">
           <ModelProfileCard
             selection={selection}
             comparison={comparisonSelection}
@@ -1042,19 +1045,16 @@ export function Dashboard({ dataset }: DashboardProps) {
             }}
             onActiveTargetChange={setActiveSelectionTarget}
           />
+          <TeamFiltersBar
+            teamGroups={teamGroups}
+            selectedTeams={selectedTeams}
+            selectedTeamConditions={selectedTeamConditions}
+            onToggleTeam={handleToggleTeam}
+            onToggleTeamCondition={handleToggleTeamCondition}
+            conditionColorMap={conditionColorMap}
+          />
         </div>
       </div>
-      <ScatterChartCard
-        combinations={combinations}
-        xMetricId={safeXMetric}
-        yMetricId={safeYMetric}
-        onXMetricChange={setXMetricId}
-        onYMetricChange={setYMetricId}
-        onPointClick={handlePointClick}
-        highlightedCombinationId={selection?.combinationId}
-        metrics={metrics}
-        metadataMap={metadataMap}
-      />
       <AboutSection />
     </div>
   );

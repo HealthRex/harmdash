@@ -161,7 +161,7 @@ export function TeamFiltersBar({
   };
 
   return (
-    <section className="flex flex-col gap-3 rounded-2xl bg-[#f4f4f5] p-4 transition-all duration-[600ms] ease-[cubic-bezier(0.33,1,0.68,1)]">
+    <section className="flex flex-col gap-2.5 rounded-2xl bg-[#f4f4f5] p-3 transition-all duration-[600ms] ease-[cubic-bezier(0.33,1,0.68,1)]">
       <header className="flex items-center gap-2">
         <div className="flex items-center gap-2">
           <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
@@ -195,7 +195,7 @@ export function TeamFiltersBar({
           </div>
         </div>
       </header>
-      <div className="flex flex-wrap items-stretch justify-center gap-4 md:gap-6">
+      <div className="flex flex-wrap items-stretch justify-center gap-3 md:gap-4">
         {teamGroups.map((group) => {
           const isSelected = selectedTeams.includes(group.team);
           const selectedConditionsForTeam =
@@ -219,7 +219,7 @@ export function TeamFiltersBar({
             <div
               key={group.team || "unspecified-team"}
               className={clsx(
-                "flex w-full flex-col items-center gap-3 rounded-xl border p-4 text-center transition-all duration-[650ms] ease-[cubic-bezier(0.33,1,0.68,1)] sm:w-auto",
+                "flex w-full flex-col items-center gap-2.5 rounded-xl border p-3 text-center transition-all duration-[650ms] ease-[cubic-bezier(0.33,1,0.68,1)] sm:w-auto",
                 isSelected
                   ? "border-brand-200 bg-white shadow-sm"
                   : "border-slate-200 bg-white"
@@ -235,7 +235,7 @@ export function TeamFiltersBar({
                   onToggleTeam(group.team);
                 }}
                 className={clsx(
-                  "mx-auto inline-flex min-w-[160px] max-w-[176px] items-center justify-center rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-[550ms] ease-[cubic-bezier(0.33,1,0.68,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+                  "mx-auto inline-flex min-w-[152px] max-w-[172px] items-center justify-center rounded-full border px-3.5 py-1.5 text-sm font-semibold transition-all duration-[550ms] ease-[cubic-bezier(0.33,1,0.68,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
                   isSelected
                     ? "text-white shadow-sm focus-visible:ring-brand-500"
                     : "bg-white text-slate-600 hover:border-brand-200 focus-visible:ring-brand-500"

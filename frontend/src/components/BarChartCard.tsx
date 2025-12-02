@@ -1534,7 +1534,7 @@ export function BarChartCard({
             Models
           </h2>
           <p className="text-sm text-neutral-500">
-            Compare model performance on a variety of metrics.
+            Compare model performance on a variety of metrics
           </p>
         </div>
         <div className="flex min-w-[12rem] flex-col items-end gap-2">

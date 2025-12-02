@@ -143,7 +143,7 @@ export function ModelInfoDrawer({
 
   const description = selection
     ? comparison
-      ? "Compare the models across key metrics."
+      ? "Compare the models across key metrics"
       : "Detailed metrics for the selected model."
     : comparison
     ? "Comparison metrics for the selected model."
