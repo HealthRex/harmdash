@@ -1,127 +1,194 @@
 # Project AGENTS.md Guide
 
-This document provides guidance for AI coding agents (e.g., OpenAI Codex, Copilot, Claude Code) and human contributors working with this codebase.  
-It describes the project structure, coding conventions, and validation requirements.  
-Unless otherwise noted, **"Agents"** refers to both AI and automated assistants.
+This document provides guidance for AI coding agents (e.g., Claude Code, Copilot, Cursor) and human contributors working with this codebase.
+It describes the project structure, coding conventions, and validation requirements.
+
+---
+
+## Project Overview
+
+**Harmdash** is a Next.js dashboard that benchmarks harm-related outcomes in medical AI recommendation systems. It processes CSV data into JSON artifacts and renders interactive visualizations using Plotly charts and radar profiles.
+
+**Key characteristics:**
+- Frontend-only application (no backend server)
+- Static data pipeline (CSV → JSON)
+- Interactive charts (bar, scatter, radar)
+- Deployed on Render.com as a static site
 
 ---
 
 ## Project Structure
 
-- `/backend`: Python/Django backend
-  - Source code for Django apps, APIs, and services
-  - `pyproject.toml` defines Python dependencies (managed with `uv`)
-  - `tests/`: Backend unit and integration tests
-  - Safe to extend models, views, serializers, and add tests
-  - **Do not** edit existing migrations without review
+```
+/
+├── data/                    # Source CSV files
+│   └── data_summary_subset.csv
+├── frontend/                # Next.js application
+│   ├── scripts/
+│   │   └── build-data.mjs   # CSV → JSON pipeline
+│   ├── public/
+│   │   └── data/            # Generated JSON artifacts
+│   │       ├── ai-harm-summary.json
+│   │       └── combination-index.json
+│   ├── src/
+│   │   ├── app/             # Next.js App Router pages
+│   │   ├── components/      # React components
+│   │   ├── config/          # Configuration (colors, etc.)
+│   │   ├── hooks/           # Custom React hooks
+│   │   ├── lib/             # Data loading utilities
+│   │   ├── types/           # TypeScript type definitions
+│   │   └── utils/           # Utility functions
+│   ├── package.json
+│   └── tsconfig.json
+├── agents/                  # AI agent prompt definitions
+├── render.yaml              # Render.com deployment config
+├── PLANNING.md              # Architecture primer
+├── README.md                # Project overview
+└── AGENTS.md                # This document
+```
 
-- `/frontend`: React/Next.js frontend
-  - `package.json` defines Node dependencies (managed with npm/yarn/pnpm)
-  - `src/`: Application source code
-    - `components/`: React components
-    - `pages/`: Next.js route handlers
-    - `styles/`: Styling (CSS/SCSS/Tailwind)
-    - `utils/`: Reusable utility functions
-  - `public/`: Static assets (do not modify directly)
-  - `tests/`: Frontend tests (unit + integration)
+### Key Components
 
-- `/db`: Database schema, migrations, and seed data
-  - Used for Postgres configuration
-  - Prefer Django ORM and migrations; avoid raw SQL unless explicitly required
+- **Dashboard.tsx** - Main dashboard with global filters and chart coordination
+- **FiltersPanel.tsx** - Team/condition filters, harm severity pills, case scope
+- **BarChartCard.tsx** - Top/Bottom 5 performers visualization
+- **ScatterChartCard.tsx** - X/Y metric scatter plot with CI whiskers
+- **ModelInfoDrawer.tsx** - Model search and radar profile display
+- **MetricsSummary.tsx** - Dataset statistics counters
 
-- `/docker-compose.yml`: Defines services (Django backend, Postgres, frontend)  
-- `/README.md`: Human-facing project overview  
-- `/AGENTS.md`: This document. Update when structure or conventions change  
+---
+
+## Data Flow
+
+1. **Data Preparation** (`npm run prepare-data`)
+   - `build-data.mjs` reads CSV from `data/`
+   - Validates with Zod, normalizes strings, coerces numerics
+   - Outputs `ai-harm-summary.json` and `combination-index.json` to `public/data/`
+
+2. **Runtime Loading**
+   - Next.js loads JSON artifacts via `getDataset.ts`
+   - Dashboard builds color maps and search indices
+   - Charts render filtered data based on user selections
+
+---
+
+## Development Workflow
+
+### Prerequisites
+- Node.js 18+
+- npm
+
+### Commands
+```bash
+cd frontend
+
+# Start development (rebuilds data + launches Next.js)
+npm run dev
+
+# Rebuild data only
+npm run prepare-data
+
+# Run tests
+npm run test
+
+# Type checking
+npm run type-check
+
+# Linting
+npm run lint
+
+# Production build
+npm run build
+```
 
 ---
 
 ## Coding Conventions
 
-### General
-- Use **TypeScript** for all new frontend code  
-- Use **PEP8** (autoformat with Black) for Python code  
-- Follow existing code style within each file  
-- Write meaningful variable and function names  
-- Add inline comments for complex logic  
+### TypeScript
+- Use **TypeScript** for all code
+- Define types in `src/types/` for shared interfaces
+- Use strict mode (`strict: true` in tsconfig)
 
-### Frontend (React/Next.js)
-- Use **functional components** with React hooks  
-- Keep components small and focused  
-- Use **PascalCase** for component filenames (`MyComponent.tsx`)  
-- Use **Tailwind CSS** for styling (utility-first approach); custom CSS only if necessary  
+### React/Next.js
+- Use **functional components** with React hooks
+- Keep components small and focused
+- Use **PascalCase** for component filenames (`MyComponent.tsx`)
+- Prefer client components for interactive charts
 
-### Backend (Django)
-- Use **Django REST Framework (DRF)** for APIs  
-- Keep business logic in **models/services**, not views  
-- Add docstrings to all new functions and classes  
-- Use `ruff` and `mypy` for linting and type checking  
+### Styling
+- Use **Tailwind CSS** (utility-first approach)
+- Define shared colors in `src/config/colors.ts`
+- Use `clsx` for conditional class names
 
-### Database
-- Generate migrations with `python manage.py makemigrations`  
-- Never drop or alter production-critical schema without review  
-- Use environment variables (`.env`) for database configuration  
+### Data Validation
+- Use **Zod** for runtime validation in data pipeline
+- Define schemas alongside type definitions
 
 ---
 
-## Testing Requirements
+## Testing
 
-### Frontend (React/Next.js)
 ```bash
-# Run all frontend tests
-npm test
+# Run all tests with Vitest
+npm run test
 
-# Run a specific test file
-npm test -- path/to/test-file.test.ts
+# Run specific test file
+npm run test -- path/to/file.test.ts
 
 # Run with coverage
-npm test -- --coverage
-```
-
-### Backend (Django)
-```bash
-# Run all backend tests
-uv run python manage.py test
-
-# Run tests for a specific app
-uv run python manage.py test myapp
+npm run test -- --coverage
 ```
 
 ---
 
 ## Programmatic Checks
 
-All checks must pass before merging contributions:
+All checks must pass before merging:
 
-### Frontend
 ```bash
 npm run lint         # ESLint
-npm run type-check   # TypeScript
-npm run build        # Next.js build
-```
-
-### Backend
-```bash
-uv run ruff check .        # Lint (Python)
-uv run mypy backend/       # Type checking
-uv run python manage.py test   # Run backend tests
+npm run type-check   # TypeScript strict checking
+npm run test         # Vitest tests
+npm run build        # Next.js production build
 ```
 
 ---
 
 ## Pull Request Guidelines
 
-When opening a PR (AI-assisted or human):
-
-1. Provide a clear description of the changes  
-2. Reference related issues (if any)  
-3. Ensure **all frontend and backend tests** pass  
-4. Include **screenshots** for UI changes  
-5. Keep PRs focused on a **single concern**  
+1. Provide a clear description of the changes
+2. Reference related issues (if any)
+3. Ensure all tests pass
+4. Include screenshots for UI changes
+5. Keep PRs focused on a single concern
+6. Run `npm run build` locally before pushing
 
 ---
 
-## Environment & Deployment Notes
+## Deployment
 
-- Local development uses **Docker Compose** (`docker-compose up`) to run backend, frontend, and Postgres together  
-- Do not hardcode secrets or database URLs; always use **environment variables** from `.env`  
-- Agents should assume services run in Docker during development  
+- Hosted on **Render.com** as a static site
+- `render.yaml` defines the deployment blueprint
+- Build command: `cd frontend && npm install && npm run build`
+- Publish directory: `frontend/out`
+
+---
+
+## Key Behaviors & Constraints
+
+- **Team cards** determine visible condition pills; conditions become inactive when parent team is deselected
+- **Model search** uses fuzzy matching on name/team/condition from `combination-index.json`
+- **Minimum trials slider** (floor 1) and case filter apply across all views
+- **Radar chart** only plots metrics flagged `Radar=TRUE` with values normalized 0–1
+- **Colors** defined in `src/config/colors.ts`; `conditionColorMap` keeps filters and charts synchronized
+
+---
+
+## Notes for AI Agents
+
+- This is a **frontend-only** project—there is no backend or database
+- Data changes require running `npm run prepare-data` to regenerate JSON
+- The `PLANNING.md` file contains detailed architecture information
+- When modifying charts, ensure color consistency with `conditionColorMap`
+- Test locally with `npm run dev` before committing changes
