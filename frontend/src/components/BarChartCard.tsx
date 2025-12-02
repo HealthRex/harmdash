@@ -43,6 +43,21 @@ const applyAlpha = (hex: string, alpha: number) => {
   return `rgba(${r}, ${g}, ${b}, ${clampAlpha})`;
 };
 
+const lightenHex = (hex: string, amount: number) => {
+  const normalized = hex.replace("#", "");
+  const amt = Math.min(Math.max(amount, 0), 100);
+  const factor = amt / 100;
+  const parseChannel = (start: number) =>
+    parseInt(normalized.slice(start, start + 2), 16);
+  if (normalized.length !== 6 || Number.isNaN(parseChannel(0))) {
+    return hex;
+  }
+  const r = Math.round(parseChannel(0) + (255 - parseChannel(0)) * factor);
+  const g = Math.round(parseChannel(2) + (255 - parseChannel(2)) * factor);
+  const b = Math.round(parseChannel(4) + (255 - parseChannel(4)) * factor);
+  return `rgb(${r}, ${g}, ${b})`;
+};
+
 type Props = {
   rows: DataRow[];
   metricId: string;
@@ -1314,23 +1329,29 @@ export function BarChartCard({
           </div>
         ) : null}
         <span className="sr-only">Organization: {organizationLabel}</span>
-        <div className="relative h-8 w-full overflow-hidden rounded-[6px]">
-          <div className="absolute inset-0 rounded-[6px] bg-slate-200" />
+        <div className="relative h-10 w-full overflow-hidden rounded-[12px]">
+          <div
+            className="absolute inset-0 rounded-[12px]"
+            style={{ background: "#e9ebf2" }}
+          />
           {renderConfidenceVisual()}
           <div
             className={clsx(
-              "absolute inset-0 rounded-[6px] transition-[width,background-color,opacity,box-shadow] duration-[650ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
+              "absolute inset-0 rounded-[12px] transition-[width,background,opacity,box-shadow] duration-[650ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
               isSelected
-                ? "opacity-100 shadow-inner shadow-slate-900/10"
-                : "opacity-95"
+                ? "opacity-100 shadow-[0_12px_22px_-14px_rgba(17,24,39,0.35)]"
+                : "opacity-95 shadow-[0_10px_18px_-14px_rgba(17,24,39,0.28)]"
             )}
             style={{
               width: `${widthPercent}%`,
-              backgroundColor: barColor
+              background: `linear-gradient(90deg, ${lightenHex(
+                barColor,
+                18
+              )}, ${barColor})`
             }}
           />
           <span
-            className="absolute left-4 top-1/2 -translate-y-1/2 truncate text-sm font-medium"
+            className="absolute left-4 top-1/2 -translate-y-1/2 truncate text-sm font-semibold"
             style={{ color: textColor }}
             title={row.displayLabel || row.model}
           >
@@ -1393,8 +1414,8 @@ export function BarChartCard({
     if (target.viewMode === "all") {
       return (
         <div className="flex flex-col gap-3">
-          <div className="flex flex-wrap items-center gap-3 sm:grid sm:grid-cols-[1fr_auto_auto] sm:items-center sm:gap-4">
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+        <div className="flex flex-wrap items-center gap-3 sm:grid sm:grid-cols-[1fr_auto_auto] sm:items-center sm:gap-4">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
               All Models
             </h3>
             {renderModelFilterDropdown()}
@@ -1427,7 +1448,7 @@ export function BarChartCard({
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2">
           <div className="flex flex-wrap items-center gap-3 sm:grid sm:grid-cols-[1fr_auto_auto] sm:items-center sm:gap-4">
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
               Best
             </h3>
             {renderModelFilterDropdown()}
@@ -1443,7 +1464,7 @@ export function BarChartCard({
         </div>
         {target.selectedRows.length ? (
           <div className="flex flex-col gap-2">
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
               Selected
             </h3>
             {renderRowGroup(
@@ -1456,7 +1477,7 @@ export function BarChartCard({
           </div>
         ) : null}
         <div className="flex flex-col gap-2">
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+          <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
             Worst
           </h3>
           {renderRowGroup(
@@ -1490,41 +1511,33 @@ export function BarChartCard({
   );
 
   return (
-    <section className="flex flex-col gap-4 rounded-2xl bg-white p-6 shadow-lg shadow-slate-200 transition-all duration-[600ms] ease-[cubic-bezier(0.33,1,0.68,1)]">
-      <header className="flex flex-col gap-1">
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <div>
-            <h2 className="text-lg font-semibold text-slate-900">
-              Performance:{" "}
-              <button
-                type="button"
-                onClick={toggleViewMode}
-                aria-pressed={isAllView}
-                className={clsx(
-                  "rounded px-1 font-semibold text-brand-600 underline decoration-dashed underline-offset-4 transition-colors duration-500 ease-out hover:text-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500/40",
-                  isAllView ? "text-brand-700" : undefined
-                )}
-                title={
-                  isAllView
-                    ? "Show only the best and worst performers"
-                    : "Show all models"
-                }
-              >
-                {isAllView ? "All" : "Best and Worst"}
-              </button>{" "}
-              Models
-            </h2>
-            <p className="text-sm text-slate-500">
-              Compare model performance on a variety of metrics
-            </p>
-          </div>
-          <div className="flex min-w-[12rem] flex-col items-end gap-2">
+    <section className="flex flex-col gap-5 rounded-3xl border border-neutral-200 bg-white/90 p-6 shadow-sm backdrop-blur transition-all duration-[600ms] ease-[cubic-bezier(0.33,1,0.68,1)]">
+      <header className="flex flex-wrap items-start justify-between gap-4">
+        <div className="flex flex-col gap-1">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-neutral-500">
+            Performance
+          </p>
+          <h2 className="text-xl font-semibold text-[#0c0d10]">
+            Best and Worst Models
+          </h2>
+          <p className="text-sm text-neutral-500">
+            Compare model performance on a variety of metrics.
+          </p>
+        </div>
+        <div className="flex min-w-[12rem] flex-col items-end gap-2">
+          <div className="flex w-full flex-col gap-1">
+            <label
+              htmlFor="bar-chart-metric-select"
+              className="text-[11px] font-semibold uppercase tracking-wide text-neutral-500"
+            >
+              Key Metric
+            </label>
             <select
               id="bar-chart-metric-select"
               value={metricId}
               onChange={(event) => onMetricChange(event.target.value)}
               aria-label="Select metric"
-              className="w-full rounded-xl border-2 border-brand-300 bg-brand-50 px-4 py-2.5 text-base font-semibold text-brand-900 shadow transition focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-400 hover:border-brand-400"
+              className="w-full rounded-xl border border-neutral-300 bg-white px-3 py-2 text-sm font-semibold text-[#0c0d10] shadow-sm transition focus:border-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-300 hover:border-neutral-400"
             >
               {metrics.map((option) => (
                 <option key={option.id} value={option.id}>
@@ -1532,14 +1545,11 @@ export function BarChartCard({
                 </option>
               ))}
             </select>
-            <span className="text-xs font-semibold uppercase tracking-wide text-brand-700">
-              {betterDirectionLabel}
-            </span>
           </div>
+          <span className="text-xs text-neutral-500">
+            {betterDirectionLabel}
+          </span>
         </div>
-        {metricDescription ? (
-          <p className="text-xs text-slate-500">{metricDescription}</p>
-        ) : null}
       </header>
       <div className="relative">
         {outgoingSnapshot ? (

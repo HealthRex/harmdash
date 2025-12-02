@@ -2,16 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color-scheme: light;
-}
-
 body {
-  @apply bg-slate-50 text-slate-900 antialiased;
+  background: #fafbfc;
+  color: #0c0d10;
+  font-feature-settings: "ss01" on, "ss02" on, "tnum" on;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
-  @apply text-brand-600 underline;
+  color: inherit;
+  text-decoration: none;
 }
 
 button:focus-visible,

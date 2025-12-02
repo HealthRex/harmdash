@@ -161,10 +161,10 @@ export function TeamFiltersBar({
   };
 
   return (
-    <section className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-md shadow-slate-200 transition-all duration-[600ms] ease-[cubic-bezier(0.33,1,0.68,1)]">
+    <section className="flex flex-col gap-4 rounded-xl bg-white p-5 transition-all duration-[600ms] ease-[cubic-bezier(0.33,1,0.68,1)]">
       <header className="flex items-center gap-2">
         <div className="flex items-center gap-2">
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+          <h2 className="text-[11px] font-semibold uppercase tracking-[0.15em] text-neutral-500">
             TEAM CONFIGURATION
           </h2>
           <div
@@ -181,21 +181,21 @@ export function TeamFiltersBar({
               onBlur={() => {
                 setShowTeamInfo(false);
               }}
-              className="flex h-6 w-6 items-center justify-center rounded-full border border-slate-300 bg-white text-[11px] font-semibold text-slate-500 shadow-sm transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-1"
+              className="flex h-6 w-6 items-center justify-center rounded-full border border-neutral-300 bg-white text-[11px] font-semibold text-neutral-600 shadow-sm transition-colors hover:bg-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-1"
               aria-label="Team configuration info"
               aria-pressed={showTeamInfo}
             >
               i
             </button>
             {showTeamInfo ? (
-              <div className="absolute left-1/2 bottom-full z-10 mb-2 w-96 -translate-x-1/2 rounded-lg border border-slate-200 bg-white p-3 text-xs font-medium text-slate-600 shadow-lg">
+              <div className="absolute left-1/2 bottom-full z-10 mb-2 w-96 -translate-x-1/2 rounded-lg border border-neutral-200 bg-white p-3 text-xs font-medium text-neutral-600 shadow-lg">
                 View performance of multi-agent teams, where one model reviews and edits the output of other models in a Guardian or Stewardship role
               </div>
             ) : null}
           </div>
         </div>
       </header>
-      <div className="flex flex-wrap items-stretch justify-center gap-4 md:gap-6">
+      <div className="flex flex-wrap items-stretch justify-start gap-3">
         {teamGroups.map((group) => {
           const isSelected = selectedTeams.includes(group.team);
           const selectedConditionsForTeam =
@@ -219,10 +219,10 @@ export function TeamFiltersBar({
             <div
               key={group.team || "unspecified-team"}
               className={clsx(
-                "flex w-full flex-col items-center gap-3 rounded-xl border p-4 text-center transition-all duration-[650ms] ease-[cubic-bezier(0.33,1,0.68,1)] sm:w-auto",
+                "flex w-full flex-col items-center gap-3 rounded-lg border p-3.5 text-center transition-all duration-[650ms] ease-[cubic-bezier(0.33,1,0.68,1)] sm:w-auto",
                 isSelected
-                  ? "border-brand-200 bg-white shadow-sm"
-                  : "border-slate-200 bg-slate-50",
+                  ? "border-neutral-300 bg-white"
+                  : "border-neutral-200 bg-[#fafbfc]",
                 shouldHighlight ? "multi-agent-highlight" : null
               )}
               style={getTeamCardSizing(group, agentCount)}
@@ -236,32 +236,20 @@ export function TeamFiltersBar({
                   onToggleTeam(group.team);
                 }}
                 className={clsx(
-                  "mx-auto inline-flex min-w-[160px] max-w-[176px] items-center justify-center rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-[550ms] ease-[cubic-bezier(0.33,1,0.68,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+                  "mx-auto inline-flex min-w-[140px] max-w-[176px] items-center justify-center rounded-md px-4 py-2 text-[13px] font-medium transition-all duration-[550ms] ease-[cubic-bezier(0.33,1,0.68,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
                   isSelected
-                    ? "text-white shadow-sm focus-visible:ring-brand-500"
-                    : "bg-white text-slate-600 hover:border-brand-200 focus-visible:ring-brand-500"
+                    ? "bg-[#0c0d10] text-white focus-visible:ring-neutral-800"
+                    : "bg-neutral-100 text-neutral-700 hover:bg-neutral-200 focus-visible:ring-neutral-400"
                 )}
-                style={
-                  isSelected
-                    ? {
-                        backgroundColor: teamColor,
-                        borderColor: teamColor,
-                        width: "min(100%, 176px)"
-                      }
-                    : {
-                        borderColor: teamColor,
-                        color: teamColor,
-                        width: "min(100%, 176px)"
-                      }
-                }
+                style={{ width: "min(100%, 176px)" }}
               >
                 <span className="truncate">{group.label}</span>
               </button>
               {group.conditions.length ? (
                 <div
                   className={clsx(
-                    "flex flex-wrap justify-center gap-2 transition-all duration-500 ease-out",
-                    isSelected ? "" : "opacity-60"
+                    "flex flex-wrap justify-center gap-1.5 transition-all duration-500 ease-out",
+                    isSelected ? "" : "opacity-50"
                   )}
                 >
                   {group.conditions.map((condition) => {
@@ -295,23 +283,18 @@ export function TeamFiltersBar({
                           }
                         }}
                         className={clsx(
-                          "flex items-center rounded-full border px-2.5 py-1 text-xs font-medium transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2",
+                          "flex items-center rounded-md px-2.5 py-1.5 text-[12px] font-medium transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2",
                           isActive
-                            ? "text-white shadow-sm"
-                            : "bg-white opacity-80 hover:opacity-100",
+                            ? "bg-[#0c0d10] text-white"
+                            : "bg-neutral-100 text-neutral-700 hover:bg-neutral-200",
                           disabled
-                            ? "cursor-not-allowed opacity-60 hover:border-slate-200"
+                            ? "cursor-not-allowed opacity-50 hover:bg-neutral-100"
                             : null
                         )}
                         style={
                           isActive
-                            ? {
-                                backgroundColor: color,
-                                borderColor: color
-                              }
+                            ? undefined
                             : {
-                                backgroundColor: "#ffffff",
-                                borderColor: color,
                                 color
                               }
                         }
@@ -322,7 +305,7 @@ export function TeamFiltersBar({
                   })}
                 </div>
               ) : (
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-neutral-500">
                   No additional configurations.
                 </p>
               )}
