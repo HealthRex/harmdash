@@ -498,7 +498,7 @@ export function ModelInfoDrawer({
   return (
     <aside
       className={clsx(
-        "flex w-full max-w-full flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-md shadow-slate-200 transition",
+        "flex w-full max-w-full flex-col gap-4 rounded-2xl border border-neutral-200 bg-white/90 p-6 shadow-sm backdrop-blur transition",
         selection ? "opacity-100" : "opacity-75",
         className
       )}
@@ -519,7 +519,7 @@ export function ModelInfoDrawer({
         <div className="flex flex-col gap-2">
           <div className="flex flex-col gap-1">
             <label className="text-xs font-semibold uppercase tracking-wide text-slate-500" htmlFor="model-search">
-              Primary model
+              Primary Model
             </label>
             <div className="relative">
               <input
@@ -655,7 +655,7 @@ export function ModelInfoDrawer({
               className="text-xs font-semibold uppercase tracking-wide text-slate-500"
               htmlFor="comparison-search"
             >
-              Compare with
+              Compare With
             </label>
             <div className="relative">
               <input

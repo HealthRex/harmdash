@@ -28,7 +28,7 @@ function getLegendPriority(label: string): number {
   return LEGEND_PRIORITY_MAP.get(normalized) ?? LEGEND_PRIORITY_GROUPS.length;
 }
 
-const MARKER_SIZE = 20;
+const MARKER_SIZE = 10;
 
 function calculatePearsonCorrelation(
   pairs: { x: number; y: number }[]
@@ -464,11 +464,11 @@ export function ScatterChartCard({
     return /%/.test(label) ? label : `${label} (%)`;
   }, [yMeta, yMetricId, yIsPercentMetric]);
 
-  const shouldLockAspectRatio = xIsPercentMetric && yIsPercentMetric;
+  const shouldLockAspectRatio = false;
 
   const layout = useMemo<Partial<Layout>>(
     () => ({
-      margin: { l: 60, r: 20, t: 80, b: 60 },
+      margin: { l: 60, r: 20, t: 40, b: 120 },
       autosize: true,
       paper_bgcolor: "rgba(0,0,0,0)",
       plot_bgcolor: "rgba(0,0,0,0)",
@@ -554,10 +554,10 @@ export function ScatterChartCard({
         : undefined,
       legend: {
         orientation: "h",
-        x: 0,
-        xanchor: "left",
-        y: 1.12,
-        yanchor: "bottom",
+        x: 0.5,
+        xanchor: "center",
+        y: -0.25,
+        yanchor: "top",
         traceorder: "normal"
       },
       shapes: (() => {
@@ -677,8 +677,8 @@ export function ScatterChartCard({
         <p className="text-xs text-slate-500">Hover for model details</p>
       </header>
       <div className="flex flex-col gap-4">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <label className="flex w-full max-w-xs flex-col gap-1 text-xs font-medium text-slate-600">
+        <div className="flex flex-row items-center gap-4">
+          <label className="flex flex-col gap-1 text-xs font-medium text-slate-600">
             Y Metric
             <select
               value={yMetricId}
@@ -692,7 +692,7 @@ export function ScatterChartCard({
               ))}
             </select>
           </label>
-          <label className="flex w-full max-w-xs flex-col gap-1 text-xs font-medium text-slate-600">
+          <label className="flex flex-col gap-1 text-xs font-medium text-slate-600">
             X Metric
             <select
               value={xMetricId}
@@ -707,7 +707,7 @@ export function ScatterChartCard({
             </select>
           </label>
         </div>
-        <div className="aspect-square w-full flex-1">
+        <div className="h-[480px] w-full overflow-hidden">
           <Plot
             data={data}
             layout={layout}

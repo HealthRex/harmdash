@@ -11,41 +11,27 @@ export function MetricsSummary({ dataset }: MetricsSummaryProps) {
   const summary = getDatasetSummary(dataset);
 
   return (
-    <section
-      className="flex flex-col gap-6 rounded-2xl border border-sky-200 bg-white p-6 shadow-lg shadow-slate-200 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between"
-    >
-      <div className="space-y-2 text-center sm:max-w-3xl sm:text-left">
-        <h2 className="text-xl font-semibold text-slate-900">
-          First, Do NOHARM AI Benchmark & Leaderboard
+    <section className="flex flex-col gap-6 rounded-xl bg-white px-6 py-6 md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-2">
+        <h2 className="text-[15px] font-medium text-[#0c0d10]">
+          Do NOHARM: Interactive AI Benchmark Leaderboard
         </h2>
-        <p className="text-sm text-slate-600">
-          Numerous Options Harm Assessment of Risk in Medicine: a benchmark for medical benefit & harm
+        <p className="text-[14px] text-neutral-600">
+          Visualize how leading AI models perform in the NOHARM medical AI benchmark.
         </p>
       </div>
-      <dl className="grid w-full gap-3 text-sm sm:w-auto sm:grid-cols-3 sm:gap-6">
-        <div className="rounded-xl bg-white/70 p-3 text-center shadow-sm sm:bg-transparent sm:p-0 sm:shadow-none">
-          <dt className="text-xs uppercase tracking-wide text-slate-500">
-            Models & Teams
-          </dt>
-          <dd className="text-2xl font-semibold text-sky-600">
-            {summary.totalModels}
-          </dd>
+      <dl className="grid grid-cols-3 gap-8 text-center">
+        <div className="flex flex-col gap-1">
+          <dt className="text-[11px] font-semibold uppercase tracking-wide text-neutral-500">Models & Teams</dt>
+          <dd className="text-[32px] font-semibold leading-none text-[#0c0d10]">{summary.totalModels}</dd>
         </div>
-        <div className="rounded-xl bg-white/70 p-3 text-center shadow-sm sm:bg-transparent sm:p-0 sm:shadow-none">
-          <dt className="text-xs uppercase tracking-wide text-slate-500">
-            Metrics
-          </dt>
-          <dd className="text-2xl font-semibold text-sky-600">
-            {summary.totalMetrics}
-          </dd>
+        <div className="flex flex-col gap-1">
+          <dt className="text-[11px] font-semibold uppercase tracking-wide text-neutral-500">Metrics</dt>
+          <dd className="text-[32px] font-semibold leading-none text-[#0c0d10]">{summary.totalMetrics}</dd>
         </div>
-        <div className="rounded-xl bg-white/70 p-3 text-center shadow-sm sm:bg-transparent sm:p-0 sm:shadow-none">
-          <dt className="text-xs uppercase tracking-wide text-slate-500">
-            Data Points
-          </dt>
-          <dd className="text-2xl font-semibold text-sky-600">
-            {summary.totalRows}
-          </dd>
+        <div className="flex flex-col gap-1">
+          <dt className="text-[11px] font-semibold uppercase tracking-wide text-neutral-500">Data Points</dt>
+          <dd className="text-[32px] font-semibold leading-none text-[#0c0d10]">{summary.totalRows}</dd>
         </div>
       </dl>
     </section>

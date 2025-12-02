@@ -1,9 +1,11 @@
 'use client';
 
+import { AboutSection } from "@/components/AboutSection";
 import { BarChartCard } from "@/components/BarChartCard";
 import { TeamFiltersBar } from "@/components/FiltersPanel";
 import { MetricsSummary } from "@/components/MetricsSummary";
 import { ModelInfoDrawer as ModelProfileCard } from "@/components/ModelInfoDrawer";
+import { PageHeader } from "@/components/PageHeader";
 import { ScatterChartCard } from "@/components/ScatterChartCard";
 import { NoharmInfoCard } from "@/components/NoharmInfoCard";
 import type {
@@ -971,6 +973,7 @@ export function Dashboard({ dataset }: DashboardProps) {
 
   return (
     <div className="flex flex-col gap-8 pb-12">
+      <PageHeader />
       <MetricsSummary dataset={dataset} />
       <TeamFiltersBar
         teamGroups={teamGroups}
@@ -980,8 +983,8 @@ export function Dashboard({ dataset }: DashboardProps) {
         onToggleTeamCondition={handleToggleTeamCondition}
         conditionColorMap={conditionColorMap}
       />
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.7fr)_minmax(360px,1fr)] lg:auto-rows-min">
-        <div className="lg:row-start-1 lg:col-start-1">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.7fr)_minmax(360px,1fr)]">
+        <div>
           <BarChartCard
             rows={filteredRows}
             metricId={safeBarMetric}
@@ -995,7 +998,7 @@ export function Dashboard({ dataset }: DashboardProps) {
             conditionColorMap={conditionColorMap}
           />
         </div>
-        <div className="lg:row-start-1 lg:col-start-2">
+        <div>
           <ModelProfileCard
             selection={selection}
             comparison={comparisonSelection}
@@ -1040,24 +1043,19 @@ export function Dashboard({ dataset }: DashboardProps) {
             onActiveTargetChange={setActiveSelectionTarget}
           />
         </div>
-        <div className="lg:row-start-2 lg:col-start-1">
-          <ScatterChartCard
-            combinations={combinations}
-            xMetricId={safeXMetric}
-            yMetricId={safeYMetric}
-            onXMetricChange={setXMetricId}
-            onYMetricChange={setYMetricId}
-            onPointClick={handlePointClick}
-            highlightedCombinationId={selection?.combinationId}
-            metrics={metrics}
-            metadataMap={metadataMap}
-            className="h-full"
-          />
-        </div>
-        <div className="lg:row-start-2 lg:col-start-2">
-          <NoharmInfoCard className="h-full" />
-        </div>
       </div>
+      <ScatterChartCard
+        combinations={combinations}
+        xMetricId={safeXMetric}
+        yMetricId={safeYMetric}
+        onXMetricChange={setXMetricId}
+        onYMetricChange={setYMetricId}
+        onPointClick={handlePointClick}
+        highlightedCombinationId={selection?.combinationId}
+        metrics={metrics}
+        metadataMap={metadataMap}
+      />
+      <AboutSection />
     </div>
   );
 }

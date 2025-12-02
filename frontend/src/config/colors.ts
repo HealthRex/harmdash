@@ -1,5 +1,3 @@
-import { HUMAN_DISPLAY_LABEL } from "./humans";
-
 export const TEAM_COLORS: Record<string, string> = {
   "Solo Model": "#7C3AED",
   "Solo Models": "#5865F2",
@@ -11,17 +9,13 @@ export const TEAM_COLORS: Record<string, string> = {
   "3-Agent Teams": "#16A34A",
   "3 Agents": "#16A34A",
   Human: "#F59E0B",
-  [HUMAN_DISPLAY_LABEL]: "#F59E0B",
   default: "#0F172A"
 };
 
 export const CONDITION_COLORS: Record<string, string> = {
   Control: "#4C1D95",
   Human: "#4C1D95",
-  [HUMAN_DISPLAY_LABEL]: "#4C1D95",
   Advisor: "#3D4BF2",
-  AdvisorMax: "#18218c",
-  AdvisorAll: "#666771",
   "Advisor + Guardian": "#0369A1",
   "Advisor + Steward": "#38BDF8",
   "Advisor + Guardian + Guardian": "#166534",
