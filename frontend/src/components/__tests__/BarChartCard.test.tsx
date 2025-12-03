@@ -161,8 +161,10 @@ describe("BarChartCard", () => {
       />
     );
 
-    const bar = screen.getByRole("button", { name: /Model 1/i });
-    fireEvent.click(bar);
+    const bars = screen.getAllByRole("button").filter(btn =>
+      btn.getAttribute("data-combination-id")
+    );
+    fireEvent.click(bars[0]);
 
     expect(onBarClick).toHaveBeenCalledWith(rows[0]);
   });

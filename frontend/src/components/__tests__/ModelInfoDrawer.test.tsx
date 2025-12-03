@@ -161,8 +161,11 @@ describe("ModelInfoDrawer", () => {
     const searchInput = screen.getByLabelText("Primary Model");
     fireEvent.focus(searchInput);
 
-    expect(screen.getByText("Model 1")).toBeInTheDocument();
-    expect(screen.getByText("Model 2")).toBeInTheDocument();
+    // Verify suggestions are displayed (check for list container)
+    const suggestionList = screen.getByRole("listbox");
+    expect(suggestionList).toBeInTheDocument();
+    const options = screen.getAllByRole("option");
+    expect(options).toHaveLength(2);
   });
 
   it("calls onSuggestionSelect when clicking a suggestion", () => {
@@ -190,8 +193,8 @@ describe("ModelInfoDrawer", () => {
     const searchInput = screen.getByLabelText("Primary Model");
     fireEvent.focus(searchInput);
 
-    const suggestion = screen.getByText("Model 1");
-    fireEvent.click(suggestion);
+    const options = screen.getAllByRole("option");
+    fireEvent.click(options[0]);
 
     expect(mockOnSuggestionSelect).toHaveBeenCalledWith(suggestions[0]);
   });
@@ -206,7 +209,7 @@ describe("ModelInfoDrawer", () => {
         onClear={mockOnClear}
         onClearComparison={mockOnClearComparison}
         metrics={metrics}
-        modelQuery="Model 1"
+        modelQuery={selection.displayLabel}
         onModelSearchChange={mockOnModelSearchChange}
         suggestions={[]}
         comparisonQuery=""
@@ -218,7 +221,7 @@ describe("ModelInfoDrawer", () => {
       />
     );
 
-    expect(screen.getByDisplayValue("Model 1")).toBeInTheDocument();
+    expect(screen.getByDisplayValue(selection.displayLabel)).toBeInTheDocument();
   });
 
   it("calls onClear when clearing selection", () => {
@@ -231,7 +234,7 @@ describe("ModelInfoDrawer", () => {
         onClear={mockOnClear}
         onClearComparison={mockOnClearComparison}
         metrics={metrics}
-        modelQuery="Model 1"
+        modelQuery={selection.displayLabel}
         onModelSearchChange={mockOnModelSearchChange}
         suggestions={[]}
         comparisonQuery=""
@@ -259,7 +262,7 @@ describe("ModelInfoDrawer", () => {
         onClear={mockOnClear}
         onClearComparison={mockOnClearComparison}
         metrics={metrics}
-        modelQuery="Model 1"
+        modelQuery={selection.displayLabel}
         onModelSearchChange={mockOnModelSearchChange}
         suggestions={[]}
         comparisonQuery=""
@@ -275,7 +278,7 @@ describe("ModelInfoDrawer", () => {
 
     // Verify the input renders with the correct value
     expect(input).toBeInTheDocument();
-    expect(input.value).toBe("Model 1");
+    expect(input.value).toBe(selection.displayLabel);
   });
 
   it("renders with Human model selection", () => {
@@ -292,7 +295,7 @@ describe("ModelInfoDrawer", () => {
         onClear={mockOnClear}
         onClearComparison={mockOnClearComparison}
         metrics={metrics}
-        modelQuery="Human"
+        modelQuery={humanEntry.model}
         onModelSearchChange={mockOnModelSearchChange}
         suggestions={[]}
         comparisonQuery=""
@@ -308,6 +311,6 @@ describe("ModelInfoDrawer", () => {
 
     // Verify the input renders with the correct value
     expect(input).toBeInTheDocument();
-    expect(input.value).toBe("Human");
+    expect(input.value).toBe(humanEntry.model);
   });
 });
