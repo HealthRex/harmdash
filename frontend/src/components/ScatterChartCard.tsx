@@ -579,7 +579,7 @@ export function ScatterChartCard({
       className
     )}>
       <header className="flex flex-col gap-2">
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h2 className="text-lg font-semibold text-slate-900">
               Metric Explorer
@@ -588,13 +588,13 @@ export function ScatterChartCard({
               Analyze multiple metrics
             </p>
           </div>
-          <div className="flex flex-row items-center gap-4">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
             <label className="flex flex-col gap-1 text-xs font-medium text-slate-600">
               Y Metric
               <select
                 value={yMetricId}
                 onChange={(event) => onYMetricChange(event.target.value)}
-                className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm transition hover:border-brand-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
+                className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm transition hover:border-brand-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200 sm:w-auto"
               >
                 {metrics.map((option) => (
                   <option key={option.id} value={option.id}>
@@ -608,7 +608,7 @@ export function ScatterChartCard({
               <select
                 value={xMetricId}
                 onChange={(event) => onXMetricChange(event.target.value)}
-                className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm transition hover:border-brand-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
+                className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm transition hover:border-brand-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200 sm:w-auto"
               >
                 {metrics.map((option) => (
                   <option key={option.id} value={option.id}>
