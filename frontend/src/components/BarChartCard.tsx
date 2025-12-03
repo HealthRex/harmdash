@@ -1332,7 +1332,7 @@ export function BarChartCard({
         <div className="relative h-10 w-full overflow-hidden rounded-[12px]">
           <div
             className="absolute inset-0 rounded-[12px]"
-            style={{ background: "#e9ebf2" }}
+            style={{ background: "#cbd5e1" }}
           />
           {renderConfidenceVisual()}
           <div
@@ -1351,8 +1351,7 @@ export function BarChartCard({
             }}
           />
           <span
-            className="absolute left-4 top-1/2 -translate-y-1/2 truncate text-sm font-semibold"
-            style={{ color: textColor }}
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-semibold text-white"
             title={row.displayLabel || row.model}
           >
             {displayLabel}
