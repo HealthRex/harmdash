@@ -10,7 +10,7 @@ export function NoharmInfoCard({ className }: NoharmInfoCardProps) {
   return (
     <section
       className={clsx(
-        "flex flex-col gap-5 rounded-2xl bg-[#f4f4f5] p-5 text-sm text-slate-600 h-[547px] overflow-y-auto",
+        "flex flex-col gap-5 rounded-2xl bg-[#f4f4f5] p-5 text-sm text-slate-600 h-[650px] overflow-y-auto",
         className
       )}
     >
@@ -24,11 +24,17 @@ export function NoharmInfoCard({ className }: NoharmInfoCardProps) {
         <div className="flex flex-col gap-1">
           <dt className="text-xs font-semibold uppercase tracking-wide text-slate-500">About</dt>
           <dd>
-            NOHARM is a specialist-validated medical benchmark to evaluate the accuracy and safety of
+            NOHARM is a physician-validated medical benchmark to evaluate the accuracy and safety of
             AI-generated medical recommendations, grounded in real medical cases. The current version covers 10
-            specialties over 100 cases, and includes 12,747 specialist annotations on beneficial and
+            specialties across 100 cases, and includes 12,747 specialist annotations on beneficial and
             harmful medical actions that can be taken in the 100 cases. This project is led and supported by the ARISE AI Research Network, based
             at Stanford and Harvard.
+          </dd>
+        </div>
+                <div className="flex flex-col gap-1">
+          <dt className="text-xs font-semibold uppercase tracking-wide text-slate-500">Motivation</dt>
+          <dd>
+            As physicians, one of our core principles is to do no harm. With the rapid integration of AI technologies into medicine, how can we evaluate the harm of technologies? How do we evaluate how these models perform, compared to each other, and importantly, to ourselves?
           </dd>
         </div>
         <div className="flex flex-col gap-1">
@@ -53,11 +59,9 @@ export function NoharmInfoCard({ className }: NoharmInfoCardProps) {
             are interested benchmarking your model and inclusion in the leaderboard.
           </dd>
         </div>
-        <div className="flex flex-col gap-2.5">
-          <h2 className="text-[13px] font-semibold uppercase tracking-wide text-[#0c0d10]">
-            Contact
-          </h2>
-          <p className="text-[14px] leading-[1.65] text-neutral-700">
+        <div className="flex flex-col gap-1">
+          <dt className="text-xs font-semibold uppercase tracking-wide text-slate-500">Contact</dt>
+          <dd>
             <a
               href="https://forms.gle/MD94gF5Ro8wo7N8y7"
               className="font-medium text-blue-600 hover:text-blue-700"
@@ -66,7 +70,7 @@ export function NoharmInfoCard({ className }: NoharmInfoCardProps) {
             >
               Reach out to our team.
             </a>
-          </p>
+          </dd>
         </div>
       </dl>
     </section>
