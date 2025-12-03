@@ -971,7 +971,7 @@ export function BarChartCard({
         </span>
       </button>
       {isModelDropdownOpen ? (
-        <div className="absolute right-0 z-30 mt-2 w-[23rem] rounded-xl border border-slate-200 bg-white p-3 shadow-lg">
+        <div className="absolute left-0 z-30 mt-2 w-[calc(100vw-3rem)] max-w-[23rem] rounded-xl border border-slate-200 bg-white p-3 shadow-lg sm:left-auto sm:right-0 sm:w-[23rem]">
           <label className="mb-2 block text-[11px] font-semibold uppercase tracking-wide text-slate-500">
             Search
             <input
