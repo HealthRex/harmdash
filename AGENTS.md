@@ -23,7 +23,7 @@ It describes the project structure, coding conventions, and validation requireme
 /
 ├── data/                    # Source CSV files
 │   └── data_summary_subset.csv
-├── src/                     # Next.js application
+├── frontend/                # Next.js application
 │   ├── scripts/
 │   │   └── build-data.mjs   # CSV → JSON pipeline
 │   ├── public/
@@ -79,7 +79,7 @@ It describes the project structure, coding conventions, and validation requireme
 
 ### Commands
 ```bash
-cd src
+cd frontend
 
 # Start development (rebuilds data + launches Next.js)
 npm run dev
@@ -169,8 +169,8 @@ npm run build        # Next.js production build
 
 - Hosted on **Render.com** as a static site
 - `render.yaml` defines the deployment blueprint
-- Build command: `cd src && npm install && npm run build`
-- Publish directory: `src/out`
+- Build command: `cd frontend && npm install && npm run build`
+- Publish directory: `frontend/out`
 
 ---
 
@@ -186,7 +186,7 @@ npm run build        # Next.js production build
 
 ## Notes for AI Agents
 
-- This is a **client-only** project—there is no backend or database
+- This is a **frontend-only** project—there is no backend or database
 - Data changes require running `npm run prepare-data` to regenerate JSON
 - The `PLANNING.md` file contains detailed architecture information
 - When modifying charts, ensure color consistency with `conditionColorMap`

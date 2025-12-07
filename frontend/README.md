@@ -8,7 +8,7 @@ Interactive Next.js dashboard for exploring harm benchmarks across medical AI re
 ## Getting Started
 
 ```bash
-cd src
+cd frontend
 npm install
 npm run dev
 ```
@@ -30,7 +30,7 @@ The dev script automatically regenerates `public/data/ai-harm-summary.json` from
 
 The repository includes a `render.yaml` manifest. Once pushed to GitHub, create a new “Blueprint” project on Render and point it to the repository. Render will:
 
-1. Install dependencies in `src/`.
+1. Install dependencies in `frontend/`.
 2. Execute `npm run build` (which regenerates the JSON artifact).
 3. Start the production server with `npm run start`.
 
