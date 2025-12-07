@@ -3,7 +3,7 @@ services:
     name: noharm
     env: node
     plan: free
-    rootDir: frontend
+    rootDir: src
     buildCommand: |
       npm install
       npm run build

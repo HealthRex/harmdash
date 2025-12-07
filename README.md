@@ -11,14 +11,14 @@ This interactive dashboard visualizes performance metrics from the NOHARM benchm
 ## Project Structure
 
 - `data/` — Source CSV files with benchmark results
-- `frontend/` — Next.js dashboard application
+- `src/` — Next.js dashboard application
 - `.github/workflows/` — CI/CD automation
 - `render.yaml` — Deployment configuration
 
 ## Quick Start
 
 ```bash
-cd frontend
+cd src
 npm install
 npm run dev
 ```
@@ -36,5 +36,5 @@ Visit `http://localhost:3000` to explore the dashboard. The dev script automatic
 ## Documentation
 
 - `AGENTS.md` — Comprehensive architecture and development guide
-- `frontend/README.md` — Frontend-specific documentation
+- `src/README.md` — Frontend-specific documentation
 - `PLANNING.md` — Architecture planning notes

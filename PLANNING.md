@@ -5,7 +5,7 @@ Harmdash is a Next.js dashboard that benchmarks medical-AI “harm” outcomes. 
 
 ## Repository Layout
 - `data/` – source CSVs (`metrics.csv`, `metadata.csv`)
-- `frontend/`
+- `src/`
   - `scripts/build-data.mjs` – CSV→JSON pipeline (also emits `combination-index.json` for search)
   - `public/data/ai-harm-summary.json` – derived dataset consumed at runtime
   - `src/` – TypeScript app (components, hooks, utils, config)
@@ -16,7 +16,7 @@ Harmdash is a Next.js dashboard that benchmarks medical-AI “harm” outcomes. 
    - Validates via Zod, coerces numerics, strips HTML labels
    - Normalizes team/condition strings; drops baseline rows for Accuracy/Safety
    - Writes `ai-harm-summary.json` (`rows`, `metadata`) and a deduped model index (`combination-index.json`)
-2. Next.js App Router loads the JSON artifact at build/runtime (`frontend/src/lib/getDataset.ts`)
+2. Next.js App Router loads the JSON artifact at build/runtime (`src/src/lib/getDataset.ts`)
 
 ## Frontend Stack
 - Framework: Next.js 14.2.5 (App Router, client components)
