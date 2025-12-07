@@ -144,29 +144,6 @@ export function sortRowsForMetric(
   return typeof maxItems === "number" ? sorted.slice(0, maxItems) : sorted;
 }
 
-export function getDatasetSummary(dataset: DatasetArtifact) {
-  const metrics = new Set<string>();
-  const models = new Set<string>();
-
-  dataset.rows.forEach((row) => {
-    metrics.add(row.metric);
-    models.add(row.model);
-  });
-
-  return {
-    totalRows: dataset.rows.length,
-    totalMetrics: metrics.size,
-    totalModels: models.size
-  };
-}
-
-export function sanitizeLabel(raw: string | null): string {
-  if (!raw) {
-    return "";
-  }
-  return raw.replace(/<[^>]+>/g, "").trim();
-}
-
 interface FormatMetricOptions {
   digits?: number;
   metadata?: MetricMetadata | null;

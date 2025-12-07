@@ -34,7 +34,6 @@ It describes the project structure, coding conventions, and validation requireme
 │   │   ├── app/             # Next.js App Router pages
 │   │   ├── components/      # React components
 │   │   ├── config/          # Configuration (colors, etc.)
-│   │   ├── hooks/           # Custom React hooks
 │   │   ├── lib/             # Data loading utilities
 │   │   ├── types/           # TypeScript type definitions
 │   │   └── utils/           # Utility functions

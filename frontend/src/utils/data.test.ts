@@ -4,20 +4,9 @@ import {
   formatMetricValue,
   getCombinationBaseKeyFromId,
   getCombinationBaseKeyFromRow,
-  groupRowsByCombination,
-  sanitizeLabel
+  groupRowsByCombination
 } from "@/utils/data";
 import type { MetricMetadata } from "@/types/dataset";
-
-describe("sanitizeLabel", () => {
-  it("removes HTML tags", () => {
-    expect(sanitizeLabel("<span>Example</span>")).toBe("Example");
-  });
-
-  it("returns empty string when null", () => {
-    expect(sanitizeLabel(null)).toBe("");
-  });
-});
 
 describe("formatMetricValue", () => {
   const percentMeta: MetricMetadata = {

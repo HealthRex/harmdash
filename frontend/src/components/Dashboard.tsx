@@ -106,13 +106,6 @@ function toggleWithMinimumSelected(
   return [...current, value];
 }
 
-const normalizeCombinationValue = (value: string | null | undefined): string =>
-  (value ?? "").trim().toLowerCase();
-
-const normalizeHarmForComparison = (
-  value: string | null | undefined
-): string => normalizeHarmValue(value).toLowerCase();
-
 const matchesDifficulty = (
   grading: string | null | undefined,
   difficulty: "Unanimous" | "Majority"
