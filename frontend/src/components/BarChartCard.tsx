@@ -1174,7 +1174,7 @@ export function BarChartCard({
           Math.min(((clamp(val) - axisMinValue) / range) * 100, 100),
           0
         );
-      const startPercent = percent(ciMin);
+      const startPercent = 0; // Start at 0 instead of ciMin
       const endPercent = percent(ciMax);
       const bandWidth = Math.max(endPercent - startPercent, 0);
       if (bandWidth <= 0) {
@@ -1186,7 +1186,7 @@ export function BarChartCard({
       return (
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-y-[3px] rounded-[6px]"
+          className="pointer-events-none absolute inset-0 rounded-[6px]"
           style={{
             left: `${startPercent}%`,
             width: `${bandWidth}%`,
@@ -1329,15 +1329,15 @@ export function BarChartCard({
           </div>
         ) : null}
         <span className="sr-only">Organization: {organizationLabel}</span>
-        <div className="relative h-10 w-full overflow-hidden rounded-[12px]">
+        <div className="relative h-10 w-full overflow-hidden rounded-[6px]">
           <div
-            className="absolute inset-0 rounded-[12px]"
+            className="absolute inset-0 rounded-[6px]"
             style={{ background: "#cbd5e1" }}
           />
           {renderConfidenceVisual()}
           <div
             className={clsx(
-              "absolute inset-0 rounded-[12px] transition-[width,background,opacity,box-shadow] duration-[650ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
+              "absolute inset-0 rounded-[6px] transition-[width,background,opacity,box-shadow] duration-[650ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
               isSelected
                 ? "opacity-100 shadow-[0_12px_22px_-14px_rgba(17,24,39,0.35)]"
                 : "opacity-95 shadow-[0_10px_18px_-14px_rgba(17,24,39,0.28)]"

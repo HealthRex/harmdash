@@ -8,7 +8,7 @@ export function StudyAuthorsCard() {
           Study Authors
         </h2>
         <p>
-          David Wu (<a href="mailto:dwu@mgh.harvard.edu" className="text-blue-600 hover:text-blue-800">dwu@mgh.harvard.edu</a>), Fateme Nateghi Haredasht, Saloni Kumar Maharaj, Priyank Jain, Jessica Tran, Matthew
+          David Wu (<a href="mailto:dwu@mgh.harvard.edu" className="text-brand-600 hover:text-brand-700">dwu@mgh.harvard.edu</a>), Fateme Nateghi Haredasht, Saloni Kumar Maharaj, Priyank Jain, Jessica Tran, Matthew
           Gwiazdon, Arjun Rustagi, Jenelle Jindal, Jacob M. Koshy, Vinay Kadiyala, Anup Agarwal, Bassman
           Tappuni, Brianna French, Sirus Jesudasen, Christopher V. Cosgriff, Rebanta Chakraborty, Jillian
           Caldwell, Susan Ziolkowski, David J. Iberri, Robert Diep, Rahul S. Dalal, Kira L. Newman, Kristin
