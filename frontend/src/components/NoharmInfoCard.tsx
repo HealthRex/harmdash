@@ -64,7 +64,7 @@ export function NoharmInfoCard({ className }: NoharmInfoCardProps) {
           <dd>
             <a
               href="https://forms.gle/MD94gF5Ro8wo7N8y7"
-              className="font-medium text-blue-600 hover:text-blue-700"
+              className="font-medium text-brand-600 hover:text-brand-700"
               target="_blank"
               rel="noopener noreferrer"
             >
