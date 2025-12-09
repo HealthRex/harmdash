@@ -1344,10 +1344,7 @@ export function BarChartCard({
             )}
             style={{
               width: `${widthPercent}%`,
-              background: `linear-gradient(90deg, ${lightenHex(
-                barColor,
-                18
-              )}, ${barColor})`
+              background: barColor
             }}
           />
           <span
