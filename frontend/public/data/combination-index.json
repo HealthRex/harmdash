@@ -1,5 +1,13 @@
 [
   {
+    "combinationId": "AMBOSS LiSA 1.0::Solo Models::Advisor::::AllHarm::AllCases::Unanimous",
+    "displayLabel": "AMBOSS LiSA 1.0",
+    "model": "AMBOSS LiSA 1.0",
+    "team": "Solo Models",
+    "condition": "Advisor",
+    "harm": ""
+  },
+  {
     "combinationId": "Claude 3.7 Sonnet::Solo Models::Advisor::::AllHarm::AllCases::Unanimous",
     "displayLabel": "Claude 3.7 Sonnet",
     "model": "Claude 3.7 Sonnet",
@@ -947,14 +955,6 @@
     "combinationId": "Kimi K2::Solo Models::Advisor::::AllHarm::AllCases::Unanimous",
     "displayLabel": "Kimi K2",
     "model": "Kimi K2",
-    "team": "Solo Models",
-    "condition": "Advisor",
-    "harm": ""
-  },
-  {
-    "combinationId": "LiSA 1.0::Solo Models::Advisor::::AllHarm::AllCases::Unanimous",
-    "displayLabel": "LiSA 1.0",
-    "model": "LiSA 1.0",
     "team": "Solo Models",
     "condition": "Advisor",
     "harm": ""
