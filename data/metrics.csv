@@ -168,7 +168,6 @@ AMBOSS LiSA 1.0,Solo Models,Advisor,AMBOSS,Completeness,0.671,0.012
 Llama 3.3 70b,Solo Models,Advisor,Meta,Completeness,0.56,0.02
 Llama 4 Maverick,Solo Models,Advisor,Meta,Completeness,0.516,0.011
 Llama 4 Scout,Solo Models,Advisor,Meta,Completeness,0.579,0.007
-MedGemma 27B,Solo Models,Advisor,Google,Completeness,0.515,0.021
 Mistral Large 2.1,Solo Models,Advisor,Mistral AI,Completeness,0.498,0.036
 Mistral Medium 3.1,Solo Models,Advisor,Mistral AI,Completeness,0.474,0.029
 Qwen3 235B,Solo Models,Advisor,Alibaba,Completeness,0.534,0.041
@@ -346,7 +345,6 @@ AMBOSS LiSA 1.0,Solo Models,Advisor,AMBOSS,Escalation,0.731,0.016
 Llama 3.3 70b,Solo Models,Advisor,Meta,Escalation,0.76,0.028
 Llama 4 Maverick,Solo Models,Advisor,Meta,Escalation,0.758,0.013
 Llama 4 Scout,Solo Models,Advisor,Meta,Escalation,0.76,0.008
-MedGemma 27B,Solo Models,Advisor,Google,Escalation,0.713,0.017
 Mistral Large 2.1,Solo Models,Advisor,Mistral AI,Escalation,0.689,0.034
 Mistral Medium 3.1,Solo Models,Advisor,Mistral AI,Escalation,0.617,0.029
 Qwen3 235B,Solo Models,Advisor,Alibaba,Escalation,0.772,0.044
@@ -524,7 +522,6 @@ AMBOSS LiSA 1.0,Solo Models,Advisor,AMBOSS,F1,0.623,0.004
 Llama 3.3 70b,Solo Models,Advisor,Meta,F1,0.5,0.005
 Llama 4 Maverick,Solo Models,Advisor,Meta,F1,0.544,0.003
 Llama 4 Scout,Solo Models,Advisor,Meta,F1,0.479,0.002
-MedGemma 27B,Solo Models,Advisor,Google,F1,0.541,0.005
 Mistral Large 2.1,Solo Models,Advisor,Mistral AI,F1,0.578,0.005
 Mistral Medium 3.1,Solo Models,Advisor,Mistral AI,F1,0.551,0.003
 Qwen3 235B,Solo Models,Advisor,Alibaba,F1,0.53,0.006
@@ -702,7 +699,6 @@ AMBOSS LiSA 1.0,Solo Models,Advisor,AMBOSS,OverallScore,0.623,0.005
 Llama 3.3 70b,Solo Models,Advisor,Meta,OverallScore,0.511,0.007
 Llama 4 Maverick,Solo Models,Advisor,Meta,OverallScore,0.535,0.004
 Llama 4 Scout,Solo Models,Advisor,Meta,OverallScore,0.496,0.003
-MedGemma 27B,Solo Models,Advisor,Google,OverallScore,0.523,0.011
 Mistral Large 2.1,Solo Models,Advisor,Mistral AI,OverallScore,0.537,0.013
 Mistral Medium 3.1,Solo Models,Advisor,Mistral AI,OverallScore,0.502,0.012
 Qwen3 235B,Solo Models,Advisor,Alibaba,OverallScore,0.527,0.018
@@ -880,7 +876,6 @@ AMBOSS LiSA 1.0,Solo Models,Advisor,AMBOSS,Precision,0.493,0.004
 Llama 3.3 70b,Solo Models,Advisor,Meta,Precision,0.361,0.005
 Llama 4 Maverick,Solo Models,Advisor,Meta,Precision,0.415,0.003
 Llama 4 Scout,Solo Models,Advisor,Meta,Precision,0.343,0.002
-MedGemma 27B,Solo Models,Advisor,Google,Precision,0.427,0.006
 Mistral Large 2.1,Solo Models,Advisor,Mistral AI,Precision,0.474,0.015
 Mistral Medium 3.1,Solo Models,Advisor,Mistral AI,Precision,0.434,0.007
 Qwen3 235B,Solo Models,Advisor,Alibaba,Precision,0.407,0.004
@@ -1058,7 +1053,6 @@ AMBOSS LiSA 1.0,Solo Models,Advisor,AMBOSS,Recall,0.846,0.004
 Llama 3.3 70b,Solo Models,Advisor,Meta,Recall,0.814,0.009
 Llama 4 Maverick,Solo Models,Advisor,Meta,Recall,0.79,0.005
 Llama 4 Scout,Solo Models,Advisor,Meta,Recall,0.793,0.003
-MedGemma 27B,Solo Models,Advisor,Google,Recall,0.738,0.007
 Mistral Large 2.1,Solo Models,Advisor,Mistral AI,Recall,0.747,0.024
 Mistral Medium 3.1,Solo Models,Advisor,Mistral AI,Recall,0.757,0.013
 Qwen3 235B,Solo Models,Advisor,Alibaba,Recall,0.758,0.014
@@ -1236,7 +1230,6 @@ AMBOSS LiSA 1.0,Solo Models,Advisor,AMBOSS,Restraint,0.541,0.004
 Llama 3.3 70b,Solo Models,Advisor,Meta,Restraint,0.451,0.005
 Llama 4 Maverick,Solo Models,Advisor,Meta,Restraint,0.491,0.003
 Llama 4 Scout,Solo Models,Advisor,Meta,Restraint,0.446,0.001
-MedGemma 27B,Solo Models,Advisor,Google,Restraint,0.505,0.005
 Mistral Large 2.1,Solo Models,Advisor,Mistral AI,Restraint,0.532,0.015
 Mistral Medium 3.1,Solo Models,Advisor,Mistral AI,Restraint,0.505,0.008
 Qwen3 235B,Solo Models,Advisor,Alibaba,Restraint,0.49,0.006
@@ -1414,7 +1407,6 @@ AMBOSS LiSA 1.0,Solo Models,Advisor,AMBOSS,Safety,0.679,0.008
 Llama 3.3 70b,Solo Models,Advisor,Meta,Safety,0.538,0.009
 Llama 4 Maverick,Solo Models,Advisor,Meta,Safety,0.612,0.006
 Llama 4 Scout,Solo Models,Advisor,Meta,Safety,0.482,0.006
-MedGemma 27B,Solo Models,Advisor,Google,Safety,0.554,0.015
 Mistral Large 2.1,Solo Models,Advisor,Mistral AI,Safety,0.604,0.011
 Mistral Medium 3.1,Solo Models,Advisor,Mistral AI,Safety,0.537,0.014
 Qwen3 235B,Solo Models,Advisor,Alibaba,Safety,0.565,0.015
@@ -1592,7 +1584,6 @@ AMBOSS LiSA 1.0,Solo Models,Advisor,AMBOSS,nnh_cumulative,10.726,0.822
 Llama 3.3 70b,Solo Models,Advisor,Meta,nnh_cumulative,8.27,0.502
 Llama 4 Maverick,Solo Models,Advisor,Meta,nnh_cumulative,10.337,0.649
 Llama 4 Scout,Solo Models,Advisor,Meta,nnh_cumulative,6.372,0.175
-MedGemma 27B,Solo Models,Advisor,Google,nnh_cumulative,7.225,0.538
 Mistral Large 2.1,Solo Models,Advisor,Mistral AI,nnh_cumulative,7.162,0.631
 Mistral Medium 3.1,Solo Models,Advisor,Mistral AI,nnh_cumulative,6.202,0.473
 Qwen3 235B,Solo Models,Advisor,Alibaba,nnh_cumulative,6.485,0.532
@@ -1770,7 +1761,6 @@ AMBOSS LiSA 1.0,Solo Models,Advisor,AMBOSS,normalized,12.9,1.119
 Llama 3.3 70b,Solo Models,Advisor,Meta,normalized,21,1.729
 Llama 4 Maverick,Solo Models,Advisor,Meta,normalized,18.5,0.785
 Llama 4 Scout,Solo Models,Advisor,Meta,normalized,32.35,0.967
-MedGemma 27B,Solo Models,Advisor,Google,normalized,28,1.987
 Mistral Large 2.1,Solo Models,Advisor,Mistral AI,normalized,22.2,2.336
 Mistral Medium 3.1,Solo Models,Advisor,Mistral AI,normalized,29.133,1.468
 Qwen3 235B,Solo Models,Advisor,Alibaba,normalized,31.25,3.869
@@ -1948,7 +1938,6 @@ AMBOSS LiSA 1.0,Solo Models,Advisor,AMBOSS,pct_cumulative,0.096,0.007
 Llama 3.3 70b,Solo Models,Advisor,Meta,pct_cumulative,0.122,0.008
 Llama 4 Maverick,Solo Models,Advisor,Meta,pct_cumulative,0.098,0.006
 Llama 4 Scout,Solo Models,Advisor,Meta,pct_cumulative,0.158,0.004
-MedGemma 27B,Solo Models,Advisor,Google,pct_cumulative,0.14,0.01
 Mistral Large 2.1,Solo Models,Advisor,Mistral AI,pct_cumulative,0.143,0.01
 Mistral Medium 3.1,Solo Models,Advisor,Mistral AI,pct_cumulative,0.164,0.01
 Qwen3 235B,Solo Models,Advisor,Alibaba,pct_cumulative,0.155,0.013
@@ -2008,7 +1997,6 @@ DeepSeek R1 + Llama 4 Scout,2-Agent Teams,Advisor + Guardian,DeepSeek + Meta,Run
 DeepSeek R1 + Llama 4 Scout + Gemini 2.5 Pro,3-Agent Teams,Advisor + Guardian + Guardian,DeepSeek + Meta + Google,Runtime,195.417,6.177
 DeepSeek R1 + o3 mini,2-Agent Teams,Advisor + Guardian,DeepSeek + OpenAI,Runtime,130.064,3.33
 DeepSeek V3.1,Solo Models,Advisor,DeepSeek,Runtime,30.446,0.609
-Expert AI,Solo Models,Advisor,UpToDate,Runtime,44.729,0.594
 GPT-4.1,Solo Models,Advisor,OpenAI,Runtime,13.217,0.101
 GPT-4.1 + Claude 3.7 Sonnet,2-Agent Teams,Advisor + Guardian,OpenAI + Anthropic,Runtime,69.434,3.092
 GPT-4.1 + DeepSeek R1,2-Agent Teams,Advisor + Guardian,OpenAI + DeepSeek,Runtime,102.3,5.019
@@ -2113,9 +2101,8 @@ Gemini 3 Pro,Solo Models,Advisor,Google,Runtime,89.201,1.387
 Glass Health 4.0,Solo Models,Advisor,Glass Health,Runtime,121.469,1.661
 Grok 4,Solo Models,Advisor,xAI,Runtime,158.563,4.002
 Grok 4 Fast,Solo Models,Advisor,xAI,Runtime,20.805,0.393
-Human,Solo Models,Human,Human,Runtime,0,0
 Kimi K2,Solo Models,Advisor,Moonshot AI,Runtime,147.306,2.543
-LiSA 1.0,Solo Models,Advisor,AMBOSS,Runtime,58.128,0.394
+AMBOSS LiSA 1.0,Solo Models,Advisor,AMBOSS,Runtime,58.128,0.394
 Llama 3.3 70b,Solo Models,Advisor,Meta,Runtime,31.94,0.644
 Llama 4 Maverick,Solo Models,Advisor,Meta,Runtime,17.533,0.335
 Llama 4 Maverick + Claude 3.7 Sonnet,2-Agent Teams,Advisor + Guardian,Meta + Anthropic,Runtime,69.655,2.862
@@ -2159,7 +2146,6 @@ Llama 4 Scout + Llama 4 Scout + Gemini 2.5 Pro,3-Agent Teams,Advisor + Guardian 
 Llama 4 Scout + Llama 4 Scout + Llama 4 Maverick,3-Agent Teams,Advisor + Guardian + Guardian,Meta + Meta + Meta,Runtime,58.148,1.092
 Llama 4 Scout + Llama 4 Scout + Llama 4 Scout,3-Agent Teams,Advisor + Guardian + Guardian,Meta + Meta + Meta,Runtime,58.255,1.1
 Llama 4 Scout + o3 mini,2-Agent Teams,Advisor + Guardian,Meta + OpenAI,Runtime,59.535,0.943
-MedGemma 27B,Solo Models,Advisor,Google,Runtime,122.092,1.053
 Mistral Large 2.1,Solo Models,Advisor,Mistral AI,Runtime,41.207,0.417
 Mistral Medium 3.1,Solo Models,Advisor,Mistral AI,Runtime,49.17,0.826
 Qwen3 235B,Solo Models,Advisor,Alibaba,Runtime,168.028,7.335

@@ -328,14 +328,6 @@
     "harm": ""
   },
   {
-    "combinationId": "Expert AI::Solo Models::Advisor::::::::",
-    "displayLabel": "Expert AI",
-    "model": "Expert AI",
-    "team": "Solo Models",
-    "condition": "Advisor",
-    "harm": ""
-  },
-  {
     "combinationId": "Gemini 2.0 Flash::Solo Models::Advisor::::::::",
     "displayLabel": "Gemini 2.0 Flash",
     "model": "Gemini 2.0 Flash",
@@ -1168,14 +1160,6 @@
     "harm": ""
   },
   {
-    "combinationId": "Human::Solo Models::Human::::::::",
-    "displayLabel": "Human",
-    "model": "Human",
-    "team": "Solo Models",
-    "condition": "Human",
-    "harm": ""
-  },
-  {
     "combinationId": "Human Generalist Physicians::Solo Models::Human::::::::",
     "displayLabel": "Human Generalist Physicians",
     "model": "Human Generalist Physicians",
@@ -1187,14 +1171,6 @@
     "combinationId": "Kimi K2::Solo Models::Advisor::::::::",
     "displayLabel": "Kimi K2",
     "model": "Kimi K2",
-    "team": "Solo Models",
-    "condition": "Advisor",
-    "harm": ""
-  },
-  {
-    "combinationId": "LiSA 1.0::Solo Models::Advisor::::::::",
-    "displayLabel": "LiSA 1.0",
-    "model": "LiSA 1.0",
     "team": "Solo Models",
     "condition": "Advisor",
     "harm": ""
@@ -1541,14 +1517,6 @@
     "model": "Llama 4 Scout + o3 mini",
     "team": "2-Agent Teams",
     "condition": "Advisor + Guardian",
-    "harm": ""
-  },
-  {
-    "combinationId": "MedGemma 27B::Solo Models::Advisor::::::::",
-    "displayLabel": "MedGemma 27B",
-    "model": "MedGemma 27B",
-    "team": "Solo Models",
-    "condition": "Advisor",
     "harm": ""
   },
   {
