@@ -28,4 +28,4 @@ NA,OverallScoreSCP7,FALSE,FALSE,NA,Higher,Percent,0,1,Overall Score SCP7,Placeho
 NA,Raw Accuracy,FALSE,FALSE,NA,Higher,Percent,0,1,Raw Accuracy,Placeholder
 NA,Recall8,FALSE,FALSE,NA,Higher,Percent,0,1,Recall8,Placeholder
 NA,OverallScore7,FALSE,FALSE,NA,Higher,Percent,0,1,Overall7,Placeholder
-11,Runtime,TRUE,FALSE,NA,Lower,Absolute,0,180,Runtime,Inference time in seconds
+11,Runtime,TRUE,FALSE,NA,Lower,Absolute,0,255,Runtime,Inference time in seconds

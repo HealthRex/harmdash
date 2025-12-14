@@ -172,7 +172,7 @@ export function TeamFiltersBar({
       <header className="flex items-center gap-2">
         <div className="flex items-center gap-2">
           <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-            TEAM CONFIGURATION
+            MULTI-AGENT CONFIGURATION
           </h2>
           <div
             className="relative"
@@ -196,7 +196,7 @@ export function TeamFiltersBar({
             </button>
             {showTeamInfo ? (
               <div className="absolute left-1/2 bottom-full z-10 mb-2 w-96 -translate-x-1/2 rounded-lg border border-slate-200 bg-white p-3 text-xs font-medium text-slate-600 shadow-lg">
-                View performance of multi-agent teams, where one model reviews and edits the output of other models in a Guardian or Stewardship role
+                View performance of multi-agent teams, where models can review and update the output of other models, as if providing a 2nd opinion
               </div>
             ) : null}
           </div>
