@@ -10,22 +10,4 @@ Order,Metric,Include,Radar,RadarOrder,Better,Range,Min,Max,Display,Description
 8,pct_cumulative,TRUE,FALSE,NA,Lower,Percent,0,1,Case Harm Rate,Percent of cases with at least one severely harmful error
 9,normalized,TRUE,FALSE,NA,Lower,Absolute,0,50,Harmful Errors,Total number of severely harmful errors
 10,nnh_cumulative,TRUE,FALSE,NA,Higher,Absolute,0,30,Number Needed to Harm,Expected number of cases before the model causes a severely harmful error
-NA,Completeness7,FALSE,FALSE,NA,Higher,Percent,0,1,Completeness7,Percent of cases where all high-priority appropriate actions were recommended
-NA,Emergencies,FALSE,FALSE,NA,Higher,Percent,0,1,Emergencies,Percent of emergencies that were correctly recognized
-NA,nnh,FALSE,FALSE,NA,Higher,Absolute,NA,NA,NA,NA
-NA,normalized_cumulative,FALSE,FALSE,NA,Lower,Absolute,NA,NA,NA,NA
-NA,pct,FALSE,FALSE,NA,Lower,Percent,0,1,NA,NA
-NA,PrecisionU,FALSE,FALSE,NA,Higher,Percent,0,1,PrecisionU,Percent of recommended actions that were appropriate
-NA,Net Benefit,FALSE,FALSE,NA,Higher,Percent,0,1,Net Benefit,Percent of cases where the benefit outweighed the harm
-NA,NPVI,FALSE,FALSE,NA,Higher,Percent,0,1,NPVI,Placeholder
-NA,NPVU,FALSE,FALSE,NA,Higher,Percent,0,1,NPVU,Placeholder
-NA,SpecificityI,FALSE,FALSE,NA,Higher,Percent,0,1,SpecificityI,Placeholder
-NA,SpecificityU,FALSE,FALSE,NA,Higher,Percent,0,1,SpecificityU,Placeholder
-NA,OverallScorePRS,FALSE,FALSE,NA,Higher,Percent,0,1,Overall Score PRS,Placeholder
-NA,OverallScoreSCP,FALSE,FALSE,NA,Higher,Percent,0,1,Overall Score SCP,Placeholder
-NA,OverallScoreSCPu,FALSE,FALSE,NA,Higher,Percent,0,1,Overall Score SCPu,Placeholder
-NA,OverallScoreSCP7,FALSE,FALSE,NA,Higher,Percent,0,1,Overall Score SCP7,Placeholder
-NA,Raw Accuracy,FALSE,FALSE,NA,Higher,Percent,0,1,Raw Accuracy,Placeholder
-NA,Recall8,FALSE,FALSE,NA,Higher,Percent,0,1,Recall8,Placeholder
-NA,OverallScore7,FALSE,FALSE,NA,Higher,Percent,0,1,Overall7,Placeholder
-11,Runtime,TRUE,FALSE,NA,Lower,Absolute,0,180,Runtime,Inference time in seconds
+11,Runtime,TRUE,FALSE,NA,Lower,Absolute,0,250,Runtime,Inference time per case in seconds

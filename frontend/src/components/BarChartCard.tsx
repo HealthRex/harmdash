@@ -1530,6 +1530,9 @@ export function BarChartCard({
           <p className="text-sm text-neutral-500">
             Compare model performance on a variety of metrics
           </p>
+          {metricDescription ? (
+            <p className="text-xs text-neutral-500">{metricDescription}</p>
+          ) : null}
         </div>
         <div className="flex min-w-[12rem] flex-col items-end gap-2">
           <div className="flex w-full flex-col gap-1">

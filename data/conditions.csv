@@ -1,9 +1,5 @@
 Condition,Include
 Advisor,TRUE
-AdvisorMax,FALSE
-AdvisorAvoid,FALSE
 Advisor + Guardian,TRUE
-Advisor + Steward,FALSE
 Advisor + Guardian + Guardian,TRUE
-Advisor + Guardian + Steward,FALSE
 Human,TRUE
