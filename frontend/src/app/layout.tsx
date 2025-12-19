@@ -9,7 +9,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "NOHARM Leaderboard",
+  title: "MAST Leaderboard",
   description:
     "Interactive analytics dashboard for benchmarking harm in medical AI recommendations."
 };
