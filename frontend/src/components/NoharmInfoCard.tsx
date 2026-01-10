@@ -55,8 +55,16 @@ export function NoharmInfoCard({ className }: NoharmInfoCardProps) {
         <div className="flex flex-col gap-1">
           <dt className="text-xs font-semibold uppercase tracking-wide text-slate-500">Submissions</dt>
           <dd>
-            An automated submission portal is in the works. In the meanwhile, please contact us if you
-            are interested benchmarking your model and inclusion in the leaderboard.
+            Please see the{" "}
+            <a
+              href="https://github.com/HealthRex/mast"
+              className="font-medium text-brand-600 hover:text-brand-700"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              MAST GitHub Repository
+            </a>
+            {" "}for information and instructions on participating.
           </dd>
         </div>
         <div className="flex flex-col gap-1">

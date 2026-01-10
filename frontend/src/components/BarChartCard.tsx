@@ -1508,9 +1508,8 @@ export function BarChartCard({
 
   return (
     <section className="flex flex-col gap-5 rounded-3xl bg-[#f4f4f5] p-6 transition-all duration-[600ms] ease-[cubic-bezier(0.33,1,0.68,1)]">
-      <header className="flex flex-wrap items-start justify-between gap-4">
+      <header className="grid gap-4 md:grid-cols-[minmax(0,1fr)_auto] md:items-start">
         <div className="flex flex-col gap-1">
-          
           <h2 className="text-xl font-semibold text-[#0c0d10]">
             <button
               type="button"
@@ -1534,9 +1533,8 @@ export function BarChartCard({
             <p className="text-xs text-neutral-500">{metricDescription}</p>
           ) : null}
         </div>
-        <div className="flex min-w-[12rem] flex-col items-end gap-2">
+        <div className="flex min-w-[12rem] flex-col items-end gap-2 md:justify-self-end">
           <div className="flex w-full flex-col gap-1">
-
             <select
               id="bar-chart-metric-select"
               value={metricId}
