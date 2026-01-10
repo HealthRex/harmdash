@@ -1,5 +1,6 @@
-Condition,Include
-Advisor,TRUE
-Advisor + Guardian,TRUE
-Advisor + Guardian + Guardian,TRUE
-Human,TRUE
+Condition,Group,Include
+Human,Human,X
+Advisor + Guardian,Multi,X
+Advisor + Guardian + Guardian,Multi,X
+Control,Control,X
+Avoider,Solo,X
