@@ -1,5 +1,8 @@
 # NOHARM Leaderboard
 
+> [!NOTE]
+> This project has moved to [HealthRex-ARISE/harmdash](https://github.com/HealthRex-ARISE/harmdash). The version in this repository is archived.
+
 Introducing MAST, our vision for a suite of realistic clinical benchmarks to evaluate real-world performance of medical AI systems.
 
 **First, Do NOHARM** is the foundational benchmark of the MAST suite, and establishes a new framework to assess clinical safety and accuracy in AI-generated medical recommendations.
